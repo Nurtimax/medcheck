@@ -32,14 +32,14 @@
             "ignoreRegExpLiterals": true
          }
       ],
-      "no-console": ["warn", { "allow": ["warn", "error"] }]
-      // "jsx-a11y/label-has-associated-control": [
-      //   "error",
-      //   {
-      //     "required": {
-      //       "some": ["nesting", "id"]
-      //     }
-      //   }
-      // ]
+      "no-console": ["warn", { "allow": ["warn", "error"] }],
+      "jsx-a11y/label-has-associated-control": [
+         "error",
+         {
+            "required": {
+               "some": ["nesting", "id"]
+            }
+         }
+      ]
    }
 }
