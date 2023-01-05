@@ -15,13 +15,13 @@ const AdminHeader = () => {
 
             <OnlineRecord2>Заявки</OnlineRecord2>
          </Record>
-         <select style={{ border: 'none', outline: 'none' }} name="" id="">
+         <Select>
             <option value="  Администратор"> Администратор</option>
             <option value="  Администратор"> Администратор 2</option>
             <option value="  Администратор"> Администратор 3</option>
             <option value="  Администратор"> Администратор 4</option>
             <option value="  Администратор"> Администратор 5</option>
-         </select>
+         </Select>
       </Header>
    )
 }
@@ -33,10 +33,13 @@ const Header = styled.header`
    align-items: center;
    width: 100%;
    margin-top: 10px;
+   position: fixed;
+   margin: 0;
 `
 
 const OnlineRecord = styled.div`
    color: #707070;
+   cursor: pointer;
 
    :hover {
       border-bottom: 2px solid #048741;
@@ -44,6 +47,7 @@ const OnlineRecord = styled.div`
    }
 `
 const OnlineRecord2 = styled.div`
+   cursor: pointer;
    color: #707070;
    :hover {
       border-bottom: 2px solid #048741;
@@ -55,8 +59,7 @@ const Record = styled.div`
    margin-top: 30px;
    height: 50px;
    display: flex;
-   /* align-items: center; */
-   /* background-color: red; */
+
    gap: 76px;
 `
 
@@ -64,6 +67,12 @@ const ProjectLogos = styled.div`
    display: flex;
    gap: 10px;
    align-items: center;
+`
+
+const Select = styled.select`
+   border: none;
+   outline: none;
+   cursor: pointer;
 `
 
 export default AdminHeader

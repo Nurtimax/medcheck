@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import iconLocation from '../../assets/icons/GeoPoint.svg'
 import iconHour from '../../assets/icons/Hour.svg'
 import iconSearching from '../../assets/icons/searching.svg'
-import iconPhoneNumber from '../../assets/icons/Phone.svg'
+import iconPhoneNumber from '../../assets/icons/iconTelephone.svg'
 import iconWhatsApp from '../../assets/icons/whatsApp.svg'
 import iconInstagram from '../../assets/icons/instagram.svg'
 import iconTelegram from '../../assets/icons/telegram.svg'
@@ -66,12 +66,14 @@ const Header = () => {
 const HeaderContainer = styled.header`
    width: 100%;
    background-color: #ffffff;
+   position: fixed;
 `
 
 const FirstRow = styled.div`
    display: flex;
    justify-content: space-around;
    margin: 0 auto;
+
    width: 80%;
    align-items: center;
    border-bottom: 1px solid #c0bdbd;
@@ -119,6 +121,7 @@ const InputSearching = styled.input`
 const Searching = styled.img`
    width: 17px;
    height: 17px;
+   cursor: pointer;
 `
 
 const InFirstRow3 = styled.div`
@@ -132,6 +135,7 @@ const PhoneNumber = styled.img`
    width: 17px;
    height: 17px;
    margin-bottom: 13px;
+   cursor: pointer;
 `
 
 const InFirstRow4 = styled.div`
@@ -145,6 +149,7 @@ const InFirstRow4 = styled.div`
       width: 32px;
       height: 32px;
       border-radius: 50%;
+      cursor: pointer;
    }
 `
 
@@ -169,6 +174,7 @@ const NavigatePages = styled.nav`
    gap: 20px;
    li {
       list-style: none;
+      cursor: pointer;
    }
 `
 
@@ -178,7 +184,7 @@ const RecordButton = styled.button`
    background: linear-gradient(#0cbb6b, #027b44); //#0cbb6b
    padding: 15px;
    border-radius: 25px;
-
+   cursor: pointer;
    text-transform: uppercase;
    color: #ffffff;
 `
