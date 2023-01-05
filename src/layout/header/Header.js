@@ -4,9 +4,9 @@ import iconLocation from '../../assets/icons/GeoPoint.svg'
 import iconHour from '../../assets/icons/Hour.svg'
 import iconSearching from '../../assets/icons/searching.svg'
 import iconPhoneNumber from '../../assets/icons/iconTelephone.svg'
-import iconWhatsApp from '../../assets/icons/whatsApp.svg'
-import iconInstagram from '../../assets/icons/instagram.svg'
-import iconTelegram from '../../assets/icons/telegram.svg'
+import iconInstagram from '../../assets/icons/whatsApp.svg'
+import iconTelegram from '../../assets/icons/instagram.svg'
+import iconWhatsApp from '../../assets/icons/telegram.svg'
 import iconMedCheck from '../../assets/icons/MedCheck.svg'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 
@@ -34,13 +34,19 @@ const Header = () => {
             </InFirstRow3>
             <InFirstRow4>
                <div>
-                  <img src={iconWhatsApp} alt="whatsApp" />
+                  <a href="https://www.instagram.com/">
+                     <img src={iconInstagram} alt="whatsApp" />
+                  </a>
                </div>
                <div>
-                  <img src={iconTelegram} alt="telegram" />
+                  <a href="https://web.telegram.org/k/">
+                     <img src={iconTelegram} alt="instagram" />
+                  </a>
                </div>
                <div>
-                  <img src={iconInstagram} alt="instagram" />
+                  <a href="https://www.whatsapp.com/?lang=ru">
+                     <img src={iconWhatsApp} alt="telegram" />
+                  </a>
                </div>
             </InFirstRow4>
          </FirstRow>
@@ -146,8 +152,8 @@ const InFirstRow4 = styled.div`
       justify-content: center;
       align-items: center;
       background-color: #048741;
-      width: 32px;
-      height: 32px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
       cursor: pointer;
    }
