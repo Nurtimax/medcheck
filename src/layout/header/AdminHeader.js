@@ -11,13 +11,9 @@ const AdminHeader = () => {
             <img src={medCheckIcon} alt="medCheck" />
          </ProjectLogos>
          <Record>
-            <OnlineRecord>
-               <p>Онлайн-запись</p>
-            </OnlineRecord>
+            <OnlineRecord>Онлайн-запись</OnlineRecord>
 
-            <OnlineRecord2>
-               <p>Заявки</p>
-            </OnlineRecord2>
+            <OnlineRecord2>Заявки</OnlineRecord2>
          </Record>
          <select style={{ border: 'none', outline: 'none' }} name="" id="">
             <option value="  Администратор"> Администратор</option>
@@ -40,15 +36,14 @@ const Header = styled.header`
 `
 
 const OnlineRecord = styled.div`
-   display: flex;
    color: #707070;
+
    :hover {
       border-bottom: 2px solid #048741;
       color: #222222;
    }
 `
 const OnlineRecord2 = styled.div`
-   display: flex;
    color: #707070;
    :hover {
       border-bottom: 2px solid #048741;
@@ -57,7 +52,11 @@ const OnlineRecord2 = styled.div`
 `
 
 const Record = styled.div`
+   margin-top: 30px;
+   height: 50px;
    display: flex;
+   /* align-items: center; */
+   /* background-color: red; */
    gap: 76px;
 `
 
