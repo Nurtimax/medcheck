@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
+
 import styled from 'styled-components'
 import ReactDOM from 'react-dom'
 
 import users from '../../assets/icons/Users.svg'
 import phone from '../../assets/icons/phone.svg'
 import sendRequest from '../../assets/icons/SendRequest.svg'
-
-import { BiX } from 'react-icons/bi'
 
 function Modal() {
    const [active, setActive] = useState(false)
@@ -16,7 +15,11 @@ function Modal() {
             <Container>
                <ModalContainer>
                   <Bixx onClick={() => setActive(false)}>
-                     <BiX />
+                     <img
+                        width="15px"
+                        src="https://freesvg.org/img/1544641784.png"
+                        alt=""
+                     />
                   </Bixx>
                   <Request>Оставьте заявку</Request>
                   <TextForRequest>
@@ -40,7 +43,7 @@ function Modal() {
                         <Input2>
                            <img src={phone} alt="" />
                            <InputForUserPhone
-                              type="text"
+                              type="number"
                               placeholder="+996 (___) __-__-__"
                            />
                         </Input2>
@@ -75,7 +78,6 @@ const ModalContainer = styled.div`
    background-color: #ebf2fc;
    margin: 0 auto;
    border-radius: 20px;
-   animation: shadow-drop-2-tb 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 `
 
 const TextForRequest = styled.p`
