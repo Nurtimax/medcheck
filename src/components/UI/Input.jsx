@@ -37,7 +37,7 @@ const InputStyle = styled(InputBase)`
    padding: 6px 16px;
    & {
       .error {
-         border: '1px solid red';
+         border: 1px solid red;
       }
    }
    & {
