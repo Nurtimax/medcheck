@@ -1,12 +1,13 @@
 import { styled } from '@mui/material'
 import MuiButton from '@mui/material/Button'
 
-function Button({ children, disabled, onClick, variant, ...props }) {
+function Button({ children, disabled, onClick, variant, bgColor, ...props }) {
    return (
       <ButtonStyle
          onClick={onClick}
          disabled={disabled}
          variant={variant}
+         bgColor={bgColor}
          {...props}
       >
          {children}
