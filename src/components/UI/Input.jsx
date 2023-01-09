@@ -1,57 +1,75 @@
 import InputBase from '@mui/material/InputBase'
 import { styled } from '@mui/system'
+import { forwardRef } from 'react'
 
-const Input = ({ onChange, error, placeholder, ref, type, ...props }) => {
-   return (
-      <InputStyle
-         onChange={onChange}
-         error={error}
-         placeholder={placeholder}
-         ref={ref}
-         type={type}
-         classes={{ error: 'error' }}
-         {...props}
-      />
-   )
-}
+const Input = forwardRef(
+   (
+      {
+         onChange,
+         error,
+         placeholder,
+         type,
+         name,
+         id,
+         value,
+         maxLength,
+         ...props
+      },
+      ref
+   ) => {
+      return (
+         <InputStyle
+            onChange={onChange}
+            error={error}
+            placeholder={placeholder}
+            ref={ref}
+            type={type}
+            name={name}
+            id={id}
+            value={value}
+            maxLength={maxLength}
+            classes={{ error: 'Error' }}
+            {...props}
+         />
+      )
+   }
+)
 
 export default Input
 
 const InputStyle = styled(InputBase)`
-   width: ${(props) => (props.width ? props.width : '')};
-   height: ${(props) => (props.height ? props.height : '')};
-   box-sizing: border-box;
-   background-color: #fff;
-   border-color: #ae9e9e;
-   background-color: #fafbfc;
-   border-radius: 8px;
-   border: 1px solid rgba(27, 31, 35, 0.15);
-   box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
-      rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-   color: #24292e;
+   width: ${(props) => (props.width ? props.width : '414px')};
+   height: ${(props) => (props.height ? props.height : '45px')};
+   font-family: 'Manrope';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 22px;
+   color: #959595;
    cursor: pointer;
-   font-size: 14px;
-   font-weight: 500;
-   line-height: 20px;
-   list-style: none;
-   padding: 6px 16px;
-   & {
-      .error {
-         border: 1px solid red;
-      }
+   padding: 10px 8px 10px 16px;
+   box-sizing: border-box;
+   align-items: center;
+   border: 1px solid #d9d9d9;
+   border-radius: 8px;
+   &.Error {
+      border: 1px solid red;
+      color: red;
    }
    & {
       :hover {
-         border-color: #858c8f;
-         text-decoration: none;
-         transition-duration: 0.2s;
+         box-sizing: border-box;
+         color: #4d4e51;
+         align-items: center;
+         padding: 10px 8px 10px 16px;
+         border: 1px solid #959595;
+         border-radius: 8px;
       }
    }
    & {
       :active {
-         border-color: #5ce05c;
-         box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
-         transition: none 0s;
+         box-sizing: border-box;
+         border: 1px solid rgba(4, 135, 65, 0.8);
       }
    }
 `
