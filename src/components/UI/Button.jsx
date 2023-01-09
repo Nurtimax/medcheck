@@ -1,13 +1,24 @@
 import { styled } from '@mui/material'
 import MuiButton from '@mui/material/Button'
 
-function Button({ children, disabled, onClick, variant, bgColor, ...props }) {
+function Button({
+   children,
+   disabled,
+   onClick,
+   variant,
+   bgColor,
+   width,
+   height,
+   ...props
+}) {
    return (
       <ButtonStyle
          onClick={onClick}
          disabled={disabled}
          variant={variant}
          bgColor={bgColor}
+         width={width}
+         height={height}
          {...props}
       >
          {children}
@@ -21,7 +32,7 @@ const ButtonStyle = styled(MuiButton)`
       background-color: ${({ bgColor }) =>
          bgColor ||
          'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%);'};
-      width: ${(props) => (props.width ? props.width : '111PX')};
+      width: ${(props) => (props.width ? props.width : '111px')};
       height: ${(props) => (props.height ? props.height : '42px')};
       box-sizing: border-box;
       font-family: 'Manrope';
