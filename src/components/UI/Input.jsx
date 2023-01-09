@@ -1,5 +1,5 @@
 import InputBase from '@mui/material/InputBase'
-import styled from '@emotion/styled'
+import { styled } from '@mui/system'
 
 const Input = ({ onChange, error, placeholder, ref, type, ...props }) => {
    return (
