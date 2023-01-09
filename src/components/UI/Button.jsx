@@ -17,59 +17,69 @@ function Button({ children, disabled, onClick, variant, bgColor, ...props }) {
 export default Button
 
 const ButtonStyle = styled(MuiButton)`
-   width: ${(props) => (props.width ? props.width : '')};
-   height: ${(props) => (props.height ? props.height : '')};
-   text-transform: none;
-   font-weight: 500;
-   font-size: 14px;
-   line-height: 18px;
-   border-radius: 10px;
-   color: #fff4f4;
-   padding: 10px 12px;
-   cursor: 'pointer';
-   text-align: center;
-
    &.MuiButton-outlined {
-      color: #048741;
-      color: ${({ bgColor }) =>
+      background-color: ${({ bgColor }) =>
          bgColor ||
-         'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)'};
-      border-color: ${({ bgColor }) => bgColor || '#43ae28'};
+         'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%);'};
+      width: ${(props) => (props.width ? props.width : '111PX')};
+      height: ${(props) => (props.height ? props.height : '42px')};
+      box-sizing: border-box;
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      border-radius: 10px;
+      text-align: center;
+      border-color: #048741;
+      color: #048741;
    }
    &:hover {
-      background: ${(props) => props.bgColor || '#15D14A'};
+      background: ${({ bgColor }) =>
+         bgColor ||
+         'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%);'};
       color: #ffffff;
       transition-duration: '0.6s';
       border: 'none';
    }
    &:active {
-      background: ${({ bgColor }) => bgColor || '#0CA336'};
+      background-color: ${({ bgColor }) =>
+         bgColor ||
+         'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%);'};
       box-shadow: 'rgba(225, 228, 232, 0.2) 0 1px 0 inset';
    }
    &:disabled {
-      background-color: rgba(181, 164, 164, 0.12);
-      color: #d0bebe;
+      color: #d3d3d3;
       box-shadow: none;
       cursor: 'default';
-      border-color: white;
+      border: 1px solid #f5f5f5;
    }
    &.MuiButton-contained {
-      background: ${({ bgColor }) => bgColor || '#13C645'};
+      background: linear-gradient(180.61deg, #0cbb6b 0.45%, #027b44 99.39%);
       font-size: 14px;
       border: none;
+      align-items: center;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
       color: #ffffff;
+
       &:hover {
-         background: ${({ bgColor }) => bgColor || ' #0FAE3B'};
+         background: linear-gradient(180.61deg, #08df7d 0.45%, #048f50 82.76%);
          color: #ffffff;
          transition-duration: '0.6s';
-         border: 'none';
       }
       &:active {
-         background: ${({ bgColor }) => bgColor || '#43ae28'};
-         box-shadow: 'rgba(225, 228, 232, 0.2) 0 1px 0 inset';
+         background: linear-gradient(180.61deg, #0cbb6b 0.45%, #027b44 99.39%);
       }
       &:disabled {
-         background-color: rgba(0, 0, 0, 0.12);
+         background: #d3d3d3;
          color: #fff;
          box-shadow: none;
          cursor: 'default';
