@@ -10,18 +10,14 @@ import phone from '../../assets/icons/phone.svg'
 import next from '../../assets/icons/next.svg'
 
 const UserRecords = () => {
-   const [open, setOpen] = useState(false)
-
-   const openModal = () => {
-      setOpen(true)
-   }
+   const [open, setOpen] = useState(true)
 
    const closeModal = () => {
       setOpen(false)
    }
 
    return (
-      <ModalWindow openModal={openModal} closeModal={closeModal} open={open}>
+      <ModalWindow closeModal={closeModal} open={open}>
          <Request>Оставьте заявку</Request>
          <LeaveNumber>
             Оставьте свой номер и наши специалисты свяжутся с Вами в ближайшее
@@ -87,7 +83,7 @@ const UserInfo = styled('div')(() => ({
 }))
 
 const StyledUserName = styled('div')(() => ({
-   width: '230px',
+   width: '200px',
    display: 'flex',
 
    justifyContent: 'space-around',
@@ -109,7 +105,7 @@ const StyledUserName = styled('div')(() => ({
 }))
 
 const StyledUserPhoneNumber = styled('div')(() => ({
-   width: '230px',
+   width: '200px',
    display: 'flex',
 
    justifyContent: 'space-around',

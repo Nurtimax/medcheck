@@ -2,7 +2,7 @@ import React from 'react'
 
 import Box from '@mui/material/Box'
 
-import Button from '@mui/material/Button'
+// import Button from '@mui/material/Button'
 
 import Modal from '@mui/material/Modal'
 
@@ -10,10 +10,9 @@ import { styled } from '@mui/material'
 
 import { Close } from '@mui/icons-material'
 
-const ModalWindow = ({ children, openModal, closeModal, open }) => {
+const ModalWindow = ({ children, closeModal, open }) => {
    return (
       <div>
-         <Button onClick={openModal}>Open modal</Button>
          <Modal open={open}>
             <Container>
                {children}
@@ -33,8 +32,9 @@ const Container = styled(Box)(() => ({
    top: '40%',
    left: '50%',
    transform: 'translate(-50%, -50%)',
-   width: '40%',
-   height: '45%',
+   width: '550px',
+   padding: '0 0 20px 0',
+   outline: 'none',
 }))
 
 const OnClose = styled('div')(() => ({
