@@ -18,7 +18,7 @@
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "react/jsx-props-no-spreading": "off",
       "react/react-in-jsx-scope": "off",
-      "react/prop-types": ["off"],
+      "react/prop-types": "off",
       "import/prefer-default-export": "off",
       "no-shadow": "off",
       "react-hooks/exhaustive-deps": "off",

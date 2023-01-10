@@ -4,39 +4,47 @@ function Alerts({
    open,
    vertical,
    horizontal,
-   alertClose,
-
-   closedTamer,
+   onClose,
+   defaultValue,
+   hideDuration,
+   errorMessage,
    title,
-
    ...props
 }) {
    return (
-      <div>
-         <Snackbar
-            autoHideDuration={closedTamer}
-            {...props}
-            open={open}
-            anchorOrigin={{ vertical, horizontal }}
-            onClose={alertClose}
-            key={vertical + horizontal}
-         >
-            <StyledAlert icon={false}>
-               <div>{title}</div>
-            </StyledAlert>
-         </Snackbar>
-      </div>
+      <Snackbar
+         autoHideDuration={hideDuration}
+         {...props}
+         open={open}
+         anchorOrigin={{ vertical, horizontal }}
+         onClose={onClose}
+         key={vertical + horizontal}
+      >
+         <StyledAlert icon={false}>
+            <div>{defaultValue}</div>
+            <b>{errorMessage}</b>
+            <p>{title}</p>
+         </StyledAlert>
+      </Snackbar>
    )
 }
-export default Alerts
 const StyledAlert = styled(Alert)(() => ({
    background: '#F6FBFF',
    width: '387px',
-   height: '73px',
+   height: '90px',
+   color: '#4D4E51',
+   display: 'flex',
+   alignItems: 'center',
+   fontWeight: '400',
+   fontSize: '14px',
 
-   '& div': {
-      color: '#4D4E51',
-      fontWeight: '400',
-      fontSize: '14px',
+   '& b': {
+      color: 'red',
+   },
+
+   '& p': {
+      color: 'green',
    },
 }))
+
+export default Alerts
