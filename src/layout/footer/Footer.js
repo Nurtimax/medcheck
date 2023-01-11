@@ -1,14 +1,14 @@
 import React from 'react'
 import { styled } from '@mui/material'
-import logo from '../../assets/icons/LogoForProject.svg'
+import logo from '../../assets/icons/logoForProject.svg'
 import emailIcon from '../../assets/icons/picto.svg'
-import medCheck from '../../assets/icons/MedCheck.svg'
-import geoPoint from '../../assets/icons/GeoPoint.svg'
+import medCheck from '../../assets/icons/medCheck.svg'
+import geoPoint from '../../assets/icons/geoPoint.svg'
 import clock from '../../assets/icons/clock.svg'
 import instagramIcon from '../../assets/icons/instagramIcon.svg'
 import telegramIcon from '../../assets/icons/telegramIcon.svg'
 import whatsAppIcon from '../../assets/icons/whatsAppIcon.svg'
-import phone from '../../assets/icons/VectorPhone.svg'
+import phone from '../../assets/icons/phone.svg'
 
 const Footer = () => {
    return (
@@ -29,22 +29,22 @@ const Footer = () => {
             <SecondContainer>
                <p>Контактная информация</p>
                <AdressMed>
-                  <img src={geoPoint} alt="GeoPoint" />
+                  <img src={geoPoint} alt="geoPoint" />
                   <span> 106452, г. Бишкек, Гражданская 119</span>
                </AdressMed>
                <TimeMed>
-                  <img src={clock} alt="Clock" />
+                  <img src={clock} alt="clock" />
                   <span> пн-сб 08:00 до 18:00</span>
                </TimeMed>
                <PhoneBox>
-                  <img src={phone} alt="Vector" />
+                  <img src={phone} alt="phone" />
                   <div>
                      <p>+996(800) 000 000</p>
                      <p>996(505) 000 000</p>
                   </div>
                </PhoneBox>
                <EmailBox>
-                  <img src={emailIcon} alt="EmailIcon" />
+                  <img src={emailIcon} alt="emailIcon" />
                   <span> medchek.@gmail.com</span>
                </EmailBox>
             </SecondContainer>
@@ -52,13 +52,13 @@ const Footer = () => {
                <p>Мы в социальных сетях:</p>
                <Icons>
                   <a href="https://www.instagram.com/">
-                     <img src={instagramIcon} alt="Vector2" />
+                     <img src={instagramIcon} alt="instagramIcon" />
                   </a>
                   <a href="https://web.telegram.org/k/">
-                     <img src={telegramIcon} alt="Vector3" />
+                     <img src={telegramIcon} alt="telegramIcon" />
                   </a>
                   <a href="https://web.whatsapp.com/">
-                     <img src={whatsAppIcon} alt="Vector4" />
+                     <img src={whatsAppIcon} alt="whatsAppIcon" />
                   </a>
                </Icons>
             </ThirdContainer>
@@ -100,7 +100,6 @@ const StyledFooterContainer = styled('div')(() => ({
    display: 'flex',
    flexDirection: 'column',
    justifyContent: 'space-around',
-   cursor: 'pointer',
 }))
 
 const StyledMain = styled('div')(() => ({
@@ -114,6 +113,7 @@ const StyledMain = styled('div')(() => ({
    ' & span': {
       marginLeft: '24px',
       color: '#cccccc',
+      cursor: 'pointer',
    },
 }))
 
