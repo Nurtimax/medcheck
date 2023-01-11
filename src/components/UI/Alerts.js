@@ -1,17 +1,15 @@
-import { Alert, Snackbar, styled } from '@mui/material'
+import { Alert, Snackbar, styled, Typography } from '@mui/material'
 
 function Alerts({
    open,
    onClose,
    hideDuration,
    errorMessage,
+   vertical = 'top',
+   horizontal = 'right',
    title,
    ...props
 }) {
-   const vertical = 'top'
-
-   const horizontal = 'right'
-
    return (
       <Snackbar
          vertical="top"
@@ -23,15 +21,17 @@ function Alerts({
          onClose={onClose}
          key={vertical + horizontal}
       >
-         <StyledAlert icon={false}>
-            <b>{errorMessage}</b>
-            <p>{title}</p>
+         <StyledAlert
+            severity={errorMessage ? 'error' : 'success'}
+            icon={false}
+         >
+            <Typography>{errorMessage}</Typography>
+            <Typography>{title}</Typography>
          </StyledAlert>
       </Snackbar>
    )
 }
 const StyledAlert = styled(Alert)(() => ({
-   background: '#F6FBFF',
    width: '387px',
    height: '90px',
    color: '#4D4E51',
@@ -39,13 +39,6 @@ const StyledAlert = styled(Alert)(() => ({
    alignItems: 'center',
    fontWeight: '400',
    fontSize: '14px',
-   '& b': {
-      color: '#F91515',
-   },
-
-   '& p': {
-      color: 'green',
-   },
 }))
 
 export default Alerts
