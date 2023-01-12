@@ -38,6 +38,8 @@ const Input = forwardRef(
 export default Input
 
 const InputStyle = styled(InputBase)`
+   width: ${(width) => width || '414px'};
+   height: ${(height) => height || '42px'};
    font-family: 'Manrope';
    font-style: normal;
    font-weight: 400;
