@@ -1,3 +1,4 @@
+// import { useState } from 'react'
 import {
    MenuItem,
    ThemeProvider,
@@ -6,9 +7,8 @@ import {
    createTheme,
    InputAdornment,
 } from '@mui/material'
-import { ReactComponent as ServisecSelectIcon } from '../../assets/icons/services-select-icon.svg'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import { useState } from 'react'
+import { ReactComponent as ServicesSelectIcon } from '../../assets/icons/services-select-icon.svg'
+import { ReactComponent as DownArrow } from '../../assets/icons/down.svg'
 
 const theme = createTheme({
    components: {
@@ -25,22 +25,21 @@ const theme = createTheme({
    },
 })
 
-export const ServicesDropdown = ({ options, width = 368 }) => {
-   const [value, setValue] = useState('')
-
-   const handleChange = ({ target: { value } }) => {
-      setValue(value)
-   }
+export const ServicesDropdown = ({ options, value, handleChange }) => {
+   // const [value, setValue] = useState('')
+   //
+   // const handleChange = ({ target: { value } }) => {
+   //    setValue(value)
+   // }
    return (
       <ThemeProvider theme={theme}>
          <StyledSelect
-            sx={{ width: width }}
-            IconComponent={KeyboardArrowDownIcon}
+            IconComponent={DownArrow}
             value={value}
             onChange={handleChange}
             startAdornment={
                <InputAdornment position={'start'}>
-                  <ServisecSelectIcon />
+                  <ServicesSelectIcon />
                </InputAdornment>
             }
             displayEmpty
@@ -58,6 +57,7 @@ export const ServicesDropdown = ({ options, width = 368 }) => {
    )
 }
 const StyledSelect = styled(Select)(() => ({
+   width: 368,
    display: 'flex',
    backgroundColor: 'white',
    borderRadius: '16px',
