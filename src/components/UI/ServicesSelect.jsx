@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import {
    MenuItem,
    ThemeProvider,
@@ -26,11 +25,6 @@ const theme = createTheme({
 })
 
 export const ServicesDropdown = ({ options, value, handleChange }) => {
-   // const [value, setValue] = useState('')
-   //
-   // const handleChange = ({ target: { value } }) => {
-   //    setValue(value)
-   // }
    return (
       <ThemeProvider theme={theme}>
          <StyledSelect
