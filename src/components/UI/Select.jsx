@@ -1,42 +1,40 @@
-import * as React from 'react'
-import Box from '@mui/material/Box'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import SelectMui from '@mui/material/Select'
-import { styled } from '@mui/material'
+import { MenuItem, styled } from '@mui/material'
+import MuiSelect from '@mui/material/Select'
 
 export default function Select({
-   options,
-   getSelectedItem,
+   options = [],
+   onChange,
    value,
-   variant,
-   placeholder,
+   title,
+   ...props
 }) {
-   const clickhandler = (item) => {
-      getSelectedItem(item)
-   }
    return (
-      <BoxStyled variant={variant} sx={{ width: '200px' }}>
-         <FormControl placeholder={placeholder} fullWidth>
-            <SelectMui value={value}>
-               {options?.map((item) => {
-                  return (
-                     <MenuItem
-                        key={item}
-                        value={item}
-                        onClick={() => clickhandler(item)}
-                     >
-                        {item}
-                     </MenuItem>
-                  )
-               })}
-            </SelectMui>
-         </FormControl>
-      </BoxStyled>
+      <StyledSelect
+         sx={{
+            '& fieldset': { border: 'none' },
+         }}
+         displayEmpty
+         value={value}
+         title={title}
+         onChange={onChange}
+         fullWidth
+         {...props}
+         renderValue={(selected) => {
+            return <MenuItem>{selected || title}</MenuItem>
+         }}
+      >
+         {options.map((item) => {
+            return (
+               <MenuItem key={value} value={item.label}>
+                  {item.label}
+               </MenuItem>
+            )
+         })}
+      </StyledSelect>
    )
 }
 
-const BoxStyled = styled(Box)`
+const StyledSelect = styled(MuiSelect)`
    box-sizing: border-box;
    border: 1px solid #d9d9d9;
    border-radius: 6px;
@@ -46,13 +44,14 @@ const BoxStyled = styled(Box)`
    font-size: 16px;
    line-height: 22px;
    color: #959595;
+
    &:hover {
       box-sizing: border-box;
-      border: 1px solid #d9d9d9;
       color: #4d4e51;
+      border: 1px solid #959595;
    }
    &:active {
-      box-sizing: border-box;
       border: 1px solid rgba(4, 135, 65, 0.8);
+      color: #4d4e51;
    }
 `
