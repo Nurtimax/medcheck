@@ -3,7 +3,7 @@ import { styled } from '@mui/material'
 
 const Contacts = () => {
    return (
-      <>
+      <Container>
          <ContactContainer>
             <StyledContactHeader>
                <firstSpan>Главная </firstSpan> <secondSpan>Контакты</secondSpan>
@@ -39,18 +39,17 @@ const Contacts = () => {
             width="100%"
             height="400px"
          ></MapCarta>
-      </>
+      </Container>
    )
 }
 
+const Container = styled('div')(() => ({}))
 const ContactContainer = styled('div')(() => ({
-   background: '#FFFFFF',
-   fontFamily: 'Manrope',
    padding: '0 0 0 120px',
 }))
 const StyledContactHeader = styled('div')(() => ({
    marginTop: '40px',
-   '& firstSpan secondSpan': {
+   '& firstSpan ': {
       color: '#959595',
       fontWeight: '400',
       fontSize: '14px',
@@ -58,6 +57,9 @@ const StyledContactHeader = styled('div')(() => ({
    },
    '& secondSpan': {
       color: '#048741',
+      fontWeight: '400',
+      fontSize: '14px',
+      lineHeight: '19px',
    },
 }))
 const StyledContactHeader1 = styled('div')(() => ({
