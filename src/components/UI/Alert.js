@@ -23,16 +23,10 @@ function Alert({
          onClose={onClose}
          key={vertical + horizontal}
       >
-         <StyledAlert
-            style={{
-               background: variant ? '#FFF9F8' : '#F6FBFF',
-               height: title ? '54px' : '73px',
-            }}
-            icon={false}
-         >
-            <p style={{ background: variant ? '#F91515' : '#048741' }}></p>
-            <div>{variant}</div>
-            <div>{title}</div>
+         <StyledAlert severity={title ? 'success' : 'error'} icon={false}>
+            <MessageTyps className={title ? 'title' : 'variant'}></MessageTyps>
+            <Variant>{variant}</Variant>
+            <Title>{title}</Title>
          </StyledAlert>
       </Snackbar>
    )
@@ -47,21 +41,31 @@ const StyledAlert = styled(Alerts)(() => ({
 
    alignItems: 'center',
 
-   '& p': {
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      width: '10px',
-      height: '100%',
-
-      marginLeft: '10px',
-      margin: '0',
+   '& .title': {
+      background: 'green',
    },
 
-   '& div': {
-      color: '#494949',
-      marginLeft: '15px',
+   '& .variant': {
+      background: 'red',
    },
+}))
+
+const MessageTyps = styled('p')(() => ({
+   position: 'absolute',
+   top: '0',
+   left: '0',
+   width: '10px',
+   height: '100%',
+   margin: '0',
+}))
+
+const Title = styled('div')(() => ({
+   color: '#494949',
+   marginLeft: '15px',
+}))
+const Variant = styled('div')(() => ({
+   color: '#494949',
+   marginLeft: '15px',
 }))
 
 export default Alert
