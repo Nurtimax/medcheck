@@ -6,18 +6,23 @@ import Button from '../../components/UI/Button'
 
 export default function DoctorCard({ name, title, img, onClick, ...props }) {
    return (
-      <>
-         <CardStyle {...props}>
-            <CardMediaContainer>
-               <CardMediaStyle component="img" alt="doctor16" image={img} />
-            </CardMediaContainer>
-            <CardContentStyle>
-               <DoctorName>{name}</DoctorName>
-               <DoctorSpeciality>{title}</DoctorSpeciality>
-            </CardContentStyle>
-            <ButtonStyle onClick={onClick}>Записаться на прием</ButtonStyle>
-         </CardStyle>
-      </>
+      <CardStyle {...props}>
+         <CardMediaContainer>
+            <CardMediaStyle component="img" alt="doctor16" image={img} />
+         </CardMediaContainer>
+         <CardContentStyle>
+            <DoctorName>{name}</DoctorName>
+            <DoctorSpeciality>{title}</DoctorSpeciality>
+         </CardContentStyle>
+         <ButtonStyle
+            variant="outlined"
+            width="204px"
+            height=" 42px"
+            onClick={onClick}
+         >
+            Записаться на прием
+         </ButtonStyle>
+      </CardStyle>
    )
 }
 
@@ -59,17 +64,6 @@ const DoctorSpeciality = styled(Typography)(() => ({
 }))
 
 const ButtonStyle = styled(Button)(() => ({
-   fontFamily: 'Manrope',
-   fontStyle: 'normal',
-   fontWeight: '500',
-   fontSize: '16px',
-   lineHeight: '22px',
-   textAlign: 'center',
-   color: '#029847',
-   alignItems: 'center',
-   border: '1px solid #048741',
-   borderRadius: '10px',
-   whiteSpace: 'nowrap',
    textTransform: 'none',
-   margin: '22px 0 0 0 ',
+   margin: '25px 0 0 0 ',
 }))
