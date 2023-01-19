@@ -1,11 +1,5 @@
-import Contacts from './layout/contacts'
-
 function App() {
-   return (
-      <div>
-         <Contacts />
-      </div>
-   )
+   return <div></div>
 }
 
 export default App
