@@ -2,25 +2,23 @@ import React from 'react'
 
 import Box from '@mui/material/Box'
 
-// import Button from '@mui/material/Button'
-
-import Modal from '@mui/material/Modal'
+import { Modal as Modalka } from '@mui/material'
 
 import { styled } from '@mui/material'
 
-import { Close } from '@mui/icons-material'
+import close from '../../assets/icons/close.svg'
 
-const ModalWindow = ({ children, closeModal, open }) => {
+const Modal = ({ children, open, closeModal }) => {
    return (
       <div>
-         <Modal open={open}>
+         <Modalka open={open}>
             <Container>
                {children}
                <OnClose onClick={closeModal}>
-                  <Closed />
+                  <Closed src={close} alt="close" />
                </OnClose>
             </Container>
-         </Modal>
+         </Modalka>
       </div>
    )
 }
@@ -32,21 +30,20 @@ const Container = styled(Box)(() => ({
    top: '40%',
    left: '50%',
    transform: 'translate(-50%, -50%)',
-   width: '550px',
-   padding: '0 0 20px 0',
+   width: '500px',
+   padding: '0 0 40px 0',
    outline: 'none',
 }))
 
 const OnClose = styled('div')(() => ({
    position: 'absolute',
-   top: '5px',
-   right: '5px',
+   top: '15px',
+   right: '15px',
    cursor: 'pointer',
 }))
 
-const Closed = styled(Close)(() => ({
-   width: '20px',
-   color: 'grey',
+const Closed = styled('img')(() => ({
+   width: '15px',
 }))
 
-export default ModalWindow
+export default Modal
