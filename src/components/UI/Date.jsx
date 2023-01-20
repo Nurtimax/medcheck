@@ -31,11 +31,14 @@ const theme = createTheme({
                maxHeight: '294px',
                '& .MuiPickersCalendarHeader-label': {
                   textTransform: 'capitalize',
+                  fontSize: '14px',
+                  fontWeight: '500',
                },
                '& .MuiTypography-root': {
                   textTransform: 'capitalize',
                   maxWidth: '32px',
                   maxHeight: '32px',
+                  margin: 0,
                },
                '& .Mui-selected': {
                   backgroundColor: '#048741 !important',
@@ -58,7 +61,7 @@ const theme = createTheme({
                },
                '& .MuiPickersCalendarHeader-root': {
                   margin: 0,
-                  padding: '16px 24px 12px 24px',
+                  padding: '10px 24px 10px 24px',
                },
                '& .MuiDayPicker-weekContainer': {
                   padding: '0 16px',
@@ -69,8 +72,7 @@ const theme = createTheme({
    },
 })
 
-export const DatePickerUI = () => {
-   const [value, setValue] = useState(dayjs())
+export const DatePickerUI = ({ value, setValue }) => {
    return (
       <ThemeProvider theme={theme}>
          <LocalizationProvider dateAdapter={AdapterDayjs} locale={'ru'}>
