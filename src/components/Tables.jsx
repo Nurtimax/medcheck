@@ -1,42 +1,127 @@
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
-import React from 'react'
+import {
+   styled,
+   Table,
+   TableBody,
+   TableCell,
+   TableHead,
+   TableRow,
+} from '@mui/material'
+import EditIcon from '@mui/icons-material/BorderColorOutlined'
+import DeleteIcon from '@mui/icons-material/DeleteOutlined'
+import IconButtonStyle from '@mui/material/IconButton'
+import Switch from '@mui/material/Switch'
 
-const Tables = ({ sos }) => {
-   //    const removeRecord = (id) => {
-   //       const arr = [...sos]
-   //       arr.forEach((el, i) => {
-   //          if (el.id === id) arr.splice(i, 1)
-   //       })
-   //    }
+const Tables = ({
+   data,
+   tableHead,
+   checked,
+   checkedClick,
+   deleteClick,
+   editClick,
+}) => {
    return (
-      <Table sx={{ width: '100%' }}>
+      <TableStyle sx={{ width: '500px', margin: '50px' }}>
          <TableHead>
-            <TableRow>
-               <TableCell>№</TableCell>
-               <TableCell>Статус</TableCell>
-               <TableCell>Специалист</TableCell>
-               <TableCell>Отдедение</TableCell>
-               <TableCell>Расписание до</TableCell>
-               <TableCell>Действия</TableCell>
-            </TableRow>
+            {tableHead.map((item) => (
+               <TableRowStyle key={item.id}>
+                  <TableCell className="groups">{item.number}</TableCell>
+                  <TableCell className="groups">{item.status}</TableCell>
+                  <TableCell className="groups">{item.speciality}</TableCell>
+                  <TableCell className="groups">{item.otdelenie}</TableCell>
+                  <TableCell className="groups">{item.time} </TableCell>
+                  <TableCell className="groups">{item.action}</TableCell>
+               </TableRowStyle>
+            ))}
          </TableHead>
          <TableBody>
-            {sos.map((el) => (
-               <TableRow key={el.id}>
-                  <TableCell>{el.number}</TableCell>
-                  <TableCell>{el.status}</TableCell>
-                  <TableCell>{el.speciality}</TableCell>
-                  <TableCell>{el.otdelenie}</TableCell>
-                  <TableCell>{el.time}</TableCell>
+            {data.map((el) => (
+               <TableRowStyle2 key={el.id}>
+                  <TableCell className="miniGroups1">{el.number}</TableCell>
                   <TableCell>
-                     {el.action}
-                     {/* <IconButton></IconButton> */}
+                     <Switch
+                        color="success"
+                        className="switch"
+                        onChange={checkedClick}
+                        checked={checked}
+                     />
                   </TableCell>
-               </TableRow>
+                  <TableCell className="miniGroups3">
+                     <div className="general">
+                        <img src={el.img} alt="foto" className="foto" />
+                        <div>
+                           <name>{el.name}</name>
+                           <DoctorSpeciality>{el.speciality}</DoctorSpeciality>
+                        </div>
+                     </div>
+                  </TableCell>
+                  <TableCell className="miniGroups">{el.otdelenie}</TableCell>
+                  <TableCell className="miniGroups">{el.time}</TableCell>
+                  <TableCell>
+                     <div className="icons">
+                        <IconButtonStyle>
+                           <EditIcon onClick={editClick} />
+                        </IconButtonStyle>
+                        <IconButtonStyle>
+                           <DeleteIcon onClick={deleteClick} />
+                        </IconButtonStyle>
+                     </div>
+                  </TableCell>
+               </TableRowStyle2>
             ))}
          </TableBody>
-      </Table>
+      </TableStyle>
    )
 }
 
 export default Tables
+
+const TableStyle = styled(Table)(() => ({
+   borderRadius: '6px',
+}))
+
+const TableRowStyle = styled(TableRow)(() => ({
+   '& .groups': {
+      fontFamily: 'Manrope',
+      fontStyle: 'normal',
+      fontWeight: '600',
+      fontSize: '14px',
+      lineHeight: '19px',
+      whiteSpace: 'nowrap',
+   },
+}))
+const TableRowStyle2 = styled(TableRow)(() => ({
+   '& .miniGroups': {
+      fontFamily: 'Manrope',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      fontSize: '16px',
+      lineHeight: '22px',
+      whiteSpace: 'nowrap',
+   },
+   '& .miniGroups1': {
+      fontWeight: '400',
+   },
+   '& .miniGroups3': {
+      whiteSpace: 'nowrap',
+      fontFamily: 'Manrope',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      fontSize: '16px',
+      lineHeight: '22px',
+   },
+   '& .general': {
+      display: 'flex',
+      gap: '10px',
+      boxSizing: 'border-box',
+   },
+   '& .foto': {
+      height: '50%',
+   },
+   '& .icons': {
+      display: 'flex',
+   },
+}))
+const DoctorSpeciality = styled('div')(() => ({
+   fontSize: '14px',
+   color: '#959595',
+}))
