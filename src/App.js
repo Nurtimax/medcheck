@@ -1,15 +1,5 @@
-import { DatePickerUI } from './components/UI/Date'
-
 function App() {
-   return (
-      <div
-         style={{
-            padding: '100px',
-         }}
-      >
-         <DatePickerUI />
-      </div>
-   )
+   return <div></div>
 }
 
 export default App
