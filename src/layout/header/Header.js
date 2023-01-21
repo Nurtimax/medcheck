@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import { Menu, MenuItem, styled } from '@mui/material'
 import iconLocation from '../../assets/icons/GeoPoint.svg'
 import iconHour from '../../assets/icons/Hour.svg'
 import iconSearching from '../../assets/icons/searching.svg'
@@ -7,10 +7,20 @@ import iconPhoneNumber from '../../assets/icons/iconTelephone.svg'
 import iconInstagram from '../../assets/icons/whatsApp.svg'
 import iconTelegram from '../../assets/icons/instagram.svg'
 import iconWhatsApp from '../../assets/icons/telegram.svg'
-import iconMedCheck from '../../assets/icons/MedCheck.svg'
+import iconMedCheck from '../../assets/icons/medCheck.svg'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
+import subtract from '../../assets/icons/subtract.svg'
+import Button from '../../components/UI/Button'
 
 const Header = () => {
+   const [anchorEl, setAnchorEl] = React.useState(null)
+   const open = Boolean(anchorEl)
+   const handleClick = (event) => {
+      setAnchorEl(event.currentTarget)
+   }
+   const handleClose = () => {
+      setAnchorEl(null)
+   }
    return (
       <HeaderContainer>
          <FirstRow>
@@ -28,10 +38,6 @@ const Header = () => {
                <InputSearching type="text" placeholder="Поиск по сайту " />
                <Searching src={iconSearching} alt="searching" />
             </InFirstRow2>
-            <InFirstRow3>
-               <PhoneNumber src={iconPhoneNumber} alt="phone" />
-               <p>+996(800) 000 000 +996(505) 000 000</p>
-            </InFirstRow3>
             <InFirstRow4>
                <div>
                   <a href="https://www.instagram.com/">
@@ -49,6 +55,37 @@ const Header = () => {
                   </a>
                </div>
             </InFirstRow4>
+            <InFirstRow3>
+               <PhoneNumber src={iconPhoneNumber} alt="phone" />
+               <p>+996(800) 000 000 +996(505) 000 000</p>
+            </InFirstRow3>
+
+            <InFirstRow5>
+               <img
+                  id="basic-button"
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick}
+                  src={subtract}
+                  alt="subtract"
+               />
+
+               <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                     'aria-labelledby': 'basic-button',
+                  }}
+               >
+                  <MenuItemStyled onClick={handleClose}>Войти</MenuItemStyled>
+                  <MenuItemStyled onClick={handleClose}>
+                     Регистрация
+                  </MenuItemStyled>
+               </Menu>
+            </InFirstRow5>
          </FirstRow>
          <SecondRow>
             <ProjectLogos>
@@ -63,136 +100,160 @@ const Header = () => {
                <li>Отзывы</li>
                <li>Контакты</li>
             </NavigatePages>
+            <GetResults>получить результаты</GetResults>
             <RecordButton>запись онлайн</RecordButton>
          </SecondRow>
       </HeaderContainer>
    )
 }
 
-const HeaderContainer = styled.header`
-   width: 100%;
-   background-color: #ffffff;
-   position: fixed;
-`
+const HeaderContainer = styled('header')(() => ({
+   width: '100%',
+   backgroundColor: '#ffffff',
+   position: 'fixed',
+   top: '0',
+   left: '0',
+   zIndex: '20',
+}))
 
-const FirstRow = styled.div`
-   display: flex;
-   justify-content: space-around;
-   margin: 0 auto;
+const FirstRow = styled('div')(() => ({
+   display: 'flex',
+   justifyContent: 'space-between',
+   margin: ' 0 auto',
+   width: '80%',
+   alignItems: 'center',
+   padding: '20px 0 20px 0',
+   borderBottom: '1px solid #c0bdbd',
+}))
 
-   width: 80%;
-   align-items: center;
-   border-bottom: 1px solid #c0bdbd;
-`
+const InFirstRow1 = styled('div')(() => ({
+   display: 'flex',
+   flexDirection: 'column',
+   justifyContent: 'flex-start',
+}))
 
-const InFirstRow1 = styled.div`
-   display: flex;
-   flex-direction: column;
-   justify-content: flex-start;
-`
+const Span = styled('span')(() => ({
+   color: '#009344',
+}))
 
-const Span = styled.span`
-   color: #009344;
-`
+const ForPosition1 = styled('div')(() => ({
+   '& img': {
+      marginRight: '11px',
+      marginLeft: '2px',
+   },
+}))
 
-const ForPosition1 = styled.div`
-   img {
-      margin-right: 11px;
-      margin-left: 2px;
-   }
-`
-const ForPosition2 = styled.div`
-   img {
-      margin-right: 7px;
-   }
-`
+const ForPosition2 = styled('div')(() => ({
+   '& img': {
+      marginRight: '7px',
+   },
+}))
 
-const InFirstRow2 = styled.div`
-   width: 300px;
-   height: 30px;
-   background-color: #f3f1f1;
-   padding: 3px 0;
-   border-radius: 20px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-`
-const InputSearching = styled.input`
-   width: 250px;
-   border: none;
-   outline: none;
-   background-color: inherit;
-`
+const InFirstRow2 = styled('div')(() => ({
+   width: '300px',
+   height: '30px',
+   backgroundColor: '#f3f1f1',
+   padding: '3px 0',
+   borderRadius: '20px',
+   display: 'flex',
+   justifyContent: 'center',
+   alignItems: 'center',
+}))
 
-const Searching = styled.img`
-   width: 17px;
-   height: 17px;
-   cursor: pointer;
-`
+const InputSearching = styled('input')(() => ({
+   width: '250px',
+   border: 'none',
+   outline: 'none',
+   backgroundColor: 'inherit',
+}))
 
-const InFirstRow3 = styled.div`
-   display: flex;
-   align-items: center;
-   gap: 8px;
-   width: 200px;
-`
+const Searching = styled('img')(() => ({
+   width: '17px',
+   height: '17px',
+   cursor: 'pointer',
+}))
 
-const PhoneNumber = styled.img`
-   width: 17px;
-   height: 17px;
-   margin-bottom: 13px;
-   cursor: pointer;
-`
+const InFirstRow3 = styled('div')(() => ({
+   display: 'flex',
+   alignItems: 'center',
+   gap: '8px',
+   width: '200px',
+}))
 
-const InFirstRow4 = styled.div`
-   display: flex;
-   gap: 10px;
-   div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #048741;
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      cursor: pointer;
-   }
-`
+const PhoneNumber = styled('img')(() => ({
+   width: '17px',
+   height: '17px',
+   marginBottom: '13px',
+   cursor: 'pointer',
+}))
 
-const SecondRow = styled.div`
-   display: flex;
-   justify-content: space-around;
-   align-items: center;
-   margin: 0 auto;
-   width: 80%;
-   margin-top: 10px;
-`
+const InFirstRow4 = styled('div')(() => ({
+   display: 'flex',
+   gap: '10px',
+   '& div': {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#048741',
+      width: '35px',
+      height: '35px',
+      borderRadius: '50%',
+      cursor: 'pointer',
+   },
+}))
 
-const ProjectLogos = styled.div`
-   display: flex;
-   align-items: center;
-   gap: 10px;
-`
+const SecondRow = styled('div')(() => ({
+   display: 'flex',
+   justifyContent: 'space-between',
+   alignItems: 'center',
+   margin: '0 auto',
+   width: '80%',
+   marginTop: '10px',
+}))
 
-const NavigatePages = styled.nav`
-   display: flex;
+const ProjectLogos = styled('div')(() => ({
+   display: 'flex',
+   alignItems: 'center',
+   gap: '10px',
+}))
 
-   gap: 20px;
-   li {
-      list-style: none;
-      cursor: pointer;
-   }
-`
+const NavigatePages = styled('nav')(() => ({
+   display: 'flex',
 
-const RecordButton = styled.button`
-   width: 200px;
-   border: none;
-   background: linear-gradient(#0cbb6b, #027b44); //#0cbb6b
-   padding: 15px;
-   border-radius: 25px;
-   cursor: pointer;
-   text-transform: uppercase;
-   color: #ffffff;
-`
+   gap: '15px',
+   '& li': {
+      listStyle: 'none',
+      cursor: 'pointer',
+      color: ' #222222',
+   },
+}))
+
+const RecordButton = styled(Button)(() => ({
+   width: '200px',
+   height: '44px',
+   border: 'none',
+   background: 'linear-gradient(#0cbb6b, #027b44)', //#0cbb6b
+
+   borderRadius: '25px',
+   cursor: 'pointer',
+   textTransform: 'uppercase',
+   color: '#ffffff',
+}))
+
+const GetResults = styled(Button)(() => ({
+   border: '1px solid #048741 ',
+   borderRadius: '24px',
+   color: '#048741',
+   width: '205',
+   height: '43px',
+}))
+
+const InFirstRow5 = styled('div')(() => ({
+   cursor: 'pointer',
+}))
+
+const MenuItemStyled = styled(MenuItem)(() => ({
+   color: 'green',
+}))
 
 export default Header

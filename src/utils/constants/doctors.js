@@ -8,31 +8,31 @@ export const doctors = [
    {
       id: 1,
       name: 'Войнич Дарья',
-      image: `${therapevt}`,
+      image: therapevt,
       specialist: 'Врач-терапевт',
    },
    {
       id: 2,
       name: 'Мисько Екатерина',
-      image: `${pediator}`,
+      image: pediator,
       specialist: 'Врач-Педиатр',
    },
    {
       id: 3,
       name: 'Дмитроченко Дмитрий',
-      image: `${urolog}`,
+      image: urolog,
       specialist: 'Врач-уролог-андролог',
    },
    {
       id: 4,
       name: 'Антух Евгений',
-      image: `${neurolog}`,
+      image: neurolog,
       specialist: 'Врач-невролог',
    },
    {
       id: 5,
       name: 'Мисник Елена',
-      image: `${endocrinolog}`,
+      image: endocrinolog,
       specialist: 'Врач эндокринолог',
    },
 ]

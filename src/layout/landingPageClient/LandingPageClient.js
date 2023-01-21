@@ -1,10 +1,11 @@
-import { styled } from '@mui/material'
+import { Container, styled } from '@mui/material'
 import { Typography } from '@mui/material'
 import React from 'react'
 import Button from '../../components/UI/Button'
 import Rating from '@mui/material/Rating'
 
 import Input from '../../components/UI/Input'
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
@@ -39,348 +40,381 @@ import doctors2 from '../../assets/images/doctors2.jpg'
 import doctors3 from '../../assets/images/doctors3.jpg'
 
 import feedBackImg from '../../assets/images/feedbackImg.jpg'
+import Header from '../header/Header'
+import Footer from '../footer/Footer'
 
 const LandingPageClient = () => {
    return (
-      <Main>
-         <StyledWelcome>
-            <WelcomeClient>
-               <TypographyWelcome>
-                  Добро пожаловать в клинику MedCheck
-               </TypographyWelcome>
-               <TypographyAbout>
-                  Международный Медицинская клиника «MedCheck — это клиника, в
-                  которой применяются новейшие диагностические и лечебные
-                  технологии и ведут прием лучшие специалисты.
-               </TypographyAbout>
+      <Container>
+         <Header />
 
-               <ButtonRecord>оставьте заявку</ButtonRecord>
-            </WelcomeClient>
-            <ImgStyledWelcome>
-               <img src={imgToWelcome} alt="" />
-            </ImgStyledWelcome>
-         </StyledWelcome>
+         <Main>
+            <StyledWelcome>
+               <WelcomeClient>
+                  <TypographyWelcome>
+                     Добро пожаловать в клинику MedCheck
+                  </TypographyWelcome>
+                  <TypographyAbout>
+                     Международный Медицинская клиника «MedCheck — это клиника,
+                     в которой применяются новейшие диагностические и лечебные
+                     технологии и ведут прием лучшие специалисты.
+                  </TypographyAbout>
 
-         <ChooseOurMedCheck>
-            Почему <span>нас выбирают?</span>
-         </ChooseOurMedCheck>
+                  <ButtonRecord>оставьте заявку</ButtonRecord>
+               </WelcomeClient>
+               <ImgStyledWelcome>
+                  <img src={imgToWelcome} alt="imgToWelcome" />
+               </ImgStyledWelcome>
+            </StyledWelcome>
 
-         <ChooseContainer>
-            <div>
-               <p className="number">1</p>
-               <p className="title">Высокий профессионализм сотрудников</p>
-               <p className="text">
-                  Медицинская лицензия, большой опыт врачей и постоянное
-                  повышение квалификации.
-               </p>
-            </div>
-            <div>
-               <p className="number">2</p>
-               <p className="title">Наши пациенты - наши лучшие друзья</p>
-               <p className="text">
-                  Все аппараты и медицинские препараты сертифицированы и
-                  лицензированы.
-               </p>
-            </div>
-            <div>
-               <p className="number">3</p>
-               <p className="title">Комфортные условия</p>
-               <p className="text">
-                  Уютная обстановка и отзывчивый персонал сделают поход в
-                  клинику максимально приятным.
-               </p>
-            </div>
-         </ChooseContainer>
+            <ChooseOurMedCheck>
+               Почему <span>нас выбирают?</span>
+            </ChooseOurMedCheck>
 
-         <OurServices>
-            Наши <span>услуги</span>
-         </OurServices>
-
-         <ForAllTimesApplication>
-            За все время работы клиника приняла более 1 млн. пациентов.
-         </ForAllTimesApplication>
-
-         <Services>
-            <div>
-               <div className="containerWithImg">
-                  <img src={vaccination} alt="vaccination" />
-               </div>
-               <p className="text">Вакцинация</p>
-            </div>
-            <div>
-               <div className="containerWithImg">
-                  <img src={cardiology} alt="cardiology" />
-               </div>
-               <p className="text">Кардиология</p>
-            </div>
-            <div>
-               <div className="containerWithImg">
-                  <img src={neurology} alt="neurology" />
-               </div>
-               <p className="text">Неврология</p>
-            </div>
-            <div>
-               <div className="containerWithImg">
-                  <img src={dermatology} alt="dermatology" />
-               </div>
-               <p className="text">Дерматология</p>
-            </div>
-            <div>
-               <div className="containerWithImg">
-                  <img src={ophthalmology} alt="ophthalmology" />
-               </div>
-               <p className="text">Офтальмология</p>
-            </div>
-            <div>
-               <div className="containerWithImg">
-                  <img src={therapy} alt="therapy" />
-               </div>
-               <p className="text">Терапия</p>
-            </div>
-            <div>
-               <div className="containerWithImg">
-                  <img src={fizioterapiya} alt="fizioterapiya" />
-               </div>
-               <p className="text">Физиотерапия</p>
-            </div>
-            <div>
-               <div className="containerWithImg">
-                  <img src={onkologiya} alt="onkologiya" />
-               </div>
-               <p className="text">Онкология</p>
-            </div>
-            <div>
-               <div className="containerWithImg">
-                  <img src={urologiya} alt="urologiya" />
-               </div>
-               <p className="text">Урология</p>
-            </div>
-         </Services>
-
-         <ContainerLookAll>
-            <LookAll>Смотреть все</LookAll>
-         </ContainerLookAll>
-
-         <AboutOurClinic>
-            О нашей клинике <span>“MedCheck”</span>
-         </AboutOurClinic>
-
-         <AboutClinic>
-            <div className="textContent">
-               <p>
-                  Вся наша команда готова обеспечить вам медицинский уход и
-                  заботу на самом высоком уровне. Наша главная задача — оказать
-                  Вам теплый прием и обеспечить самый лучший медицинский уход. У
-                  нас Вы в хороших руках! В нашей клинике используются только
-                  качественные материалы и проверенные технологии. Для каждого
-                  клиента специалисты нашей клиники разработают индивидуальный
-                  план лечения, подробно рассказывая о каждом этапе.
-               </p>
-               <p>
-                  Доброжелательность и уважительное отношение к пациентам, не
-                  только материальная, но и моральная ответственность за
-                  результаты лечения — все это взято за основу политики Medical
-                  Clinic. Профессионализм и высокое качество оказываемых услуг
-                  помогают нам привлечь пациентов которые рекомендуют нас своим
-                  родным и близким.
-               </p>
-               <p>
-                  Уже 20 лет мы работаем на уровне лучших мировых стандартов,
-                  внедряя и развивая передовые методы лечения для сохранения
-                  здоровья наших пациентов.
-               </p>
-
-               <div className="readMore">
-                  Читать подробнее о клинике <img src={next} alt="nextIcon" />
-               </div>
-            </div>
-            <ImgStyles>
+            <ChooseContainer>
                <div>
-                  <img src={clinic} alt="" />
-               </div>
-
-               <img src={doctors1} alt="doctors1" />
-               <img src={doctors2} alt="doctors2" />
-               <img src={doctors3} alt="doctors3" />
-            </ImgStyles>
-         </AboutClinic>
-
-         <BestDoctors>
-            Лучшие <span>врачи</span>
-            <BestDoctorsText>
-               Попасть в команду медицинской клиники «MedCheck» могут только
-               лучшие специалисты с многолетней практикой и доказанным опытом.
-            </BestDoctorsText>
-         </BestDoctors>
-
-         <Doctors>
-            {doctors.map((doctor) => {
-               return (
-                  <div key={doctor.id}>
-                     <div className="images">
-                        <img src={doctor.image} alt="image" />
-                     </div>
-                     <p className="doctorName">{doctor.name}</p>
-                     <p className="doctorSpecialist">{doctor.specialist}</p>
-                  </div>
-               )
-            })}
-         </Doctors>
-
-         <AllDoctorsContainer>
-            <AllDoctors>Все врачи клиники</AllDoctors>
-         </AllDoctorsContainer>
-
-         <Feedbacks>
-            Отзывы наших <span>пациентов</span>
-         </Feedbacks>
-
-         <SwiperStyled
-            slidesPerView={2}
-            spaceBetween={30}
-            centeredSlides={true}
-            autoplay={{
-               delay: 2500,
-               disableOnInteraction: false,
-            }}
-            pagination={{
-               clickable: true,
-            }}
-            loop={true}
-            speed={800}
-            navigation={true}
-            modules={[Autoplay, Pagination, Navigation]}
-         >
-            <SwiperSlideStyled>
-               <div className="feedback">
-                  <div>
-                     <img src={feedBackImg} alt="feedbackImg" />
-                     <div className="ratingsContainer">
-                        <p>Eder Militao</p>
-                        <Rating className="rating" name="simple-controlled" />
-                     </div>
-                  </div>
-
-                  <p className="message">
-                     Хочу выразить признательность и благодарность отличному
-                     врачу - Попову Алексею Дмитриевичу за профессиональное
-                     удаление зуба мудрости! Отмечу, что зуб был очень сложным:
-                     расположен за челюстной костью, росший вниз (под семерку),
-                     с кривыми корнями. Не ожидал, что удаление такого зуба
-                     сможет пройти столь спокойно и безболезненно (пишу, кстати,
-                     по факту заживления - лунка затянулась прекрасно). В общем,
-                     огромное спасибо Алексею Дмитриевичу , персоналу и самой
-                     клинике!
+                  <p className="number">1</p>
+                  <p className="title">Высокий профессионализм сотрудников</p>
+                  <p className="text">
+                     Медицинская лицензия, большой опыт врачей и постоянное
+                     повышение квалификации.
                   </p>
                </div>
-            </SwiperSlideStyled>
-            <SwiperSlideStyled>
-               <div className="feedback">
-                  <div>
-                     <img src={feedBackImg} alt="feedbackImg" />
-                     <div className="ratingsContainer">
-                        <p>Eden Hazard</p>
-                        <Rating className="rating" name="simple-controlled" />
-                     </div>
-                  </div>
-                  <p className="message">
-                     Хочу выразить признательность и благодарность отличному
-                     врачу - Попову Алексею Дмитриевичу за профессиональное
-                     удаление зуба мудрости! Отмечу, что зуб был очень сложным:
-                     расположен за челюстной костью, росший вниз (под семерку),
-                     с кривыми корнями. Не ожидал, что удаление такого зуба
-                     сможет пройти столь спокойно и безболезненно (пишу, кстати,
-                     по факту заживления - лунка затянулась прекрасно). В общем,
-                     огромное спасибо Алексею Дмитриевичу , персоналу и самой
-                     клинике!
+               <div>
+                  <p className="number">2</p>
+                  <p className="title">Наши пациенты - наши лучшие друзья</p>
+                  <p className="text">
+                     Все аппараты и медицинские препараты сертифицированы и
+                     лицензированы.
                   </p>
                </div>
-            </SwiperSlideStyled>
-            <SwiperSlideStyled>
-               <div className="feedback">
-                  <div>
-                     <img src={feedBackImg} alt="feedbackImg" />
-                     <div className="ratingsContainer">
-                        <p>Dani Carvajal</p>
-                        <Rating className="rating" name="simple-controlled" />
-                     </div>
-                  </div>
-
-                  <p className="message">
-                     Хочу выразить признательность и благодарность отличному
-                     врачу - Попову Алексею Дмитриевичу за профессиональное
-                     удаление зуба мудрости! Отмечу, что зуб был очень сложным:
-                     расположен за челюстной костью, росший вниз (под семерку),
-                     с кривыми корнями. Не ожидал, что удаление такого зуба
-                     сможет пройти столь спокойно и безболезненно (пишу, кстати,
-                     по факту заживления - лунка затянулась прекрасно). В общем,
-                     огромное спасибо Алексею Дмитриевичу , персоналу и самой
-                     клинике!
+               <div>
+                  <p className="number">3</p>
+                  <p className="title">Комфортные условия</p>
+                  <p className="text">
+                     Уютная обстановка и отзывчивый персонал сделают поход в
+                     клинику максимально приятным.
                   </p>
                </div>
-            </SwiperSlideStyled>
-         </SwiperStyled>
+            </ChooseContainer>
 
-         <RequestClient>
-            <div className="requestContainer">
-               <p className="leaveRequest">Оставьте заявку</p>
-               <p className="leaveRequestText">
-                  Оставьте свой номер и наши специалисты свяжутся с Вами в
-                  ближайшее время
-               </p>
+            <OurServices>
+               Наши <span>услуги</span>
+            </OurServices>
 
-               <div className="clientDetailsContainer">
-                  <div className="clientDetails">
-                     <p>Как к Вам обратиться?</p>
+            <ForAllTimesApplication>
+               За все время работы клиника приняла более 1 млн. пациентов.
+            </ForAllTimesApplication>
+
+            <Services>
+               <div>
+                  <div className="containerWithImg">
+                     <img src={vaccination} alt="vaccination" />
+                  </div>
+                  <p className="text">Вакцинация</p>
+               </div>
+               <div>
+                  <div className="containerWithImg">
+                     <img src={cardiology} alt="cardiology" />
+                  </div>
+                  <p className="text">Кардиология</p>
+               </div>
+               <div>
+                  <div className="containerWithImg">
+                     <img src={neurology} alt="neurology" />
+                  </div>
+                  <p className="text">Неврология</p>
+               </div>
+               <div>
+                  <div className="containerWithImg">
+                     <img src={dermatology} alt="dermatology" />
+                  </div>
+                  <p className="text">Дерматология</p>
+               </div>
+               <div>
+                  <div className="containerWithImg">
+                     <img src={ophthalmology} alt="ophthalmology" />
+                  </div>
+                  <p className="text">Офтальмология</p>
+               </div>
+               <div>
+                  <div className="containerWithImg">
+                     <img src={therapy} alt="therapy" />
+                  </div>
+                  <p className="text">Терапия</p>
+               </div>
+               <div>
+                  <div className="containerWithImg">
+                     <img src={fizioterapiya} alt="fizioterapiya" />
+                  </div>
+                  <p className="text">Физиотерапия</p>
+               </div>
+               <div>
+                  <div className="containerWithImg">
+                     <img src={onkologiya} alt="onkologiya" />
+                  </div>
+                  <p className="text">Онкология</p>
+               </div>
+               <div>
+                  <div className="containerWithImg">
+                     <img src={urologiya} alt="urologiya" />
+                  </div>
+                  <p className="text">Урология</p>
+               </div>
+            </Services>
+
+            <ContainerLookAll>
+               <LookAll>Смотреть все</LookAll>
+            </ContainerLookAll>
+
+            <AboutOurClinic>
+               О нашей клинике <span>“MedCheck”</span>
+            </AboutOurClinic>
+
+            <AboutClinic>
+               <div className="textContent">
+                  <p>
+                     Вся наша команда готова обеспечить вам медицинский уход и
+                     заботу на самом высоком уровне. Наша главная задача —
+                     оказать Вам теплый прием и обеспечить самый лучший
+                     медицинский уход. У нас Вы в хороших руках! В нашей клинике
+                     используются только качественные материалы и проверенные
+                     технологии. Для каждого клиента специалисты нашей клиники
+                     разработают индивидуальный план лечения, подробно
+                     рассказывая о каждом этапе.
+                  </p>
+                  <p>
+                     Доброжелательность и уважительное отношение к пациентам, не
+                     только материальная, но и моральная ответственность за
+                     результаты лечения — все это взято за основу политики
+                     Medical Clinic. Профессионализм и высокое качество
+                     оказываемых услуг помогают нам привлечь пациентов которые
+                     рекомендуют нас своим родным и близким.
+                  </p>
+                  <p>
+                     Уже 20 лет мы работаем на уровне лучших мировых стандартов,
+                     внедряя и развивая передовые методы лечения для сохранения
+                     здоровья наших пациентов.
+                  </p>
+
+                  <div className="readMore">
+                     <a href="https://www.medcheck.kg/">
+                        Читать подробнее о клинике
+                     </a>
+
+                     <img src={next} alt="nextIcon" />
+                  </div>
+               </div>
+               <ImgStyles>
+                  <div>
+                     <img src={clinic} alt="" />
+                  </div>
+
+                  <img src={doctors1} alt="doctors1" />
+                  <img src={doctors2} alt="doctors2" />
+                  <img src={doctors3} alt="doctors3" />
+               </ImgStyles>
+            </AboutClinic>
+
+            <BestDoctors>
+               Лучшие <span>врачи</span>
+               <BestDoctorsText>
+                  Попасть в команду медицинской клиники «MedCheck» могут только
+                  лучшие специалисты с многолетней практикой и доказанным
+                  опытом.
+               </BestDoctorsText>
+            </BestDoctors>
+
+            <Doctors>
+               {doctors.map((doctor) => {
+                  return (
+                     <div key={doctor.id}>
+                        <div className="images">
+                           <img src={doctor.image} alt="image" />
+                        </div>
+                        <p className="doctorName">{doctor.name}</p>
+                        <p className="doctorSpecialist">{doctor.specialist}</p>
+                     </div>
+                  )
+               })}
+            </Doctors>
+
+            <AllDoctorsContainer>
+               <AllDoctors>Все врачи клиники</AllDoctors>
+            </AllDoctorsContainer>
+
+            <Feedbacks>
+               Отзывы наших <span>пациентов</span>
+            </Feedbacks>
+
+            <SwiperStyled
+               slidesPerView={2}
+               spaceBetween={30}
+               centeredSlides={true}
+               autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+               }}
+               pagination={{
+                  clickable: true,
+               }}
+               loop={true}
+               speed={800}
+               navigation={true}
+               modules={[Autoplay, Pagination, Navigation]}
+            >
+               <SwiperSlideStyled>
+                  <div className="feedback">
                      <div>
-                        <img src={users} alt="users" />
-                        <Input placeholder="Введите имя" className="input" />
+                        <img src={feedBackImg} alt="feedbackImg" />
+                        <div className="ratingsContainer">
+                           <p>Eder Militao</p>
+                           <Rating
+                              className="rating"
+                              name="simple-controlled"
+                           />
+                        </div>
                      </div>
-                  </div>
-                  <div className="clientDetails">
-                     <p>Номер мобильного телефона</p>
-                     <div>
-                        <img src={phoneNumber} alt="phoneNumber" />
-                        <Input
-                           placeholder="+996 (___) __-__-__"
-                           className="input"
-                        />
-                     </div>
-                  </div>
-               </div>
 
-               <Button variant="contained" className="sendRequest">
-                  ОТПРАВИТЬ ЗАЯВКУ
-               </Button>
-            </div>
-            <img
-               className="sendRequestImg"
-               src={sendRequestImg}
-               alt="sendRequestImg"
-            />
-         </RequestClient>
-      </Main>
+                     <p className="message">
+                        Хочу выразить признательность и благодарность отличному
+                        врачу - Попову Алексею Дмитриевичу за профессиональное
+                        удаление зуба мудрости! Отмечу, что зуб был очень
+                        сложным: расположен за челюстной костью, росший вниз
+                        (под семерку), с кривыми корнями. Не ожидал, что
+                        удаление такого зуба сможет пройти столь спокойно и
+                        безболезненно (пишу, кстати, по факту заживления - лунка
+                        затянулась прекрасно). В общем, огромное спасибо Алексею
+                        Дмитриевичу , персоналу и самой клинике!
+                     </p>
+                  </div>
+               </SwiperSlideStyled>
+               <SwiperSlideStyled>
+                  <div className="feedback">
+                     <div>
+                        <img src={feedBackImg} alt="feedbackImg" />
+                        <div className="ratingsContainer">
+                           <p>Eden Hazard</p>
+                           <Rating
+                              className="rating"
+                              name="simple-controlled"
+                           />
+                        </div>
+                     </div>
+                     <p className="message">
+                        Хочу выразить признательность и благодарность отличному
+                        врачу - Попову Алексею Дмитриевичу за профессиональное
+                        удаление зуба мудрости! Отмечу, что зуб был очень
+                        сложным: расположен за челюстной костью, росший вниз
+                        (под семерку), с кривыми корнями. Не ожидал, что
+                        удаление такого зуба сможет пройти столь спокойно и
+                        безболезненно (пишу, кстати, по факту заживления - лунка
+                        затянулась прекрасно). В общем, огромное спасибо Алексею
+                        Дмитриевичу , персоналу и самой клинике!
+                     </p>
+                  </div>
+               </SwiperSlideStyled>
+               <SwiperSlideStyled>
+                  <div className="feedback">
+                     <div>
+                        <img src={feedBackImg} alt="feedbackImg" />
+                        <div className="ratingsContainer">
+                           <p>Dani Carvajal</p>
+                           <Rating
+                              className="rating"
+                              name="simple-controlled"
+                           />
+                        </div>
+                     </div>
+
+                     <p className="message">
+                        Хочу выразить признательность и благодарность отличному
+                        врачу - Попову Алексею Дмитриевичу за профессиональное
+                        удаление зуба мудрости! Отмечу, что зуб был очень
+                        сложным: расположен за челюстной костью, росший вниз
+                        (под семерку), с кривыми корнями. Не ожидал, что
+                        удаление такого зуба сможет пройти столь спокойно и
+                        безболезненно (пишу, кстати, по факту заживления - лунка
+                        затянулась прекрасно). В общем, огромное спасибо Алексею
+                        Дмитриевичу , персоналу и самой клинике!
+                     </p>
+                  </div>
+               </SwiperSlideStyled>
+            </SwiperStyled>
+
+            <RequestClient>
+               <div className="requestContainer">
+                  <p className="leaveRequest">Оставьте заявку</p>
+                  <p className="leaveRequestText">
+                     Оставьте свой номер и наши специалисты свяжутся с Вами в
+                     ближайшее время
+                  </p>
+
+                  <div className="clientDetailsContainer">
+                     <div className="clientDetails">
+                        <p>Как к Вам обратиться?</p>
+                        <div>
+                           <img src={users} alt="users" />
+                           <Input
+                              type="text"
+                              placeholder="Введите имя"
+                              className="input"
+                           />
+                        </div>
+                     </div>
+                     <div className="clientDetails">
+                        <p>Номер мобильного телефона</p>
+                        <div>
+                           <img src={phoneNumber} alt="phoneNumber" />
+                           <Input
+                              type="number"
+                              placeholder="+996 (___) __-__-__"
+                              className="input"
+                           />
+                        </div>
+                     </div>
+                  </div>
+
+                  <Button variant="contained" className="sendRequest">
+                     ОТПРАВИТЬ ЗАЯВКУ
+                  </Button>
+               </div>
+               <img
+                  className="sendRequestImg"
+                  src={sendRequestImg}
+                  alt="sendRequestImg"
+               />
+            </RequestClient>
+         </Main>
+
+         <Footer />
+      </Container>
    )
 }
 
 const Main = styled('main')(() => ({
-   width: '100%',
+   width: '1200px',
+   height: 'auto',
+   margin: '0 auto',
+   marginTop: '180px',
+   fontFamily: 'Manrope',
 }))
 
 const StyledWelcome = styled('div')(() => ({
-   width: '80%',
-   margin: '0 auto',
+   width: '96%',
    display: 'flex',
    alignItems: 'center',
+   justifyContent: 'space-between',
    background: 'white',
+   margin: '0 auto',
 }))
 
 const WelcomeClient = styled('div')(() => ({
-   width: '520px',
+   width: '470px',
 }))
 
 const TypographyWelcome = styled(Typography)(() => ({
-   width: '95%',
+   width: '500px',
    font: 'Poppins',
    fontWeight: 900,
    fontSize: '45px',
@@ -417,7 +451,7 @@ const ImgStyledWelcome = styled('div')(() => ({
 }))
 
 const ChooseOurMedCheck = styled('div')(() => ({
-   width: '80%',
+   width: '96%',
    margin: '0 auto',
    marginTop: '30px',
    fontFamily: 'Manrope',
@@ -430,14 +464,14 @@ const ChooseOurMedCheck = styled('div')(() => ({
 }))
 
 const ChooseContainer = styled('div')(() => ({
-   width: '80%',
-   gap: '10px',
+   width: '96%',
+   gap: '25px',
    margin: '0 auto',
    display: 'flex',
 
    '& div': {
-      width: '362px',
-      padding: ' 20px 40px',
+      width: '389px',
+      padding: ' 30px 40px',
       display: 'inline-block',
       marginTop: '60px',
       background: '#DBEBFF',
@@ -464,7 +498,7 @@ const ChooseContainer = styled('div')(() => ({
 }))
 
 const OurServices = styled('div')(() => ({
-   width: '80%',
+   width: '96%',
    margin: '0 auto',
    marginTop: '60px',
    fontFamily: 'Manrope',
@@ -477,7 +511,7 @@ const OurServices = styled('div')(() => ({
 }))
 
 const ForAllTimesApplication = styled('p')(() => ({
-   width: '80%',
+   width: '96%',
    margin: '0 auto',
    fontFamily: 'Manrope',
    fontWeight: '400',
@@ -486,10 +520,10 @@ const ForAllTimesApplication = styled('p')(() => ({
 }))
 
 const Services = styled('div')(() => ({
-   width: '80%',
+   width: '96%',
    margin: '0 auto',
    display: 'flex',
-   gap: '25px',
+   gap: '30px',
    marginTop: '60px',
 
    '& .containerWithImg ': {
@@ -538,7 +572,7 @@ const LookAll = styled(Button)(() => ({
 }))
 
 const AboutOurClinic = styled('div')(() => ({
-   width: '80%',
+   width: '96%',
    margin: '0 auto',
    marginTop: '60px',
    fontFamily: 'Manrope',
@@ -551,10 +585,10 @@ const AboutOurClinic = styled('div')(() => ({
 }))
 
 const AboutClinic = styled('div')(() => ({
-   width: '80%',
+   width: '97%',
    margin: '0 auto',
    display: 'flex',
-   gap: '90px',
+   justifyContent: 'space-between',
    '& .textContent': {
       width: '460px',
       fontSize: '18px',
@@ -566,37 +600,42 @@ const AboutClinic = styled('div')(() => ({
       },
 
       '& div': {
-         color: '#048741',
          fontSize: '16px',
-         marginTop: '30px',
+
          display: 'flex',
          alignItems: 'center',
 
+         cursor: 'pointer',
+         margin: '0',
+         marginTop: '30px',
+
          gap: '5px',
+
+         '& a': {
+            textDecoration: 'none',
+            color: '#048741',
+         },
       },
    },
 }))
 
 const ImgStyles = styled('div')(() => ({
-   margin: '0',
-   marginTop: '23px',
-
    '& div': {
       '& img': {
          width: '560px',
-         height: '260px',
+         height: '270px',
       },
    },
 
    '& img': {
       width: '180px',
-      height: '100px',
+      height: '110px',
       margin: ' 7px 5px',
    },
 }))
 
 const BestDoctors = styled('div')(() => ({
-   width: '80%',
+   width: '96%',
    margin: '0 auto',
    marginTop: '60px',
    fontFamily: 'Manrope',
@@ -609,7 +648,7 @@ const BestDoctors = styled('div')(() => ({
 }))
 
 const BestDoctorsText = styled('p')(() => ({
-   width: '50%',
+   width: '48%',
 
    fontFamily: 'Manrope',
    fontWeight: '400',
@@ -620,18 +659,14 @@ const BestDoctorsText = styled('p')(() => ({
 const Doctors = styled('div')(() => ({
    display: 'flex',
    justifyContent: 'center',
-   gap: '30px',
-   width: '80%',
+   gap: '50px',
+
    margin: '0 auto',
    marginTop: '50px',
 
    '& .images': {
-      width: '190px',
-      height: '190px',
       display: 'flex',
-      background:
-         'radial-gradient(43.84% 43.84% at 50.16% 55.3%, #FDFDFD 0%, #E4E7EE 100%)',
-      borderRadius: '50%',
+
       alignItems: 'center',
       justifyContent: 'center',
 
@@ -678,7 +713,7 @@ const AllDoctors = styled(Button)(() => ({
 }))
 
 const Feedbacks = styled('div')(() => ({
-   width: '80%',
+   width: '96%',
    margin: '0 auto',
    marginTop: '30px',
    fontFamily: 'Manrope',
@@ -691,7 +726,7 @@ const Feedbacks = styled('div')(() => ({
 }))
 
 const SwiperStyled = styled(Swiper)(() => ({
-   width: '80%',
+   width: '96%',
    height: '300px',
    margin: '0 auto',
 
@@ -710,6 +745,7 @@ const SwiperStyled = styled(Swiper)(() => ({
       right: '440px',
       borderRadius: '50%',
       border: '1px solid green',
+      cursor: 'pointer',
    },
 
    '& .swiper-button-prev': {
@@ -722,19 +758,16 @@ const SwiperStyled = styled(Swiper)(() => ({
       left: '440px',
       borderRadius: '50%',
       border: '1px solid #048741',
+      cursor: 'pointer',
    },
 
    '& .swiper-button-next:hover': {
       background: 'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)',
       color: 'white',
-      fontSize: '16px',
-      fontWeight: '900',
    },
    '& .swiper-button-prev:hover': {
       background: 'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)',
       color: 'white',
-      fontSize: '16px',
-      fontWeight: '900',
    },
 
    '& .swiper-button-prev:after': {
@@ -745,15 +778,13 @@ const SwiperStyled = styled(Swiper)(() => ({
       fontSize: '16px',
       fontWeight: '900',
    },
-   '& .swiper-button-prev:next': {
-      fontSize: '16px',
-      cursor: 'pointer',
-   },
 }))
 
 const SwiperSlideStyled = styled(SwiperSlide)(() => ({
    display: 'flex',
-   gap: '10px',
+
+   cursor: 'pointer',
+
    '& .feedback': {
       width: '570px',
       height: '170px',
@@ -795,21 +826,20 @@ const SwiperSlideStyled = styled(SwiperSlide)(() => ({
 }))
 
 const RequestClient = styled('div')(() => ({
-   width: '80%',
+   width: '96%',
    margin: '0 auto',
 
    display: 'flex',
    alignItems: 'center',
+   marginBottom: '70px',
 
    '& .requestContainer': {
-      width: '600px',
+      width: '700px',
       height: '400px',
       background: '#DBEBFF',
       padding: '40px 30px',
       marginTop: '150px',
       borderRadius: '20px',
-      // position: 'sticky',
-      // zIndex: '5',
 
       '& .leaveRequest': {
          fontSize: '36px',
