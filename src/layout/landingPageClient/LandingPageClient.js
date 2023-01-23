@@ -1,4 +1,4 @@
-import { Container, styled } from '@mui/material'
+import { styled } from '@mui/material'
 import { Typography } from '@mui/material'
 import React from 'react'
 import Button from '../../components/UI/Button'
@@ -45,7 +45,7 @@ import Footer from '../footer/Footer'
 
 const LandingPageClient = () => {
    return (
-      <Container>
+      <>
          <Header />
 
          <Main>
@@ -388,7 +388,7 @@ const LandingPageClient = () => {
          </Main>
 
          <Footer />
-      </Container>
+      </>
    )
 }
 
@@ -591,12 +591,11 @@ const AboutClinic = styled('div')(() => ({
    justifyContent: 'space-between',
    '& .textContent': {
       width: '460px',
-      fontSize: '18px',
-      fontFamily: 'Monrape',
 
       '& p': {
          marginTop: '20px',
          fontSize: '16px',
+         fontFamily: 'Monrape',
       },
 
       '& div': {
@@ -727,7 +726,7 @@ const Feedbacks = styled('div')(() => ({
 
 const SwiperStyled = styled(Swiper)(() => ({
    width: '96%',
-   height: '300px',
+   height: '310px',
    margin: '0 auto',
 
    '& .swiper-pagination-bullet': {
@@ -741,24 +740,25 @@ const SwiperStyled = styled(Swiper)(() => ({
       height: '40px',
 
       position: 'absolute',
+
       top: '280px',
-      right: '440px',
+      right: '400px',
       borderRadius: '50%',
       border: '1px solid green',
-      cursor: 'pointer',
    },
 
    '& .swiper-button-prev': {
       color: '#048741',
+
       width: '40px',
       height: '40px',
 
       position: 'absolute',
+
       top: '280px',
-      left: '440px',
+      left: '400px',
       borderRadius: '50%',
-      border: '1px solid #048741',
-      cursor: 'pointer',
+      border: '1px solid green',
    },
 
    '& .swiper-button-next:hover': {
