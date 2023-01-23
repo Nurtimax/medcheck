@@ -595,7 +595,10 @@ const AboutClinic = styled('div')(() => ({
       '& p': {
          marginTop: '20px',
          fontSize: '16px',
-         fontFamily: 'Monrape',
+         color: '#4D4E51',
+
+         fontFamily: 'Manrope',
+         fontWeight: 400,
       },
 
       '& div': {
@@ -726,11 +729,12 @@ const Feedbacks = styled('div')(() => ({
 
 const SwiperStyled = styled(Swiper)(() => ({
    width: '96%',
-   height: '310px',
+   height: '300px',
    margin: '0 auto',
 
    '& .swiper-pagination-bullet': {
       background: '#048741',
+      marginBottom: '100px',
    },
 
    '& .swiper-button-next': {
