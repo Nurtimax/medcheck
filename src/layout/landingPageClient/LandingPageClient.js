@@ -2,25 +2,10 @@ import { styled } from '@mui/material'
 import { Typography } from '@mui/material'
 import React from 'react'
 import Button from '../../components/UI/Button'
-import Rating from '@mui/material/Rating'
-
-import Input from '../../components/UI/Input'
-
-import { Swiper, SwiperSlide } from 'swiper/react'
-
-import 'swiper/css'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
-
-import { Autoplay, Pagination, Navigation } from 'swiper'
 
 import { doctors } from '../../utils/constants/doctors'
 
 import imgToWelcome from '../../assets/images/imgToWelcome.jpg'
-import sendRequestImg from '../../assets/images/imgRequest.jpg'
-
-import users from '../../assets/icons/users.svg'
-import phoneNumber from '../../assets/icons/phoneNumber.svg'
 
 import vaccination from '../../assets/icons/vaccination.svg'
 import cardiology from '../../assets/icons/cardiology.svg'
@@ -39,9 +24,10 @@ import doctors1 from '../../assets/images/doctors1.jpg'
 import doctors2 from '../../assets/images/doctors2.jpg'
 import doctors3 from '../../assets/images/doctors3.jpg'
 
-import feedBackImg from '../../assets/images/feedbackImg.jpg'
 import Header from '../header/Header'
 import Footer from '../footer/Footer'
+import RequestsClient from './RequestsClient'
+import SwiperFeedbacks from './SwiperFeedbacks'
 
 const LandingPageClient = () => {
    return (
@@ -247,144 +233,9 @@ const LandingPageClient = () => {
                Отзывы наших <span>пациентов</span>
             </Feedbacks>
 
-            <SwiperStyled
-               slidesPerView={2}
-               spaceBetween={20}
-               centeredSlides={true}
-               autoplay={{
-                  delay: 2500,
-                  disableOnInteraction: false,
-               }}
-               pagination={{
-                  clickable: true,
-               }}
-               loop={true}
-               speed={800}
-               navigation={true}
-               modules={[Autoplay, Pagination, Navigation]}
-            >
-               <SwiperSlideStyled>
-                  <div className="feedback">
-                     <div>
-                        <img src={feedBackImg} alt="feedbackImg" />
-                        <div className="ratingsContainer">
-                           <p>Eder Militao</p>
-                           <Rating
-                              className="rating"
-                              name="simple-controlled"
-                           />
-                        </div>
-                     </div>
+            <SwiperFeedbacks />
 
-                     <p className="message">
-                        Хочу выразить признательность и благодарность отличному
-                        врачу - Попову Алексею Дмитриевичу за профессиональное
-                        удаление зуба мудрости! Отмечу, что зуб был очень
-                        сложным: расположен за челюстной костью, росший вниз
-                        (под семерку), с кривыми корнями. Не ожидал, что
-                        удаление такого зуба сможет пройти столь спокойно и
-                        безболезненно (пишу, кстати, по факту заживления - лунка
-                        затянулась прекрасно). В общем, огромное спасибо Алексею
-                        Дмитриевичу , персоналу и самой клинике!
-                     </p>
-                  </div>
-               </SwiperSlideStyled>
-               <SwiperSlideStyled>
-                  <div className="feedback">
-                     <div>
-                        <img src={feedBackImg} alt="feedbackImg" />
-                        <div className="ratingsContainer">
-                           <p>Eden Hazard</p>
-                           <Rating
-                              className="rating"
-                              name="simple-controlled"
-                           />
-                        </div>
-                     </div>
-                     <p className="message">
-                        Хочу выразить признательность и благодарность отличному
-                        врачу - Попову Алексею Дмитриевичу за профессиональное
-                        удаление зуба мудрости! Отмечу, что зуб был очень
-                        сложным: расположен за челюстной костью, росший вниз
-                        (под семерку), с кривыми корнями. Не ожидал, что
-                        удаление такого зуба сможет пройти столь спокойно и
-                        безболезненно (пишу, кстати, по факту заживления - лунка
-                        затянулась прекрасно). В общем, огромное спасибо Алексею
-                        Дмитриевичу , персоналу и самой клинике!
-                     </p>
-                  </div>
-               </SwiperSlideStyled>
-               <SwiperSlideStyled>
-                  <div className="feedback">
-                     <div>
-                        <img src={feedBackImg} alt="feedbackImg" />
-                        <div className="ratingsContainer">
-                           <p>Dani Carvajal</p>
-                           <Rating
-                              className="rating"
-                              name="simple-controlled"
-                           />
-                        </div>
-                     </div>
-
-                     <p className="message">
-                        Хочу выразить признательность и благодарность отличному
-                        врачу - Попову Алексею Дмитриевичу за профессиональное
-                        удаление зуба мудрости! Отмечу, что зуб был очень
-                        сложным: расположен за челюстной костью, росший вниз
-                        (под семерку), с кривыми корнями. Не ожидал, что
-                        удаление такого зуба сможет пройти столь спокойно и
-                        безболезненно (пишу, кстати, по факту заживления - лунка
-                        затянулась прекрасно). В общем, огромное спасибо Алексею
-                        Дмитриевичу , персоналу и самой клинике!
-                     </p>
-                  </div>
-               </SwiperSlideStyled>
-            </SwiperStyled>
-
-            <RequestClient>
-               <div className="requestContainer">
-                  <p className="leaveRequest">Оставьте заявку</p>
-                  <p className="leaveRequestText">
-                     Оставьте свой номер и наши специалисты свяжутся с Вами в
-                     ближайшее время
-                  </p>
-
-                  <div className="clientDetailsContainer">
-                     <div className="clientDetails">
-                        <p>Как к Вам обратиться?</p>
-                        <div>
-                           <img src={users} alt="users" />
-                           <Input
-                              type="text"
-                              placeholder="Введите имя"
-                              className="input"
-                           />
-                        </div>
-                     </div>
-                     <div className="clientDetails">
-                        <p>Номер мобильного телефона</p>
-                        <div>
-                           <img src={phoneNumber} alt="phoneNumber" />
-                           <Input
-                              type="number"
-                              placeholder="+996 (___) __-__-__"
-                              className="input"
-                           />
-                        </div>
-                     </div>
-                  </div>
-
-                  <Button variant="contained" className="sendRequest">
-                     ОТПРАВИТЬ ЗАЯВКУ
-                  </Button>
-               </div>
-               <img
-                  className="sendRequestImg"
-                  src={sendRequestImg}
-                  alt="sendRequestImg"
-               />
-            </RequestClient>
+            <RequestsClient />
          </Main>
 
          <Footer />
@@ -422,11 +273,9 @@ const TypographyWelcome = styled(Typography)(() => ({
    background: 'linear-gradient(90deg, #30CFD0 0%, #330867 100%)',
    backgroundClip: 'text',
    textFillColor: 'transparent',
-   fontFamily: '"Poppins" , sans-serif',
 }))
 
 const TypographyAbout = styled('p')(() => ({
-   fontFamily: '"Manrope", sans-serif',
    fontSize: '16px',
    marginTop: '27px',
 }))
@@ -437,9 +286,7 @@ const ButtonRecord = styled(Button)(() => ({
    border: '1px solid #048741',
    color: 'rgba(4, 135, 65, 1)',
    borderRadius: '24px',
-   fontFamily: '"Manrope", sans-serif',
    fontSize: '14px',
-   fontWeight: '600',
    marginTop: '40px',
 }))
 
@@ -455,7 +302,6 @@ const ChooseOurMedCheck = styled('div')(() => ({
    width: '96%',
    margin: '0 auto',
    marginTop: '30px',
-   fontFamily: '"Manrope", sans-serif',
    fontWeight: '600',
    fontSize: '36px',
    color: '#222222',
@@ -482,16 +328,13 @@ const ChooseContainer = styled('div')(() => ({
       '& .number': {
          margin: '0',
          fontSize: '45px',
-         fontFamily: '"Manrope", sans-serif',
          color: 'green',
       },
 
       '& .title': {
          fontSize: '20px',
-         fontFamily: '"Manrope" , sans-serif',
       },
       '& .text': {
-         fontFamily: '"Manrope", sans-serif',
          marginTop: '10px',
          fontSize: '16px',
       },
@@ -502,7 +345,6 @@ const OurServices = styled('div')(() => ({
    width: '96%',
    margin: '0 auto',
    marginTop: '60px',
-   fontFamily: '"Manrope", sans-serif',
    fontWeight: '600',
    fontSize: '36px',
    color: '#222222',
@@ -514,7 +356,6 @@ const OurServices = styled('div')(() => ({
 const ForAllTimesApplication = styled('p')(() => ({
    width: '96%',
    margin: '0 auto',
-   fontFamily: '"Manrope", sans-serif',
    fontWeight: '400',
    fontSize: '18px',
    marginTop: '23px',
@@ -549,7 +390,6 @@ const Services = styled('div')(() => ({
 
    '& .text': {
       fontWeight: 300,
-      fontFamily: '"Manrope", sans-serif',
       fontSize: '16px',
       marginTop: '10px',
       color: '#000000',
@@ -576,7 +416,6 @@ const AboutOurClinic = styled('div')(() => ({
    width: '96%',
    margin: '0 auto',
    marginTop: '60px',
-   fontFamily: '"Manrope" , sans-serif',
    fontWeight: '600',
    fontSize: '36px',
    color: '#222222',
@@ -598,7 +437,6 @@ const AboutClinic = styled('div')(() => ({
          fontSize: '15px',
          color: '#4D4E51',
 
-         fontFamily: '"Manrope", sans-serif',
          fontWeight: 400,
       },
 
@@ -641,7 +479,6 @@ const BestDoctors = styled('div')(() => ({
    width: '96%',
    margin: '0 auto',
    marginTop: '60px',
-   fontFamily: '"Manrope", sans-serif',
    fontWeight: '600',
    fontSize: '36px',
    color: '#222222',
@@ -651,9 +488,8 @@ const BestDoctors = styled('div')(() => ({
 }))
 
 const BestDoctorsText = styled('p')(() => ({
-   width: '48%',
+   width: '54%',
 
-   fontFamily: '"Manrope", sans-serif',
    fontWeight: '400',
    fontSize: '18px',
    marginTop: '23px',
@@ -685,7 +521,6 @@ const Doctors = styled('div')(() => ({
    '& .doctorName': {
       display: 'flex',
       justifyContent: 'center',
-      fontFamily: '"Manrope" , sans-serif',
       fontSize: '16px',
       marginTop: '10px',
    },
@@ -693,7 +528,6 @@ const Doctors = styled('div')(() => ({
    '& .doctorSpecialist': {
       display: 'flex',
       justifyContent: 'center',
-      fontFamily: '"Manrope" , sans-serif',
       fontSize: '14px',
       color: '#959595',
       marginTop: '4px',
@@ -719,197 +553,11 @@ const Feedbacks = styled('div')(() => ({
    width: '96%',
    margin: '0 auto',
    marginTop: '30px',
-   fontFamily: '"Manrope", sans-serif',
    fontWeight: '600',
    fontSize: '36px',
    color: '#222222',
    '& span': {
       color: 'rgba(4, 135, 65, 1)',
-   },
-}))
-
-const SwiperStyled = styled(Swiper)(() => ({
-   width: '96%',
-   height: '350px',
-   margin: '0 auto',
-
-   '& .swiper-pagination-bullet': {
-      background: '#048741',
-   },
-
-   '& .swiper-button-next': {
-      color: '#048741',
-
-      width: '40px',
-      height: '40px',
-
-      position: 'absolute',
-      top: '330px',
-      right: '400px',
-      borderRadius: '50%',
-      border: '1px solid green',
-      zIndex: '11',
-   },
-
-   '& .swiper-button-prev': {
-      color: '#048741',
-
-      width: '40px',
-      height: '40px',
-
-      position: 'absolute',
-      zIndex: '11',
-      top: '330px',
-      left: '400px',
-      borderRadius: '50%',
-      border: '1px solid green',
-   },
-
-   '& .swiper-button-next:hover': {
-      background: 'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)',
-      color: 'white',
-   },
-   '& .swiper-button-prev:hover': {
-      background: 'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)',
-      color: 'white',
-   },
-
-   '& .swiper-button-prev:after': {
-      fontSize: '16px',
-      fontWeight: '900',
-   },
-   '& .swiper-button-next:after': {
-      fontSize: '16px',
-      fontWeight: '900',
-   },
-}))
-
-const SwiperSlideStyled = styled(SwiperSlide)(() => ({
-   display: 'flex',
-
-   cursor: 'pointer',
-
-   '& .feedback': {
-      width: '600px',
-      height: '210px',
-      background: '#EEEEEE',
-      margin: '0 auto',
-      borderRadius: '20px',
-      marginTop: '50px',
-      padding: '20px 20px',
-
-      '& div': {
-         display: 'flex',
-         gap: '10px',
-         alignItems: 'center',
-         '& img': {
-            width: '36px',
-            height: '35px',
-            borderRadius: '50%',
-         },
-      },
-   },
-
-   '& .ratingsContainer': {
-      display: 'flex',
-
-      flexDirection: 'column',
-      fontFamily: 'Montserrat',
-
-      '& .rating': {
-         fontSize: '15px',
-         marginTop: '-10px',
-      },
-   },
-
-   '& .message': {
-      fontSize: '13px',
-      fontFamily: '"Manrope", sans-serif',
-      marginTop: '10px',
-   },
-}))
-
-const RequestClient = styled('div')(() => ({
-   width: '96%',
-   margin: '0 auto',
-
-   display: 'flex',
-   alignItems: 'center',
-   marginBottom: '70px',
-
-   '& .requestContainer': {
-      width: '700px',
-      height: '400px',
-      background: '#DBEBFF',
-      padding: '40px 30px',
-      marginTop: '150px',
-      borderRadius: '20px',
-
-      '& .leaveRequest': {
-         fontSize: '36px',
-         textAlign: 'center',
-      },
-
-      '& .leaveRequestText': {
-         textAlign: 'center',
-         fontSize: '18px',
-         fontFamily: '"Manrope", sans-serif',
-         color: '#222222',
-         marginTop: '15px',
-      },
-   },
-
-   '& .clientDetails': {
-      width: '260px',
-
-      '& div': {
-         display: 'flex',
-         background: 'white',
-         justifyContent: 'flex-start',
-         padding: '0 10px',
-         border: '1px solid rgba(0, 147, 68, 0.5)',
-         borderRadius: '5px',
-
-         '& .input': {
-            border: 'none',
-            width: '200px',
-            height: '40px',
-         },
-      },
-
-      '& p': {
-         fontSize: '14px',
-         color: '#4D4E51',
-         fontFamily: '"Manrope", sans-serif',
-         textAlign: 'start',
-         margin: '5px 1px',
-      },
-   },
-
-   '& .clientDetailsContainer': {
-      display: 'flex',
-      width: '100%',
-      margin: '0 auto',
-      textAlign: 'center',
-      gap: '25px',
-      marginTop: '30px',
-   },
-
-   '& .sendRequest': {
-      borderRadius: '25px',
-      fontFamily: '"Manrope", sans-serif',
-
-      marginTop: '50px',
-      marginLeft: '170px',
-   },
-
-   '& .sendRequestImg': {
-      width: '700px',
-      height: '445px',
-      position: 'relative',
-      top: '50px',
-      right: '170px',
-      zIndex: '10',
    },
 }))
 
