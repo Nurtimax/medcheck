@@ -9,18 +9,27 @@ import { createTheme, ThemeProvider } from '@mui/material'
 import { ReactComponent as DatePickerIcon } from '../../assets/icons/datePicker.svg'
 
 const theme = createTheme({
+   palette: {
+      primary: {
+         main: '#048741',
+      },
+   },
    components: {
       MuiFormControl: {
          defaultProps: {
             sx: {
                maxWidth: '150px',
                '& .MuiInputBase-root': {
-                  padding: '0 18px 0 0',
+                  padding: '0 10px 0 0',
+               },
+               '& .Mui-focused': {
+                  border: 'none',
                },
                '& .MuiInputBase-input': {
                   padding: '8px 12px',
                   fontFamily: '"Manrope", sans-serif',
                },
+               '& .MuiOutlinedInput-notchedOutline': {},
             },
          },
       },
@@ -42,9 +51,7 @@ const theme = createTheme({
                },
                '& .Mui-selected': {
                   backgroundColor: '#048741 !important',
-               },
-               '& .Mui-selected:hover': {
-                  backgroundColor: '#29d576',
+                  color: 'white',
                },
                '& .MuiCalendarPicker-root': {
                   maxWidth: '256px',
@@ -72,10 +79,10 @@ const theme = createTheme({
    },
 })
 
-export const DatePickerUI = ({ value, setValue }) => {
+export const DatePickerUI = ({ value, onChange }) => {
    return (
       <ThemeProvider theme={theme}>
-         <LocalizationProvider dateAdapter={AdapterDayjs} locale={'ru'}>
+         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'ru'}>
             <DatePicker
                components={{
                   OpenPickerIcon: DatePickerIcon,
@@ -85,9 +92,7 @@ export const DatePickerUI = ({ value, setValue }) => {
                dayOfWeekFormatter={(day) => `${day}`}
                toolbarFormat="DDD DD MMMM"
                value={value}
-               onChange={(newValue) => {
-                  setValue(newValue)
-               }}
+               onChange={onChange}
                renderInput={(params) => (
                   <TextField
                      {...params}
