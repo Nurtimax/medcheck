@@ -152,6 +152,11 @@ const SwiperStyled = styled(Swiper)(() => ({
       fontSize: '16px',
       fontWeight: '900',
    },
+   '& .swiper-slide-active': {
+      '& .feedback': {
+         background: 'rgba(0, 147, 68, 0.14)',
+      },
+   },
 }))
 
 const SwiperSlideStyled = styled(SwiperSlide)(() => ({
