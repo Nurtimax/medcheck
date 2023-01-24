@@ -8,6 +8,7 @@ import Modal from './Modal'
 import user from '../../assets/icons/users.svg'
 import phone from '../../assets/icons/phone.svg'
 import next from '../../assets/icons/next.svg'
+import Button from './Button'
 
 const UserRecords = () => {
    const [open, setOpen] = useState(true)
@@ -42,7 +43,7 @@ const UserRecords = () => {
             </div>
          </UserInfo>
 
-         <SendRequest>
+         <SendRequest variant="text">
             <p>ОТПРАВИТЬ ЗАЯВКУ</p>
 
             <div>
@@ -59,15 +60,13 @@ const Request = styled('p')(() => ({
    fontWeight: '500',
    margin: '25px',
    color: '#222222',
-   fontFamily: 'Manrope',
 }))
 
 const LeaveNumber = styled('p')(() => ({
    margin: '0 auto',
    textAlign: 'center',
-   width: '72%',
-   fontSize: '16px',
-   fontFamily: 'Manrope',
+   width: '80%',
+   fontSize: '17px',
 }))
 
 const UserInfo = styled('div')(() => ({
@@ -80,7 +79,6 @@ const UserInfo = styled('div')(() => ({
       fontSize: '12px',
       margin: '3px',
       color: '#4D4E51',
-      fontFamily: 'Manrope',
    },
 }))
 
@@ -103,7 +101,6 @@ const StyledUserName = styled('div')(() => ({
          color: '#959595',
          fontSize: '16px',
          fontWeight: '400',
-         fontFamily: 'Manrope',
       },
    },
 
@@ -132,7 +129,6 @@ const StyledUserPhoneNumber = styled('div')(() => ({
          color: '#959595',
          fontSize: '16px',
          fontWeight: '400',
-         fontFamily: 'Manrope',
       },
    },
 
@@ -142,20 +138,18 @@ const StyledUserPhoneNumber = styled('div')(() => ({
    },
 }))
 
-const SendRequest = styled('div')(() => ({
-   width: '250px',
-
+const SendRequest = styled(Button)(() => ({
+   width: '240px',
+   height: '51px',
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'center',
-   gap: '16px',
-   background: 'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)',
-   borderRadius: '24px',
-   color: '#ffffff',
+   gap: '20px',
    margin: '0 auto',
    marginTop: '30px',
-   cursor: 'pointer',
-   fontFamily: 'Manrope',
+   background: 'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)',
+   borderRadius: '24px',
+   color: '#FFFFFF',
 
    '& div': {
       display: 'flex',

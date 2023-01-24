@@ -30,9 +30,10 @@ const Container = styled(Box)(() => ({
    top: '40%',
    left: '50%',
    transform: 'translate(-50%, -50%)',
-   width: '500px',
+   width: '530px',
    padding: '0 0 40px 0',
    outline: 'none',
+   fontFamily: '"Manrope" , sans-serif',
 }))
 
 const OnClose = styled('div')(() => ({
