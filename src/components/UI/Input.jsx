@@ -38,7 +38,7 @@ const Input = forwardRef(
 export default Input
 
 const InputStyle = styled(InputBase)`
-   font-family: 'Manrope';
+   font-family: "'Manrope', sans-serif";
    font-style: normal;
    font-weight: 400;
    font-size: 16px;
