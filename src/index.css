@@ -1,10 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Caveat:wght@700&family=Edu+NSW+ACT+Foundation&family=Lobster&family=Manrope&family=Poppins:wght@500&display=swap');
 
-* {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-}
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 
 body {
    margin: 0;
