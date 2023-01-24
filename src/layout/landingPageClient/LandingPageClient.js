@@ -249,7 +249,7 @@ const LandingPageClient = () => {
 
             <SwiperStyled
                slidesPerView={2}
-               spaceBetween={30}
+               spaceBetween={20}
                centeredSlides={true}
                autoplay={{
                   delay: 2500,
@@ -397,7 +397,7 @@ const Main = styled('main')(() => ({
    height: 'auto',
    margin: '0 auto',
    marginTop: '180px',
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope", sans-serif',
 }))
 
 const StyledWelcome = styled('div')(() => ({
@@ -415,17 +415,18 @@ const WelcomeClient = styled('div')(() => ({
 
 const TypographyWelcome = styled(Typography)(() => ({
    width: '500px',
-   font: 'Poppins',
+
    fontWeight: 900,
    fontSize: '45px',
    color: 'red',
    background: 'linear-gradient(90deg, #30CFD0 0%, #330867 100%)',
    backgroundClip: 'text',
    textFillColor: 'transparent',
+   fontFamily: '"Poppins" , sans-serif',
 }))
 
 const TypographyAbout = styled('p')(() => ({
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope", sans-serif',
    fontSize: '16px',
    marginTop: '27px',
 }))
@@ -436,7 +437,7 @@ const ButtonRecord = styled(Button)(() => ({
    border: '1px solid #048741',
    color: 'rgba(4, 135, 65, 1)',
    borderRadius: '24px',
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope", sans-serif',
    fontSize: '14px',
    fontWeight: '600',
    marginTop: '40px',
@@ -454,7 +455,7 @@ const ChooseOurMedCheck = styled('div')(() => ({
    width: '96%',
    margin: '0 auto',
    marginTop: '30px',
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope", sans-serif',
    fontWeight: '600',
    fontSize: '36px',
    color: '#222222',
@@ -481,18 +482,18 @@ const ChooseContainer = styled('div')(() => ({
       '& .number': {
          margin: '0',
          fontSize: '45px',
-         fontFamily: 'Manrope',
+         fontFamily: '"Manrope", sans-serif',
          color: 'green',
       },
 
       '& .title': {
-         fontSize: '24px',
-         fontFamily: 'Montserrat',
+         fontSize: '20px',
+         fontFamily: '"Manrope" , sans-serif',
       },
       '& .text': {
-         fontFamily: 'Manrope',
+         fontFamily: '"Manrope", sans-serif',
          marginTop: '10px',
-         fontSize: '17px',
+         fontSize: '16px',
       },
    },
 }))
@@ -501,7 +502,7 @@ const OurServices = styled('div')(() => ({
    width: '96%',
    margin: '0 auto',
    marginTop: '60px',
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope", sans-serif',
    fontWeight: '600',
    fontSize: '36px',
    color: '#222222',
@@ -513,7 +514,7 @@ const OurServices = styled('div')(() => ({
 const ForAllTimesApplication = styled('p')(() => ({
    width: '96%',
    margin: '0 auto',
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope", sans-serif',
    fontWeight: '400',
    fontSize: '18px',
    marginTop: '23px',
@@ -523,7 +524,7 @@ const Services = styled('div')(() => ({
    width: '96%',
    margin: '0 auto',
    display: 'flex',
-   gap: '30px',
+   gap: '26px',
    marginTop: '60px',
 
    '& .containerWithImg ': {
@@ -548,7 +549,7 @@ const Services = styled('div')(() => ({
 
    '& .text': {
       fontWeight: 300,
-      fontFamily: 'Manrope',
+      fontFamily: '"Manrope", sans-serif',
       fontSize: '16px',
       marginTop: '10px',
       color: '#000000',
@@ -575,7 +576,7 @@ const AboutOurClinic = styled('div')(() => ({
    width: '96%',
    margin: '0 auto',
    marginTop: '60px',
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope" , sans-serif',
    fontWeight: '600',
    fontSize: '36px',
    color: '#222222',
@@ -594,10 +595,10 @@ const AboutClinic = styled('div')(() => ({
 
       '& p': {
          marginTop: '20px',
-         fontSize: '16px',
+         fontSize: '15px',
          color: '#4D4E51',
 
-         fontFamily: 'Manrope',
+         fontFamily: '"Manrope", sans-serif',
          fontWeight: 400,
       },
 
@@ -640,7 +641,7 @@ const BestDoctors = styled('div')(() => ({
    width: '96%',
    margin: '0 auto',
    marginTop: '60px',
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope", sans-serif',
    fontWeight: '600',
    fontSize: '36px',
    color: '#222222',
@@ -652,7 +653,7 @@ const BestDoctors = styled('div')(() => ({
 const BestDoctorsText = styled('p')(() => ({
    width: '48%',
 
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope", sans-serif',
    fontWeight: '400',
    fontSize: '18px',
    marginTop: '23px',
@@ -684,7 +685,7 @@ const Doctors = styled('div')(() => ({
    '& .doctorName': {
       display: 'flex',
       justifyContent: 'center',
-      fontFamily: 'Manrope',
+      fontFamily: '"Manrope" , sans-serif',
       fontSize: '16px',
       marginTop: '10px',
    },
@@ -692,7 +693,7 @@ const Doctors = styled('div')(() => ({
    '& .doctorSpecialist': {
       display: 'flex',
       justifyContent: 'center',
-      fontFamily: 'Manrope',
+      fontFamily: '"Manrope" , sans-serif',
       fontSize: '14px',
       color: '#959595',
       marginTop: '4px',
@@ -718,7 +719,7 @@ const Feedbacks = styled('div')(() => ({
    width: '96%',
    margin: '0 auto',
    marginTop: '30px',
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope", sans-serif',
    fontWeight: '600',
    fontSize: '36px',
    color: '#222222',
@@ -729,12 +730,11 @@ const Feedbacks = styled('div')(() => ({
 
 const SwiperStyled = styled(Swiper)(() => ({
    width: '96%',
-   height: '300px',
+   height: '350px',
    margin: '0 auto',
 
    '& .swiper-pagination-bullet': {
       background: '#048741',
-      marginBottom: '100px',
    },
 
    '& .swiper-button-next': {
@@ -744,11 +744,11 @@ const SwiperStyled = styled(Swiper)(() => ({
       height: '40px',
 
       position: 'absolute',
-
-      top: '280px',
+      top: '330px',
       right: '400px',
       borderRadius: '50%',
       border: '1px solid green',
+      zIndex: '11',
    },
 
    '& .swiper-button-prev': {
@@ -758,8 +758,8 @@ const SwiperStyled = styled(Swiper)(() => ({
       height: '40px',
 
       position: 'absolute',
-
-      top: '280px',
+      zIndex: '11',
+      top: '330px',
       left: '400px',
       borderRadius: '50%',
       border: '1px solid green',
@@ -790,8 +790,8 @@ const SwiperSlideStyled = styled(SwiperSlide)(() => ({
    cursor: 'pointer',
 
    '& .feedback': {
-      width: '570px',
-      height: '170px',
+      width: '600px',
+      height: '210px',
       background: '#EEEEEE',
       margin: '0 auto',
       borderRadius: '20px',
@@ -824,7 +824,7 @@ const SwiperSlideStyled = styled(SwiperSlide)(() => ({
 
    '& .message': {
       fontSize: '13px',
-      fontFamily: 'Manrope',
+      fontFamily: '"Manrope", sans-serif',
       marginTop: '10px',
    },
 }))
@@ -853,7 +853,7 @@ const RequestClient = styled('div')(() => ({
       '& .leaveRequestText': {
          textAlign: 'center',
          fontSize: '18px',
-         fontFamily: 'Manrope',
+         fontFamily: '"Manrope", sans-serif',
          color: '#222222',
          marginTop: '15px',
       },
@@ -880,7 +880,7 @@ const RequestClient = styled('div')(() => ({
       '& p': {
          fontSize: '14px',
          color: '#4D4E51',
-         fontFamily: 'Manrope',
+         fontFamily: '"Manrope", sans-serif',
          textAlign: 'start',
          margin: '5px 1px',
       },
@@ -897,7 +897,7 @@ const RequestClient = styled('div')(() => ({
 
    '& .sendRequest': {
       borderRadius: '25px',
-      fontFamily: 'Manrope',
+      fontFamily: '"Manrope", sans-serif',
 
       marginTop: '50px',
       marginLeft: '170px',

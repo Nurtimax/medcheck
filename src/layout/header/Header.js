@@ -114,6 +114,7 @@ const HeaderContainer = styled('header')(() => ({
    top: '0',
    left: '0',
    zIndex: '20',
+   fontFamily: '"Manrope" , sans-serif',
 }))
 
 const FirstRow = styled('div')(() => ({
@@ -189,6 +190,7 @@ const PhoneNumber = styled('img')(() => ({
 
 const InFirstRow4 = styled('div')(() => ({
    display: 'flex',
+
    gap: '10px',
    '& div': {
       display: 'flex',
@@ -199,6 +201,11 @@ const InFirstRow4 = styled('div')(() => ({
       height: '35px',
       borderRadius: '50%',
       cursor: 'pointer',
+      '& a': {
+         display: 'flex',
+         justifyContent: 'center',
+         alignItems: 'center',
+      },
    },
 }))
 

@@ -40,7 +40,7 @@ const Footer = () => {
                   <img src={phone} alt="phone" />
                   <div>
                      <p>+996(800) 000 000</p>
-                     <p>996(505) 000 000</p>
+                     <p> +996(505) 000 000</p>
                   </div>
                </PhoneBox>
                <EmailBox>
@@ -82,6 +82,7 @@ const StyledFooterBottom = styled('div')(() => ({
    justifyContent: 'center',
    marginTop: '28px',
    marginBottom: '28px',
+   // fontFamily: '"Manrope" , sans-serif',
    ' & span': {
       fontStyle: 'normal',
       fontWeight: '400',
@@ -94,7 +95,7 @@ const StyledFooterBottom = styled('div')(() => ({
 const StyledFooterContainer = styled('div')(() => ({
    width: '100%',
    backgroundColor: '#212529',
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope" , sans-serif',
    fontSize: '16px',
    color: '#cccccc',
    display: 'flex',
