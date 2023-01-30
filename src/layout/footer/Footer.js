@@ -1,9 +1,9 @@
 import React from 'react'
 import { styled } from '@mui/material'
-import logo from '../../assets/icons/logoForProject.svg'
+import logo from '../../assets/icons/LogoForProject.svg'
 import emailIcon from '../../assets/icons/picto.svg'
-import medCheck from '../../assets/icons/medCheck.svg'
-import geoPoint from '../../assets/icons/geoPoint.svg'
+import medCheck from '../../assets/icons/medCheck2.svg'
+import geoPoint from '../../assets/icons/GeoPoint.svg'
 import clock from '../../assets/icons/clock.svg'
 import instagramIcon from '../../assets/icons/instagramIcon.svg'
 import telegramIcon from '../../assets/icons/telegramIcon.svg'
@@ -17,9 +17,9 @@ const Footer = () => {
             <FirstContainer>
                <StyledContainerIcon>
                   <img src={logo} alt="logo" />
-                  <img src={medCheck} />
+                  <img className="medCheckIcon" src={medCheck} />
                </StyledContainerIcon>
-               <p>Медицинская клиника «MedCheck»</p>
+               <p className="medClinic">Медицинская клиника «MedCheck»</p>
                <p>
                   Международная Медицинская клиника «MedCheck» это клиника в
                   которой применяются новейшие диагностические лечебные
@@ -40,7 +40,7 @@ const Footer = () => {
                   <img src={phone} alt="phone" />
                   <div>
                      <p>+996(800) 000 000</p>
-                     <p>996(505) 000 000</p>
+                     <p> +996(505) 000 000</p>
                   </div>
                </PhoneBox>
                <EmailBox>
@@ -82,6 +82,7 @@ const StyledFooterBottom = styled('div')(() => ({
    justifyContent: 'center',
    marginTop: '28px',
    marginBottom: '28px',
+   // fontFamily: '"Manrope" , sans-serif',
    ' & span': {
       fontStyle: 'normal',
       fontWeight: '400',
@@ -94,7 +95,7 @@ const StyledFooterBottom = styled('div')(() => ({
 const StyledFooterContainer = styled('div')(() => ({
    width: '100%',
    backgroundColor: '#212529',
-   fontFamily: 'Manrope',
+   fontFamily: '"Manrope" , sans-serif',
    fontSize: '16px',
    color: '#cccccc',
    display: 'flex',
@@ -140,6 +141,12 @@ const FirstContainer = styled('div')(() => ({
       height: '88px',
       textAlign: 'start',
    },
+
+   '& .medClinic': {
+      marginTop: '30px',
+   },
+
+   '& .medCheckIcon': {},
 }))
 
 const SecondContainer = styled('div')(() => ({
