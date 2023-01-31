@@ -1,99 +1,66 @@
-import { InputAdornment, styled } from '@mui/material'
-import React, { useRef, useState } from 'react'
+import { styled } from '@mui/material'
+import * as Yup from 'yup'
 import Login from '../components/UI/Input'
 import Button from '../components/UI/Button'
+import { useFormik } from 'formik'
 import Password from '../components/UI/Input'
-import signIn from '../assets/icons/signIn.svg'
+import { ReactComponent as Show } from './../assets/icons/signIn.svg'
+import InputAdornment from '@mui/material/InputAdornment'
+import { useState } from 'react'
 
 const LoginPage = () => {
-   const nameInputRef = useRef()
-   const [login, setLogin] = useState('')
-   const [password, setPassword] = useState('')
-   const [nameIsValid, setNameIsValid] = useState(true)
+   const [showPassword, setShowPassword] = useState(false)
 
-   const [show, setShow] = useState(true)
-
-   const [error, setError] = useState(false)
-
-   const handleChange = (e) => {
-      setLogin(e.target.value)
-   }
-   const handleChange1 = (e) => {
-      setPassword(e.target.value)
-   }
-
-   const handleShowhide = () => {
-      setShow(!show)
-   }
-
-   const handleSubmit = (e) => {
-      e.preventDefault()
-
-      setLogin('')
-
-      if (login.trim() === '') {
-         setNameIsValid(false)
-         setError(true)
-         return
-      }
-
-      setNameIsValid(true)
-   }
-
-   const nameInputClasses = nameIsValid ? 'form-control ' : 'invalid'
+   const formik = useFormik({
+      initialValues: {
+         login: '',
+         password: '',
+      },
+      onSubmit: (values, actions) => {
+         actions.resetForm()
+      },
+      validationSchema: Yup.object().shape({
+         login: Yup.string().required('Please enter email'),
+         password: Yup.string()
+            .required('')
+            .min(7, 'must be at least 8 characters long'),
+      }),
+   })
+   const handleClickShowPassword = () => setShowPassword((show) => !show)
 
    return (
       <StyledContainer>
-         <SignIn onSubmit={handleSubmit} className={nameInputClasses}>
+         <SignIn onSubmit={formik.handleSubmit}>
             <h1>Войти</h1>
             <FormContainer>
                <Login
-                  error={error}
+                  error={!!formik.errors.login}
                   placeholder="Логин"
-                  onChange={handleChange}
-                  value={login}
-                  ref={nameInputRef}
+                  onChange={formik.handleChange}
+                  value={formik.values.login}
+                  name="login"
+                  type="text"
+                  iconVariant="end"
                />
-
-               {error ? (
-                  <>
-                     <Password
-                        error={error}
-                        type={show ? 'password' : 'text'}
-                        onChange={handleChange1}
-                        value={password}
-                        placeholder="Пароль"
-                        ref={nameInputRef}
-                        endAdornment={
-                           <InputAdornment
-                              onClick={handleShowhide}
-                              position="end"
-                           >
-                              {password.length > 8 && (
-                                 <img src={signIn} alt="signIn" />
-                              )}
-                           </InputAdornment>
-                        }
-                     />
-
-                     <p>Неправильно указан Email и/или пароль</p>
-                  </>
-               ) : (
-                  <Password
-                     type={show ? 'password' : 'text'}
-                     onChange={handleChange1}
-                     value={password}
-                     placeholder="Пароль"
-                     ref={nameInputRef}
-                     endAdornment={
-                        <InputAdornment onClick={handleShowhide} position="end">
-                           {password.length > 8 && (
-                              <img src={signIn} alt="signIn" />
-                           )}
-                        </InputAdornment>
-                     }
-                  />
-               )}
+               <StyledPasswordInput
+                  placeholder={formik.errors.password || 'Пароль'}
+                  error={!!formik.errors.password}
+                  name="password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  type={showPassword ? 'text' : 'password'}
+                  endAdornment={
+                     <InputAdornment
+                        onClick={handleClickShowPassword}
+                        position="end"
+                     >
+                        <Show />
+                     </InputAdornment>
+                  }
+               />
+               {formik.errors.login && formik.errors.password ? (
+                  <p>Неправильно указан Email и/или пароль</p>
+               ) : null}
             </FormContainer>
             <Button type="submit" variant="contained">
                Войти
@@ -103,6 +70,15 @@ const LoginPage = () => {
    )
 }
 export default LoginPage
+
+const StyledPasswordInput = styled(Password)(() => ({
+   '&::-ms-reveal': {
+      display: 'none !important',
+   },
+   '& input[type=password]::-ms-reveal, input[type=password]::-ms-clear': {
+      display: 'none',
+   },
+}))
 
 const StyledContainer = styled('div')(() => ({
    background:
@@ -129,14 +105,6 @@ const SignIn = styled('form')(() => ({
       textTransform: 'uppercase',
       display: 'flex',
       justifyContent: 'center',
-   },
-   '& button': {
-      fontFamily: 'Manrope',
-      fontStyle: 'normal',
-      fontWeight: '600',
-      fontSize: '14px',
-      lineHeight: '19px',
-      textTransform: 'uppercase',
    },
    '& invalid input': {
       borderColor: 'red',
