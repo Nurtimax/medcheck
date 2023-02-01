@@ -15,8 +15,4 @@ export default ContainerEntry
 const MainContainer = styled(Container)(() => ({
    background: '#FFFFFF',
    boxShadow: '0 0 20px black',
-
-   display: 'flex',
-   alignItems: 'center',
-   justifyContent: 'center',
 }))
