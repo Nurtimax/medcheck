@@ -1,5 +1,11 @@
+import RoutesRender from './routes/routes-render'
+
 function App() {
-   return <div></div>
+   return (
+      <div>
+         <RoutesRender />
+      </div>
+   )
 }
 
 export default App
