@@ -59,3 +59,16 @@ export const tableData = [
       },
    },
 ]
+
+export const paths_in_routes = {
+   main: '/',
+   admin: '/admin',
+   signIn: '/signIn',
+   signUp: '/signUp',
+   aboutClinic: '/about',
+   services: '/services',
+   doctors: '/doctors',
+   price: '/price',
+   contacts: '/contacts',
+   notFound: '/*',
+}
