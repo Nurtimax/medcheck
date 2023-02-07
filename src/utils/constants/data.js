@@ -59,3 +59,44 @@ export const tableData = [
       },
    },
 ]
+
+export const tableTitleDoctors = ['Выбор специалиста', 'Дата и время', 'Статус']
+
+export const tableNameDoctors = [
+   {
+      doctorInfo: {
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Окулист',
+      },
+      info: {
+         date: '12.01.2023',
+         time: '15:00',
+      },
+      statusInfo: 'Отменён',
+   },
+   {
+      doctorInfo: {
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Окулист',
+      },
+      info: {
+         date: '12.01.2023',
+         time: '15:00',
+      },
+      statusInfo: 'Подтверждён',
+   },
+   {
+      doctorInfo: {
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Окулист',
+      },
+      info: {
+         date: '12.01.2023',
+         time: '15:00',
+      },
+      statusInfo: 'Завершён',
+   },
+]
