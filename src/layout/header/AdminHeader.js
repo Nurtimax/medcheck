@@ -40,7 +40,6 @@ const Header = styled.header`
 const OnlineRecord = styled.div`
    color: #707070;
    cursor: pointer;
-
    :hover {
       border-bottom: 2px solid #048741;
       color: #222222;
@@ -59,7 +58,6 @@ const Record = styled.div`
    margin-top: 30px;
    height: 50px;
    display: flex;
-
    gap: 76px;
 `
 
