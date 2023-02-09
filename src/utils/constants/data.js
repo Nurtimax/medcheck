@@ -59,3 +59,60 @@ export const tableData = [
       },
    },
 ]
+
+<<<<<<< HEAD
+export const paths_in_routes = {
+   main: '/',
+   admin: '/admin',
+   signIn: '/signIn',
+   signUp: '/signUp',
+   aboutClinic: '/aboutClinic',
+   services: '/services',
+   doctors: '/doctors',
+   price: '/price',
+   feedbacks: '/feedbacks',
+   contacts: '/contacts',
+   notFound: '/*',
+}
+=======
+export const tableTitleDoctors = ['Выбор специалиста', 'Дата и время', 'Статус']
+
+export const tableNameDoctors = [
+   {
+      doctorInfo: {
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Окулист',
+      },
+      info: {
+         date: '12.01.2023',
+         time: '15:00',
+      },
+      statusInfo: 'Отменён',
+   },
+   {
+      doctorInfo: {
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Окулист',
+      },
+      info: {
+         date: '12.01.2023',
+         time: '15:00',
+      },
+      statusInfo: 'Подтверждён',
+   },
+   {
+      doctorInfo: {
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Окулист',
+      },
+      info: {
+         date: '12.01.2023',
+         time: '15:00',
+      },
+      statusInfo: 'Завершён',
+   },
+]
+>>>>>>> bcee11e40d4921bcb27c7239484616191c12a9eb
