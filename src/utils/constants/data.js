@@ -65,10 +65,11 @@ export const paths_in_routes = {
    admin: '/admin',
    signIn: '/signIn',
    signUp: '/signUp',
-   aboutClinic: '/about',
+   aboutClinic: '/aboutClinic',
    services: '/services',
    doctors: '/doctors',
    price: '/price',
+   feedbacks: '/feedbacks',
    contacts: '/contacts',
    notFound: '/*',
 }

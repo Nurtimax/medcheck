@@ -11,6 +11,7 @@ import iconMedCheck from '../../assets/icons/MedCheck.svg'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import subtract from '../../assets/icons/subtract.svg'
 import Button from '../../components/UI/Button'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
    const [anchorEl, setAnchorEl] = React.useState(null)
@@ -93,12 +94,12 @@ const Header = () => {
                <img src={iconMedCheck} alt="medCheck" />
             </ProjectLogos>
             <NavigatePages>
-               <li>О клинике</li>
-               <li>Услуги</li>
-               <li>Врачи</li>
-               <li>Прайс</li>
-               <li>Отзывы</li>
-               <li>Контакты</li>
+               <LinkStyle to="/aboutClinic">О клинике</LinkStyle>
+               <LinkStyle to="/services">Услуги</LinkStyle>
+               <LinkStyle to="/doctors">Врачи</LinkStyle>
+               <LinkStyle to="/price">Прайс</LinkStyle>
+               <LinkStyle to="/feedbacks">Отзывы</LinkStyle>
+               <LinkStyle to="/contacts">Контакты</LinkStyle>
             </NavigatePages>
             <GetResults>получить результаты</GetResults>
             <RecordButton>запись онлайн</RecordButton>
@@ -226,13 +227,10 @@ const ProjectLogos = styled('div')(() => ({
 
 const NavigatePages = styled('nav')(() => ({
    display: 'flex',
-
-   gap: '15px',
-   '& li': {
-      listStyle: 'none',
-      cursor: 'pointer',
-      color: ' #222222',
-   },
+   gap: '10px',
+   fontSize: '14px',
+   fontWeight: '500',
+   fontFamily: '"Manrope" , sans-serif',
 }))
 
 const RecordButton = styled(Button)(() => ({
@@ -261,6 +259,17 @@ const InFirstRow5 = styled('div')(() => ({
 
 const MenuItemStyled = styled(MenuItem)(() => ({
    color: 'green',
+}))
+
+const LinkStyle = styled(Link)(() => ({
+   textDecoration: 'none',
+   listStyle: 'none',
+   cursor: 'pointer',
+   color: '#222222',
+
+   '&:hover': {
+      color: '#027B44',
+   },
 }))
 
 export default Header
