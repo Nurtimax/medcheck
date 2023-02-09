@@ -6,6 +6,7 @@ import { ReactComponent as ListOl } from './../../assets/icons/list-ol.svg'
 import { styled } from '@mui/material'
 import { EditorContent, useEditor } from '@tiptap/react'
 import { StarterKit } from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
 
 const MenuBar = ({ editor }) => {
    if (!editor) {
@@ -77,7 +78,7 @@ SMAS-лифтинг лица с перемещением комков Биша, 
 
 const TextEditor = (onChange) => {
    const editor = useEditor({
-      extensions: [StarterKit],
+      extensions: [StarterKit, Underline],
       content: editorContent,
       onUpdate: ({ editor }) => {
          const html = editor.getHTML()
