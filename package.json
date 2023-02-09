@@ -2,7 +2,6 @@
    "dependencies": {
       "@emotion/react": "^11.10.5",
       "@emotion/styled": "^11.10.5",
-      "@mui/icons-material": "^5.11.0",
       "@mui/material": "^5.11.3",
       "@mui/x-date-pickers": "^5.0.13",
       "@reduxjs/toolkit": "^1.9.1",
@@ -14,13 +13,14 @@
       "@tiptap/react": "^2.0.0-beta.217",
       "@tiptap/starter-kit": "^2.0.0-beta.217",
       "dayjs": "^1.11.7",
+      "formik": "^2.2.9",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",
       "react-redux": "^8.0.5",
       "react-router-dom": "^6.6.1",
       "react-scripts": "5.0.1",
-      "swiper": "^8.4.6",
-      "web-vitals": "^2.1.4"
+      "web-vitals": "^2.1.4",
+      "yup": "^0.32.11"
    },
    "scripts": {
       "start": "react-scripts start",
