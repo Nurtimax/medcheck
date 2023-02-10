@@ -1,11 +1,5 @@
-import AboutClinic from '../src/pages/AboutClinic'
-
 function App() {
-   return (
-      <div>
-         <AboutClinic />
-      </div>
-   )
+   return <div></div>
 }
 
 export default App
