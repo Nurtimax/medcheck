@@ -81,9 +81,15 @@ const Header = () => {
                      'aria-labelledby': 'basic-button',
                   }}
                >
-                  <MenuItemStyled onClick={handleClose}>Войти</MenuItemStyled>
-                  <MenuItemStyled onClick={handleClose}>
-                     Регистрация
+                  <MenuItemStyled>
+                     <LinkStyle onClick={handleClose} to="/signIn">
+                        Войти
+                     </LinkStyle>
+                  </MenuItemStyled>
+                  <MenuItemStyled>
+                     <LinkStyle onClick={handleClose} to="/signUp">
+                        Регистрация
+                     </LinkStyle>
                   </MenuItemStyled>
                </Menu>
             </InFirstRow5>
