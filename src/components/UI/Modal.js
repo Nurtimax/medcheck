@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Box from '@mui/material/Box'
 
@@ -8,7 +8,12 @@ import { styled } from '@mui/material'
 
 import close from '../../assets/icons/close.svg'
 
-const Modal = ({ children, open, closeModal }) => {
+const Modal = ({ children }) => {
+   const [open, setOpen] = useState(true)
+
+   const closeModal = () => {
+      setOpen(false)
+   }
    return (
       <div>
          <Modalka open={open}>
