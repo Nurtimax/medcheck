@@ -7,8 +7,13 @@ import photoMedPersonal from '../assets/images/photoMedPersonal.jpg'
 import photoMedPersonal1 from '../assets/images/photoMedPersonal1.jpg'
 import photoMedPersonal2 from '../assets/images/photoMedPersonal2.jpg'
 import Button from '../components/UI/Button.jsx'
+import { useState } from 'react'
 
-const AboutClinic = () => {
+const AboutClinicPage = () => {
+   const [show, setShow] = useState(false)
+   const navigateToComponent = () => {
+      setShow(true)
+   }
    return (
       <Container>
          <StyledTitle>
@@ -91,9 +96,14 @@ const AboutClinic = () => {
                      здоровья наших пациентов
                   </p>
 
-                  <Button variant="outlined" width="400px">
+                  <Button
+                     onClick={navigateToComponent}
+                     variant="outlined"
+                     width="400px"
+                  >
                      Записаться на консультацию
                   </Button>
+                  {show && <h1>modal</h1>}
                </TextBottomMain>
                <PictureSection1>
                   <img src={photoMedCenter} alt="photoMedCenter" />
@@ -157,7 +167,7 @@ const Picture = styled('div')(() => ({
 const PictureSection = styled('div')(() => ({
    marginLeft: '180px',
    boxSizing: 'border-box',
-   width: '586px',
+   width: '586vw',
    height: '385px',
    border: '0.851742px solid #D2F9E4',
    display: 'flex',
@@ -170,7 +180,6 @@ const PictureSection = styled('div')(() => ({
    },
    '& .managerStyle': {
       color: ' #048741',
-      fontWeight: '400',
       fontSize: '18px',
       lineHeight: '25px',
    },
@@ -236,4 +245,4 @@ const PictureSection1 = styled('div')(() => ({
    marginLeft: '80px',
 }))
 
-export default AboutClinic
+export default AboutClinicPage
