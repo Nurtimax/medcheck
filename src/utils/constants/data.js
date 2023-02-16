@@ -101,9 +101,6 @@ export const tableNameDoctors = [
    },
 ]
 
-// import React from 'react';
-// import ScheduleTable from './ScheduleTable';
-
 export const data = [
    { date: '14 февраля', time: '14:00', event: 'Встреча', location: 'Офис' },
    { date: '15 февраля', time: '10:00', event: 'Проверка', location: 'Дом' },
