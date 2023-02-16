@@ -61,15 +61,15 @@ export const tableData = [
 ]
 
 export const PATHS_IN_ROUTES = {
-   main: '/',
-   admin: '/admin',
-   signIn: '/signIn',
-   signUp: '/signUp',
-   aboutClinic: '/aboutClinic',
-   services: '/services',
-   doctors: '/doctors',
-   price: '/price',
-   feedbacks: '/feedbacks',
-   contacts: '/contacts',
-   notFound: '/*',
+   MAIN: '/',
+   ADMIN: '/admin',
+   SIGN_IN: '/sign_in',
+   SIGN_UP: '/sign_up',
+   ABOUT_CLINIC: '/about_cLinic',
+   SERVICES: '/services',
+   DOCTORS: '/doctors',
+   PRICE: '/PRICE',
+   FEEDBACKS: '/feedbacks',
+   CONTACTS: '/contacts',
+   NOT_FOUND: '/*',
 }

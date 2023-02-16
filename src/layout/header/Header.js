@@ -82,12 +82,12 @@ const Header = () => {
                   }}
                >
                   <MenuItemStyled>
-                     <LinkStyle onClick={handleClose} to="/signIn">
+                     <LinkStyle onClick={handleClose} to="/sign_in">
                         Войти
                      </LinkStyle>
                   </MenuItemStyled>
                   <MenuItemStyled>
-                     <LinkStyle onClick={handleClose} to="/signUp">
+                     <LinkStyle onClick={handleClose} to="/sign_up">
                         Регистрация
                      </LinkStyle>
                   </MenuItemStyled>
@@ -100,7 +100,7 @@ const Header = () => {
                <img src={iconMedCheck} alt="medCheck" />
             </ProjectLogos>
             <NavigatePages>
-               <LinkStyle to="/aboutClinic">О клинике</LinkStyle>
+               <LinkStyle to="/about_cLinic">О клинике</LinkStyle>
                <LinkStyle to="/services">Услуги</LinkStyle>
                <LinkStyle to="/doctors">Врачи</LinkStyle>
                <LinkStyle to="/price">Прайс</LinkStyle>

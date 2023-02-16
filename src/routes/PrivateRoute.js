@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const PrivateRole = ({
    RouteComponent,
    roles = [],
-   fallbackPath = 'admin',
+   fallbackPath = 'ADMIN',
 }) => {
    const user = JSON.parse(localStorage.getItem('role'))
    const navigate = useNavigate()

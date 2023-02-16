@@ -1,12 +1,14 @@
 import React from 'react'
 import { styled } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const Contacts = () => {
    return (
       <Container>
          <ContactContainer>
             <StyledContactHeader>
-               <firstSpan>Главная </firstSpan> <secondSpan>Контакты</secondSpan>
+               <MainLink to="/">Главная </MainLink>{' '}
+               <SecondSpan to="/contacts">Контакты</SecondSpan>
             </StyledContactHeader>
 
             <StyledContactHeader1>
@@ -49,18 +51,23 @@ const ContactContainer = styled('div')(() => ({
 }))
 const StyledContactHeader = styled('div')(() => ({
    marginTop: '40px',
-   '& firstSpan ': {
-      color: '#959595',
-      fontWeight: '400',
-      fontSize: '14px',
-      lineHeight: '19px',
+}))
+const MainLink = styled(Link)(() => ({
+   color: '#959595',
+   fontWeight: '400',
+   fontSize: '14px',
+   lineHeight: '19px',
+   textDecoration: 'none',
+   '&:hover': {
+      color: '#027B44',
    },
-   '& secondSpan': {
-      color: '#048741',
-      fontWeight: '400',
-      fontSize: '14px',
-      lineHeight: '19px',
-   },
+}))
+const SecondSpan = styled(Link)(() => ({
+   color: '#048741',
+   fontWeight: '400',
+   fontSize: '14px',
+   lineHeight: '19px',
+   textDecoration: 'none',
 }))
 const StyledContactHeader1 = styled('div')(() => ({
    marginTop: '30px',
