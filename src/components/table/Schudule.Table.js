@@ -1,3 +1,10 @@
+import {
+   TableBody,
+   TableCell,
+   TableContainer,
+   TableHead,
+   TableRow,
+} from '@mui/material'
 import React, { useMemo } from 'react'
 import { useTable } from 'react-table'
 
@@ -5,19 +12,19 @@ const ScheduleTable = ({ data }) => {
    const columns = useMemo(
       () => [
          {
-            Header: 'Дата',
-            accessor: 'date',
+            Header: 'Специалисты',
+            accessor: 'doctorInfo.name',
          },
          {
-            Header: 'Время',
+            Header: 'Пн <br/> 1 Май',
             accessor: 'time',
          },
          {
-            Header: 'Мероприятие',
+            Header: 'Пн <br/> 1 Май',
             accessor: 'event',
          },
          {
-            Header: 'Место',
+            Header: 'Пн <br/> 1 Май',
             accessor: 'location',
          },
       ],
@@ -32,33 +39,56 @@ const ScheduleTable = ({ data }) => {
       tableInstance
 
    return (
-      <table {...getTableProps()}>
-         <thead>
+      <TableContainer {...getTableProps()} style={{ border: 'solid 1px blue' }}>
+         <TableHead>
             {headerGroups.map((headerGroup) => (
-               <tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
+               <TableRow
+                  key={headerGroup.id}
+                  {...headerGroup.getHeaderGroupProps()}
+               >
                   {headerGroup.headers.map((column) => (
-                     <th key={column.id} {...column.getHeaderProps()}>
+                     <TableHead
+                        key={column.id}
+                        {...column.getHeaderProps()}
+                        style={{
+                           borderBottom: 'solid 3px red',
+                           background: 'aliceblue',
+                           color: 'black',
+                           fontWeight: 'bold',
+                        }}
+                     >
                         {column.render('Header')}
-                     </th>
+                     </TableHead>
                   ))}
-               </tr>
+               </TableRow>
             ))}
-         </thead>
-         <tbody {...getTableBodyProps()}>
+         </TableHead>
+         <TableBody {...getTableBodyProps()}>
             {rows.map((row) => {
                prepareRow(row)
                return (
-                  <tr key={row.id} {...row.getRowProps()}>
-                     {row.cells.map((cell) => (
-                        <td key={cell.id} {...cell.getCellProps()}>
-                           {cell.render('Cell')}
-                        </td>
-                     ))}
-                  </tr>
+                  <TableRow key={row.id} {...row.getRowProps()}>
+                     {row.cells.map((cell) => {
+                        return (
+                           <TableCell
+                              key={cell.id}
+                              {...cell.getCellProps()}
+                              style={{
+                                 padding: '10px',
+                                 border: 'solid 1px gray',
+                                 background: 'papayawhip',
+                              }}
+                           >
+                              <TableRow>{}</TableRow>
+                              {cell.render('Cell')}
+                           </TableCell>
+                        )
+                     })}
+                  </TableRow>
                )
             })}
-         </tbody>
-      </table>
+         </TableBody>
+      </TableContainer>
    )
 }
 

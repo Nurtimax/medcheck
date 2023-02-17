@@ -101,7 +101,35 @@ export const tableNameDoctors = [
    },
 ]
 
-export const data = [
-   { date: '14 февраля', time: '14:00', event: 'Встреча', location: 'Офис' },
-   { date: '15 февраля', time: '10:00', event: 'Проверка', location: 'Дом' },
+export const scheduleData = [
+   {
+      doctorInfo: {
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Окулист',
+      },
+      time: '10:00',
+      event: 'Новогодний концерт',
+      location: 'Главная площадь',
+   },
+   {
+      doctorInfo: {
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Окулист',
+      },
+      time: '14:00',
+      event: 'Выставка снежных скульптур',
+      location: 'Сквер им. Пушкина',
+   },
+   {
+      doctorInfo: {
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Окулист',
+      },
+      time: '12:00',
+      event: 'Конкурс елок',
+      location: 'Детский сад №3',
+   },
 ]
