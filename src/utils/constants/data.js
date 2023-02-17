@@ -68,7 +68,7 @@ export const PATHS_IN_ROUTES = {
    ABOUT_CLINIC: '/about_cLinic',
    SERVICES: '/services',
    DOCTORS: '/doctors',
-   PRICE: '/PRICE',
+   PRICE: '/price',
    FEEDBACKS: '/feedbacks',
    CONTACTS: '/contacts',
    NOT_FOUND: '/*',
