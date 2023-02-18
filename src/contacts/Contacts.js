@@ -1,16 +1,15 @@
 import React from 'react'
 import { styled } from '@mui/material'
-import { Link, Outlet } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Contacts = () => {
    return (
       <>
-         <Outlet />
          <Container>
             <ContactContainer>
                <StyledContactHeader>
                   <MainLink to="/">Главная </MainLink>{' '}
-                  <SecondSpan to="/contacts">Контакты</SecondSpan>
+                  <ContactsLink to="/contacts">Контакты</ContactsLink>
                </StyledContactHeader>
 
                <StyledContactHeader1>
@@ -46,7 +45,6 @@ const Contacts = () => {
                height="400px"
             ></MapCarta>
          </Container>
-         <Outlet />
       </>
    )
 }
@@ -68,7 +66,7 @@ const MainLink = styled(Link)(() => ({
       color: '#027B44',
    },
 }))
-const SecondSpan = styled(Link)(() => ({
+const ContactsLink = styled(Link)(() => ({
    color: '#048741',
    fontWeight: '400',
    fontSize: '14px',

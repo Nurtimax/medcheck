@@ -119,8 +119,7 @@ const Container = styled('div')(() => ({
 }))
 
 const TopContainer = styled('div')(() => ({
-   display: 'grid',
-   gridTemplateColumns: '50% 50%',
+   display: ' flex',
    fontWeight: '400',
    fontSize: '16px',
    lineHeight: '160.02%',
@@ -131,6 +130,7 @@ const TextMain = styled('div')(() => ({
 }))
 
 const StyledTitle = styled('div')(() => ({
+   paddingBottom: '40px',
    fontWeight: '400',
    fontSize: '14px',
    lineHeight: '19px',
@@ -147,7 +147,7 @@ const MainLink = styled(Link)(() => ({
    },
 }))
 const StyledHeaderTitle = styled('div')(() => ({
-   marginBottom: '0px',
+   paddingBottom: '40px',
    fontWeight: '600',
    fontSize: '36px',
    lineHeight: '49px',
@@ -168,9 +168,7 @@ const LinkButton = styled(Link)(() => ({
    outline: 'none',
 }))
 const PictureSection = styled('div')(() => ({
-   marginLeft: '180px',
-   boxSizing: 'border-box',
-   width: '586vw',
+   width: '586px',
    height: '385px',
    border: '0.851742px solid #D2F9E4',
    display: 'flex',
@@ -193,9 +191,8 @@ const PictureSection = styled('div')(() => ({
    },
 }))
 const PictureBlock = styled('div')(() => ({
-   position: 'absolute',
-   bottom: '100px',
-   right: '150px',
+   paddingLeft: '200px',
+   paddingTop: '210px',
 }))
 const BlockTitle = styled('div')(() => ({
    marginBottom: '40px',
@@ -233,8 +230,8 @@ const BottomContainer = styled('div')(() => ({
    },
 }))
 const StyledBottomMain = styled('div')(() => ({
-   display: 'grid',
-   gridTemplateColumns: '50% 50%',
+   display: 'flex',
+   gap: '150px',
    fontWeight: '600',
    fontSize: '36px',
    lineHeight: '49px',
@@ -245,7 +242,8 @@ const PictureBottomSection = styled('div')(() => ({
    gap: '25px',
 }))
 const PictureSection1 = styled('div')(() => ({
-   marginLeft: '80px',
+   boxSizing: 'border-box',
+   margin: '0 auto',
 }))
 
 export default AboutClinicPage

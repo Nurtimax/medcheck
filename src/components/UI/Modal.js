@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import Box from '@mui/material/Box'
 
-import { Modal as Modalka } from '@mui/material'
+import { Modal as Dialog } from '@mui/material'
 
 import { styled } from '@mui/material'
 
@@ -16,14 +16,14 @@ const Modal = ({ children }) => {
    }
    return (
       <div>
-         <Modalka open={open}>
+         <Dialog open={open}>
             <Container>
                {children}
                <OnClose onClick={closeModal}>
                   <Closed src={close} alt="close" />
                </OnClose>
             </Container>
-         </Modalka>
+         </Dialog>
       </div>
    )
 }

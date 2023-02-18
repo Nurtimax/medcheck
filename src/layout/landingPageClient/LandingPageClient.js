@@ -24,16 +24,12 @@ import doctors1 from '../../assets/images/doctors1.jpg'
 import doctors2 from '../../assets/images/doctors2.jpg'
 import doctors3 from '../../assets/images/doctors3.jpg'
 
-import Header from '../header/Header'
-import Footer from '../footer/Footer'
 import RequestsClient from './RequestsClient'
 import SwiperFeedbacks from './SwiperFeedbacks'
 
 const LandingPageClient = () => {
    return (
       <>
-         <Header />
-
          <Main>
             <StyledWelcome>
                <WelcomeClient>
@@ -237,8 +233,6 @@ const LandingPageClient = () => {
 
             <RequestsClient />
          </Main>
-
-         <Footer />
       </>
    )
 }
@@ -247,7 +241,6 @@ const Main = styled('main')(() => ({
    width: '1200px',
    height: 'auto',
    margin: '0 auto',
-   marginTop: '250px',
    fontFamily: '"Manrope", sans-serif',
 }))
 

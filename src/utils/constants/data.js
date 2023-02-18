@@ -60,9 +60,8 @@ export const tableData = [
    },
 ]
 
-export const PATHS_IN_ROUTES = {
-   MAIN: '/',
-   ADMIN: '/admin',
+export const ROUTES = {
+   MAIN: '/main',
    SIGN_IN: '/sign_in',
    SIGN_UP: '/sign_up',
    ABOUT_CLINIC: '/about_cLinic',
@@ -72,4 +71,10 @@ export const PATHS_IN_ROUTES = {
    FEEDBACKS: '/feedbacks',
    CONTACTS: '/contacts',
    NOT_FOUND: '/*',
+}
+
+export const ADMIN_ROUTES = {
+   ADMIN: '/admin',
+   ONLINE_ENTRY: '/online_entry',
+   APPLICATION: '/applications',
 }

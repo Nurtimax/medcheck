@@ -100,7 +100,7 @@ const Header = () => {
                <img src={iconMedCheck} alt="medCheck" />
             </ProjectLogos>
             <NavigatePages>
-               <LinkStyle to="/about_cLinic">О клинике</LinkStyle>
+               <LinkStyle to="/about_clinic">О клинике</LinkStyle>
                <LinkStyle to="/services">Услуги</LinkStyle>
                <LinkStyle to="/doctors">Врачи</LinkStyle>
                <LinkStyle to="/price">Прайс</LinkStyle>

@@ -2,6 +2,7 @@ import React from 'react'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import medCheckIcon from '../../assets/icons/MedCheck.svg'
 import { styled } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const AdminHeader = () => {
    return (
@@ -11,16 +12,18 @@ const AdminHeader = () => {
             <img src={medCheckIcon} alt="medCheck" />
          </ProjectLogos>
          <Record>
-            <OnlineRecord>Онлайн-запись</OnlineRecord>
+            <OnlineEntryLink to="/admin/online_entry">
+               Онлайн-запись
+            </OnlineEntryLink>
 
-            <OnlineRecord2>Заявки</OnlineRecord2>
+            <ApplicationLink to="/admin/applications">Заявки</ApplicationLink>
          </Record>
          <Select>
-            <option value="  Администратор"> Администратор</option>
-            <option value="  Администратор"> Администратор 2</option>
-            <option value="  Администратор"> Администратор 3</option>
-            <option value="  Администратор"> Администратор 4</option>
-            <option value="  Администратор"> Администратор 5</option>
+            <option value="Администратор"> Администратор</option>
+            <option value="Администратор"> Администратор 2</option>
+            <option value="Администратор"> Администратор 3</option>
+            <option value="Администратор"> Администратор 4</option>
+            <option value="Администратор"> Администратор 5</option>
          </Select>
       </Header>
    )
@@ -36,7 +39,7 @@ const Header = styled('header')(() => ({
    position: 'fixed',
    margin: '0',
 }))
-const OnlineRecord = styled('div')(() => ({
+const OnlineEntryLink = styled(Link)(() => ({
    color: ' #707070',
    cursor: 'pointer',
 
@@ -45,7 +48,7 @@ const OnlineRecord = styled('div')(() => ({
       color: '#222222',
    },
 }))
-const OnlineRecord2 = styled('div')(() => ({
+const ApplicationLink = styled(Link)(() => ({
    color: ' #707070',
    cursor: 'pointer',
 
