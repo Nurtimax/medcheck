@@ -8,7 +8,7 @@ const NotFound = () => {
          <section>
             <div>
                <h1>404</h1>
-               <h2>PAGE NOT FOUND</h2>
+               <h3>PAGE NOT FOUND</h3>
                <Link to="/">
                   <h3>BACK TO HOME</h3>
                </Link>
