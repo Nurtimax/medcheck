@@ -10,6 +10,7 @@ import LandingPageClient from '../layout/landingPageClient/LandingPageClient'
 import AboutClinicPage from '../pages/AboutClinic'
 import Contacts from '../contacts/Contacts'
 import AdminLayout from '../layout/Admin.Layout'
+import PrivateRoute from '././private/Private.Route'
 
 const AppRoutes = () => {
    return (
@@ -25,7 +26,12 @@ const AppRoutes = () => {
          </Route>
 
          <Route element={<AdminLayout />}>
-            <Route path="/admin/*" element={<AdminRoutes />} />
+            <Route
+               path="/admin/*"
+               element={
+                  <PrivateRoute roles="ADMIN" element={<AdminRoutes />} />
+               }
+            />
          </Route>
          <Route path={ROUTES.SIGN_IN} element={<LoginPage />} />
          <Route path={ROUTES.SIGN_UP} element={<Modal />} />
