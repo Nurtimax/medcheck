@@ -1,10 +1,10 @@
 import ScheduleTable from './components/table/Schudule.Table'
-import { scheduleData } from './utils/constants/data'
+import { schedule_data } from './utils/constants/data'
 
 function App() {
    return (
       <div>
-         <ScheduleTable data={scheduleData} />
+         <ScheduleTable data={schedule_data} />
       </div>
    )
 }

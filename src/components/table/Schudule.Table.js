@@ -1,54 +1,18 @@
-import {
-   TableBody,
-   TableCell,
-   TableContainer,
-   TableHead,
-   TableRow,
-} from '@mui/material'
-import React, { useMemo } from 'react'
 import { useTable } from 'react-table'
+// import { schedule_data } from './../../utils/constants/data'
 
-const ScheduleTable = ({ data }) => {
-   const columns = useMemo(
-      () => [
-         {
-            Header: 'Специалисты',
-            accessor: 'doctorInfo.name',
-         },
-         {
-            Header: 'Пн <br/> 1 Май',
-            accessor: 'time',
-         },
-         {
-            Header: 'Пн <br/> 1 Май',
-            accessor: 'event',
-         },
-         {
-            Header: 'Пн <br/> 1 Май',
-            accessor: 'location',
-         },
-      ],
-      []
-   )
-
-   const tableData = useMemo(() => data, [data])
-
-   const tableInstance = useTable({ columns, data: tableData })
+const Table = ({ schedule_data, schedule_coll }) => {
+   const tableInstanse = useTable({ schedule_coll, schedule_data })
 
    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-      tableInstance
-
+      tableInstanse
    return (
-      <TableContainer {...getTableProps()} style={{ border: 'solid 1px blue' }}>
-         <TableHead>
-            {headerGroups.map((headerGroup) => (
-               <TableRow
-                  key={headerGroup.id}
-                  {...headerGroup.getHeaderGroupProps()}
-               >
+      <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
+         <thead>
+            {headerGroups?.map((headerGroup) => (
+               <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
-                     <TableHead
-                        key={column.id}
+                     <th
                         {...column.getHeaderProps()}
                         style={{
                            borderBottom: 'solid 3px red',
@@ -58,20 +22,19 @@ const ScheduleTable = ({ data }) => {
                         }}
                      >
                         {column.render('Header')}
-                     </TableHead>
+                     </th>
                   ))}
-               </TableRow>
+               </tr>
             ))}
-         </TableHead>
-         <TableBody {...getTableBodyProps()}>
-            {rows.map((row) => {
+         </thead>
+         <tbody {...getTableBodyProps()}>
+            {rows?.map((row) => {
                prepareRow(row)
                return (
-                  <TableRow key={row.id} {...row.getRowProps()}>
-                     {row.cells.map((cell) => {
+                  <tr {...row.getRowProps()}>
+                     {row.cells?.map((cell) => {
                         return (
-                           <TableCell
-                              key={cell.id}
+                           <td
                               {...cell.getCellProps()}
                               style={{
                                  padding: '10px',
@@ -79,17 +42,16 @@ const ScheduleTable = ({ data }) => {
                                  background: 'papayawhip',
                               }}
                            >
-                              <TableRow>{}</TableRow>
                               {cell.render('Cell')}
-                           </TableCell>
+                           </td>
                         )
                      })}
-                  </TableRow>
+                  </tr>
                )
             })}
-         </TableBody>
-      </TableContainer>
+         </tbody>
+      </table>
    )
 }
 
-export default ScheduleTable
+export default Table
