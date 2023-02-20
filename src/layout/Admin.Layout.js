@@ -2,13 +2,13 @@ import { styled } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 import AdminHeader from '././header/AdminHeader'
 
-const AdminLayout = ({ children }) => {
+const AdminLayout = () => {
    return (
       <>
          <AdminHeader />
          <Main>
             <Container>
-               {children} <Outlet />
+               <Outlet />
             </Container>
          </Main>
       </>

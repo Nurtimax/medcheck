@@ -11,7 +11,7 @@ import iconMedCheck from '../../assets/icons/MedCheck.svg'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import subtract from '../../assets/icons/subtract.svg'
 import Button from '../../components/UI/Button'
-import { Link } from 'react-router-dom'
+import CustomLink from '../../components/UI/Custom.Link'
 
 const Header = () => {
    const [anchorEl, setAnchorEl] = React.useState(null)
@@ -82,14 +82,14 @@ const Header = () => {
                   }}
                >
                   <MenuItemStyled>
-                     <LinkStyle onClick={handleClose} to="/sign_in">
+                     <CustomLinkStyle onClick={handleClose} to="/sign_in">
                         Войти
-                     </LinkStyle>
+                     </CustomLinkStyle>
                   </MenuItemStyled>
                   <MenuItemStyled>
-                     <LinkStyle onClick={handleClose} to="/sign_up">
+                     <CustomLinkStyle onClick={handleClose} to="/sign_up">
                         Регистрация
-                     </LinkStyle>
+                     </CustomLinkStyle>
                   </MenuItemStyled>
                </Menu>
             </InFirstRow5>
@@ -100,12 +100,12 @@ const Header = () => {
                <img src={iconMedCheck} alt="medCheck" />
             </ProjectLogos>
             <NavigatePages>
-               <LinkStyle to="/about_clinic">О клинике</LinkStyle>
-               <LinkStyle to="/services">Услуги</LinkStyle>
-               <LinkStyle to="/doctors">Врачи</LinkStyle>
-               <LinkStyle to="/price">Прайс</LinkStyle>
-               <LinkStyle to="/feedbacks">Отзывы</LinkStyle>
-               <LinkStyle to="/contacts">Контакты</LinkStyle>
+               <CustomLinkStyle to="/about_clinic">О клинике</CustomLinkStyle>
+               <CustomLinkStyle to="/services">Услуги</CustomLinkStyle>
+               <CustomLinkStyle to="/doctors">Врачи</CustomLinkStyle>
+               <CustomLinkStyle to="/price">Прайс</CustomLinkStyle>
+               <CustomLinkStyle to="/feedbacks">Отзывы</CustomLinkStyle>
+               <CustomLinkStyle to="/contacts">Контакты</CustomLinkStyle>
             </NavigatePages>
             <GetResults>получить результаты</GetResults>
             <RecordButton>запись онлайн</RecordButton>
@@ -267,7 +267,7 @@ const MenuItemStyled = styled(MenuItem)(() => ({
    color: 'green',
 }))
 
-const LinkStyle = styled(Link)(() => ({
+const CustomLinkStyle = styled(CustomLink)(() => ({
    textDecoration: 'none',
    listStyle: 'none',
    cursor: 'pointer',

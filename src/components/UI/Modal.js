@@ -15,16 +15,14 @@ const Modal = ({ children }) => {
       setOpen(false)
    }
    return (
-      <div>
-         <Dialog open={open}>
-            <Container>
-               {children}
-               <OnClose onClick={closeModal}>
-                  <Closed src={close} alt="close" />
-               </OnClose>
-            </Container>
-         </Dialog>
-      </div>
+      <Dialog open={open}>
+         <Container>
+            {children}
+            <OnClose onClick={closeModal}>
+               <Closed src={close} alt="close" />
+            </OnClose>
+         </Container>
+      </Dialog>
    )
 }
 

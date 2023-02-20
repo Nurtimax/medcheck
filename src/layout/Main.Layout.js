@@ -4,13 +4,13 @@ import { Outlet } from 'react-router'
 import Footer from './footer/Footer'
 import Header from './header/Header'
 
-const MainLayout = ({ children }) => {
+const MainLayout = () => {
    return (
       <>
          <Header />
          <Main>
             <Container>
-               {children} <Outlet />
+               <Outlet />
             </Container>
          </Main>
          <Footer />

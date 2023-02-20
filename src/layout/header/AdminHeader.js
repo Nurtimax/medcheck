@@ -2,7 +2,7 @@ import React from 'react'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import medCheckIcon from '../../assets/icons/MedCheck.svg'
 import { styled } from '@mui/material'
-import { Link } from 'react-router-dom'
+import AdminLink from '../../components/UI/Custom.Link'
 
 const AdminHeader = () => {
    return (
@@ -12,11 +12,11 @@ const AdminHeader = () => {
             <img src={medCheckIcon} alt="medCheck" />
          </ProjectLogos>
          <Record>
-            <OnlineEntryLink to="/admin/online_entry">
+            <AdminLinkStyle to="/admin/online_entry">
                Онлайн-запись
-            </OnlineEntryLink>
+            </AdminLinkStyle>
 
-            <ApplicationLink to="/admin/applications">Заявки</ApplicationLink>
+            <AdminLinkStyle to="/admin/applications">Заявки</AdminLinkStyle>
          </Record>
          <Select>
             <option value="Администратор"> Администратор</option>
@@ -39,7 +39,7 @@ const Header = styled('header')(() => ({
    position: 'fixed',
    margin: '0',
 }))
-const OnlineEntryLink = styled(Link)(() => ({
+const AdminLinkStyle = styled(AdminLink)(() => ({
    color: ' #707070',
    cursor: 'pointer',
 
@@ -48,15 +48,7 @@ const OnlineEntryLink = styled(Link)(() => ({
       color: '#222222',
    },
 }))
-const ApplicationLink = styled(Link)(() => ({
-   color: ' #707070',
-   cursor: 'pointer',
 
-   '&:hover': {
-      borderBottom: '2px solid #048741',
-      color: '#222222',
-   },
-}))
 const Record = styled('div')(() => ({
    marginTop: '30px',
    height: '50px',

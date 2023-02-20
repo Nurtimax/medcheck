@@ -9,11 +9,12 @@ import MainLayout from '../layout/Main.Layout'
 import LandingPageClient from '../layout/landingPageClient/LandingPageClient'
 import AboutClinicPage from '../pages/AboutClinic'
 import Contacts from '../contacts/Contacts'
+import AdminLayout from '../layout/Admin.Layout'
 
 const AppRoutes = () => {
    return (
       <Routes>
-         <Route path="/" element={<MainLayout></MainLayout>}>
+         <Route path="/" element={<MainLayout />}>
             <Route index element={<LandingPageClient />} />
             <Route path={ROUTES.ABOUT_CLINIC} element={<AboutClinicPage />} />
             <Route path={ROUTES.SERVICES} element={<h1>services</h1>} />
@@ -23,7 +24,9 @@ const AppRoutes = () => {
             <Route path={ROUTES.FEEDBACKS} element={<h1>feedbacks</h1>} />
          </Route>
 
-         <Route path="/admin/*" element={<AdminRoutes />} />
+         <Route element={<AdminLayout />}>
+            <Route path="/admin/*" element={<AdminRoutes />} />
+         </Route>
          <Route path={ROUTES.SIGN_IN} element={<LoginPage />} />
          <Route path={ROUTES.SIGN_UP} element={<Modal />} />
          <Route path="*" element={<NotFound />} />
