@@ -8,8 +8,12 @@ const AdminHeader = () => {
    return (
       <Header>
          <ProjectLogos>
-            <img src={logoMedCheck} alt="logo" />
-            <img src={medCheckIcon} alt="medCheck" />
+            <LinkToAdminMain to="/admin/online_entry">
+               <img src={logoMedCheck} alt="logo" />
+            </LinkToAdminMain>
+            <LinkToAdminMain to="/admin/online_entry">
+               <img src={medCheckIcon} alt="medCheck" />
+            </LinkToAdminMain>
          </ProjectLogos>
          <Record>
             <AdminLinkStyle to="/admin/online_entry">
@@ -17,6 +21,8 @@ const AdminHeader = () => {
             </AdminLinkStyle>
 
             <AdminLinkStyle to="/admin/applications">Заявки</AdminLinkStyle>
+            <AdminLinkStyle to="/admin/speciality">Специалисты</AdminLinkStyle>
+            <AdminLinkStyle to="/admin/patients">Пациенты</AdminLinkStyle>
          </Record>
          <Select>
             <option value="Администратор"> Администратор</option>
@@ -48,6 +54,7 @@ const AdminLinkStyle = styled(AdminLink)(() => ({
       color: '#222222',
    },
 }))
+const LinkToAdminMain = styled(AdminLink)(() => ({}))
 
 const Record = styled('div')(() => ({
    marginTop: '30px',

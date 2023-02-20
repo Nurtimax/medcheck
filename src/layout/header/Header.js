@@ -96,8 +96,12 @@ const Header = () => {
          </FirstRow>
          <SecondRow>
             <ProjectLogos>
-               <img src={logoMedCheck} alt="logo" />
-               <img src={iconMedCheck} alt="medCheck" />
+               <LinkToMain to="/">
+                  <img src={logoMedCheck} alt="logo" />
+               </LinkToMain>
+               <CustomLink to="/">
+                  <img src={iconMedCheck} alt="medCheck" />
+               </CustomLink>
             </ProjectLogos>
             <NavigatePages>
                <CustomLinkStyle to="/about_clinic">О клинике</CustomLinkStyle>
@@ -243,7 +247,7 @@ const RecordButton = styled(Button)(() => ({
    width: '200px',
    height: '44px',
    border: 'none',
-   background: 'linear-gradient(#0cbb6b, #027b44)', //#0cbb6b
+   background: 'linear-gradient(#0cbb6b, #027b44)',
 
    borderRadius: '25px',
    cursor: 'pointer',
@@ -277,5 +281,6 @@ const CustomLinkStyle = styled(CustomLink)(() => ({
       color: '#027B44',
    },
 }))
+const LinkToMain = styled(CustomLink)(() => ({}))
 
 export default Header

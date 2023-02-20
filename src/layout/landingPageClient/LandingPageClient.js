@@ -26,6 +26,7 @@ import doctors3 from '../../assets/images/doctors3.jpg'
 
 import RequestsClient from './RequestsClient'
 import SwiperFeedbacks from './SwiperFeedbacks'
+import { Link } from 'react-router-dom'
 
 const LandingPageClient = () => {
    return (
@@ -145,9 +146,9 @@ const LandingPageClient = () => {
                </div>
             </Services>
 
-            <ContainerLookAll>
+            <LinkToServices to="/services">
                <LookAll>Смотреть все</LookAll>
-            </ContainerLookAll>
+            </LinkToServices>
 
             <AboutOurClinic>
                О нашей клинике <span>“MedCheck”</span>
@@ -221,9 +222,9 @@ const LandingPageClient = () => {
                })}
             </Doctors>
 
-            <AllDoctorsContainer>
+            <LinkAllDoctorsContainer to="/doctors">
                <AllDoctors>Все врачи клиники</AllDoctors>
-            </AllDoctorsContainer>
+            </LinkAllDoctorsContainer>
 
             <Feedbacks>
                Отзывы наших <span>пациентов</span>
@@ -390,11 +391,12 @@ const Services = styled('div')(() => ({
    },
 }))
 
-const ContainerLookAll = styled('div')(() => ({
+const LinkToServices = styled(Link)(() => ({
    width: '100%',
    display: 'flex',
    justifyContent: 'center',
    marginTop: '30px',
+   textDecoration: 'none',
 }))
 
 const LookAll = styled(Button)(() => ({
@@ -527,11 +529,12 @@ const Doctors = styled('div')(() => ({
    },
 }))
 
-const AllDoctorsContainer = styled('div')(() => ({
+const LinkAllDoctorsContainer = styled(Link)(() => ({
    width: '100%',
    display: 'flex',
    justifyContent: 'center',
    marginTop: '30px',
+   textDecoration: 'none',
 }))
 
 const AllDoctors = styled(Button)(() => ({
