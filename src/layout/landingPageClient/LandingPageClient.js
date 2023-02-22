@@ -24,16 +24,13 @@ import doctors1 from '../../assets/images/doctors1.jpg'
 import doctors2 from '../../assets/images/doctors2.jpg'
 import doctors3 from '../../assets/images/doctors3.jpg'
 
-import Header from '../header/Header'
-import Footer from '../footer/Footer'
 import RequestsClient from './RequestsClient'
 import SwiperFeedbacks from './SwiperFeedbacks'
+import { Link } from 'react-router-dom'
 
 const LandingPageClient = () => {
    return (
       <>
-         <Header />
-
          <Main>
             <StyledWelcome>
                <WelcomeClient>
@@ -149,9 +146,9 @@ const LandingPageClient = () => {
                </div>
             </Services>
 
-            <ContainerLookAll>
+            <LinkToServices to="/services">
                <LookAll>Смотреть все</LookAll>
-            </ContainerLookAll>
+            </LinkToServices>
 
             <AboutOurClinic>
                О нашей клинике <span>“MedCheck”</span>
@@ -225,9 +222,9 @@ const LandingPageClient = () => {
                })}
             </Doctors>
 
-            <AllDoctorsContainer>
+            <LinkAllDoctorsContainer to="/doctors">
                <AllDoctors>Все врачи клиники</AllDoctors>
-            </AllDoctorsContainer>
+            </LinkAllDoctorsContainer>
 
             <Feedbacks>
                Отзывы наших <span>пациентов</span>
@@ -237,8 +234,6 @@ const LandingPageClient = () => {
 
             <RequestsClient />
          </Main>
-
-         <Footer />
       </>
    )
 }
@@ -247,7 +242,6 @@ const Main = styled('main')(() => ({
    width: '1200px',
    height: 'auto',
    margin: '0 auto',
-   marginTop: '180px',
    fontFamily: '"Manrope", sans-serif',
 }))
 
@@ -397,11 +391,12 @@ const Services = styled('div')(() => ({
    },
 }))
 
-const ContainerLookAll = styled('div')(() => ({
+const LinkToServices = styled(Link)(() => ({
    width: '100%',
    display: 'flex',
    justifyContent: 'center',
    marginTop: '30px',
+   textDecoration: 'none',
 }))
 
 const LookAll = styled(Button)(() => ({
@@ -534,11 +529,12 @@ const Doctors = styled('div')(() => ({
    },
 }))
 
-const AllDoctorsContainer = styled('div')(() => ({
+const LinkAllDoctorsContainer = styled(Link)(() => ({
    width: '100%',
    display: 'flex',
    justifyContent: 'center',
    marginTop: '30px',
+   textDecoration: 'none',
 }))
 
 const AllDoctors = styled(Button)(() => ({

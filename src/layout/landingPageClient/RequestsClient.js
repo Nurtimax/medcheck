@@ -6,6 +6,7 @@ import users from '../../assets/icons/users.svg'
 import phoneNumber from '../../assets/icons/phoneNumber.svg'
 import Button from '../../components/UI/Button'
 import { styled } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const RequestsClient = () => {
    return (
@@ -41,10 +42,11 @@ const RequestsClient = () => {
                   </div>
                </div>
             </div>
-
-            <Button variant="contained" className="sendRequest">
-               ОТПРАВИТЬ ЗАЯВКУ
-            </Button>
+            <LinkToApplication to="/admin/applications">
+               <Button variant="contained" className="sendRequest">
+                  ОТПРАВИТЬ ЗАЯВКУ
+               </Button>
+            </LinkToApplication>
          </div>
          <img
             className="sendRequestImg"
@@ -136,4 +138,7 @@ const RequestClient = styled('div')(() => ({
    },
 }))
 
+const LinkToApplication = styled(Link)(() => ({
+   textDecoration: 'none',
+}))
 export default RequestsClient
