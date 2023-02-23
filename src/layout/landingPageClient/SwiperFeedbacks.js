@@ -24,7 +24,7 @@ const SwiperFeedbacks = () => {
          pagination={{
             clickable: true,
          }}
-         loop={true}
+         loop
          speed={800}
          navigation={true}
          modules={[Autoplay, Pagination, Navigation]}
@@ -39,6 +39,27 @@ const SwiperFeedbacks = () => {
                   </div>
                </div>
 
+               <p className="message">
+                  Хочу выразить признательность и благодарность отличному врачу
+                  - Попову Алексею Дмитриевичу за профессиональное удаление зуба
+                  мудрости! Отмечу, что зуб был очень сложным: расположен за
+                  челюстной костью, росший вниз (под семерку), с кривыми
+                  корнями. Не ожидал, что удаление такого зуба сможет пройти
+                  столь спокойно и безболезненно (пишу, кстати, по факту
+                  заживления - лунка затянулась прекрасно). В общем, огромное
+                  спасибо Алексею Дмитриевичу , персоналу и самой клинике!
+               </p>
+            </div>
+         </SwiperSlideStyled>
+         <SwiperSlideStyled>
+            <div className="feedback">
+               <div>
+                  <img src={feedBackImg} alt="feedbackImg" />
+                  <div className="ratingsContainer">
+                     <p>Karim Benzema</p>
+                     <Rating className="rating" name="simple-controlled" />
+                  </div>
+               </div>
                <p className="message">
                   Хочу выразить признательность и благодарность отличному врачу
                   - Попову Алексею Дмитриевичу за профессиональное удаление зуба
