@@ -1,57 +1,112 @@
+import {
+   styled,
+   Table,
+   TableBody,
+   TableCell,
+   TableHead,
+   TableRow,
+} from '@mui/material'
+import React, { useMemo } from 'react'
 import { useTable } from 'react-table'
-// import { schedule_data } from './../../utils/constants/data'
+import { SCHEDULE_DATA } from '../../utils/constants/schedule'
+import { SCHEDULE_COLL } from '../../utils/constants/schedule'
 
-const Table = ({ schedule_data, schedule_coll }) => {
-   const tableInstanse = useTable({ schedule_coll, schedule_data })
+const SchuduleTable = () => {
+   const data = useMemo(() => SCHEDULE_DATA, [])
+   const columns = useMemo(() => SCHEDULE_COLL, [])
+
+   const tableInstanse = useTable({
+      columns,
+      data,
+   })
 
    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
       tableInstanse
+
    return (
-      <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
-         <thead>
-            {headerGroups?.map((headerGroup) => (
-               <tr {...headerGroup.getHeaderGroupProps()}>
+      <TableStyle {...getTableProps}>
+         <TableHeadStyle>
+            {headerGroups.map((headerGroup) => (
+               <TableRowStyle
+                  key={headerGroup.id}
+                  {...headerGroup.getHeaderGroupProps}
+               >
                   {headerGroup.headers.map((column) => (
-                     <th
+                     <TableCollCellStyle
+                        key={column.id}
                         {...column.getHeaderProps()}
-                        style={{
-                           borderBottom: 'solid 3px red',
-                           background: 'aliceblue',
-                           color: 'black',
-                           fontWeight: 'bold',
-                        }}
                      >
-                        {column.render('Header')}
-                     </th>
+                        <div>
+                           <p>{column.Header.doctor}</p>
+                           <div>{column.Header.day}</div>
+                           <div>{column.Header.date}</div>
+                        </div>
+                     </TableCollCellStyle>
                   ))}
-               </tr>
+               </TableRowStyle>
             ))}
-         </thead>
-         <tbody {...getTableBodyProps()}>
-            {rows?.map((row) => {
+         </TableHeadStyle>
+         <TableBody {...getTableBodyProps()}>
+            {rows.map((row) => {
                prepareRow(row)
                return (
-                  <tr {...row.getRowProps()}>
-                     {row.cells?.map((cell) => {
+                  <TableRowStyle2 key={row.id} {...row.getRowProps()}>
+                     {row.cells.map((cell) => {
                         return (
-                           <td
+                           <TableCellStyle
+                              key={cell.id}
                               {...cell.getCellProps()}
-                              style={{
-                                 padding: '10px',
-                                 border: 'solid 1px gray',
-                                 background: 'papayawhip',
-                              }}
                            >
                               {cell.render('Cell')}
-                           </td>
+                           </TableCellStyle>
                         )
                      })}
-                  </tr>
+                  </TableRowStyle2>
                )
             })}
-         </tbody>
-      </table>
+         </TableBody>
+      </TableStyle>
    )
 }
 
-export default Table
+export default SchuduleTable
+
+const TableStyle = styled(Table)(() => ({
+   borderCollapse: 'collapse',
+   border: '1px solid #D9D9D9',
+   boxSizing: 'border-box',
+}))
+const TableHeadStyle = styled(TableHead)(() => ({
+   boxSizing: 'border-box',
+}))
+
+const TableCollCellStyle = styled(TableCell)(() => ({
+   boxSizing: 'border-box',
+   border: '1px solid #D9D9D9',
+   fontFamily: 'Open Sans',
+   fontStyle: 'normal',
+   fontWeight: '600',
+   fontSize: '12px',
+   lineHeight: '16px',
+   letterSpacing: '0.02em',
+   textTransform: 'uppercase',
+   textAlign: 'center',
+}))
+
+const TableRowStyle2 = styled('tr')(() => ({
+   boxSizing: 'border-box',
+   '&:nth-of-type(even)': {
+      backgroundColor: '#f2f2f2',
+   },
+}))
+const TableRowStyle = styled(TableRow)(() => ({}))
+
+const TableCellStyle = styled(TableCell)(() => ({
+   boxSizing: 'border-box',
+   border: '1px solid #D9D9D9',
+   height: '158px',
+   width: '190px',
+   '&:hover': {
+      backgroundColor: ' #ddd',
+   },
+}))
