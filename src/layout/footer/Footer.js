@@ -9,6 +9,7 @@ import instagramIcon from '../../assets/icons/instagramIcon.svg'
 import telegramIcon from '../../assets/icons/telegramIcon.svg'
 import whatsAppIcon from '../../assets/icons/whatsAppIcon.svg'
 import phone from '../../assets/icons/phone.svg'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
    return (
@@ -64,12 +65,12 @@ const Footer = () => {
             </ThirdContainer>
          </FooterContainer>
          <StyledMain>
-            <span>О клинике</span>
-            <span>Услуги</span>
-            <span>Врачи</span>
-            <span>Прайс</span>
-            <span>Отзывы</span>
-            <span>Контакты</span>
+            <LinkStyle to="/about_cLinic">О клинике</LinkStyle>
+            <LinkStyle to="/services">Услуги</LinkStyle>
+            <LinkStyle to="/doctors">Врачи</LinkStyle>
+            <LinkStyle to="/price">Прайс</LinkStyle>
+            <LinkStyle to="/feedbacks">Отзывы</LinkStyle>
+            <LinkStyle to="/contacts">Контакты</LinkStyle>
          </StyledMain>
          <StyledFooterBottom>
             <span>© Peaksoft House 2023 | MedCheck | Все права защищены</span>
@@ -111,10 +112,15 @@ const StyledMain = styled('div')(() => ({
    borderBottom: '1px solid #6f7074',
    marginTop: '50px',
    marginLeft: '240px',
-   ' & span': {
-      marginLeft: '24px',
-      color: '#cccccc',
-      cursor: 'pointer',
+}))
+
+const LinkStyle = styled(Link)(() => ({
+   marginLeft: '24px',
+   color: '#cccccc',
+   cursor: 'pointer',
+   textDecoration: 'none',
+   '&:hover': {
+      color: '#027B44',
    },
 }))
 
