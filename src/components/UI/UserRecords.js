@@ -1,8 +1,6 @@
 import { styled } from '@mui/material'
 import React from 'react'
 
-import { useState } from 'react'
-
 import Modal from './Modal'
 
 import user from '../../assets/icons/users.svg'
@@ -11,14 +9,8 @@ import next from '../../assets/icons/next.svg'
 import Button from './Button'
 
 const UserRecords = () => {
-   const [open, setOpen] = useState(true)
-
-   const closeModal = () => {
-      setOpen(false)
-   }
-
    return (
-      <Modal closeModal={closeModal} open={open}>
+      <Modal closeModal={close} open={open}>
          <Request>Оставьте заявку</Request>
          <LeaveNumber>
             Оставьте свой номер и наши специалисты свяжутся с Вами в ближайшее
