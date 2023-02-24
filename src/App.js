@@ -1,10 +1,9 @@
-// import CrudApp from './components/crud/CrudApp'
-import CrudTable from '../src/components/crud/CrudTable.jsx'
+import AppRoutes from './routes/App.Routes'
+
 function App() {
    return (
       <div>
-         {/* <CrudApp /> */}
-         <CrudTable />
+         <AppRoutes />
       </div>
    )
 }

@@ -7,12 +7,20 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-//import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import bin from '../../assets/icons/bin.svg'
 import { styled } from '@mui/material'
+import { useEffect } from 'react'
+import { fetchCrudGet } from '../../redux/slices/crudSlice'
 
 const CrudTable = () => {
-   //const { data } = useSelector((state) => state.crudSlice)
+   const data = useSelector((state) => state.crudSlice)
+   console.log(data)
+   const dispatch = useDispatch()
+   useEffect(() => {
+      console.log('working')
+      dispatch(fetchCrudGet())
+   }, [dispatch])
    // console.log(data)
    // const [entry, setEntry] = useState([])
    // const [checked, setChecked] = useState(false)
@@ -53,15 +61,13 @@ const CrudTable = () => {
                   </TableCell>
                   <TableCell></TableCell>
                   <TableCell>1</TableCell>
-                  <TableCell>Айназик</TableCell>
-                  <TableCell>12.01.23</TableCell>
+                  <TableCell>Albina</TableCell>
+                  <TableCell>12.01.2023</TableCell>
                   <TableCell>+996 707 123 456</TableCell>
                   <TableCell>
-                     {' '}
                      <input type="checkbox" />
                   </TableCell>
                   <TableCell>
-                     {' '}
                      <img src={bin} alt="bin" />
                   </TableCell>
                </TableRow>

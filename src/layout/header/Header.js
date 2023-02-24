@@ -11,6 +11,7 @@ import iconMedCheck from '../../assets/icons/medCheck.svg'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import subtract from '../../assets/icons/subtract.svg'
 import Button from '../../components/UI/Button'
+import CustomLink from '../../components/UI/Custom.Link'
 
 const Header = () => {
    const [anchorEl, setAnchorEl] = React.useState(null)
@@ -80,25 +81,35 @@ const Header = () => {
                      'aria-labelledby': 'basic-button',
                   }}
                >
-                  <MenuItemStyled onClick={handleClose}>Войти</MenuItemStyled>
-                  <MenuItemStyled onClick={handleClose}>
-                     Регистрация
+                  <MenuItemStyled>
+                     <CustomLinkStyle onClick={handleClose} to="/sign_in">
+                        Войти
+                     </CustomLinkStyle>
+                  </MenuItemStyled>
+                  <MenuItemStyled>
+                     <CustomLinkStyle onClick={handleClose} to="/sign_up">
+                        Регистрация
+                     </CustomLinkStyle>
                   </MenuItemStyled>
                </Menu>
             </InFirstRow5>
          </FirstRow>
          <SecondRow>
             <ProjectLogos>
-               <img src={logoMedCheck} alt="logo" />
-               <img src={iconMedCheck} alt="medCheck" />
+               <LinkToMain to="/">
+                  <img src={logoMedCheck} alt="logo" />
+               </LinkToMain>
+               <CustomLink to="/">
+                  <img src={iconMedCheck} alt="medCheck" />
+               </CustomLink>
             </ProjectLogos>
             <NavigatePages>
-               <li>О клинике</li>
-               <li>Услуги</li>
-               <li>Врачи</li>
-               <li>Прайс</li>
-               <li>Отзывы</li>
-               <li>Контакты</li>
+               <CustomLinkStyle to="/about_clinic">О клинике</CustomLinkStyle>
+               <CustomLinkStyle to="/services">Услуги</CustomLinkStyle>
+               <CustomLinkStyle to="/doctors">Врачи</CustomLinkStyle>
+               <CustomLinkStyle to="/price">Прайс</CustomLinkStyle>
+               <CustomLinkStyle to="/feedbacks">Отзывы</CustomLinkStyle>
+               <CustomLinkStyle to="/contacts">Контакты</CustomLinkStyle>
             </NavigatePages>
             <GetResults>получить результаты</GetResults>
             <RecordButton>запись онлайн</RecordButton>
@@ -226,20 +237,17 @@ const ProjectLogos = styled('div')(() => ({
 
 const NavigatePages = styled('nav')(() => ({
    display: 'flex',
-
-   gap: '15px',
-   '& li': {
-      listStyle: 'none',
-      cursor: 'pointer',
-      color: ' #222222',
-   },
+   gap: '10px',
+   fontSize: '14px',
+   fontWeight: '500',
+   fontFamily: '"Manrope" , sans-serif',
 }))
 
 const RecordButton = styled(Button)(() => ({
    width: '200px',
    height: '44px',
    border: 'none',
-   background: 'linear-gradient(#0cbb6b, #027b44)', //#0cbb6b
+   background: 'linear-gradient(#0cbb6b, #027b44)',
 
    borderRadius: '25px',
    cursor: 'pointer',
@@ -262,5 +270,17 @@ const InFirstRow5 = styled('div')(() => ({
 const MenuItemStyled = styled(MenuItem)(() => ({
    color: 'green',
 }))
+
+const CustomLinkStyle = styled(CustomLink)(() => ({
+   textDecoration: 'none',
+   listStyle: 'none',
+   cursor: 'pointer',
+   color: '#222222',
+
+   '&:hover': {
+      color: '#027B44',
+   },
+}))
+const LinkToMain = styled(CustomLink)(() => ({}))
 
 export default Header

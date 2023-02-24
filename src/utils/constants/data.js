@@ -60,43 +60,26 @@ export const tableData = [
    },
 ]
 
-export const tableTitleDoctors = ['Выбор специалиста', 'Дата и время', 'Статус']
+export const ROUTES = {
+   MAIN: '/main',
+   SIGN_IN: '/sign_in',
+   SIGN_UP: '/sign_up',
+   ABOUT_CLINIC: '/about_cLinic',
+   SERVICES: '/services',
+   DOCTORS: '/doctors',
+   PRICE: '/price',
+   FEEDBACKS: '/feedbacks',
+   CONTACTS: '/contacts',
+   NOT_FOUND: '/*',
+}
 
-export const tableNameDoctors = [
-   {
-      doctorInfo: {
-         photo: <DoctorIcon />,
-         name: 'Манак Елена',
-         speciality: 'Окулист',
-      },
-      info: {
-         date: '12.01.2023',
-         time: '15:00',
-      },
-      statusInfo: 'Отменён',
-   },
-   {
-      doctorInfo: {
-         photo: <DoctorIcon />,
-         name: 'Манак Елена',
-         speciality: 'Окулист',
-      },
-      info: {
-         date: '12.01.2023',
-         time: '15:00',
-      },
-      statusInfo: 'Подтверждён',
-   },
-   {
-      doctorInfo: {
-         photo: <DoctorIcon />,
-         name: 'Манак Елена',
-         speciality: 'Окулист',
-      },
-      info: {
-         date: '12.01.2023',
-         time: '15:00',
-      },
-      statusInfo: 'Завершён',
-   },
-]
+export const ADMIN_ROUTES = {
+   ADMIN: '/admin',
+   ONLINE_ENTRY: '/online_entry',
+   APPLICATION: '/applications',
+   PATIENTS: '/patients',
+   SPECIALITY: '/speciality',
+}
+
+export const BASE_URL =
+   'http://ec2-3-69-31-51.eu-central-1.compute.amazonaws.com/api/'
