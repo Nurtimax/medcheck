@@ -80,3 +80,6 @@ export const ADMIN_ROUTES = {
    PATIENTS: '/patients',
    SPECIALITY: '/speciality',
 }
+
+export const BASE_URL =
+   'http://ec2-3-69-31-51.eu-central-1.compute.amazonaws.com/api/'
