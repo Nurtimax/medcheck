@@ -6,7 +6,7 @@ import DynamicInput from './DynamicInput'
 import plus from '../../assets/icons/plus.svg'
 
 const ChangeSample = () => {
-   const [value, setValue] = useState([
+   const [times, setTimes] = useState([
       {
          id: 1,
          firstHour: dayjs('00'),
@@ -17,7 +17,7 @@ const ChangeSample = () => {
    ])
 
    const changeHandler = (id, key, value) => {
-      setValue((prevState) =>
+      setTimes((prevState) =>
          prevState.map((item) => {
             if (item.id === id) {
                const newData = {
@@ -32,7 +32,7 @@ const ChangeSample = () => {
       )
    }
    const addIntervalHandler = () => {
-      setValue((prevState) => [
+      setTimes((prevState) => [
          ...prevState,
          {
             id: prevState[prevState.length - 1].id + 1,
@@ -45,7 +45,7 @@ const ChangeSample = () => {
    }
    return (
       <>
-         {value.map((item) => {
+         {times.map((item) => {
             return (
                <DynamicInput
                   key={item.id}
@@ -66,9 +66,10 @@ const AddInterval = styled('div')(() => ({
    alignItems: 'center',
    width: '130px',
    color: '#048741',
-   padding: '3px ',
+
    cursor: 'pointer',
    marginTop: '10px',
+   padding: '0 10px',
    gap: '5px',
    '&:hover': {
       background: 'rgba(0,0,0,0.1)',

@@ -24,7 +24,7 @@ const DynamicInput = ({
                <TimePicker
                   ampmInClock
                   views={['hours']}
-                  inputFormat="hh"
+                  inputFormat="00 ч"
                   mask="__"
                   value={firstHour}
                   onChange={(newValue) => {
@@ -37,7 +37,7 @@ const DynamicInput = ({
                <TimePicker
                   ampmInClock
                   views={['minutes']}
-                  inputFormat="mm"
+                  inputFormat="00 м"
                   mask="__"
                   value={firstMinute}
                   onChange={(newValue) => {
@@ -52,7 +52,7 @@ const DynamicInput = ({
                <TimePicker
                   views={['hours']}
                   ampmInClock
-                  inputFormat="hh"
+                  inputFormat="00 ч"
                   mask="__"
                   value={secondHour}
                   onChange={(newValue) => {
@@ -65,7 +65,7 @@ const DynamicInput = ({
                <TimePicker
                   views={['minutes']}
                   ampmInClock
-                  inputFormat="mm"
+                  inputFormat="00 м"
                   mask="__"
                   value={secondMinute}
                   onChange={(newValue) => {
@@ -86,7 +86,7 @@ const TimesContainer = styled(Stack)(() => ({
    marginTop: '10px',
 
    '& div': {
-      width: '100px',
+      width: '120px',
       height: '40px',
    },
 }))
