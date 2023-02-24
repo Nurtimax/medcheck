@@ -9,6 +9,7 @@ let store
 export const injectStore = (_store) => {
    store = _store
 }
+
 const axiosInstance = axios.create({
    baseURL: BASE_URL,
    headers,
