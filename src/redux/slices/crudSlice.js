@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
 import axiosInstance from '../../api/axiosInstance'
 const initialState = {
    data: {
@@ -12,54 +11,61 @@ const initialState = {
 }
 export const fetchCrudGet = createAsyncThunk(
    'crudSlice/fetchCrudGet',
-   async (params, { rejectWithValue }) => {
+   async () => {
       try {
-         const res = await axiosInstance.get('application/get', {
-            params,
-         })
-         console.log(res)
-         return res.data
-      } catch (error) {
-         return rejectWithValue
-      }
-   }
-)
-
-export const fetchCrudPost = createAsyncThunk(
-   'crudSlice/fetchCrudPost',
-   async (params, { rejectWithValue }) => {
-      try {
-         const response = await axios.put(axiosInstance('application'), {
-            // `http://ec2-3-69-31-51.eu-central-1.compute.amazonaws.com/api/application/save`,
-            params,
-         })
+         const response = await axiosInstance('/application/get')
          console.log(response)
-         const data = response.data
-         return data
+         return response.data
       } catch (error) {
-         return rejectWithValue(error.message)
+         return console.log(error)
+      }
+   }
+)
+export const fetchCrudPut = createAsyncThunk(
+   'crudSlice/fetchCrudPut',
+   async () => {
+      try {
+         const response = await axiosInstance.put('/application/6')
+
+         return response.data
+      } catch (error) {
+         return console.log(error)
       }
    }
 )
 
-const crudSlice = createSlice({
-   name: 'crud',
+export const fetchCrudDelete = createAsyncThunk(
+   'crudSlice/fetchCrudDelete',
+   async ({ id }, { dispatch }) => {
+      try {
+         const response = await axiosInstance.delete(`/application/${id}`)
+
+         dispatch(fetchCrudGet())
+
+         return response.data
+      } catch (error) {
+         throw new Error()
+      }
+   }
+)
+
+const applicationSlice = createSlice({
+   name: 'crudSlice',
    initialState,
-   extraReducers: {
-      [fetchCrudGet.fulfilled]: (state, action) => {
-         console.log(action, 'albina')
-         state.data.items = action.payload.data
-      },
-      [fetchCrudGet.pending]: (state) => {
-         state.erorMessage = false
+   reducers: {},
+   extraReducers: (builder) => {
+      builder.addCase(fetchCrudGet.fulfilled, (state, action) => {
+         state.data.items = action.payload
+      })
+      builder.addCase(fetchCrudGet.pending, (state) => {
+         state.errorMessage = false
          state.isLoading = true
-      },
-      [fetchCrudGet.rejected]: (state, action) => {
+      })
+      builder.addCase(fetchCrudGet.rejected, (state, action) => {
          state.errorMessage = action.payload
          state.isLoading = false
-         // console.log(action.payload)
-      },
+      })
    },
 })
 export const crudSliceAction = fetchCrudGet.action
-export default crudSlice
+export default applicationSlice

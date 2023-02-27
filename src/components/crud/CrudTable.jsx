@@ -1,5 +1,3 @@
-//import { useEffect, useState } from 'react'
-//import { useDispatch } from 'react-redux/es/hooks/useDispatch'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -11,30 +9,22 @@ import { useDispatch, useSelector } from 'react-redux'
 import bin from '../../assets/icons/bin.svg'
 import { styled } from '@mui/material'
 import { useEffect } from 'react'
-import { fetchCrudGet } from '../../redux/slices/crudSlice'
+import { fetchCrudDelete, fetchCrudGet } from '../../redux/slices/crudSlice'
 
 const CrudTable = () => {
-   const data = useSelector((state) => state.crudSlice)
+   const { data } = useSelector((state) => state.application)
    console.log(data)
    const dispatch = useDispatch()
-   useEffect(() => {
-      console.log('working')
-      dispatch(fetchCrudGet())
-   }, [dispatch])
-   // console.log(data)
-   // const [entry, setEntry] = useState([])
-   // const [checked, setChecked] = useState(false)
 
-   // const checkedHandler = () => {
-   //    setChecked(!checked)
-   // }
-   // const getEntryQuery = async () => {
-   //    try {
-   //       const { data } = axios()
-   //    } catch (error) {
-   //       return console.log(error)
-   //    }
-   // }
+   const deleteHandler = (e) => {
+      dispatch(fetchCrudDelete({ id: e.target.id }))
+      dispatch(fetchCrudGet())
+   }
+
+   useEffect(() => {
+      dispatch(fetchCrudGet())
+   }, [])
+
    return (
       <TableContainerStyled component={Paper}>
          <Table className="header">
@@ -54,45 +44,31 @@ const CrudTable = () => {
                   <TableCell>Действия</TableCell>
                </TableRow>
             </TableHead>
-            <TableBodyStyled>
-               <TableRow>
-                  <TableCell>
-                     <input type="checkbox" />
-                  </TableCell>
-                  <TableCell></TableCell>
-                  <TableCell>1</TableCell>
-                  <TableCell>Albina</TableCell>
-                  <TableCell>12.01.2023</TableCell>
-                  <TableCell>+996 707 123 456</TableCell>
-                  <TableCell>
-                     <input type="checkbox" />
-                  </TableCell>
-                  <TableCell>
-                     <img src={bin} alt="bin" />
-                  </TableCell>
-               </TableRow>
-
-               {/* {data.items.map((row) => (
-                  <TableRow
-                     key={row.id}
-                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                     <TableCell component="th" scope="row">
-                        {row.lastName}
+            <TableBody>
+               {data.items?.map((item) => (
+                  <TableRow key={item.id}>
+                     <TableCell>
+                        <input type="checkbox" />
                      </TableCell>
-                     <TableCell align="right">{row.date}</TableCell>
-                     <TableCell align="right">{row.phoneNumber}</TableCell>
-                     <TableCell align="right">
-                        <input
-                           type="checkbox"
-                            value={checked}
-                            onClick={checkedHandler}
+                     <TableCell></TableCell>
+                     <TableCell>{item.id}</TableCell>
+                     <TableCell>{item.lastName}</TableCell>
+                     <TableCell>{item.date}</TableCell>
+                     <TableCell>{item.phoneNumber}</TableCell>
+                     <TableCell>
+                        <input type="checkbox" checked={item.status} />
+                     </TableCell>
+                     <TableCell>
+                        <img
+                           src={bin}
+                           alt="bin"
+                           onClick={deleteHandler}
+                           id={item.id}
                         />
                      </TableCell>
-                     <TableCell align="right">XXX</TableCell>
                   </TableRow>
-               ))} */}
-            </TableBodyStyled>
+               ))}
+            </TableBody>
          </Table>
       </TableContainerStyled>
    )
@@ -110,4 +86,3 @@ const TableContainerStyled = styled(TableContainer)(() => ({
       color: '#959595 ',
    },
 }))
-const TableBodyStyled = styled(TableBody)(() => ({}))
