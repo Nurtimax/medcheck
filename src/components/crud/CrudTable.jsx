@@ -7,13 +7,12 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { useDispatch, useSelector } from 'react-redux'
 import bin from '../../assets/icons/bin.svg'
-import { styled } from '@mui/material'
+import { IconButton, styled } from '@mui/material'
 import { useEffect } from 'react'
 import { fetchCrudDelete, fetchCrudGet } from '../../redux/slices/crudSlice'
 
 const CrudTable = () => {
    const { data } = useSelector((state) => state.application)
-   console.log(data)
    const dispatch = useDispatch()
 
    const deleteHandler = (e) => {
@@ -59,11 +58,10 @@ const CrudTable = () => {
                         <input type="checkbox" checked={item.status} />
                      </TableCell>
                      <TableCell>
-                        <img
+                        <IconButton
                            src={bin}
                            alt="bin"
                            onClick={deleteHandler}
-                           id={item.id}
                         />
                      </TableCell>
                   </TableRow>

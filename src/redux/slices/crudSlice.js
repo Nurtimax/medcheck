@@ -11,32 +11,33 @@ const initialState = {
 }
 export const fetchCrudGet = createAsyncThunk(
    'crudSlice/fetchCrudGet',
-   async () => {
+   async ({ rejectWithValue }) => {
       try {
          const response = await axiosInstance('/application/get')
-         console.log(response)
          return response.data
       } catch (error) {
-         return console.log(error)
+         return rejectWithValue
       }
    }
 )
 export const fetchCrudPut = createAsyncThunk(
    'crudSlice/fetchCrudPut',
-   async () => {
+   async (id, { rejectWithValue }) => {
       try {
-         const response = await axiosInstance.put('/application/6')
-
+         const response = await axiosInstance.put(`/application/${id}`)
          return response.data
       } catch (error) {
-         return console.log(error)
+         if (rejectWithValue) {
+            return error
+         }
+         return error
       }
    }
 )
 
 export const fetchCrudDelete = createAsyncThunk(
    'crudSlice/fetchCrudDelete',
-   async ({ id }, { dispatch }) => {
+   async ({ id }, { dispatch, rejectWithValue }) => {
       try {
          const response = await axiosInstance.delete(`/application/${id}`)
 
@@ -44,7 +45,10 @@ export const fetchCrudDelete = createAsyncThunk(
 
          return response.data
       } catch (error) {
-         throw new Error()
+         if (rejectWithValue) {
+            return error
+         }
+         return error
       }
    }
 )
