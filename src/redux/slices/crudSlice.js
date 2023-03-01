@@ -2,15 +2,15 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axiosInstance from '../../api/axiosInstance'
 const initialState = {
    data: {
-      items: [],
+      applications: [],
    },
    isLoading: false,
    errorMessage: null,
    status: null,
    error: null,
 }
-export const fetchCrudGet = createAsyncThunk(
-   'crudSlice/fetchCrudGet',
+export const getApplicationsRequest = createAsyncThunk(
+   'applicationSlice/getApplicationsRequest',
    async ({ rejectWithValue }) => {
       try {
          const response = await axiosInstance('/application/get')
@@ -20,56 +20,50 @@ export const fetchCrudGet = createAsyncThunk(
       }
    }
 )
-export const fetchCrudPut = createAsyncThunk(
-   'crudSlice/fetchCrudPut',
+export const updateApplicationRequest = createAsyncThunk(
+   'applicationSlice/updateApplicationRequest',
    async (id, { rejectWithValue }) => {
       try {
          const response = await axiosInstance.put(`/application/${id}`)
          return response.data
       } catch (error) {
-         if (rejectWithValue) {
-            return error
-         }
-         return error
+         return rejectWithValue
       }
    }
 )
 
-export const fetchCrudDelete = createAsyncThunk(
-   'crudSlice/fetchCrudDelete',
+export const removeApplicationRequest = createAsyncThunk(
+   'applicationSlice/removeApplicationRequest',
    async ({ id }, { dispatch, rejectWithValue }) => {
       try {
          const response = await axiosInstance.delete(`/application/${id}`)
 
-         dispatch(fetchCrudGet())
+         dispatch(getApplicationsRequest())
 
          return response.data
       } catch (error) {
-         if (rejectWithValue) {
-            return error
-         }
-         return error
+         return rejectWithValue
       }
    }
 )
 
 const applicationSlice = createSlice({
-   name: 'crudSlice',
+   name: 'applications',
    initialState,
    reducers: {},
    extraReducers: (builder) => {
-      builder.addCase(fetchCrudGet.fulfilled, (state, action) => {
+      builder.addCase(getApplicationsRequest.fulfilled, (state, action) => {
          state.data.items = action.payload
       })
-      builder.addCase(fetchCrudGet.pending, (state) => {
+      builder.addCase(getApplicationsRequest.pending, (state) => {
          state.errorMessage = false
          state.isLoading = true
       })
-      builder.addCase(fetchCrudGet.rejected, (state, action) => {
+      builder.addCase(getApplicationsRequest.rejected, (state, action) => {
          state.errorMessage = action.payload
          state.isLoading = false
       })
    },
 })
-export const crudSliceAction = fetchCrudGet.action
+export const crudSliceAction = applicationSlice.actions
 export default applicationSlice

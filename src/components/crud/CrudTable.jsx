@@ -9,70 +9,81 @@ import { useDispatch, useSelector } from 'react-redux'
 import bin from '../../assets/icons/bin.svg'
 import { IconButton, styled } from '@mui/material'
 import { useEffect } from 'react'
-import { fetchCrudDelete, fetchCrudGet } from '../../redux/slices/crudSlice'
 
-const CrudTable = () => {
-   const { data } = useSelector((state) => state.application)
+import ContainerEntry from '../Container/ContainerEntry'
+import {
+   getApplicationsRequest,
+   removeApplicationRequest,
+} from '../../redux/slices/crudSlice'
+
+const ApplicationsTable = () => {
+   const { applications } = useSelector((state) => state.applications)
    const dispatch = useDispatch()
 
    const deleteHandler = (e) => {
-      dispatch(fetchCrudDelete({ id: e.target.id }))
-      dispatch(fetchCrudGet())
+      dispatch(removeApplicationRequest({ id: e.target.id }))
+      dispatch(getApplicationsRequest())
    }
 
    useEffect(() => {
-      dispatch(fetchCrudGet())
+      dispatch(getApplicationsRequest())
    }, [])
 
    return (
-      <TableContainerStyled component={Paper}>
-         <Table className="header">
-            <TableHead>
-               <TableRow className="title">
-                  <TableCell>
-                     <input type="checkbox" />
-                  </TableCell>
-                  <TableCell>
-                     <img src={bin} alt="bin" />
-                  </TableCell>
-                  <TableCell>№</TableCell>
-                  <TableCell>Имя</TableCell>
-                  <TableCell>Дата</TableCell>
-                  <TableCell>Номер телефона</TableCell>
-                  <TableCell>Обработан</TableCell>
-                  <TableCell>Действия</TableCell>
-               </TableRow>
-            </TableHead>
-            <TableBody>
-               {data.items?.map((item) => (
-                  <TableRow key={item.id}>
+      <ContainerEntry>
+         <TableContainerStyled component={Paper}>
+            <Table className="header">
+               <TableHead>
+                  <TableRow className="title">
                      <TableCell>
                         <input type="checkbox" />
                      </TableCell>
-                     <TableCell></TableCell>
-                     <TableCell>{item.id}</TableCell>
-                     <TableCell>{item.lastName}</TableCell>
-                     <TableCell>{item.date}</TableCell>
-                     <TableCell>{item.phoneNumber}</TableCell>
                      <TableCell>
-                        <input type="checkbox" checked={item.status} />
+                        <img src={bin} alt="bin" />
                      </TableCell>
-                     <TableCell>
-                        <IconButton
-                           src={bin}
-                           alt="bin"
-                           onClick={deleteHandler}
-                        />
-                     </TableCell>
+                     <TableCell>№</TableCell>
+                     <TableCell>Имя</TableCell>
+                     <TableCell>Дата</TableCell>
+                     <TableCell>Номер телефона</TableCell>
+                     <TableCell>Обработан</TableCell>
+                     <TableCell>Действия</TableCell>
                   </TableRow>
-               ))}
-            </TableBody>
-         </Table>
-      </TableContainerStyled>
+               </TableHead>
+               <TableBody>
+                  {applications?.map((application) => (
+                     <TableRow key={application.id}>
+                        <TableCell>
+                           <input type="checkbox" />
+                        </TableCell>
+                        <TableCell></TableCell>
+                        <TableCell>{application.id}</TableCell>
+                        <TableCell>{application.lastName}</TableCell>
+                        <TableCell>{application.date}</TableCell>
+                        <TableCell>{application.phoneNumber}</TableCell>
+                        <TableCell>
+                           <input
+                              type="checkbox"
+                              checked={application.status}
+                           />
+                        </TableCell>
+                        <TableCell>
+                           <IconButton
+                              src={bin}
+                              alt="bin"
+                              onClick={() => deleteHandler(application.id)}
+                           />
+                        </TableCell>
+                     </TableRow>
+                  ))}
+               </TableBody>
+            </Table>
+         </TableContainerStyled>
+      </ContainerEntry>
    )
 }
-export default CrudTable
+export default ApplicationsTable
 const TableContainerStyled = styled(TableContainer)(() => ({
+   width: '100%',
    '& .header': {
       minWidth: '600',
       ariaLabel: 'simple table',

@@ -5,7 +5,7 @@ import authSlice from './store/slices/authSlice'
 const store = configureStore({
    reducer: {
       auth: authSlice.reducer,
-      application: applicationSlice.reducer,
+      [applicationSlice.name]: applicationSlice.reducer,
    },
 })
 
