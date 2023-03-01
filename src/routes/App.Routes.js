@@ -11,6 +11,7 @@ import AboutClinicPage from '../pages/AboutClinic'
 import Contacts from '../contacts/Contacts'
 import AdminLayout from '../layout/Admin.Layout'
 import PrivateRoute from '././private/Private.Route'
+import ProfileCrudContainer from '../components/profileCRUD/ProfileCrudContainer'
 
 const AppRoutes = () => {
    return (
@@ -23,6 +24,10 @@ const AppRoutes = () => {
             <Route path={ROUTES.PRICE} element={<h1>price</h1>} />
             <Route path={ROUTES.CONTACTS} element={<Contacts />} />
             <Route path={ROUTES.FEEDBACKS} element={<h1>feedbacks</h1>} />
+            <Route
+               path={ROUTES.PROFCRUD_CONTAINER}
+               element={<ProfileCrudContainer />}
+            />
          </Route>
 
          <Route element={<AdminLayout />}>

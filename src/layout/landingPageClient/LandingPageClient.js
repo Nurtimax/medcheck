@@ -27,6 +27,8 @@ import doctors3 from '../../assets/images/doctors3.jpg'
 import RequestsClient from './RequestsClient'
 import SwiperFeedbacks from './SwiperFeedbacks'
 import { Link } from 'react-router-dom'
+import CustomLink from '../../components/UI/Custom.Link'
+import { ROUTES } from '../../utils/constants/data'
 
 const LandingPageClient = () => {
    return (
@@ -181,9 +183,9 @@ const LandingPageClient = () => {
                   </p>
 
                   <div className="readMore">
-                     <a href="https://www.medcheck.kg/">
+                     <CustomLink to={ROUTES.ABOUT_CLINIC}>
                         Читать подробнее о клинике
-                     </a>
+                     </CustomLink>
 
                      <img src={next} alt="nextIcon" />
                   </div>
@@ -242,7 +244,6 @@ const Main = styled('main')(() => ({
    width: '1200px',
    height: 'auto',
    margin: '0 auto',
-   marginTop: '250px',
    fontFamily: '"Manrope", sans-serif',
 }))
 

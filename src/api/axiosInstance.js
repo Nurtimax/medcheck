@@ -1,9 +1,10 @@
 import axios from 'axios'
-import { BASE_URL } from '../../../utils/constants/data'
+import { BASE_URL } from '../utils/constants/data'
 
 const headers = {
    'Content-type': 'application/json',
 }
+
 let store
 
 export const injectStore = (_store) => {

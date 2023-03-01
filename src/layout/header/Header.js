@@ -96,9 +96,9 @@ const Header = () => {
          </FirstRow>
          <SecondRow>
             <ProjectLogos>
-               <LinkToMain to="/">
+               <CustomLink to="/">
                   <img src={logoMedCheck} alt="logo" />
-               </LinkToMain>
+               </CustomLink>
                <CustomLink to="/">
                   <img src={iconMedCheck} alt="medCheck" />
                </CustomLink>
@@ -281,6 +281,5 @@ const CustomLinkStyle = styled(CustomLink)(() => ({
       color: '#027B44',
    },
 }))
-const LinkToMain = styled(CustomLink)(() => ({}))
 
 export default Header

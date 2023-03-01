@@ -115,7 +115,7 @@ const AboutClinicPage = () => {
 }
 
 const Container = styled('div')(() => ({
-   margin: ' 30px 120px',
+   margin: '30px 120px',
 }))
 
 const TopContainer = styled('div')(() => ({

@@ -10,7 +10,7 @@ import Button from './Button'
 
 const UserRecords = () => {
    return (
-      <Modal closeModal={close} open={open}>
+      <Modal>
          <Request>Оставьте заявку</Request>
          <LeaveNumber>
             Оставьте свой номер и наши специалисты свяжутся с Вами в ближайшее

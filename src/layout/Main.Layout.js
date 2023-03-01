@@ -8,19 +8,17 @@ const MainLayout = () => {
    return (
       <>
          <Header />
-         <Main>
+         <main>
             <Container>
                <Outlet />
             </Container>
-         </Main>
+         </main>
          <Footer />
       </>
    )
 }
 
 export default MainLayout
-
-const Main = styled('main')(() => ({}))
 
 const Container = styled('main')(() => ({
    paddingTop: '250px',
