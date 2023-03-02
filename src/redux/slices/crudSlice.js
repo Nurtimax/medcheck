@@ -1,9 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axiosInstance from '../../api/axiosInstance'
 const initialState = {
-   data: {
-      applications: [],
-   },
+   applications: [],
    isLoading: false,
    errorMessage: null,
    status: null,
@@ -11,38 +9,30 @@ const initialState = {
 }
 export const getApplicationsRequest = createAsyncThunk(
    'applicationSlice/getApplicationsRequest',
-   async ({ rejectWithValue }) => {
+   async (_, { rejectWithValue }) => {
       try {
          const response = await axiosInstance('/application/get')
          return response.data
       } catch (error) {
-         return rejectWithValue
-      }
-   }
-)
-export const updateApplicationRequest = createAsyncThunk(
-   'applicationSlice/updateApplicationRequest',
-   async (id, { rejectWithValue }) => {
-      try {
-         const response = await axiosInstance.put(`/application/${id}`)
-         return response.data
-      } catch (error) {
-         return rejectWithValue
+         return rejectWithValue(error.message)
       }
    }
 )
 
 export const removeApplicationRequest = createAsyncThunk(
    'applicationSlice/removeApplicationRequest',
-   async ({ id }, { dispatch, rejectWithValue }) => {
+   async (data, { rejectWithValue }) => {
       try {
-         const response = await axiosInstance.delete(`/application/${id}`)
-
-         dispatch(getApplicationsRequest())
+         const response = await axiosInstance.delete(
+            `/applicationSlice/deleteSelected`,
+            {
+               data: data,
+            }
+         )
 
          return response.data
       } catch (error) {
-         return rejectWithValue
+         return rejectWithValue(error.message)
       }
    }
 )
@@ -53,7 +43,7 @@ const applicationSlice = createSlice({
    reducers: {},
    extraReducers: (builder) => {
       builder.addCase(getApplicationsRequest.fulfilled, (state, action) => {
-         state.data.items = action.payload
+         state.applications = action.payload
       })
       builder.addCase(getApplicationsRequest.pending, (state) => {
          state.errorMessage = false
@@ -65,5 +55,5 @@ const applicationSlice = createSlice({
       })
    },
 })
-export const crudSliceAction = applicationSlice.actions
+export const applicationSliceAction = applicationSlice.actions
 export default applicationSlice

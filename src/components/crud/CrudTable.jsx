@@ -7,7 +7,6 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { useDispatch, useSelector } from 'react-redux'
 import bin from '../../assets/icons/bin.svg'
-import { IconButton, styled } from '@mui/material'
 import { useEffect } from 'react'
 
 import ContainerEntry from '../Container/ContainerEntry'
@@ -15,14 +14,15 @@ import {
    getApplicationsRequest,
    removeApplicationRequest,
 } from '../../redux/slices/crudSlice'
+import { styled } from '@mui/material'
 
 const ApplicationsTable = () => {
    const { applications } = useSelector((state) => state.applications)
    const dispatch = useDispatch()
 
-   const deleteHandler = (e) => {
-      dispatch(removeApplicationRequest({ id: e.target.id }))
-      dispatch(getApplicationsRequest())
+   const deleteHandler = (id) => {
+      const backendData = [].push(id)
+      dispatch(removeApplicationRequest(backendData.unwrap()))
    }
 
    useEffect(() => {
@@ -45,7 +45,9 @@ const ApplicationsTable = () => {
                      <TableCell>Имя</TableCell>
                      <TableCell>Дата</TableCell>
                      <TableCell>Номер телефона</TableCell>
-                     <TableCell>Обработан</TableCell>
+                     <TableCell sx={{ textAlign: 'center' }}>
+                        Обработан
+                     </TableCell>
                      <TableCell>Действия</TableCell>
                   </TableRow>
                </TableHead>
@@ -60,14 +62,16 @@ const ApplicationsTable = () => {
                         <TableCell>{application.lastName}</TableCell>
                         <TableCell>{application.date}</TableCell>
                         <TableCell>{application.phoneNumber}</TableCell>
-                        <TableCell>
+                        <TableCell
+                           sx={{ display: 'flex', justifyContent: 'center' }}
+                        >
                            <input
                               type="checkbox"
                               checked={application.status}
                            />
                         </TableCell>
                         <TableCell>
-                           <IconButton
+                           <img
                               src={bin}
                               alt="bin"
                               onClick={() => deleteHandler(application.id)}
@@ -83,6 +87,7 @@ const ApplicationsTable = () => {
 }
 export default ApplicationsTable
 const TableContainerStyled = styled(TableContainer)(() => ({
+   cursor: 'pointer',
    width: '100%',
    '& .header': {
       minWidth: '600',
