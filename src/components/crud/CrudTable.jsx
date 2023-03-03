@@ -22,7 +22,10 @@ const ApplicationsTable = () => {
 
    const deleteHandler = (id) => {
       const backendData = [].push(id)
-      dispatch(removeApplicationRequest(backendData.unwrap()))
+      dispatch(removeApplicationRequest(backendData))
+         .unwrap()
+         .then((response) => console.log(response))
+         .catch((error) => console.log(error))
    }
 
    useEffect(() => {
