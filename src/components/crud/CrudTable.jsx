@@ -51,37 +51,44 @@ const ApplicationsTable = () => {
                      <TableCell sx={{ textAlign: 'center' }}>
                         Обработан
                      </TableCell>
-                     <TableCell>Действия</TableCell>
+                     <TableCell sx={{ textAlign: 'center' }}>
+                        Действия
+                     </TableCell>
                   </TableRow>
                </TableHead>
                <TableBody>
-                  {applications?.map((application) => (
-                     <TableRow key={application.id}>
-                        <TableCell>
-                           <input type="checkbox" />
-                        </TableCell>
-                        <TableCell></TableCell>
-                        <TableCell>{application.id}</TableCell>
-                        <TableCell>{application.lastName}</TableCell>
-                        <TableCell>{application.date}</TableCell>
-                        <TableCell>{application.phoneNumber}</TableCell>
-                        <TableCell
-                           sx={{ display: 'flex', justifyContent: 'center' }}
-                        >
-                           <input
-                              type="checkbox"
-                              checked={application.status}
-                           />
-                        </TableCell>
-                        <TableCell>
-                           <img
-                              src={bin}
-                              alt="bin"
-                              onClick={() => deleteHandler(application.id)}
-                           />
-                        </TableCell>
-                     </TableRow>
-                  ))}
+                  {applications.length === 0 &&
+                     applications?.map((application) => (
+                        <TableRow key={application.id}>
+                           <TableCell>
+                              <input type="checkbox" />
+                           </TableCell>
+                           <TableCell></TableCell>
+                           <TableCell>{application.id}</TableCell>
+                           <TableCell>{application.lastName}</TableCell>
+                           <TableCell>{application.date}</TableCell>
+                           <TableCell>{application.phoneNumber}</TableCell>
+                           <TableCell
+                              sx={{
+                                 display: 'flex',
+                                 justifyContent: 'center',
+                                 padding: '19px',
+                              }}
+                           >
+                              <input
+                                 type="checkbox"
+                                 checked={application.status}
+                              />
+                           </TableCell>
+                           <TableCell>
+                              <img
+                                 src={bin}
+                                 alt="bin"
+                                 onClick={() => deleteHandler(application.id)}
+                              />
+                           </TableCell>
+                        </TableRow>
+                     ))}
                </TableBody>
             </Table>
          </TableContainerStyled>

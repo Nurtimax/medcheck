@@ -9,11 +9,14 @@ const initialState = {
 }
 export const getApplicationsRequest = createAsyncThunk(
    'applicationSlice/getApplicationsRequest',
-   async () => {
+   async (_, { rejectWithValue }) => {
       try {
-         const response = await axiosInstance('/application/get')
+         const response = await axiosInstance.get('/application/get')
          return response.data
       } catch (error) {
+         if (rejectWithValue) {
+            return error
+         }
          return error
       }
    }
