@@ -242,7 +242,6 @@ const Main = styled('main')(() => ({
    width: '1200px',
    height: 'auto',
    margin: '0 auto',
-   marginTop: '250px',
    fontFamily: '"Manrope", sans-serif',
 }))
 

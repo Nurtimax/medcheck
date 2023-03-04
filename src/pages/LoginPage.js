@@ -17,8 +17,6 @@ const LoginPage = () => {
          password: '',
       },
       onSubmit: (values, actions) => {
-         // localStorage.setItem('user', JSON.stringify({ ...values }))
-         console.log(values)
          actions.resetForm()
       },
       validationSchema: Yup.object().shape({

@@ -11,6 +11,7 @@ import AboutClinicPage from '../pages/AboutClinic'
 import Contacts from '../contacts/Contacts'
 import AdminLayout from '../layout/Admin.Layout'
 import PrivateRoute from '././private/Private.Route'
+import ApplicationsTable from '../components/crud/CrudTable'
 
 const AppRoutes = () => {
    return (
@@ -32,6 +33,7 @@ const AppRoutes = () => {
                   <PrivateRoute roles="ADMIN" element={<AdminRoutes />} />
                }
             />
+            <Route path="/application" element={<ApplicationsTable />} />
          </Route>
          <Route path={ROUTES.SIGN_IN} element={<LoginPage />} />
          <Route path={ROUTES.SIGN_UP} element={<Modal />} />

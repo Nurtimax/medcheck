@@ -82,4 +82,4 @@ export const ADMIN_ROUTES = {
 }
 
 export const BASE_URL =
-   'http://ec2-3-69-31-51.eu-central-1.compute.amazonaws.com/api/'
+   'http://ec2-3-69-31-51.eu-central-1.compute.amazonaws.com/api'
