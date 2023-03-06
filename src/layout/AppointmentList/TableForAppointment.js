@@ -11,6 +11,7 @@ import React from 'react'
 import { tableNameDoctors, tableTitleDoctors } from '../../utils/constants/data'
 
 const TableForAppointment = () => {
+   //console.log(tableTitleDoctors)
    const colors = {
       ['Подтверждён']: '#346EFB',
       ['Завершён']: '#07AB53',
