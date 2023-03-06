@@ -1,12 +1,9 @@
-import React from 'react'
-import ContinueAppointment from './containers/ContinueAppointment'
-import TableForAppointment from './layout/AppointmentList/TableForAppointment'
+import AppRoutes from './routes/App.Routes'
 
 function App() {
    return (
       <div>
-         <TableForAppointment />
-         <ContinueAppointment />
+         <AppRoutes />
       </div>
    )
 }
