@@ -1,10 +1,6 @@
 import React from 'react'
-import {
-   IconButton,
-   InputAdornment,
-   OutlinedInput,
-   styled,
-} from '@mui/material'
+import { IconButton, InputAdornment, styled } from '@mui/material'
+import Input from './Input'
 
 const PasswordInput = ({ placeholder, value, onChange, name, error }) => {
    const [showPassword, setShowPassword] = React.useState(false)
@@ -33,7 +29,7 @@ const PasswordInput = ({ placeholder, value, onChange, name, error }) => {
    )
 }
 export default PasswordInput
-const StyledPassword = styled(OutlinedInput)(({ error }) => ({
+const StyledPassword = styled(Input)(({ error }) => ({
    height: '41px',
    '& .MuiInputBase-input': {
       height: '4px',

@@ -8,7 +8,7 @@ import AuthWithGoogle from '../AuthWithGoogle/AuthWithGoogle'
 import { validationSchemaSignUp } from '../../utils/constants/validateSchema'
 import { useDispatch } from 'react-redux'
 import { postSignUp } from '../../redux/slices/authSlice'
-import AuthInput from '../../components/input/AuthInput'
+import AuthInput from '../../components/UI/AuthInput'
 
 const SignUp = () => {
    const [open, setOpen] = useState(true)
