@@ -4,14 +4,13 @@ import NotFound from '../components/Not.Found'
 import { ROUTES } from '../utils/constants/data'
 import AdminRoutes from './admin-routes/Admin.Routes'
 import LoginPage from './.././pages/LoginPage'
-import Modal from '../components/UI/Modal'
 import MainLayout from '../layout/Main.Layout'
 import LandingPageClient from '../layout/landingPageClient/LandingPageClient'
 import AboutClinicPage from '../pages/AboutClinic'
 import Contacts from '../contacts/Contacts'
 import AdminLayout from '../layout/Admin.Layout'
 import PrivateRoute from '././private/Private.Route'
-import ApplicationsTable from '../components/crud/CrudTable'
+import SignUp from '../pages/SignUp/SingUp'
 
 const AppRoutes = () => {
    return (
@@ -26,17 +25,15 @@ const AppRoutes = () => {
             <Route path={ROUTES.FEEDBACKS} element={<h1>feedbacks</h1>} />
          </Route>
 
-         <Route element={<AdminLayout />}>
+         <Route path="/admin/*" element={<AdminLayout />}>
             <Route
-               path="/admin/*"
                element={
                   <PrivateRoute roles="ADMIN" element={<AdminRoutes />} />
                }
             />
-            <Route path="/application" element={<ApplicationsTable />} />
          </Route>
          <Route path={ROUTES.SIGN_IN} element={<LoginPage />} />
-         <Route path={ROUTES.SIGN_UP} element={<Modal />} />
+         <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
          <Route path="*" element={<NotFound />} />
       </Routes>
    )

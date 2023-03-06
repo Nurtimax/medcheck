@@ -9,7 +9,6 @@ let store
 export const injectStore = (_store) => {
    store = _store
 }
-
 const axiosInstance = axios.create({
    baseURL: BASE_URL,
    headers,
@@ -18,10 +17,9 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
    (config) => {
       const updatedConfig = { ...config }
-      const token = store.getState().auth.user.token
-
-      if (token) {
-         updatedConfig.headers.Authorization = `Bearer ${token}`
+      const { userToken } = store.getState().auth || {}
+      if (userToken) {
+         updatedConfig.headers.Authorization = `Bearer ${userToken}`
       }
       return updatedConfig
    },
@@ -36,15 +34,9 @@ axiosInstance.interceptors.response.use(
    },
    (error) => {
       if (error.response?.status === 500) {
-         // logout()
-         // remove user from local storage
-         // reseeet redux state
          throw new Error('500 unauthorized')
       }
       if (error.response?.status === 403) {
-         // logout()
-         // remove user from local storage
-         // reseeet redux state
          throw new Error('500 unauthorized')
       }
       return Promise.reject(error)
