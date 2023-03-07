@@ -19,7 +19,7 @@ export const postSignUp = createAsyncThunk(
          if (rejectWithValue) {
             return rejectWithValue(error)
          }
-         throw error
+         throw new Error()
       }
    }
 )

@@ -9,8 +9,10 @@ export const validationSchemaSignUp = Yup.object().shape({
       .typeError('должна быть строка!')
       .required('Фамилия является обязательным полем!')
       .min(2, 'Фамилия должна быть не менее 5 символов!'),
-   phoneNumber: Yup.number('').required('Укажите номер телефона!').min(9),
-   // .max(13),
+   phoneNumber: Yup.string('')
+      .required('Укажите номер телефона!')
+      .min(10, 'Номер телефона должен быть не менее 10 символов')
+      .max(13, 'Номер телефона должен быть меньше или равен 13'),
    email: Yup.string().required(
       'Электронная почта является обязательным полем!'
    ),
@@ -25,7 +27,7 @@ export const validationSchemaSignUp = Yup.object().shape({
 })
 
 export const validateSchemaSignIn = Yup.object().shape({
-   login: Yup.string().required(
+   email: Yup.string().required(
       'Электронная почта является обязательным полем!'
    ),
    password: Yup.string()

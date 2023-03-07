@@ -14,9 +14,9 @@ const AuthInput = ({
    touched,
 }) => {
    return (
-      <Cot>
+      <Container>
          {type ? (
-            <Input
+            <InputStyled
                className={className}
                type={type}
                fullWidth
@@ -39,14 +39,18 @@ const AuthInput = ({
             />
          )}
          <ErrorMessages>{errors && touched && errors}</ErrorMessages>
-      </Cot>
+      </Container>
    )
 }
 
 export default AuthInput
 
-const Cot = styled('div')(() => ({
+const Container = styled('div')(() => ({
    margin: '0 auto',
+}))
+const InputStyled = styled(Input)(() => ({
+   width: '414px',
+   height: '42px',
 }))
 
 const PasswordInputStyled = styled(PasswordInput)(() => ({

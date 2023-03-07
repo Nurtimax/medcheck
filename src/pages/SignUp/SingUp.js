@@ -39,7 +39,7 @@ const SignUp = () => {
             resetForm()
             navigate('/')
          } catch (error) {
-            error
+            throw new Error()
          }
       },
    })

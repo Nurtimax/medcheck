@@ -72,33 +72,33 @@ const Header = () => {
                   alt="subtract"
                />
 
-               <Menu
+               <Styledmenu
                   id="basic-menu"
                   anchorEl={anchorEl}
                   open={open}
+                  keepMounted
                   onClose={handleClose}
                   MenuListProps={{
                      'aria-labelledby': 'basic-button',
                   }}
                >
                   <MenuItemStyled>
-                     <CustomLinkStyle onClick={handleClose} to="/sign_in">
-                        Войти
-                     </CustomLinkStyle>
+                     <CustomLinkStyle to="/sign_in">Войти</CustomLinkStyle>
                   </MenuItemStyled>
+
                   <MenuItemStyled>
-                     <CustomLinkStyle onClick={handleClose} to="/sign_up">
+                     <CustomLinkStyle to="/sign_up">
                         Регистрация
                      </CustomLinkStyle>
                   </MenuItemStyled>
-               </Menu>
+               </Styledmenu>
             </InFirstRow5>
          </FirstRow>
          <SecondRow>
             <ProjectLogos>
-               <LinkToMain to="/">
+               <CustomLink to="/">
                   <img src={logoMedCheck} alt="logo" />
-               </LinkToMain>
+               </CustomLink>
                <CustomLink to="/">
                   <img src={iconMedCheck} alt="medCheck" />
                </CustomLink>
@@ -267,9 +267,7 @@ const InFirstRow5 = styled('div')(() => ({
    cursor: 'pointer',
 }))
 
-const MenuItemStyled = styled(MenuItem)(() => ({
-   color: 'green',
-}))
+const MenuItemStyled = styled(MenuItem)(() => ({}))
 
 const CustomLinkStyle = styled(CustomLink)(() => ({
    textDecoration: 'none',
@@ -281,6 +279,11 @@ const CustomLinkStyle = styled(CustomLink)(() => ({
       color: '#027B44',
    },
 }))
-const LinkToMain = styled(CustomLink)(() => ({}))
+const Styledmenu = styled(Menu)(() => ({
+   '& .MuiMenuItem-root': {
+      color: '#000000',
+      transitionDuration: '0.3s',
+   },
+}))
 
 export default Header
