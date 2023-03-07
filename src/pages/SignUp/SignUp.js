@@ -34,13 +34,9 @@ const SignUp = () => {
       validationSchema: validationSchemaSignUp,
 
       onSubmit: (values) => {
-         try {
-            dispatch(postSignUp({ ...values }))
-            resetForm()
-            navigate('/')
-         } catch (error) {
-            throw new Error()
-         }
+         dispatch(postSignUp({ ...values }))
+         resetForm()
+         navigate('/')
       },
    })
 

@@ -10,9 +10,10 @@ const AboutClinic = React.lazy(() => import('../pages/AboutClinic'))
 const Contacts = React.lazy(() => import('../contacts/Contacts'))
 const AdminLayout = React.lazy(() => import('../layout/Admin.Layout'))
 const PrivateRoute = React.lazy(() => import('./private/Private.Route'))
-const SignUp = React.lazy(() => import('../pages/SignUp/SingUp'))
+const SignUp = React.lazy(() => import('../pages/SignUp/SignUp'))
 const LazyLoading = React.lazy(() => import('../components/UI/LodaingSpinner'))
 const LandingPage = React.lazy(() => import('../layout/landing/LandingPage'))
+const ForgotPassword = React.lazy(() => import('../pages/ForgotPassword'))
 
 const AppRoutes = () => {
    return (
@@ -82,6 +83,15 @@ const AppRoutes = () => {
                element={
                   <Suspense fallback={<LazyLoading />}>
                      <LoginPage />
+                  </Suspense>
+               }
+            />
+
+            <Route
+               path={ROUTES.FORGOT_PASSWROD}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <ForgotPassword />
                   </Suspense>
                }
             />

@@ -12,8 +12,15 @@ import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import subtract from '../../assets/icons/subtract.svg'
 import Button from '../../components/UI/Button'
 import CustomLink from '../../components/UI/Custom.Link'
+import { useDispatch, useSelector } from 'react-redux'
+import { postSignUp, removeUser } from '../../redux/slices/authSlice'
+import { useEffect } from 'react'
 
 const Header = () => {
+   const { isAuth } = useSelector((state) => state.auth)
+
+   const dispatch = useDispatch()
+
    const [anchorEl, setAnchorEl] = React.useState(null)
    const open = Boolean(anchorEl)
    const handleClick = (event) => {
@@ -22,6 +29,13 @@ const Header = () => {
    const handleClose = () => {
       setAnchorEl(null)
    }
+
+   useEffect(() => {
+      if (isAuth) {
+         dispatch(postSignUp())
+      }
+   }, [dispatch, postSignUp])
+
    return (
       <HeaderContainer>
          <FirstRow>
@@ -82,15 +96,38 @@ const Header = () => {
                      'aria-labelledby': 'basic-button',
                   }}
                >
-                  <MenuItemStyled>
-                     <CustomLinkStyle to="/sign_in">Войти</CustomLinkStyle>
-                  </MenuItemStyled>
+                  {isAuth ? (
+                     <div>
+                        <MenuItemStyled>
+                           <CustomLinkStyle to="">Мои записи</CustomLinkStyle>
+                        </MenuItemStyled>
+                        <MenuItemStyled>
+                           <CustomLinkStyle to="">Профиль</CustomLinkStyle>
+                        </MenuItemStyled>
+                        <MenuItemStyled>
+                           <div
+                              className="logout"
+                              onClick={() => dispatch(removeUser())}
+                           >
+                              Выйти
+                           </div>
+                        </MenuItemStyled>
+                     </div>
+                  ) : (
+                     <div>
+                        <MenuItemStyled>
+                           <CustomLinkStyle to="/sign_in">
+                              Войти
+                           </CustomLinkStyle>
+                        </MenuItemStyled>
 
-                  <MenuItemStyled>
-                     <CustomLinkStyle to="/sign_up">
-                        Регистрация
-                     </CustomLinkStyle>
-                  </MenuItemStyled>
+                        <MenuItemStyled>
+                           <CustomLinkStyle to="/sign_up">
+                              Регистрация
+                           </CustomLinkStyle>
+                        </MenuItemStyled>
+                     </div>
+                  )}
                </Styledmenu>
             </InFirstRow5>
          </FirstRow>
@@ -267,7 +304,11 @@ const InFirstRow5 = styled('div')(() => ({
    cursor: 'pointer',
 }))
 
-const MenuItemStyled = styled(MenuItem)(() => ({}))
+const MenuItemStyled = styled(MenuItem)(() => ({
+   '& .logout': {
+      color: 'green',
+   },
+}))
 
 const CustomLinkStyle = styled(CustomLink)(() => ({
    textDecoration: 'none',

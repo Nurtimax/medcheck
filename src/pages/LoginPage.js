@@ -24,11 +24,7 @@ const LoginPage = () => {
       },
       validationSchema: validateSchemaSignIn,
       onSubmit: () => {
-         try {
-            resetForm()
-         } catch (error) {
-            throw new Error()
-         }
+         resetForm()
       },
    })
 
@@ -68,7 +64,7 @@ const LoginPage = () => {
                touched={touched.password}
             />
 
-            <Link className="forgotPassword" to="/">
+            <Link className="forgotPassword" to="forgot-password">
                Забыли пароль?
             </Link>
 

@@ -37,7 +37,7 @@ axiosInstance.interceptors.response.use(
          throw new Error('500 unauthorized')
       }
       if (error.response?.status === 403) {
-         throw new Error('500 unauthorized')
+         throw new Error('403 unauthorized')
       }
       return Promise.reject(error)
    }
