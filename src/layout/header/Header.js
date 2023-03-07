@@ -99,14 +99,14 @@ const Header = () => {
                   {isAuth ? (
                      <div>
                         <MenuItemStyled>
-                           <CustomLinkStyle to="">Мои записи</CustomLinkStyle>
+                           <div className="authorized">Мои записи</div>
                         </MenuItemStyled>
                         <MenuItemStyled>
-                           <CustomLinkStyle to="">Профиль</CustomLinkStyle>
+                           <div className="authorized">Профиль</div>
                         </MenuItemStyled>
                         <MenuItemStyled>
                            <div
-                              className="logout"
+                              className="authorized"
                               onClick={() => dispatch(removeUser())}
                            >
                               Выйти
@@ -305,7 +305,10 @@ const InFirstRow5 = styled('div')(() => ({
 }))
 
 const MenuItemStyled = styled(MenuItem)(() => ({
-   '& .logout': {
+   '& .authorized': {
+      color: 'black',
+   },
+   '& .authorized:hover': {
       color: 'green',
    },
 }))

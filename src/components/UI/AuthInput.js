@@ -57,6 +57,7 @@ const PasswordInputStyled = styled(PasswordInput)(() => ({
    width: '414px',
    height: '42px',
    marginTop: '15px',
+   color: 'black',
 }))
 
 const ErrorMessages = styled('p')(() => ({

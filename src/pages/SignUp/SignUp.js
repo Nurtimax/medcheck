@@ -149,6 +149,7 @@ const FormContainer = styled('form')(() => ({
       width: '414px',
       height: '42px',
       marginTop: '15px',
+      color: 'black',
    },
 
    '& .button': {
