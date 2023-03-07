@@ -28,7 +28,7 @@ import RequestsClient from './RequestsClient'
 import SwiperFeedbacks from './SwiperFeedbacks'
 import { Link } from 'react-router-dom'
 
-const LandingPageClient = () => {
+const LandingPage = () => {
    return (
       <>
          <Main>
@@ -238,6 +238,7 @@ const LandingPageClient = () => {
    )
 }
 
+export default LandingPage
 const Main = styled('main')(() => ({
    width: '1200px',
    height: 'auto',
@@ -556,5 +557,3 @@ const Feedbacks = styled('div')(() => ({
       color: 'rgba(4, 135, 65, 1)',
    },
 }))
-
-export default LandingPageClient

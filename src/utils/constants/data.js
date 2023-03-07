@@ -71,6 +71,7 @@ export const ROUTES = {
    FEEDBACKS: '/feedbacks',
    CONTACTS: '/contacts',
    NOT_FOUND: '/*',
+   FORGOT_PASSWROD: '/forgot_password',
 }
 
 export const ADMIN_ROUTES = {
@@ -82,4 +83,6 @@ export const ADMIN_ROUTES = {
 }
 
 export const BASE_URL =
-   'http://ec2-3-69-31-51.eu-central-1.compute.amazonaws.com/api'
+   'http://ec2-3-69-31-51.eu-central-1.compute.amazonaws.com/api/'
+
+export const JWT_TOKEN = 'MED_CHECK_JWT_TOKEN'
