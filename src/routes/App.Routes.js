@@ -9,7 +9,6 @@ const MainLayout = React.lazy(() => import('../layout/Main.Layout'))
 const AboutClinic = React.lazy(() => import('../pages/AboutClinic'))
 const Contacts = React.lazy(() => import('../contacts/Contacts'))
 const AdminLayout = React.lazy(() => import('../layout/Admin.Layout'))
-const PrivateRoute = React.lazy(() => import('./private/Private.Route'))
 const SignUp = React.lazy(() => import('../pages/SignUp/SignUp'))
 const LazyLoading = React.lazy(() => import('../components/UI/LodaingSpinner'))
 const LandingPage = React.lazy(() => import('../layout/landing/LandingPage'))
@@ -67,14 +66,9 @@ const AppRoutes = () => {
             >
                <Route
                   element={
-                     <PrivateRoute
-                        roles="ADMIN"
-                        element={
-                           <Suspense fallback={<LazyLoading />}>
-                              <AdminRoutes />
-                           </Suspense>
-                        }
-                     />
+                     <Suspense fallback={<LazyLoading />}>
+                        <AdminRoutes />
+                     </Suspense>
                   }
                />
             </Route>

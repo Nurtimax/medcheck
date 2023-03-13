@@ -23,6 +23,27 @@ export const postSignUp = createAsyncThunk(
    }
 )
 
+export const postSignIn = createAsyncThunk(
+   'auth/postSignIn',
+   async (params, { rejectWithValue }) => {
+      const { email, password } = params
+
+      try {
+         const { data } = await axiosInstance.post('auth/login', {
+            email,
+            password,
+         })
+         localStorage.setItem(JWT_TOKEN, JSON.stringify(data))
+         return data
+      } catch (error) {
+         if (rejectWithValue) {
+            return rejectWithValue(error)
+         }
+         throw new Error(error)
+      }
+   }
+)
+
 const initialState = {
    role: {
       user: null,
@@ -45,8 +66,32 @@ const authSlice = createSlice({
          state.userToken = null
          state.role = null
       },
+      setUser(state, action) {
+         state.data = action.payload
+      },
    },
    extraReducers: (builder) => {
+      ///////////////////////////////////////////////////// LOGIN
+
+      builder.addCase(postSignIn.fulfilled, (state, action) => {
+         state.data = action.payload
+         state.userToken = action.payload.token
+         state.role =
+            action.payload.roleName === 'ADMIN'
+               ? ({ ...state.role.admin } = action.payload.roleName)
+               : ({ ...state.role.user } = action.payload.roleName)
+         state.isAuth = true
+      })
+      builder.addCase(postSignIn.pending, (state) => {
+         state.isAuth = true
+         state.isError = null
+      })
+      builder.addCase(postSignIn.rejected, (state, action) => {
+         state.isError = action.payload
+      })
+
+      // ///////////////////////////////////////// REGISTER
+
       builder.addCase(postSignUp.fulfilled, (state, action) => {
          state.data = action.payload
          state.isAuth = true
@@ -61,6 +106,6 @@ const authSlice = createSlice({
    },
 })
 
-export const { removeUser } = authSlice.actions
+export const { removeUser, setUser } = authSlice.actions
 
 export default authSlice

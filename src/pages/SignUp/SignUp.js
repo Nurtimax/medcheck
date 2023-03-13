@@ -9,6 +9,10 @@ import { validationSchemaSignUp } from '../../utils/constants/validateSchema'
 import { useDispatch } from 'react-redux'
 import { postSignUp } from '../../redux/slices/authSlice'
 import AuthInput from '../../components/UI/AuthInput'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import axiosInstance from '../../api/axiosInstance'
+import { auth } from '../../services/firebase'
+import { JWT_TOKEN } from '../../utils/constants/data'
 
 const SignUp = () => {
    const [open, setOpen] = useState(true)
@@ -35,13 +39,31 @@ const SignUp = () => {
 
       onSubmit: (values) => {
          dispatch(postSignUp({ ...values }))
-         resetForm()
          navigate('/')
+         resetForm()
       },
    })
 
    const { handleChange, errors, values, handleSubmit, resetForm, touched } =
       formik
+
+   const provider = new GoogleAuthProvider()
+
+   const signInWithGoogle = () => {
+      signInWithPopup(auth, provider)
+         .then((result) => {
+            const success = (data) => {
+               dispatch(postSignUp(data))
+               localStorage.setItem(JWT_TOKEN, JSON.stringify(data))
+               navigate('/')
+               return data
+            }
+            axiosInstance
+               .post(`/auth/auth/google?tokenFront=${result.user.accessToken}`)
+               .then(({ data }) => success(data))
+         })
+         .catch((error) => console.log(error))
+   }
 
    return (
       <Modal marginTop="80px" open={open} closeModal={closeModal}>
@@ -93,8 +115,7 @@ const SignUp = () => {
             />
 
             <AuthInput
-               autoComplete="current-password"
-               aria-invalid="false"
+               autoComplete="password"
                name="password"
                className="input"
                placeholder="Введите пароль"
@@ -104,8 +125,7 @@ const SignUp = () => {
                touched={touched.password}
             />
             <AuthInput
-               autoComplete="current-repeatPassword"
-               aria-invalid="false"
+               autoComplete="repeatPassword"
                name="repeatPassword"
                className="input"
                placeholder="Повторите пароль"
@@ -125,7 +145,7 @@ const SignUp = () => {
                <div className="variantBorder"></div>
             </div>
 
-            <AuthWithGoogle />
+            <AuthWithGoogle handleClick={signInWithGoogle} />
 
             <div className="existAccount">
                <p>У вас уже есть аккаунт?</p>

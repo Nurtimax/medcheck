@@ -8,13 +8,27 @@ import { Link, useNavigate } from 'react-router-dom'
 import Modal from '../components/UI/Modal'
 import { useState } from 'react'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { postSignIn, postSignUp } from '../redux/slices/authSlice'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { JWT_TOKEN } from '../utils/constants/data'
+import axiosInstance from '../api/axiosInstance'
+import { auth } from '../services/firebase'
+
 const LoginPage = () => {
    const [open, setOpen] = useState(true)
 
    const navigate = useNavigate()
+   const { role } = useSelector((state) => state.auth)
+   const dispatch = useDispatch()
 
    const closeModal = () => {
       setOpen(navigate('/'))
+   }
+
+   const userRole = () => {
+      if (role === 'USER') navigate('/')
+      if (role === 'ADMIN') navigate('/admin/online_entry')
    }
 
    const formik = useFormik({
@@ -22,8 +36,12 @@ const LoginPage = () => {
          email: '',
          password: '',
       },
+
       validationSchema: validateSchemaSignIn,
-      onSubmit: () => {
+
+      onSubmit: (data) => {
+         dispatch(postSignIn(data))
+         userRole(data)
          resetForm()
       },
    })
@@ -31,6 +49,23 @@ const LoginPage = () => {
    const { handleChange, errors, values, handleSubmit, resetForm, touched } =
       formik
 
+   const provider = new GoogleAuthProvider()
+
+   const signInWithGoogle = () => {
+      signInWithPopup(auth, provider)
+         .then((result) => {
+            const success = (data) => {
+               dispatch(postSignUp(data))
+               localStorage.setItem(JWT_TOKEN, JSON.stringify(data))
+               navigate('/')
+               return data
+            }
+            axiosInstance
+               .post(`/auth/auth/google?tokenFront=${result.user.accessToken}`)
+               .then(({ data }) => success(data))
+         })
+         .catch((error) => console.log(error))
+   }
    return (
       <Modal
          className="modal"
@@ -38,7 +73,7 @@ const LoginPage = () => {
          open={open}
          closeModal={closeModal}
       >
-         <Login>Регистрация</Login>
+         <Login>Войти</Login>
 
          <FormContainer onSubmit={handleSubmit}>
             <AuthInput
@@ -64,7 +99,7 @@ const LoginPage = () => {
                touched={touched.password}
             />
 
-            <Link className="forgotPassword" to="forgot-password">
+            <Link className="forgotPassword" to="/forgot_password">
                Забыли пароль?
             </Link>
 
@@ -78,7 +113,7 @@ const LoginPage = () => {
                <div className="variantBorder"></div>
             </div>
 
-            <AuthWithGoogle />
+            <AuthWithGoogle handleClick={signInWithGoogle} />
 
             <div className="register">
                <p>Нет аккаунта?</p>

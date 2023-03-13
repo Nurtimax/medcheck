@@ -15,6 +15,7 @@ import CustomLink from '../../components/UI/Custom.Link'
 import { useDispatch, useSelector } from 'react-redux'
 import { postSignUp, removeUser } from '../../redux/slices/authSlice'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
    const { isAuth } = useSelector((state) => state.auth)
@@ -133,12 +134,12 @@ const Header = () => {
          </FirstRow>
          <SecondRow>
             <ProjectLogos>
-               <CustomLink to="/">
+               <Link to="/">
                   <img src={logoMedCheck} alt="logo" />
-               </CustomLink>
-               <CustomLink to="/">
+               </Link>
+               <Link to="/">
                   <img src={iconMedCheck} alt="medCheck" />
-               </CustomLink>
+               </Link>
             </ProjectLogos>
             <NavigatePages>
                <CustomLinkStyle to="/about_clinic">О клинике</CustomLinkStyle>
