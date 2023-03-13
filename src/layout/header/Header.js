@@ -7,13 +7,20 @@ import iconPhoneNumber from '../../assets/icons/iconTelephone.svg'
 import iconInstagram from '../../assets/icons/whatsApp.svg'
 import iconTelegram from '../../assets/icons/instagram.svg'
 import iconWhatsApp from '../../assets/icons/telegram.svg'
-import iconMedCheck from '../../assets/icons/MedCheck.svg'
+import iconMedCheck from '../../assets/icons/medCheck.svg'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import subtract from '../../assets/icons/subtract.svg'
 import Button from '../../components/UI/Button'
 import CustomLink from '../../components/UI/Custom.Link'
+import { useDispatch, useSelector } from 'react-redux'
+import { postSignUp, removeUser } from '../../redux/slices/authSlice'
+import { useEffect } from 'react'
 
 const Header = () => {
+   const { isAuth } = useSelector((state) => state.auth)
+
+   const dispatch = useDispatch()
+
    const [anchorEl, setAnchorEl] = React.useState(null)
    const open = Boolean(anchorEl)
    const handleClick = (event) => {
@@ -22,6 +29,13 @@ const Header = () => {
    const handleClose = () => {
       setAnchorEl(null)
    }
+
+   useEffect(() => {
+      if (isAuth) {
+         dispatch(postSignUp())
+      }
+   }, [dispatch, postSignUp])
+
    return (
       <HeaderContainer>
          <FirstRow>
@@ -72,33 +86,56 @@ const Header = () => {
                   alt="subtract"
                />
 
-               <Menu
+               <Styledmenu
                   id="basic-menu"
                   anchorEl={anchorEl}
                   open={open}
+                  keepMounted
                   onClose={handleClose}
                   MenuListProps={{
                      'aria-labelledby': 'basic-button',
                   }}
                >
-                  <MenuItemStyled>
-                     <CustomLinkStyle onClick={handleClose} to="/sign_in">
-                        Войти
-                     </CustomLinkStyle>
-                  </MenuItemStyled>
-                  <MenuItemStyled>
-                     <CustomLinkStyle onClick={handleClose} to="/sign_up">
-                        Регистрация
-                     </CustomLinkStyle>
-                  </MenuItemStyled>
-               </Menu>
+                  {isAuth ? (
+                     <div>
+                        <MenuItemStyled>
+                           <div className="authorized">Мои записи</div>
+                        </MenuItemStyled>
+                        <MenuItemStyled>
+                           <div className="authorized">Профиль</div>
+                        </MenuItemStyled>
+                        <MenuItemStyled>
+                           <div
+                              className="authorized"
+                              onClick={() => dispatch(removeUser())}
+                           >
+                              Выйти
+                           </div>
+                        </MenuItemStyled>
+                     </div>
+                  ) : (
+                     <div>
+                        <MenuItemStyled>
+                           <CustomLinkStyle to="/sign_in">
+                              Войти
+                           </CustomLinkStyle>
+                        </MenuItemStyled>
+
+                        <MenuItemStyled>
+                           <CustomLinkStyle to="/sign_up">
+                              Регистрация
+                           </CustomLinkStyle>
+                        </MenuItemStyled>
+                     </div>
+                  )}
+               </Styledmenu>
             </InFirstRow5>
          </FirstRow>
          <SecondRow>
             <ProjectLogos>
-               <LinkToMain to="/">
+               <CustomLink to="/">
                   <img src={logoMedCheck} alt="logo" />
-               </LinkToMain>
+               </CustomLink>
                <CustomLink to="/">
                   <img src={iconMedCheck} alt="medCheck" />
                </CustomLink>
@@ -268,7 +305,12 @@ const InFirstRow5 = styled('div')(() => ({
 }))
 
 const MenuItemStyled = styled(MenuItem)(() => ({
-   color: 'green',
+   '& .authorized': {
+      color: 'black',
+   },
+   '& .authorized:hover': {
+      color: 'green',
+   },
 }))
 
 const CustomLinkStyle = styled(CustomLink)(() => ({
@@ -281,6 +323,11 @@ const CustomLinkStyle = styled(CustomLink)(() => ({
       color: '#027B44',
    },
 }))
-const LinkToMain = styled(CustomLink)(() => ({}))
+const Styledmenu = styled(Menu)(() => ({
+   '& .MuiMenuItem-root': {
+      color: '#000000',
+      transitionDuration: '0.3s',
+   },
+}))
 
 export default Header

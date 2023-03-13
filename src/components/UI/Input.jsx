@@ -28,7 +28,7 @@ const Input = forwardRef(
             id={id}
             value={value}
             maxLength={maxLength}
-            classes={{ error: 'Error' }}
+            classes={{ error: 'error' }}
             {...props}
          />
       )
@@ -50,7 +50,7 @@ const InputStyle = styled(InputBase)`
    align-items: center;
    border: 1px solid #d9d9d9;
    border-radius: 8px;
-   &.Error {
+   &.error {
       border: 1px solid red;
       color: red;
    }
