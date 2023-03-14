@@ -12,6 +12,8 @@ import Contacts from '../contacts/Contacts'
 import AdminLayout from '../layout/Admin.Layout'
 import PrivateRoute from '././private/Private.Route'
 import ApplicationsTable from '../components/crud/CrudTable'
+import TableForAppointment from '../components/AppointmentList/TableForAppointment'
+import ContinueAppointment from '../containers/ContinueAppointment'
 
 const AppRoutes = () => {
    return (
@@ -24,6 +26,11 @@ const AppRoutes = () => {
             <Route path={ROUTES.PRICE} element={<h1>price</h1>} />
             <Route path={ROUTES.CONTACTS} element={<Contacts />} />
             <Route path={ROUTES.FEEDBACKS} element={<h1>feedbacks</h1>} />
+            <Route path={ROUTES.USER} element={<TableForAppointment />} />
+            <Route
+               path={`${ROUTES.USER}/details`}
+               element={<ContinueAppointment />}
+            />
          </Route>
 
          <Route element={<AdminLayout />}>

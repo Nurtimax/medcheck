@@ -1,4 +1,5 @@
 import {
+   Container,
    Table,
    TableBody,
    TableCell,
@@ -8,10 +9,9 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/system'
 import React from 'react'
-import { tableNameDoctors, tableTitleDoctors } from '../../utils/constants/data'
-
+import { tableData } from '../../utils/constants/data'
+import CustomLink from '../UI/Custom.Link'
 const TableForAppointment = () => {
-   //console.log(tableTitleDoctors)
    const colors = {
       ['Подтверждён']: '#346EFB',
       ['Завершён']: '#07AB53',
@@ -19,45 +19,54 @@ const TableForAppointment = () => {
    }
 
    return (
-      <TableContainerStyle>
-         <Table>
-            <TableHead>
-               <TableRow>
-                  {tableTitleDoctors.map((title) => (
-                     <TableCellTitle key={title.id}>{title}</TableCellTitle>
-                  ))}
-               </TableRow>
-            </TableHead>
-            <TableBody>
-               {tableNameDoctors.map((data) => (
-                  <TableRow key={data.id}>
-                     <TableCell>
-                        <div>
-                           <div>{data.doctorInfo.photo}</div>
-                           <div className="name">{data.doctorInfo.name}</div>
-                           <div className="speciality">
-                              {data.doctorInfo.speciality}
-                           </div>
-                        </div>
-                     </TableCell>
-                     <TableCell>
-                        <div>
-                           <div className="date">{data.info.date}</div>
-                           <div className="time">{data.info.time}</div>
-                        </div>
-                     </TableCell>
-                     <TableCell>
-                        <div>
-                           <StatusText color={colors[data.statusInfo]}>
-                              {data.statusInfo}
-                           </StatusText>
-                        </div>
-                     </TableCell>
+      <Container>
+         <TableContainerStyle>
+            <Table>
+               <TableHead>
+                  <TableRow>
+                     {tableData.map((title) => (
+                        <TableCellTitle key={title.id}>
+                           {title.userInfo.head}
+                        </TableCellTitle>
+                     ))}
                   </TableRow>
-               ))}
-            </TableBody>
-         </Table>
-      </TableContainerStyle>
+               </TableHead>
+               <TableBody>
+                  {tableData.map((data) => (
+                     <TableRow key={data.id}>
+                        <TableCell>
+                           <div>
+                              <div>{data.userInfo.photo}</div>
+                              <CustomLink to="details">
+                                 <div className="name">
+                                    {data.userInfo.name}
+                                 </div>
+                              </CustomLink>
+
+                              <div className="speciality">
+                                 {data.userInfo.speciality}
+                              </div>
+                           </div>
+                        </TableCell>
+                        <TableCell>
+                           <div>
+                              <div className="date">{data.timetable}</div>
+                              <div className="time">{}</div>
+                           </div>
+                        </TableCell>
+                        <TableCell>
+                           <div>
+                              <StatusText color={colors[data.status]}>
+                                 {data.status}
+                              </StatusText>
+                           </div>
+                        </TableCell>
+                     </TableRow>
+                  ))}
+               </TableBody>
+            </Table>
+         </TableContainerStyle>
+      </Container>
    )
 }
 export default TableForAppointment

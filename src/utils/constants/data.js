@@ -1,4 +1,3 @@
-import { Switch } from '@mui/material'
 import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg'
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg'
 import { ReactComponent as DoctorIcon } from '../../assets/icons/doctorIcon.svg'
@@ -15,8 +14,9 @@ export const tableTitle = [
 export const tableData = [
    {
       number: 1,
-      status: <Switch color="success" />,
+      status: 'Отменён',
       userInfo: {
+         head: 'Выбор специалиста',
          photo: <DoctorIcon />,
          name: 'Манак Елена',
          speciality: 'Главный врач',
@@ -30,8 +30,9 @@ export const tableData = [
    },
    {
       number: 2,
-      status: <Switch color="success" />,
+      status: 'Подтверждён',
       userInfo: {
+         head: 'Дата и время',
          photo: <DoctorIcon />,
          name: 'Манак Елена',
          speciality: 'Главный врач',
@@ -45,8 +46,9 @@ export const tableData = [
    },
    {
       number: 3,
-      status: <Switch color="success" />,
+      status: 'Завершён',
       userInfo: {
+         head: 'Статус',
          photo: <DoctorIcon />,
          name: 'Манак Елена',
          speciality: 'Главный врач',
@@ -70,6 +72,7 @@ export const ROUTES = {
    PRICE: '/price',
    FEEDBACKS: '/feedbacks',
    CONTACTS: '/contacts',
+   USER: '/user',
    NOT_FOUND: '/*',
 }
 
