@@ -8,12 +8,12 @@ const AdminHeader = () => {
    return (
       <Header>
          <ProjectLogos>
-            <LinkToAdminMain to="/admin/online_entry">
+            <AdminLinkStyle to="/admin/online_entry">
                <img src={logoMedCheck} alt="logo" />
-            </LinkToAdminMain>
-            <LinkToAdminMain to="/admin/online_entry">
+            </AdminLinkStyle>
+            <AdminLinkStyle to="/admin/online_entry">
                <img src={medCheckIcon} alt="medCheck" />
-            </LinkToAdminMain>
+            </AdminLinkStyle>
          </ProjectLogos>
          <Record>
             <AdminLinkStyle to="/admin/online_entry">
@@ -35,6 +35,8 @@ const AdminHeader = () => {
    )
 }
 
+export default AdminHeader
+
 const Header = styled('header')(() => ({
    display: 'flex',
    backgroundColor: ' #ffffff',
@@ -48,13 +50,13 @@ const Header = styled('header')(() => ({
 const AdminLinkStyle = styled(AdminLink)(() => ({
    color: ' #707070',
    cursor: 'pointer',
+   textDecoration: 'none',
 
    '&:hover': {
       borderBottom: '2px solid #048741',
       color: '#222222',
    },
 }))
-const LinkToAdminMain = styled(AdminLink)(() => ({}))
 
 const Record = styled('div')(() => ({
    marginTop: '30px',
@@ -74,5 +76,3 @@ const Select = styled('select')(() => ({
    outline: 'none',
    cursor: 'pointer',
 }))
-
-export default AdminHeader
