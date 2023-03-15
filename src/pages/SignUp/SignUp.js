@@ -7,12 +7,8 @@ import Modal from '../../components/UI/Modal'
 import AuthWithGoogle from '../AuthWithGoogle/AuthWithGoogle'
 import { validationSchemaSignUp } from '../../utils/constants/validateSchema'
 import { useDispatch } from 'react-redux'
-import { postSignUp } from '../../redux/slices/authSlice'
+import { postSignUp, signInWithGoogle } from '../../redux/slices/authSlice'
 import AuthInput from '../../components/UI/AuthInput'
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import axiosInstance from '../../api/axiosInstance'
-import { auth } from '../../services/firebase'
-import { JWT_TOKEN } from '../../utils/constants/data'
 
 const SignUp = () => {
    const [open, setOpen] = useState(true)
@@ -47,22 +43,9 @@ const SignUp = () => {
    const { handleChange, errors, values, handleSubmit, resetForm, touched } =
       formik
 
-   const provider = new GoogleAuthProvider()
-
-   const signInWithGoogle = () => {
-      signInWithPopup(auth, provider)
-         .then((result) => {
-            const success = (data) => {
-               dispatch(postSignUp(data))
-               localStorage.setItem(JWT_TOKEN, JSON.stringify(data))
-               navigate('/')
-               return data
-            }
-            axiosInstance
-               .post(`/auth/auth/google?tokenFront=${result.user.accessToken}`)
-               .then(({ data }) => success(data))
-         })
-         .catch((error) => console.log(error))
+   const SignInWithGoogle = (data) => {
+      dispatch(signInWithGoogle(data))
+      navigate('/')
    }
 
    return (
@@ -145,7 +128,7 @@ const SignUp = () => {
                <div className="variantBorder"></div>
             </div>
 
-            <AuthWithGoogle handleClick={signInWithGoogle} />
+            <AuthWithGoogle handleClick={SignInWithGoogle} />
 
             <div className="existAccount">
                <p>У вас уже есть аккаунт?</p>

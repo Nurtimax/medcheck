@@ -9,11 +9,7 @@ import Modal from '../components/UI/Modal'
 import { useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { postSignIn, postSignUp } from '../redux/slices/authSlice'
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { JWT_TOKEN } from '../utils/constants/data'
-import axiosInstance from '../api/axiosInstance'
-import { auth } from '../services/firebase'
+import { postSignIn, signInWithGoogle } from '../redux/slices/authSlice'
 
 const LoginPage = () => {
    const [open, setOpen] = useState(true)
@@ -28,7 +24,7 @@ const LoginPage = () => {
 
    const userRole = () => {
       if (role === 'USER') navigate('/')
-      if (role === 'ADMIN') navigate('/admin/online_entry')
+      if (role === 'ADMIN') navigate('/admin')
    }
 
    const formik = useFormik({
@@ -49,23 +45,11 @@ const LoginPage = () => {
    const { handleChange, errors, values, handleSubmit, resetForm, touched } =
       formik
 
-   const provider = new GoogleAuthProvider()
-
-   const signInWithGoogle = () => {
-      signInWithPopup(auth, provider)
-         .then((result) => {
-            const success = (data) => {
-               dispatch(postSignUp(data))
-               localStorage.setItem(JWT_TOKEN, JSON.stringify(data))
-               navigate('/')
-               return data
-            }
-            axiosInstance
-               .post(`/auth/auth/google?tokenFront=${result.user.accessToken}`)
-               .then(({ data }) => success(data))
-         })
-         .catch((error) => console.log(error))
+   const SignInWithGoogle = (data) => {
+      dispatch(signInWithGoogle(data))
+      navigate('/')
    }
+
    return (
       <Modal
          className="modal"
@@ -113,7 +97,7 @@ const LoginPage = () => {
                <div className="variantBorder"></div>
             </div>
 
-            <AuthWithGoogle handleClick={signInWithGoogle} />
+            <AuthWithGoogle handleClick={SignInWithGoogle} />
 
             <div className="register">
                <p>Нет аккаунта?</p>

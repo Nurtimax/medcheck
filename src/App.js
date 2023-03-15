@@ -11,7 +11,7 @@ function App() {
    const autoLogin = useCallback(() => {
       const authUser = JSON.parse(localStorage.getItem(JWT_TOKEN))
 
-      if (authUser?.token) {
+      if (authUser) {
          dispatch(postSignUp(authUser))
       }
    }, [dispatch])

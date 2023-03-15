@@ -37,6 +37,8 @@ const Header = () => {
       }
    }, [dispatch, postSignUp])
 
+   const userProfileLogo = localStorage.getItem('USER_PHOTO')
+
    return (
       <HeaderContainer>
          <FirstRow>
@@ -78,13 +80,14 @@ const Header = () => {
 
             <InFirstRow5>
                <img
+                  className="profileLogo"
                   id="basic-button"
                   aria-controls={open ? 'basic-menu' : undefined}
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
-                  src={subtract}
-                  alt="subtract"
+                  src={isAuth ? userProfileLogo : subtract}
+                  alt="profLogo"
                />
 
                <Styledmenu
@@ -303,6 +306,12 @@ const GetResults = styled(Button)(() => ({
 
 const InFirstRow5 = styled('div')(() => ({
    cursor: 'pointer',
+
+   '& .profileLogo': {
+      width: '45px',
+      height: '45px',
+      borderRadius: '50%',
+   },
 }))
 
 const MenuItemStyled = styled(MenuItem)(() => ({

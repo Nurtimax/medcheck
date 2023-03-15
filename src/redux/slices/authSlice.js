@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import axiosInstance from '../../api/axiosInstance'
+import { auth } from '../../services/firebase'
 import { JWT_TOKEN } from '../../utils/constants/data'
 
 export const postSignUp = createAsyncThunk(
@@ -44,6 +46,32 @@ export const postSignIn = createAsyncThunk(
    }
 )
 
+const signInWithGooglePopup = () => {
+   const provider = new GoogleAuthProvider()
+   return signInWithPopup(auth, provider)
+}
+
+export const signInWithGoogle = createAsyncThunk(
+   'auth/signInWithGoogle',
+   async (_, { dispatch }) => {
+      try {
+         const result = await signInWithGooglePopup()
+         const response = await axiosInstance.post(
+            `/auth/auth/google?tokenFront=${result.user.accessToken}`
+         )
+         const userPhoto = result.user.photoURL
+         localStorage.setItem('USER_PHOTO', userPhoto)
+         const { email, token, roleName } = response.data
+         const userData = { email: token, roleName, token: email }
+         localStorage.setItem(JWT_TOKEN, JSON.stringify(email))
+         dispatch(postSignUp(userData))
+         return userData
+      } catch (error) {
+         throw new Error()
+      }
+   }
+)
+
 const initialState = {
    role: {
       user: null,
@@ -61,6 +89,7 @@ const authSlice = createSlice({
    reducers: {
       removeUser(state) {
          localStorage.removeItem('MED_CHECK_JWT_TOKEN')
+         localStorage.removeItem('USER_PHOTO')
          state.data = null
          state.isAuth = false
          state.userToken = null
@@ -101,6 +130,20 @@ const authSlice = createSlice({
          state.isAuth = true
       })
       builder.addCase(postSignUp.rejected, (state, action) => {
+         state.isError = action.payload
+      })
+
+      // ///////////////////////////////////////// auth with google
+
+      builder.addCase(signInWithGoogle.fulfilled, (state, action) => {
+         state.data = action.payload
+         state.isAuth = true
+         state.role = action.payload
+      })
+      builder.addCase(signInWithGoogle.pending, (state) => {
+         state.isAuth = true
+      })
+      builder.addCase(signInWithGoogle.rejected, (state, action) => {
          state.isError = action.payload
       })
    },
