@@ -7,7 +7,7 @@ import iconPhoneNumber from '../../assets/icons/iconTelephone.svg'
 import iconInstagram from '../../assets/icons/whatsApp.svg'
 import iconTelegram from '../../assets/icons/instagram.svg'
 import iconWhatsApp from '../../assets/icons/telegram.svg'
-import iconMedCheck from '../../assets/icons/medCheck.svg'
+import iconMedCheck from '../../assets/icons/MedCheck.svg'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import subtract from '../../assets/icons/subtract.svg'
 import Button from '../../components/UI/Button'
@@ -18,7 +18,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
-   const { isAuth } = useSelector((state) => state.auth)
+   const { isAuth, isGoogleAuth } = useSelector((state) => state.auth)
 
    const dispatch = useDispatch()
 
@@ -86,7 +86,7 @@ const Header = () => {
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
-                  src={isAuth ? userProfileLogo : subtract}
+                  src={isGoogleAuth ? userProfileLogo : subtract}
                   alt="profLogo"
                />
 
