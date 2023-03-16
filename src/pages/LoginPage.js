@@ -43,6 +43,9 @@ const LoginPage = () => {
                   userRole(data)
                   setCustomError(null)
                   resetForm()
+                  if (res.payload.roleName === 'ADMIN') {
+                     return navigate('/admin')
+                  }
                   return navigate('/')
                }
                return setCustomError('Что-то не так')
