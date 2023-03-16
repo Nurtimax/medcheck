@@ -1,17 +1,20 @@
-import { styled } from '@mui/material'
+import { styled, Typography } from '@mui/material'
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../components/UI/Button'
 import Modal from '../../components/UI/Modal'
 import AuthWithGoogle from '../AuthWithGoogle/AuthWithGoogle'
-import { validationSchemaSignUp } from '../../utils/constants/validateSchema'
 import { useDispatch } from 'react-redux'
 import { postSignUp, signInWithGoogle } from '../../redux/slices/authSlice'
 import AuthInput from '../../components/UI/AuthInput'
+import { SignInValidateHelper } from '../../utils/helpers/sign-in-validate-helper'
+import { useEffect } from 'react'
 
 const SignUp = () => {
    const [open, setOpen] = useState(true)
+   const [customError, setCustomError] = useState(null)
+   const [email, setEmail] = useState('')
 
    const dispatch = useDispatch()
 
@@ -20,6 +23,8 @@ const SignUp = () => {
    const closeModal = () => {
       setOpen(navigate('/'))
    }
+
+   const validationSchemaSignUp = SignInValidateHelper(email)
 
    const formik = useFormik({
       initialValues: {
@@ -34,9 +39,18 @@ const SignUp = () => {
       validationSchema: validationSchemaSignUp,
 
       onSubmit: (values) => {
-         dispatch(postSignUp({ ...values }))
-         navigate('/')
-         resetForm()
+         dispatch(postSignUp({ ...values }))?.then((res) => {
+            if (res?.meta?.requestStatus !== 'rejected') {
+               setCustomError(null)
+               return resetForm()
+            }
+            if (res?.payload?.message === '403 unauthorized') {
+               return setCustomError(
+                  'Вы можете подтвердить свою личность, а несанкционированный доступ будет заблокирован.'
+               )
+            }
+            return setCustomError(res?.payload?.message)
+         })
       },
    })
 
@@ -47,6 +61,10 @@ const SignUp = () => {
       dispatch(signInWithGoogle(data))
       navigate('/')
    }
+
+   useEffect(() => {
+      setEmail(values.email)
+   }, [values.email])
 
    return (
       <Modal marginTop="80px" open={open} closeModal={closeModal}>
@@ -117,6 +135,16 @@ const SignUp = () => {
                onChange={handleChange}
                touched={touched.repeatPassword}
             />
+
+            {customError && (
+               <Typography
+                  className="server_error"
+                  variant="body2"
+                  color="error"
+               >
+                  {customError}
+               </Typography>
+            )}
 
             <Button type="submit" className="button">
                создать аккаунт
@@ -194,6 +222,11 @@ const FormContainer = styled('form')(() => ({
       display: 'flex',
       alignItems: 'center',
       gap: '3px',
+   },
+   '& .server_error': {
+      margin: '0 auto',
+      padding: '3px',
+      width: '414px',
    },
 }))
 
