@@ -42,7 +42,11 @@ const SignUp = () => {
          dispatch(postSignUp({ ...values }))?.then((res) => {
             if (res?.meta?.requestStatus !== 'rejected') {
                setCustomError(null)
-               return resetForm()
+               resetForm()
+               if (res.payload.roleName === 'ADMIN') {
+                  return navigate('/admin')
+               }
+               return navigate('/')
             }
             if (res?.payload?.message === '403 unauthorized') {
                return setCustomError(
