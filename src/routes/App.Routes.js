@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import NotFound from '../components/Not.Found'
 import { ROUTES } from '../utils/constants/data'
 
+const TimeTable = React.lazy(() => import('../pages/time-table/TimeTable'))
 const AdminRoutes = React.lazy(() => import('./admin-routes/Admin.Routes'))
 const LoginPage = React.lazy(() => import('../pages/LoginPage'))
 const MainLayout = React.lazy(() => import('../layout/Main.Layout'))
@@ -55,6 +56,14 @@ const AppRoutes = () => {
                   }
                />
                <Route path={ROUTES.FEEDBACKS} element={<h1>feedbacks</h1>} />
+               <Route
+                  path="timetable"
+                  element={
+                     <Suspense fallback={<LazyLoading />}>
+                        <TimeTable />
+                     </Suspense>
+                  }
+               />
             </Route>
 
             <Route

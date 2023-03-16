@@ -15,7 +15,7 @@ const SwiperFeedbacks = () => {
    return (
       <SwiperStyled
          slidesPerView={2}
-         spaceBetween={20}
+         spaceBetween={86}
          centeredSlides={true}
          autoplay={{
             delay: 2500,

@@ -20,8 +20,12 @@ const MainLayout = () => {
 
 export default MainLayout
 
-const Main = styled('main')(() => ({}))
+const Main = styled('main')(() => ({
+   width: '100%',
+}))
 
 const Container = styled('main')(() => ({
    paddingTop: '250px',
+   maxWidth: '80%',
+   margin: '0 auto',
 }))

@@ -68,7 +68,6 @@ const ButtonStyle = styled(MuiButton)`
       align-items: center;
       padding: 14px 32px;
       border-radius: 10px;
-      font-family: '"Manrope" , sans-serif';
       font-style: normal;
       font-weight: 600;
       font-size: 12px;
