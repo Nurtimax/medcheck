@@ -73,14 +73,12 @@ export const signInWithGoogle = createAsyncThunk(
 )
 
 const initialState = {
-   role: {
-      user: null,
-      admin: null,
-   },
+   roleName: null,
    data: null,
    isAuth: false,
    isError: null,
    userToken: null,
+   isGoogleAuth: false,
 }
 
 const authSlice = createSlice({
@@ -93,10 +91,15 @@ const authSlice = createSlice({
          state.data = null
          state.isAuth = false
          state.userToken = null
-         state.role = null
+         state.roleName = null
       },
       setUser(state, action) {
          state.data = action.payload
+      },
+      autoLoginByLocalStorage: (state, action) => {
+         state.roleName = action.payload.roleName
+         state.userToken = action.payload.token
+         state.isAuth = true
       },
    },
    extraReducers: (builder) => {
@@ -105,10 +108,7 @@ const authSlice = createSlice({
       builder.addCase(postSignIn.fulfilled, (state, action) => {
          state.data = action.payload
          state.userToken = action.payload.token
-         state.role =
-            action.payload.roleName === 'ADMIN'
-               ? ({ ...state.role.admin } = action.payload.roleName)
-               : ({ ...state.role.user } = action.payload.roleName)
+         state.roleName = action.payload.roleName
          state.isAuth = true
       })
       builder.addCase(postSignIn.pending, (state) => {
@@ -124,7 +124,7 @@ const authSlice = createSlice({
       builder.addCase(postSignUp.fulfilled, (state, action) => {
          state.data = action.payload
          state.isAuth = true
-         state.role = action.payload
+         state.roleName = action.payload.roleName
       })
       builder.addCase(postSignUp.pending, (state) => {
          state.isAuth = true
@@ -137,8 +137,8 @@ const authSlice = createSlice({
 
       builder.addCase(signInWithGoogle.fulfilled, (state, action) => {
          state.data = action.payload
-         state.isAuth = true
-         state.role = action.payload
+         state.isGoogleAuth = true
+         state.roleName = action.payload.roleName
       })
       builder.addCase(signInWithGoogle.pending, (state) => {
          state.isAuth = true
@@ -149,6 +149,7 @@ const authSlice = createSlice({
    },
 })
 
-export const { removeUser, setUser } = authSlice.actions
+export const { removeUser, setUser, autoLoginByLocalStorage } =
+   authSlice.actions
 
 export default authSlice
