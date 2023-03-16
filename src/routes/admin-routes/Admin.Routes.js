@@ -2,17 +2,10 @@ import React, { Suspense } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { ADMIN_ROUTES } from '../../utils/constants/data'
 
+import LazyLoading from '../../components/UI/LodaingSpinner'
+import ApplicationsTable from '../../components/crud/CrudTable'
+
 const AdminLayout = React.lazy(() => import('../../layout/Admin.Layout'))
-const ApplicationsTable = React.lazy(() =>
-   import('../../components/crud/CrudTable').then((module) => ({
-      default: module.ApplicationsTable,
-   }))
-)
-const LazyLoading = React.lazy(() =>
-   import('../../components/UI/LodaingSpinner').then((module) => ({
-      default: module.LazyLoading,
-   }))
-)
 
 const AdminRoutes = () => {
    return (
