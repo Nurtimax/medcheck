@@ -56,7 +56,7 @@ const ForgotPassword = () => {
             <Button type="submit" className="button">
                ОТПРАВИТЬ
             </Button>
-            <Button type="submit" className="exit">
+            <Button type="button" className="exit">
                ОТМЕНИТЬ
             </Button>
          </FormContainer>
