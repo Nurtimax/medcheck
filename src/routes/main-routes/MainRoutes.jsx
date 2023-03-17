@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { ROUTES } from '../../utils/constants/data'
 
 const MainLayout = React.lazy(() => import('../../layout/Main.Layout'))
@@ -14,6 +15,12 @@ const LazyLoading = React.lazy(() => {
 })
 
 const MainRoutes = () => {
+   const { roleName } = useSelector((store) => store.auth)
+
+   if (roleName?.toLowerCase() === 'admin') {
+      return <Navigate to="/admin" />
+   }
+
    return (
       <>
          <Routes>
