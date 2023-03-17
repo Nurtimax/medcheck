@@ -109,7 +109,9 @@ const authSlice = createSlice({
          state.data = action.payload
          state.userToken = action.payload.token
          state.roleName = action.payload.roleName
-         state.isAuth = true
+         if (action.payload.token) {
+            state.isAuth = true
+         }
       })
       builder.addCase(postSignIn.pending, (state) => {
          state.isAuth = true
