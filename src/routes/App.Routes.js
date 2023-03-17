@@ -6,8 +6,7 @@ import { autoLoginByLocalStorage } from '../redux/slices/authSlice'
 import { JWT_TOKEN } from '../utils/constants/data'
 import MainRoutes from './main-routes/MainRoutes'
 import AdminRoutes from './admin-routes/Admin.Routes'
-
-// const LazyLoading = React.lazy(() => import('../components/UI/LodaingSpinner'))
+import PrivateRoute from './private/Private.Route'
 
 const authUser = JSON.parse(localStorage.getItem(JWT_TOKEN))
 
@@ -25,7 +24,16 @@ const AppRoutes = () => {
          <Routes>
             <Route path="/*" element={<MainRoutes />} />
 
-            <Route path="admin/*" element={<AdminRoutes />} />
+            <Route
+               path="admin/*"
+               element={
+                  <PrivateRoute
+                     Component={<AdminRoutes />}
+                     role={['admin']}
+                     fallbackPath="/"
+                  />
+               }
+            />
 
             <Route path="*" element={<NotFound />} />
          </Routes>
