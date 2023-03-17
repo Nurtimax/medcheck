@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import NotFound from '../components/Not.Found'
@@ -20,7 +20,7 @@ const AppRoutes = () => {
    }, [])
 
    return (
-      <>
+      <Suspense fallback={null}>
          <Routes>
             <Route path="/*" element={<MainRoutes />} />
 
@@ -37,7 +37,7 @@ const AppRoutes = () => {
 
             <Route path="*" element={<NotFound />} />
          </Routes>
-      </>
+      </Suspense>
    )
 }
 
