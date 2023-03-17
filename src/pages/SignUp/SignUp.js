@@ -7,7 +7,7 @@ import Modal from '../../components/UI/Modal'
 import AuthWithGoogle from '../AuthWithGoogle/AuthWithGoogle'
 import { validationSchemaSignUp } from '../../utils/constants/validateSchema'
 import { useDispatch } from 'react-redux'
-import { postSignUp } from '../../redux/slices/authSlice'
+import { postSignUp, signInWithGoogle } from '../../redux/slices/authSlice'
 import AuthInput from '../../components/UI/AuthInput'
 
 const SignUp = () => {
@@ -35,13 +35,18 @@ const SignUp = () => {
 
       onSubmit: (values) => {
          dispatch(postSignUp({ ...values }))
-         resetForm()
          navigate('/')
+         resetForm()
       },
    })
 
    const { handleChange, errors, values, handleSubmit, resetForm, touched } =
       formik
+
+   const SignInWithGoogle = (data) => {
+      dispatch(signInWithGoogle(data))
+      navigate('/')
+   }
 
    return (
       <Modal marginTop="80px" open={open} closeModal={closeModal}>
@@ -93,8 +98,7 @@ const SignUp = () => {
             />
 
             <AuthInput
-               autoComplete="current-password"
-               aria-invalid="false"
+               autoComplete="password"
                name="password"
                className="input"
                placeholder="Введите пароль"
@@ -104,8 +108,7 @@ const SignUp = () => {
                touched={touched.password}
             />
             <AuthInput
-               autoComplete="current-repeatPassword"
-               aria-invalid="false"
+               autoComplete="repeatPassword"
                name="repeatPassword"
                className="input"
                placeholder="Повторите пароль"
@@ -125,7 +128,7 @@ const SignUp = () => {
                <div className="variantBorder"></div>
             </div>
 
-            <AuthWithGoogle />
+            <AuthWithGoogle handleClick={SignInWithGoogle} />
 
             <div className="existAccount">
                <p>У вас уже есть аккаунт?</p>

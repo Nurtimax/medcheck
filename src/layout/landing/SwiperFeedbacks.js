@@ -15,7 +15,7 @@ const SwiperFeedbacks = () => {
    return (
       <SwiperStyled
          slidesPerView={2}
-         spaceBetween={20}
+         spaceBetween={200}
          centeredSlides={true}
          autoplay={{
             delay: 2500,
@@ -130,10 +130,8 @@ const SwiperStyled = styled(Swiper)(() => ({
 
    '& .swiper-button-next': {
       color: '#048741',
-
       width: '40px',
       height: '40px',
-
       position: 'absolute',
       top: '330px',
       right: '400px',
@@ -182,7 +180,6 @@ const SwiperStyled = styled(Swiper)(() => ({
 
 const SwiperSlideStyled = styled(SwiperSlide)(() => ({
    display: 'flex',
-
    cursor: 'pointer',
 
    '& .feedback': {
