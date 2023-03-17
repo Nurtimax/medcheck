@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
-const PrivateRoute = ({ Component, role = [], fallbackPath }) => {
+const PrivateRoute = ({ Component, role = [], fallbackPath = '/admin' }) => {
    const { isAuth, roleName } = useSelector((state) => state.auth)
 
    const checkRole = useMemo(() => {
