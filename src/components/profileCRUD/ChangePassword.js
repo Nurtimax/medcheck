@@ -22,8 +22,8 @@ const ChangePassword = () => {
       },
       validationSchema: Yup.object().shape({
          password: Yup.string()
-            .required('')
-            .min(7, 'must be at least 8 characters long'),
+            .required('Пожалуйста введите ваш пароль')
+            .min(7, 'Пароль должен быть не менее 7 символов!'),
       }),
    })
 

@@ -2,10 +2,10 @@ import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
 export default function ProtectedRoute({ element, roles }) {
-   const { role } = useSelector((state) => state.auth.user)
+   const { admin } = useSelector((state) => state.auth.role)
 
-   const isUserHasRole = role && roles.includes(role)
+   const isAdminHasRole = admin && roles.includes(admin)
 
-   if (!isUserHasRole) return <Navigate to="/" replace />
+   if (!isAdminHasRole) return <Navigate to="/" replace />
    return element
 }

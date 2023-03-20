@@ -51,10 +51,10 @@ function ProfileCrudContainer() {
 
    return (
       <Container>
-         <Typography className="data">
+         <div className="data">
             <Typography className="personalArea">{PersonalArea}</Typography>
             <span>Профиль</span>
-         </Typography>
+         </div>
          <h2>Профиль</h2>
          <Tabs
             value={value}
@@ -73,7 +73,6 @@ function ProfileCrudContainer() {
                {...a11yProps(1)}
             />
          </Tabs>
-
          <TabPanel value={value} index={0}>
             <ProfileCrud />
          </TabPanel>

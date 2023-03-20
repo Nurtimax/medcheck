@@ -3,17 +3,18 @@ import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import medCheckIcon from '../../assets/icons/medCheck.svg'
 import { styled } from '@mui/material'
 import AdminLink from '../../components/UI/Custom.Link'
+import { Link } from 'react-router-dom'
 
 const AdminHeader = () => {
    return (
       <Header>
          <ProjectLogos>
-            <LinkToAdminMain to="/admin/online_entry">
+            <Link className="logo" to="/admin/online_entry">
                <img src={logoMedCheck} alt="logo" />
-            </LinkToAdminMain>
-            <LinkToAdminMain to="/admin/online_entry">
+            </Link>
+            <Link className="logo" to="/admin/online_entry">
                <img src={medCheckIcon} alt="medCheck" />
-            </LinkToAdminMain>
+            </Link>
          </ProjectLogos>
          <Record>
             <AdminLinkStyle to="/admin/online_entry">
@@ -35,6 +36,8 @@ const AdminHeader = () => {
    )
 }
 
+export default AdminHeader
+
 const Header = styled('header')(() => ({
    display: 'flex',
    backgroundColor: ' #ffffff',
@@ -48,13 +51,12 @@ const Header = styled('header')(() => ({
 const AdminLinkStyle = styled(AdminLink)(() => ({
    color: ' #707070',
    cursor: 'pointer',
+   textDecoration: 'none',
 
    '&:hover': {
-      borderBottom: '2px solid #048741',
       color: '#222222',
    },
 }))
-const LinkToAdminMain = styled(AdminLink)(() => ({}))
 
 const Record = styled('div')(() => ({
    marginTop: '30px',
@@ -74,5 +76,3 @@ const Select = styled('select')(() => ({
    outline: 'none',
    cursor: 'pointer',
 }))
-
-export default AdminHeader

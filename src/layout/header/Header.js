@@ -12,8 +12,16 @@ import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import subtract from '../../assets/icons/subtract.svg'
 import Button from '../../components/UI/Button'
 import CustomLink from '../../components/UI/Custom.Link'
+import { useDispatch, useSelector } from 'react-redux'
+import { postSignUp, removeUser } from '../../redux/slices/authSlice'
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
+   const { isAuth } = useSelector((state) => state.auth)
+
+   const dispatch = useDispatch()
+
    const [anchorEl, setAnchorEl] = React.useState(null)
    const open = Boolean(anchorEl)
    const handleClick = (event) => {
@@ -22,6 +30,18 @@ const Header = () => {
    const handleClose = () => {
       setAnchorEl(null)
    }
+
+   useEffect(() => {
+      if (isAuth) {
+         dispatch(postSignUp())
+      }
+   }, [dispatch, postSignUp])
+
+   const userProfileLogo = localStorage.getItem('USER_PHOTO')
+
+   // const [searchParams, setSearchParams] = useSearchParams()
+   // const userProfile = searchParams.get('users')
+
    return (
       <HeaderContainer>
          <FirstRow>
@@ -63,45 +83,73 @@ const Header = () => {
 
             <InFirstRow5>
                <img
+                  className="profileLogo"
                   id="basic-button"
                   aria-controls={open ? 'basic-menu' : undefined}
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
-                  src={subtract}
-                  alt="subtract"
+                  src={isAuth ? userProfileLogo : subtract}
+                  alt="profLogo"
                />
 
-               <Menu
+               <Styledmenu
                   id="basic-menu"
                   anchorEl={anchorEl}
                   open={open}
+                  keepMounted
                   onClose={handleClose}
                   MenuListProps={{
                      'aria-labelledby': 'basic-button',
                   }}
                >
-                  <MenuItemStyled>
-                     <CustomLinkStyle onClick={handleClose} to="/sign_in">
-                        Войти
-                     </CustomLinkStyle>
-                  </MenuItemStyled>
-                  <MenuItemStyled>
-                     <CustomLinkStyle onClick={handleClose} to="/sign_up">
-                        Регистрация
-                     </CustomLinkStyle>
-                  </MenuItemStyled>
-               </Menu>
+                  {isAuth ? (
+                     <div>
+                        <MenuItemStyled>
+                           <Link className="authorized" to="/">
+                              Мои записи
+                           </Link>
+                        </MenuItemStyled>
+                        <MenuItemStyled>
+                           <Link className="authorized" to="user_profile">
+                              Профиль
+                           </Link>
+                        </MenuItemStyled>
+                        <MenuItemStyled>
+                           <div
+                              className="authorized"
+                              onClick={() => dispatch(removeUser())}
+                           >
+                              Выйти
+                           </div>
+                        </MenuItemStyled>
+                     </div>
+                  ) : (
+                     <div>
+                        <MenuItemStyled>
+                           <CustomLinkStyle to="/sign_in">
+                              Войти
+                           </CustomLinkStyle>
+                        </MenuItemStyled>
+
+                        <MenuItemStyled>
+                           <CustomLinkStyle to="/sign_up">
+                              Регистрация
+                           </CustomLinkStyle>
+                        </MenuItemStyled>
+                     </div>
+                  )}
+               </Styledmenu>
             </InFirstRow5>
          </FirstRow>
          <SecondRow>
             <ProjectLogos>
-               <CustomLink to="/">
+               <Link to="/">
                   <img src={logoMedCheck} alt="logo" />
-               </CustomLink>
-               <CustomLink to="/">
+               </Link>
+               <Link to="/">
                   <img src={iconMedCheck} alt="medCheck" />
-               </CustomLink>
+               </Link>
             </ProjectLogos>
             <NavigatePages>
                <CustomLinkStyle to="/about_clinic">О клинике</CustomLinkStyle>
@@ -265,10 +313,22 @@ const GetResults = styled(Button)(() => ({
 
 const InFirstRow5 = styled('div')(() => ({
    cursor: 'pointer',
+
+   '& .profileLogo': {
+      width: '45px',
+      height: '45px',
+      borderRadius: '50%',
+   },
 }))
 
 const MenuItemStyled = styled(MenuItem)(() => ({
-   color: 'green',
+   '& .authorized': {
+      color: 'black',
+      textDecoration: 'none',
+   },
+   '& .authorized:hover': {
+      color: 'green',
+   },
 }))
 
 const CustomLinkStyle = styled(CustomLink)(() => ({
@@ -279,6 +339,13 @@ const CustomLinkStyle = styled(CustomLink)(() => ({
 
    '&:hover': {
       color: '#027B44',
+   },
+}))
+
+const Styledmenu = styled(Menu)(() => ({
+   '& .MuiMenuItem-root': {
+      color: '#000000',
+      transitionDuration: '0.3s',
    },
 }))
 
