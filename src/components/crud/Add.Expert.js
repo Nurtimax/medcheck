@@ -1,16 +1,16 @@
 import Button from '../components/UI/Button'
-import ChangePhotoProfile from '../components/UI/ChangeFotoProfile'
-import TextEditor from '.././components/UI/TextEditor'
-import Input from '../components/UI/Input'
+import TextEditor from '../UI/TextEditor'
+import Input from '../UI/Input'
 import { useDispatch, useSelector } from 'react-redux'
+import { useFormik } from 'formik'
+import { useEffect } from 'react'
+import Select from '../UI/Select'
+import { styled } from '@mui/material'
 import {
    getExpertRequest,
    postExpertRequest,
-} from '../redux/slices/expertSlice'
-import { useFormik } from 'formik'
-import { useEffect } from 'react'
-import Select from './../components/UI/Select'
-import { styled } from '@mui/material'
+} from '../../redux/slices/expertSlice'
+
 const AddExperts = () => {
    const { experts } = useSelector((state) => state.addExpert)
    console.log(experts)
