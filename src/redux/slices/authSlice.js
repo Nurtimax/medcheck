@@ -154,7 +154,7 @@ const authSlice = createSlice({
    },
 })
 
-export const { setUser, autoLoginByLocalStorage, autoLoginData } =
+export const { setUser, autoLoginByLocalStorage, autoLoginData, removeUser } =
    authSlice.actions
 
 export default authSlice
