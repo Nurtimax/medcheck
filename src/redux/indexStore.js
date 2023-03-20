@@ -12,10 +12,12 @@ import {
    REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import expertSlice from './slices/expertSlice'
 
 const rootReducer = combineReducers({
    auth: authSlice.reducer,
    [applicationSlice.name]: applicationSlice.reducer,
+   addExpert: expertSlice.reducer,
 })
 
 const persistConfig = {

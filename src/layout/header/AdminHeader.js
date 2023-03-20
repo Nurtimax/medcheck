@@ -1,6 +1,6 @@
 import React from 'react'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
-import medCheckIcon from '../../assets/icons/MedCheck.svg'
+import medCheckIcon from '../../assets/icons/medCheck.svg'
 import { styled } from '@mui/material'
 import AdminLink from '../../components/UI/Custom.Link'
 import { Link } from 'react-router-dom'
