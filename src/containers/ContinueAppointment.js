@@ -1,13 +1,7 @@
-import React, { useEffect } from 'react'
 import { Container, Grid, styled } from '@mui/material'
 import Button from '../components/UI/Button'
-import { fetchUsers } from '../redux/slices/appointment-slice'
-import { useDispatch } from 'react-redux'
+//import { fetchUsers } from '../redux/slices/appointment-slice'
 const ContinueAppointment = () => {
-   const dispatch = useDispatch()
-   useEffect(() => {
-      dispatch(fetchUsers())
-   }, [])
    return (
       <Container>
          <Grid container spacing={2}>

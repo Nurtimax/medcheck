@@ -9,6 +9,9 @@ import {
 } from '@mui/material'
 import { styled } from '@mui/system'
 import React from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchUsers } from '../../redux/slices/appointment-slice'
 import { tableData } from '../../utils/constants/data'
 import CustomLink from '../UI/Custom.Link'
 const TableForAppointment = () => {
@@ -17,6 +20,15 @@ const TableForAppointment = () => {
       ['Завершён']: '#07AB53',
       ['Отменён']: '#F91515',
    }
+
+   const { applications } = useSelector((state) => state.applications)
+
+   console.log(applications)
+
+   const dispatch = useDispatch()
+   useEffect(() => {
+      dispatch(fetchUsers())
+   }, [])
 
    return (
       <Container>
@@ -32,12 +44,12 @@ const TableForAppointment = () => {
                   </TableRow>
                </TableHead>
                <TableBody>
-                  {tableData.map((data) => (
+                  {applications.map((data) => (
                      <TableRow key={data.id}>
                         <TableCell>
                            <div>
                               <div>{data.userInfo.photo}</div>
-                              <CustomLink to="details">
+                              <CustomLink to={`/user/${data.id}`}>
                                  <div className="name">
                                     {data.userInfo.name}
                                  </div>

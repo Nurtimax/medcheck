@@ -65,7 +65,7 @@ export const tableData = [
 export const ROUTES = {
    MAIN: '/main',
    SIGN_IN: '/sign_in',
-   SIGN_UP: '/sign_up',
+   SIGN_UP: 'sign_up',
    ABOUT_CLINIC: '/about_cLinic',
    SERVICES: '/services',
    DOCTORS: '/doctors',

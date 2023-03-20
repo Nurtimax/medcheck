@@ -18,7 +18,8 @@ const SignUp = () => {
    const navigate = useNavigate()
 
    const closeModal = () => {
-      setOpen(navigate('/'))
+      navigate('/')
+      setOpen(!open)
    }
 
    const formik = useFormik({

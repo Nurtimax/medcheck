@@ -3,14 +3,31 @@ import axiosInstance from '../../api/axiosInstance'
 
 const initialState = {
    data: [],
+   applications: [],
    status: null,
    error: null,
 }
 export const fetchUsers = createAsyncThunk(
-   'appointment/fetchUsers',
+   'appointmentSlice/getAppointments',
    async (_, { rejectWithValue }) => {
       try {
-         const response = await axiosInstance.get('/onlineEntry/myAppointments')
+         const response = await axiosInstance.get('onlineEntry/myAppointments')
+         console.log(response)
+         return response.data
+      } catch (error) {
+         if (rejectWithValue) {
+            return error
+         }
+         return error
+      }
+   }
+)
+
+export const fetchUsersId = createAsyncThunk(
+   'appointmentSlice/getIdAppointments',
+   async (_, { rejectWithValue }) => {
+      try {
+         const response = await axiosInstance.get('api/onlineEntry')
          console.log(response)
          return response.data
       } catch (error) {
@@ -40,5 +57,5 @@ const appointmentSlice = createSlice({
    },
 })
 
-export const appoinmentActions = appointmentSlice.actions
+export const appointmentActions = appointmentSlice.actions
 export default appointmentSlice

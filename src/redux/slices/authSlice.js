@@ -45,6 +45,9 @@ const authSlice = createSlice({
          state.userToken = null
          state.role = null
       },
+      autoLoginData: (state, action) => {
+         state.userToken = action.payload.token
+      },
    },
    extraReducers: (builder) => {
       builder.addCase(postSignUp.fulfilled, (state, action) => {
@@ -61,6 +64,6 @@ const authSlice = createSlice({
    },
 })
 
-export const { removeUser } = authSlice.actions
+export const { removeUser, autoLoginData } = authSlice.actions
 
 export default authSlice

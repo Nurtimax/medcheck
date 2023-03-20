@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { autoLoginData } from './redux/slices/authSlice'
 import { Navigate } from 'react-router-dom'
 import AdminLayout from './layout/Admin.Layout'
-import { postSignUp } from './redux/slices/authSlice'
 import AppRoutes from './routes/App.Routes'
 import { JWT_TOKEN } from './utils/constants/data'
 
@@ -16,7 +16,7 @@ function App() {
       const authUser = JSON.parse(localStorage.getItem(JWT_TOKEN))
 
       if (authUser?.token) {
-         dispatch(postSignUp(authUser))
+         dispatch(autoLoginData(authUser))
       }
    }, [dispatch])
 

@@ -4,9 +4,8 @@ import NotFound from '../components/Not.Found'
 import { ROUTES } from '../utils/constants/data'
 import AdminRoutes from './admin-routes/Admin.Routes'
 import LoginPage from './.././pages/LoginPage'
-import Modal from '../components/UI/Modal'
 import MainLayout from '../layout/Main.Layout'
-import LandingPageClient from '../layout/landingPageClient/LandingPageClient'
+// import LandingPageClient from '../layout/landingPageClient/LandingPageClient'
 import AboutClinicPage from '../pages/AboutClinic'
 import Contacts from '../contacts/Contacts'
 import AdminLayout from '../layout/Admin.Layout'
@@ -14,6 +13,8 @@ import PrivateRoute from '././private/Private.Route'
 import ApplicationsTable from '../components/crud/CrudTable'
 import TableForAppointment from '../components/AppointmentList/TableForAppointment'
 import ContinueAppointment from '../containers/ContinueAppointment'
+import LandingPageClient from './../layout/landing/LandingPage'
+import SignUp from '../pages/SignUp/SignUp'
 
 const AppRoutes = () => {
    return (
@@ -28,7 +29,7 @@ const AppRoutes = () => {
             <Route path={ROUTES.FEEDBACKS} element={<h1>feedbacks</h1>} />
             <Route path={ROUTES.USER} element={<TableForAppointment />} />
             <Route
-               path={`${ROUTES.USER}/details`}
+               path={`${ROUTES.USER}/:details`}
                element={<ContinueAppointment />}
             />
          </Route>
@@ -43,7 +44,7 @@ const AppRoutes = () => {
             <Route path="/application" element={<ApplicationsTable />} />
          </Route>
          <Route path={ROUTES.SIGN_IN} element={<LoginPage />} />
-         <Route path={ROUTES.SIGN_UP} element={<Modal />} />
+         <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
          <Route path="*" element={<NotFound />} />
       </Routes>
    )
