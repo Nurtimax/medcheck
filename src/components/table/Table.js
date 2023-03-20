@@ -11,30 +11,25 @@ import React from 'react'
 import TableItem from './Table.List'
 import { tableTitle } from '../../utils/constants/data'
 import { tableData } from '../../utils/constants/data'
-import Button from '../UI/Button'
 
 const Table = () => {
    return (
-      <Div>
-         <p></p>
-         <Button>Добавить</Button>
-         <TableContainerStyled>
-            <MuiTableStyle>
-               <TableHead>
-                  <TableRow>
-                     {tableTitle.map((title) => (
-                        <TableCellTitle key={title.id}>{title}</TableCellTitle>
-                     ))}
-                  </TableRow>
-               </TableHead>
-               <TableBody>
-                  {tableData.map((row) => (
-                     <TableItem key={row.id} row={row} />
+      <TableContainerStyled>
+         <MuiTableStyle>
+            <TableHead>
+               <TableRow>
+                  {tableTitle.map((title) => (
+                     <TableCellTitle key={title.id}>{title}</TableCellTitle>
                   ))}
-               </TableBody>
-            </MuiTableStyle>
-         </TableContainerStyled>
-      </Div>
+               </TableRow>
+            </TableHead>
+            <TableBody>
+               {tableData.map((row) => (
+                  <TableItem key={row.id} row={row} />
+               ))}
+            </TableBody>
+         </MuiTableStyle>
+      </TableContainerStyled>
    )
 }
 
@@ -58,8 +53,4 @@ const TableContainerStyled = styled(TableContainer)(() => ({
    width: '1200px',
    margin: '0 auto',
    background: '#FFFFFF',
-}))
-const Div = styled('div')(() => ({
-   background: '#E0E0E0',
-   height: '100%',
 }))

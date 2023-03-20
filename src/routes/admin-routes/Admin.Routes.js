@@ -4,7 +4,7 @@ import { ADMIN_ROUTES } from '../../utils/constants/data'
 
 import LazyLoading from '../../components/UI/LodaingSpinner'
 import ApplicationsTable from '../../components/crud/CrudTable'
-import Table from '../../components/table/Table'
+import ExpertsCrud from '../../components/crud/Expert.Crud'
 
 const AdminLayout = React.lazy(() => import('../../layout/Admin.Layout'))
 
@@ -35,7 +35,7 @@ const AdminRoutes = () => {
                   </Suspense>
                }
             />
-            <Route path={ADMIN_ROUTES.SPECIALITY} element={<Table />} />
+            <Route path={ADMIN_ROUTES.SPECIALITY} element={<ExpertsCrud />} />
             <Route path={ADMIN_ROUTES.PATIENTS} element={<p>PATIENTS</p>} />
          </Route>
       </Routes>
