@@ -7,7 +7,7 @@ const store = configureStore({
    reducer: {
       auth: authSlice.reducer,
       [applicationSlice.name]: applicationSlice.reducer,
-      appointment: appointmentSlice.reducer,
+      [appointmentSlice.name]: appointmentSlice.reducer,
    },
 })
 

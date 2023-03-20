@@ -1,12 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axiosInstance from '../../api/axiosInstance'
 
-const initialState = {
-   data: [],
-   applications: [],
-   status: null,
-   error: null,
-}
 export const fetchUsers = createAsyncThunk(
    'appointmentSlice/getAppointments',
    async (_, { rejectWithValue }) => {
@@ -25,7 +19,7 @@ export const fetchUsers = createAsyncThunk(
 
 export const fetchUsersId = createAsyncThunk(
    'appointmentSlice/getIdAppointments',
-   async (_, { rejectWithValue }) => {
+   async (id, { rejectWithValue }) => {
       try {
          const response = await axiosInstance.get('api/onlineEntry')
          console.log(response)
@@ -38,6 +32,12 @@ export const fetchUsersId = createAsyncThunk(
       }
    }
 )
+const initialState = {
+   data: [],
+   applications: [],
+   status: null,
+   error: null,
+}
 const appointmentSlice = createSlice({
    name: 'appointment',
    initialState,
