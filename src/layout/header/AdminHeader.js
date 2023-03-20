@@ -1,19 +1,20 @@
 import React from 'react'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
-import medCheckIcon from '../../assets/icons/medCheck.svg'
+import medCheckIcon from '../../assets/icons/MedCheck.svg'
 import { styled } from '@mui/material'
 import AdminLink from '../../components/UI/Custom.Link'
+import { Link } from 'react-router-dom'
 
 const AdminHeader = () => {
    return (
       <Header>
          <ProjectLogos>
-            <AdminLinkStyle to="/admin/online_entry">
+            <Link className="logo" to="/admin/online_entry">
                <img src={logoMedCheck} alt="logo" />
-            </AdminLinkStyle>
-            <AdminLinkStyle to="/admin/online_entry">
+            </Link>
+            <Link className="logo" to="/admin/online_entry">
                <img src={medCheckIcon} alt="medCheck" />
-            </AdminLinkStyle>
+            </Link>
          </ProjectLogos>
          <Record>
             <AdminLinkStyle to="/admin/online_entry">
@@ -53,7 +54,6 @@ const AdminLinkStyle = styled(AdminLink)(() => ({
    textDecoration: 'none',
 
    '&:hover': {
-      borderBottom: '2px solid #048741',
       color: '#222222',
    },
 }))

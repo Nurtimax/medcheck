@@ -78,11 +78,11 @@ export const ROUTES = {
 }
 
 export const ADMIN_ROUTES = {
-   ADMIN: '/admin',
-   ONLINE_ENTRY: '/online_entry',
-   APPLICATION: '/applications',
-   PATIENTS: '/patients',
-   SPECIALITY: '/speciality',
+   ADMIN: 'admin',
+   ONLINE_ENTRY: 'online_entry',
+   APPLICATION: 'applications',
+   PATIENTS: 'patients',
+   SPECIALITY: 'speciality',
 }
 
 export const BASE_URL =

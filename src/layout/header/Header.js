@@ -7,7 +7,7 @@ import iconPhoneNumber from '../../assets/icons/iconTelephone.svg'
 import iconInstagram from '../../assets/icons/whatsApp.svg'
 import iconTelegram from '../../assets/icons/instagram.svg'
 import iconWhatsApp from '../../assets/icons/telegram.svg'
-import iconMedCheck from '../../assets/icons/medCheck.svg'
+import iconMedCheck from '../../assets/icons/MedCheck.svg'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import subtract from '../../assets/icons/subtract.svg'
 import Button from '../../components/UI/Button'
@@ -15,9 +15,10 @@ import CustomLink from '../../components/UI/Custom.Link'
 import { useDispatch, useSelector } from 'react-redux'
 import { postSignUp, removeUser } from '../../redux/slices/authSlice'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
-   const { isAuth } = useSelector((state) => state.auth)
+   const { isAuth, isGoogleAuth } = useSelector((state) => state.auth)
 
    const dispatch = useDispatch()
 
@@ -35,6 +36,8 @@ const Header = () => {
          dispatch(postSignUp())
       }
    }, [dispatch, postSignUp])
+
+   const userProfileLogo = localStorage.getItem('USER_PHOTO')
 
    return (
       <HeaderContainer>
@@ -77,13 +80,14 @@ const Header = () => {
 
             <InFirstRow5>
                <img
+                  className="profileLogo"
                   id="basic-button"
                   aria-controls={open ? 'basic-menu' : undefined}
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
-                  src={subtract}
-                  alt="subtract"
+                  src={isGoogleAuth ? userProfileLogo : subtract}
+                  alt="profLogo"
                />
 
                <Styledmenu
@@ -133,12 +137,12 @@ const Header = () => {
          </FirstRow>
          <SecondRow>
             <ProjectLogos>
-               <CustomLink to="/">
+               <Link to="/">
                   <img src={logoMedCheck} alt="logo" />
-               </CustomLink>
-               <CustomLink to="/">
+               </Link>
+               <Link to="/">
                   <img src={iconMedCheck} alt="medCheck" />
-               </CustomLink>
+               </Link>
             </ProjectLogos>
             <NavigatePages>
                <CustomLinkStyle to="/about_clinic">О клинике</CustomLinkStyle>
@@ -302,6 +306,12 @@ const GetResults = styled(Button)(() => ({
 
 const InFirstRow5 = styled('div')(() => ({
    cursor: 'pointer',
+
+   '& .profileLogo': {
+      width: '45px',
+      height: '45px',
+      borderRadius: '50%',
+   },
 }))
 
 const MenuItemStyled = styled(MenuItem)(() => ({

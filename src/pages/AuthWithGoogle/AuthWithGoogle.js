@@ -3,14 +3,16 @@ import React from 'react'
 
 import google from '../../assets/icons/google.svg'
 
-const AuthWithGoogle = () => {
+const AuthWithGoogle = ({ handleClick }) => {
    return (
-      <AuthGoogleContainer>
+      <AuthGoogleContainer onClick={handleClick}>
          <img src={google} alt="google" />
          <div>Зарегистрироваться с Google</div>
       </AuthGoogleContainer>
    )
 }
+
+export default AuthWithGoogle
 
 const AuthGoogleContainer = styled('div')(() => ({
    display: 'flex',
@@ -30,4 +32,4 @@ const AuthGoogleContainer = styled('div')(() => ({
    },
 }))
 
-export default AuthWithGoogle
+// console.log(window.location.href)
