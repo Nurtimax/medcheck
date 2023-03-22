@@ -1,9 +1,12 @@
 import { Box, Container, styled, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { Arrow } from '../../assets'
 import Button from '../../components/UI/Button'
+import SwiperFeedbacks from '../../layout/landing/SwiperFeedbacks'
 import { getDoctorById } from '../../redux/slices/doctors-slice'
+import { infoDataDoctor } from '../../utils/constants/doctors'
 
 const DoctorsItem = () => {
    const { dataById } = useSelector((state) => state.doctors)
@@ -12,96 +15,166 @@ const DoctorsItem = () => {
 
    const dispatch = useDispatch()
 
+   const { text1, text2, text3, text4 } = infoDataDoctor
+
    useEffect(() => {
       dispatch(getDoctorById(expertId))
    }, [])
 
    return (
-      <MainContainer>
-         <Typography className="name">
-            {dataById.expertFirstName} {dataById.expertLastName}
-         </Typography>
+      <>
+         <MainContainer>
+            <Typography className="name">
+               {dataById.expertFirstName} {dataById.expertLastName}
+            </Typography>
 
-         <Box className="text-box">
-            <p>
-               Попасть в команду медицинской клиники «Medical Clinic» могут
-               <br />
-               только лучшие специалисты с многолетней практикой и доказанным
-               опытом.
-            </p>
-
-            <p>
-               Мы развиваемся, учимся и оттачиваем мастерство, стажируемся в
-               ведущих университетах <br /> Европы, чтобы еще на шаг стать ближе
-               к совершенству.
-            </p>
-         </Box>
-
-         <Box className="portfolio">
-            <img
-               className="doctor-image"
-               src="https://avatars.cloudflare.steamstatic.com/bbc8afe5cddc3fc79439e35cc97bdaa663e85b71_full.jpg"
-               alt="photo"
-            />
-
-            <Box className="doctor-data">
+            <Box className="text-box">
                <p>
-                  {dataById.expertFirstName} {dataById.expertLastName}
+                  Попасть в команду медицинской клиники «Medical Clinic» могут
+                  <br />
+                  только лучшие специалисты с многолетней практикой и доказанным
+                  опытом.
                </p>
 
-               <Box className="data">
-                  <Box>
-                     <div>Отделение:</div>
-                     <div>{dataById.expertPosition}</div>
+               <p>
+                  Мы развиваемся, учимся и оттачиваем мастерство, стажируемся в
+                  ведущих университетах <br /> Европы, чтобы еще на шаг стать
+                  ближе к совершенству.
+               </p>
+            </Box>
+
+            <Box className="portfolio">
+               <img
+                  className="doctor-image"
+                  src="https://avatars.cloudflare.steamstatic.com/bbc8afe5cddc3fc79439e35cc97bdaa663e85b71_full.jpg"
+                  alt="photo"
+               />
+
+               <Box className="doctor-data">
+                  <p>
+                     {dataById.expertFirstName} {dataById.expertLastName}
+                  </p>
+
+                  <Box className="data">
+                     <Box>
+                        <div>Отделение:</div>
+                        <div>{dataById.expertPosition}</div>
+                     </Box>
+
+                     <Box>
+                        <div>Должность:</div>
+                        <div>Главный врач</div>
+                     </Box>
                   </Box>
 
-                  <Box>
-                     <div>Должность:</div>
-                     <div>Главный врач</div>
-                  </Box>
+                  <StyledButton>Записаться на прием</StyledButton>
+               </Box>
+            </Box>
+
+            <Box className="information">
+               <Box>
+                  <Typography className="data-info-title">
+                     Преимущественно эстетическая хирургия лица:
+                  </Typography>
+
+                  <ul>
+                     {text1.map((text) => (
+                        <li key={text}>{text}</li>
+                     ))}
+                  </ul>
                </Box>
 
-               <StyledButton>Записаться на прием</StyledButton>
-            </Box>
-         </Box>
+               <Box>
+                  <Typography className="data-info-title">
+                     Специализация доктора:
+                  </Typography>
 
-         <Box className="information">
-            <Box>
-               <Typography className="data-info-title">
-                  Преимущественно эстетическая хирургия лица:
-               </Typography>
+                  <div>
+                     {text2.map((text) => (
+                        <div key={text}>{text}</div>
+                     ))}
+                  </div>
+               </Box>
+
+               <Box>
+                  <Typography className="data-info-title">
+                     Основное образование:
+                  </Typography>
+
+                  <div>
+                     {text3.map((text) => (
+                        <div key={text}>{text}</div>
+                     ))}
+                  </div>
+               </Box>
+
+               <Box>
+                  <Typography className="data-info-title">
+                     Участие в конференциях:
+                  </Typography>
+
+                  <div>
+                     {text4.map((text) => (
+                        <div key={text}>{text}</div>
+                     ))}
+                  </div>
+               </Box>
             </Box>
 
-            <Box>
-               <Typography className="data-info-title">
-                  Специализация доктора:
-               </Typography>
-            </Box>
+            <Typography className="list">
+               <Arrow />
+               <Link to="/doctors">Список сотрудников</Link>
+            </Typography>
 
-            <Box>
-               <Typography className="data-info-title">
-                  Основное образование:
-               </Typography>
-            </Box>
+            <Typography className="feedback">Отзывы наших</Typography>
+         </MainContainer>
 
-            <Box>
-               <Typography className="data-info-title">
-                  Участие в конференциях:
-               </Typography>
-            </Box>
-         </Box>
-      </MainContainer>
+         <Swiper>
+            <SwiperFeedbacks />
+         </Swiper>
+      </>
    )
 }
 
 export default DoctorsItem
 
-const MainContainer = styled(Container)(() => ({
+const Swiper = styled(Box)(() => ({
    padding: '0 0 120px',
+}))
+
+const MainContainer = styled(Container)(() => ({
    fontFamily: 'Manrope',
    fontWeight: '400',
    fontSize: '18px',
    color: '#4D4E51',
+
+   '& .list': {
+      padding: '40px 0 120px',
+      fontWeight: '500',
+      fontSize: '16px',
+      color: '#048741',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '5px',
+
+      '& a': {
+         fontWeight: '500',
+         fontSize: '16px',
+         color: '#048741',
+         textDecoration: 'none',
+      },
+   },
+
+   '& .feedback': {
+      fontWeight: '600',
+      fontSize: '36px',
+      color: 'black',
+
+      '&:after': {
+         content: '" пациентов"',
+         color: '#048741',
+      },
+   },
 
    '& .name': {
       fontWeight: '600',

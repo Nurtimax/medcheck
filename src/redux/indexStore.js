@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import applicationSlice from './slices/crudSlice'
 import authSlice from './slices/authSlice'
+
 import {
    persistStore,
    persistReducer,
@@ -13,11 +14,12 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import { doctorsExperts } from './slices/doctors-slice'
+import profileSlice from './slices/profileSlice'
 
 const rootReducer = combineReducers({
    auth: authSlice.reducer,
    doctors: doctorsExperts.reducer,
-
+   profCrudUser: profileSlice.reducer,
    [applicationSlice.name]: applicationSlice.reducer,
 })
 

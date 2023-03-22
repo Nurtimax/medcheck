@@ -3,7 +3,10 @@ import { useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Doctors from '../../containers/doctors/Doctors'
 import DoctorsItem from '../../containers/doctors/DoctorsItem'
+import ChangePassword from '../../components/profileCRUD/ChangePassword'
 import { ROUTES } from '../../utils/constants/data'
+import ProfileCrud from '../../components/profileCRUD/ProfileCrud'
+import UserProfile from '../../pages/user-profile/UserProfile'
 
 const MainLayout = React.lazy(() => import('../../layout/Main.Layout'))
 const LoginPage = React.lazy(() => import('../../pages/LoginPage'))
@@ -14,6 +17,12 @@ const Contacts = React.lazy(() => import('../../contacts/Contacts'))
 const LandingPage = React.lazy(() => import('../../layout/landing/LandingPage'))
 const LazyLoading = React.lazy(() => {
    return import('../../components/UI/LodaingSpinner')
+})
+// const UserInfo = React.lazy(() => {
+//    return import('../../components/profileCRUD/UserInfo')
+// })
+const UserRecords = React.lazy(() => {
+   return import('../../components/UI/UserRecords')
 })
 
 const MainRoutes = () => {
@@ -42,6 +51,16 @@ const MainRoutes = () => {
                      </Suspense>
                   }
                />
+
+               <Route
+                  path={ROUTES.USER_RECORDS}
+                  element={
+                     <Suspense fallback={<LazyLoading />}>
+                        <UserRecords />
+                     </Suspense>
+                  }
+               />
+
                <Route
                   path={ROUTES.ABOUT_CLINIC}
                   element={
@@ -94,6 +113,20 @@ const MainRoutes = () => {
                      </Suspense>
                   }
                />
+               <Route path="user_profile" element={<UserProfile />}>
+                  <Route
+                     path="personal_data"
+                     element={
+                        <Suspense fallback={<LazyLoading />}>
+                           <ProfileCrud />
+                        </Suspense>
+                     }
+                  />
+                  <Route
+                     path="change_password/:id"
+                     element={<ChangePassword />}
+                  />
+               </Route>
             </Route>
          </Routes>
       </>
