@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import Doctors from '../../containers/doctors/Doctors'
+import DoctorsItem from '../../containers/doctors/DoctorsItem'
 import { ROUTES } from '../../utils/constants/data'
 
 const MainLayout = React.lazy(() => import('../../layout/Main.Layout'))
@@ -49,7 +51,13 @@ const MainRoutes = () => {
                   }
                />
                <Route path={ROUTES.SERVICES} element={<h1>services</h1>} />
-               <Route path={ROUTES.DOCTORS} element={<h1>doctors</h1>} />
+               <Route path={ROUTES.DOCTORS} element={<Doctors />} />
+
+               <Route
+                  path={`${ROUTES.DOCTORS}/:expertId`}
+                  element={<DoctorsItem />}
+               />
+
                <Route path={ROUTES.PRICE} element={<h1>price</h1>} />
                <Route
                   path={ROUTES.CONTACTS}

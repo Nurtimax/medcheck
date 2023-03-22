@@ -12,9 +12,12 @@ import {
    REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { doctorsExperts } from './slices/doctors-slice'
 
 const rootReducer = combineReducers({
    auth: authSlice.reducer,
+   doctors: doctorsExperts.reducer,
+
    [applicationSlice.name]: applicationSlice.reducer,
 })
 
