@@ -26,217 +26,221 @@ import doctors3 from '../../assets/images/doctors3.jpg'
 
 import RequestsClient from './RequestsClient'
 import SwiperFeedbacks from './SwiperFeedbacks'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import CustomLink from '../../components/UI/Custom.Link'
 import { ROUTES } from '../../utils/constants/data'
 
 const LandingPage = () => {
+   const navigate = useNavigate()
+
+   const leaveRequest = () => {
+      navigate('/userRecords')
+   }
+
    return (
-      <>
-         <Main>
-            <StyledWelcome>
-               <WelcomeClient>
-                  <TypographyWelcome>
-                     Добро пожаловать в клинику MedCheck
-                  </TypographyWelcome>
-                  <TypographyAbout>
-                     Международный Медицинская клиника «MedCheck — это клиника,
-                     в которой применяются новейшие диагностические и лечебные
-                     технологии и ведут прием лучшие специалисты.
-                  </TypographyAbout>
+      <Main>
+         <StyledWelcome>
+            <WelcomeClient>
+               <TypographyWelcome>
+                  Добро пожаловать в клинику MedCheck
+               </TypographyWelcome>
+               <TypographyAbout>
+                  Международный Медицинская клиника «MedCheck — это клиника, в
+                  которой применяются новейшие диагностические и лечебные
+                  технологии и ведут прием лучшие специалисты.
+               </TypographyAbout>
 
-                  <ButtonRecord>оставьте заявку</ButtonRecord>
-               </WelcomeClient>
-               <ImgStyledWelcome>
-                  <img src={imgToWelcome} alt="imgToWelcome" />
-               </ImgStyledWelcome>
-            </StyledWelcome>
+               <ButtonRecord onClick={leaveRequest}>
+                  оставьте заявку
+               </ButtonRecord>
+            </WelcomeClient>
+            <ImgStyledWelcome>
+               <img src={imgToWelcome} alt="imgToWelcome" />
+            </ImgStyledWelcome>
+         </StyledWelcome>
 
-            <ChooseOurMedCheck>
-               Почему <span>нас выбирают?</span>
-            </ChooseOurMedCheck>
+         <ChooseOurMedCheck>
+            Почему <span>нас выбирают?</span>
+         </ChooseOurMedCheck>
 
-            <ChooseContainer>
+         <ChooseContainer>
+            <div>
+               <p className="number">1</p>
+               <p className="title">Высокий профессионализм сотрудников</p>
+               <p className="text">
+                  Медицинская лицензия, большой опыт врачей и постоянное
+                  повышение квалификации.
+               </p>
+            </div>
+            <div>
+               <p className="number">2</p>
+               <p className="title">Наши пациенты - наши лучшие друзья</p>
+               <p className="text">
+                  Все аппараты и медицинские препараты сертифицированы и
+                  лицензированы.
+               </p>
+            </div>
+            <div>
+               <p className="number">3</p>
+               <p className="title">Комфортные условия</p>
+               <p className="text">
+                  Уютная обстановка и отзывчивый персонал сделают поход в
+                  клинику максимально приятным.
+               </p>
+            </div>
+         </ChooseContainer>
+
+         <OurServices>
+            Наши <span>услуги</span>
+         </OurServices>
+
+         <ForAllTimesApplication>
+            За все время работы клиника приняла более 1 млн. пациентов.
+         </ForAllTimesApplication>
+
+         <Services>
+            <div>
+               <div className="containerWithImg">
+                  <img src={vaccination} alt="vaccination" />
+               </div>
+               <p className="text">Вакцинация</p>
+            </div>
+            <div>
+               <div className="containerWithImg">
+                  <img src={cardiology} alt="cardiology" />
+               </div>
+               <p className="text">Кардиология</p>
+            </div>
+            <div>
+               <div className="containerWithImg">
+                  <img src={neurology} alt="neurology" />
+               </div>
+               <p className="text">Неврология</p>
+            </div>
+            <div>
+               <div className="containerWithImg">
+                  <img src={dermatology} alt="dermatology" />
+               </div>
+               <p className="text">Дерматология</p>
+            </div>
+            <div>
+               <div className="containerWithImg">
+                  <img src={ophthalmology} alt="ophthalmology" />
+               </div>
+               <p className="text">Офтальмология</p>
+            </div>
+            <div>
+               <div className="containerWithImg">
+                  <img src={therapy} alt="therapy" />
+               </div>
+               <p className="text">Терапия</p>
+            </div>
+            <div>
+               <div className="containerWithImg">
+                  <img src={fizioterapiya} alt="fizioterapiya" />
+               </div>
+               <p className="text">Физиотерапия</p>
+            </div>
+            <div>
+               <div className="containerWithImg">
+                  <img src={onkologiya} alt="onkologiya" />
+               </div>
+               <p className="text">Онкология</p>
+            </div>
+            <div>
+               <div className="containerWithImg">
+                  <img src={urologiya} alt="urologiya" />
+               </div>
+               <p className="text">Урология</p>
+            </div>
+         </Services>
+
+         <LinkToServices to="/services">
+            <LookAll>Смотреть все</LookAll>
+         </LinkToServices>
+
+         <AboutOurClinic>
+            О нашей клинике <span>“MedCheck”</span>
+         </AboutOurClinic>
+
+         <AboutClinic>
+            <div className="textContent">
+               <p>
+                  Вся наша команда готова обеспечить вам медицинский уход и
+                  заботу на самом высоком уровне. Наша главная задача — оказать
+                  Вам теплый прием и обеспечить самый лучший медицинский уход. У
+                  нас Вы в хороших руках! В нашей клинике используются только
+                  качественные материалы и проверенные технологии. Для каждого
+                  клиента специалисты нашей клиники разработают индивидуальный
+                  план лечения, подробно рассказывая о каждом этапе.
+               </p>
+               <p>
+                  Доброжелательность и уважительное отношение к пациентам, не
+                  только материальная, но и моральная ответственность за
+                  результаты лечения — все это взято за основу политики Medical
+                  Clinic. Профессионализм и высокое качество оказываемых услуг
+                  помогают нам привлечь пациентов которые рекомендуют нас своим
+                  родным и близким.
+               </p>
+               <p>
+                  Уже 20 лет мы работаем на уровне лучших мировых стандартов,
+                  внедряя и развивая передовые методы лечения для сохранения
+                  здоровья наших пациентов.
+               </p>
+
+               <div className="readMore">
+                  <CustomLink to={ROUTES.ABOUT_CLINIC}>
+                     Читать подробнее о клинике
+                  </CustomLink>
+
+                  <img src={next} alt="nextIcon" />
+               </div>
+            </div>
+            <ImgStyles>
                <div>
-                  <p className="number">1</p>
-                  <p className="title">Высокий профессионализм сотрудников</p>
-                  <p className="text">
-                     Медицинская лицензия, большой опыт врачей и постоянное
-                     повышение квалификации.
-                  </p>
+                  <img src={clinic} alt="" />
                </div>
-               <div>
-                  <p className="number">2</p>
-                  <p className="title">Наши пациенты - наши лучшие друзья</p>
-                  <p className="text">
-                     Все аппараты и медицинские препараты сертифицированы и
-                     лицензированы.
-                  </p>
-               </div>
-               <div>
-                  <p className="number">3</p>
-                  <p className="title">Комфортные условия</p>
-                  <p className="text">
-                     Уютная обстановка и отзывчивый персонал сделают поход в
-                     клинику максимально приятным.
-                  </p>
-               </div>
-            </ChooseContainer>
 
-            <OurServices>
-               Наши <span>услуги</span>
-            </OurServices>
+               <img src={doctors1} alt="doctors1" />
+               <img src={doctors2} alt="doctors2" />
+               <img src={doctors3} alt="doctors3" />
+            </ImgStyles>
+         </AboutClinic>
 
-            <ForAllTimesApplication>
-               За все время работы клиника приняла более 1 млн. пациентов.
-            </ForAllTimesApplication>
+         <BestDoctors>
+            Лучшие <span>врачи</span>
+            <BestDoctorsText>
+               Попасть в команду медицинской клиники «MedCheck» могут только
+               лучшие специалисты с многолетней практикой и доказанным опытом.
+            </BestDoctorsText>
+         </BestDoctors>
 
-            <Services>
-               <div>
-                  <div className="containerWithImg">
-                     <img src={vaccination} alt="vaccination" />
-                  </div>
-                  <p className="text">Вакцинация</p>
-               </div>
-               <div>
-                  <div className="containerWithImg">
-                     <img src={cardiology} alt="cardiology" />
-                  </div>
-                  <p className="text">Кардиология</p>
-               </div>
-               <div>
-                  <div className="containerWithImg">
-                     <img src={neurology} alt="neurology" />
-                  </div>
-                  <p className="text">Неврология</p>
-               </div>
-               <div>
-                  <div className="containerWithImg">
-                     <img src={dermatology} alt="dermatology" />
-                  </div>
-                  <p className="text">Дерматология</p>
-               </div>
-               <div>
-                  <div className="containerWithImg">
-                     <img src={ophthalmology} alt="ophthalmology" />
-                  </div>
-                  <p className="text">Офтальмология</p>
-               </div>
-               <div>
-                  <div className="containerWithImg">
-                     <img src={therapy} alt="therapy" />
-                  </div>
-                  <p className="text">Терапия</p>
-               </div>
-               <div>
-                  <div className="containerWithImg">
-                     <img src={fizioterapiya} alt="fizioterapiya" />
-                  </div>
-                  <p className="text">Физиотерапия</p>
-               </div>
-               <div>
-                  <div className="containerWithImg">
-                     <img src={onkologiya} alt="onkologiya" />
-                  </div>
-                  <p className="text">Онкология</p>
-               </div>
-               <div>
-                  <div className="containerWithImg">
-                     <img src={urologiya} alt="urologiya" />
-                  </div>
-                  <p className="text">Урология</p>
-               </div>
-            </Services>
-
-            <LinkToServices to="/services">
-               <LookAll>Смотреть все</LookAll>
-            </LinkToServices>
-
-            <AboutOurClinic>
-               О нашей клинике <span>“MedCheck”</span>
-            </AboutOurClinic>
-
-            <AboutClinic>
-               <div className="textContent">
-                  <p>
-                     Вся наша команда готова обеспечить вам медицинский уход и
-                     заботу на самом высоком уровне. Наша главная задача —
-                     оказать Вам теплый прием и обеспечить самый лучший
-                     медицинский уход. У нас Вы в хороших руках! В нашей клинике
-                     используются только качественные материалы и проверенные
-                     технологии. Для каждого клиента специалисты нашей клиники
-                     разработают индивидуальный план лечения, подробно
-                     рассказывая о каждом этапе.
-                  </p>
-                  <p>
-                     Доброжелательность и уважительное отношение к пациентам, не
-                     только материальная, но и моральная ответственность за
-                     результаты лечения — все это взято за основу политики
-                     Medical Clinic. Профессионализм и высокое качество
-                     оказываемых услуг помогают нам привлечь пациентов которые
-                     рекомендуют нас своим родным и близким.
-                  </p>
-                  <p>
-                     Уже 20 лет мы работаем на уровне лучших мировых стандартов,
-                     внедряя и развивая передовые методы лечения для сохранения
-                     здоровья наших пациентов.
-                  </p>
-
-                  <div className="readMore">
-                     <CustomLink to={ROUTES.ABOUT_CLINIC}>
-                        Читать подробнее о клинике
-                     </CustomLink>
-
-                     <img src={next} alt="nextIcon" />
-                  </div>
-               </div>
-               <ImgStyles>
-                  <div>
-                     <img src={clinic} alt="" />
-                  </div>
-
-                  <img src={doctors1} alt="doctors1" />
-                  <img src={doctors2} alt="doctors2" />
-                  <img src={doctors3} alt="doctors3" />
-               </ImgStyles>
-            </AboutClinic>
-
-            <BestDoctors>
-               Лучшие <span>врачи</span>
-               <BestDoctorsText>
-                  Попасть в команду медицинской клиники «MedCheck» могут только
-                  лучшие специалисты с многолетней практикой и доказанным
-                  опытом.
-               </BestDoctorsText>
-            </BestDoctors>
-
-            <Doctors>
-               {doctors.map((doctor) => {
-                  return (
-                     <div key={doctor.id}>
-                        <div className="images">
-                           <img src={doctor.image} alt="image" />
-                        </div>
-                        <p className="doctorName">{doctor.name}</p>
-                        <p className="doctorSpecialist">{doctor.specialist}</p>
+         <Doctors>
+            {doctors.map((doctor) => {
+               return (
+                  <div key={doctor.id}>
+                     <div className="images">
+                        <img src={doctor.image} alt="image" />
                      </div>
-                  )
-               })}
-            </Doctors>
+                     <p className="doctorName">{doctor.name}</p>
+                     <p className="doctorSpecialist">{doctor.specialist}</p>
+                  </div>
+               )
+            })}
+         </Doctors>
 
-            <LinkAllDoctorsContainer to="/doctors">
-               <AllDoctors>Все врачи клиники</AllDoctors>
-            </LinkAllDoctorsContainer>
+         <LinkAllDoctorsContainer to="/doctors">
+            <AllDoctors>Все врачи клиники</AllDoctors>
+         </LinkAllDoctorsContainer>
 
-            <Feedbacks>
-               Отзывы наших <span>пациентов</span>
-            </Feedbacks>
+         <Feedbacks>
+            Отзывы наших <span>пациентов</span>
+         </Feedbacks>
 
-            <SwiperFeedbacks />
+         <SwiperFeedbacks />
 
-            <RequestsClient />
-         </Main>
-      </>
+         <RequestsClient />
+      </Main>
    )
 }
 

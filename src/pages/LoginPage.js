@@ -1,4 +1,4 @@
-import { styled } from '@mui/material'
+import { styled, Typography } from '@mui/material'
 import { validateSchemaSignIn } from '../utils/constants/validateSchema'
 import Button from '../components/UI/Button'
 import { useFormik } from 'formik'
@@ -13,6 +13,7 @@ import { postSignIn, signInWithGoogle } from '../redux/slices/authSlice'
 
 const LoginPage = () => {
    const [open, setOpen] = useState(true)
+   const [customError, setCustomError] = useState(null)
 
    const navigate = useNavigate()
    const { role } = useSelector((state) => state.auth)
@@ -36,9 +37,27 @@ const LoginPage = () => {
       validationSchema: validateSchemaSignIn,
 
       onSubmit: (data) => {
-         dispatch(postSignIn(data))
-         userRole(data)
-         resetForm()
+         dispatch(postSignIn(data))?.then((res) => {
+            if (res?.meta?.requestStatus !== 'rejected') {
+               if (res.payload.token) {
+                  userRole(data)
+                  setCustomError(null)
+                  resetForm()
+                  if (res.payload.roleName === 'ADMIN') {
+                     return navigate('/admin')
+                  }
+                  return navigate('/')
+               }
+               return setCustomError('Что-то не так')
+            }
+            if (res?.payload?.message === '403 unauthorized') {
+               return setCustomError(
+                  'Вы можете подтвердить свою личность, а несанкционированный доступ будет заблокирован.'
+               )
+            }
+
+            return setCustomError(res?.payload?.message)
+         })
       },
    })
 
@@ -46,8 +65,9 @@ const LoginPage = () => {
       formik
 
    const SignInWithGoogle = (data) => {
-      dispatch(signInWithGoogle(data))
-      navigate('/')
+      dispatch(signInWithGoogle(data))?.then(() => {
+         navigate('/')
+      })
    }
 
    return (
@@ -82,13 +102,22 @@ const LoginPage = () => {
                onChange={handleChange}
                touched={touched.password}
             />
+            {customError && (
+               <Typography
+                  className="server_error"
+                  variant="body2"
+                  color="error"
+               >
+                  {customError}
+               </Typography>
+            )}
 
             <Link className="forgotPassword" to="/forgot_password">
                Забыли пароль?
             </Link>
 
             <Button type="submit" className="button">
-               создать аккаунт
+               Войти
             </Button>
 
             <div className="variants">
@@ -97,7 +126,10 @@ const LoginPage = () => {
                <div className="variantBorder"></div>
             </div>
 
-            <AuthWithGoogle handleClick={SignInWithGoogle} />
+            <AuthWithGoogle
+               variant="Продолжить с Google"
+               handleClick={SignInWithGoogle}
+            />
 
             <div className="register">
                <p>Нет аккаунта?</p>
@@ -189,5 +221,10 @@ const FormContainer = styled('form')(() => ({
       cursor: 'pointer',
       textDecoration: 'none',
       marginTop: '20px',
+   },
+   '& .server_error': {
+      margin: '0 auto',
+      padding: '3px',
+      width: '414px',
    },
 }))

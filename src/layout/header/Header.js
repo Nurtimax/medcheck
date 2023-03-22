@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, MenuItem, styled } from '@mui/material'
+import { Menu, styled } from '@mui/material'
 import iconLocation from '../../assets/icons/GeoPoint.svg'
 import iconHour from '../../assets/icons/Hour.svg'
 import iconSearching from '../../assets/icons/searching.svg'
@@ -38,9 +38,6 @@ const Header = () => {
    }, [dispatch, postSignUp])
 
    const userProfileLogo = localStorage.getItem('USER_PHOTO')
-
-   // const [searchParams, setSearchParams] = useSearchParams()
-   // const userProfile = searchParams.get('users')
 
    return (
       <HeaderContainer>
@@ -84,17 +81,18 @@ const Header = () => {
             <InFirstRow5>
                <img
                   className="profileLogo"
-                  id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
+                  id="demo-positioned-button"
+                  aria-controls={open ? 'demo-positioned-menu' : undefined}
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
-                  src={isAuth ? userProfileLogo : subtract}
+                  src={isAuth ? userProfileLogo || subtract : subtract}
                   alt="profLogo"
                />
 
                <Styledmenu
-                  id="basic-menu"
+                  id="demo-positioned-menu"
+                  aria-labelledby="demo-positioned-button"
                   anchorEl={anchorEl}
                   open={open}
                   keepMounted
@@ -104,40 +102,48 @@ const Header = () => {
                   }}
                >
                   {isAuth ? (
-                     <div>
-                        <MenuItemStyled>
-                           <Link className="authorized" to="/">
-                              Мои записи
-                           </Link>
-                        </MenuItemStyled>
-                        <MenuItemStyled>
-                           <Link className="authorized" to="user_profile">
-                              Профиль
-                           </Link>
-                        </MenuItemStyled>
-                        <MenuItemStyled>
-                           <div
-                              className="authorized"
-                              onClick={() => dispatch(removeUser())}
-                           >
-                              Выйти
-                           </div>
-                        </MenuItemStyled>
-                     </div>
-                  ) : (
-                     <div>
-                        <MenuItemStyled>
-                           <CustomLinkStyle to="/sign_in">
-                              Войти
-                           </CustomLinkStyle>
-                        </MenuItemStyled>
+                     <AuthStyled>
+                        <Link
+                           onClick={handleClose}
+                           className="authorized"
+                           to="/"
+                        >
+                           Мои записи
+                        </Link>
 
-                        <MenuItemStyled>
-                           <CustomLinkStyle to="/sign_up">
-                              Регистрация
-                           </CustomLinkStyle>
-                        </MenuItemStyled>
-                     </div>
+                        <Link
+                           onClick={handleClose}
+                           className="authorized"
+                           to="user_profile/personal_data"
+                        >
+                           Профиль
+                        </Link>
+
+                        <Link
+                           className="authorized"
+                           onClick={() => dispatch(removeUser())}
+                        >
+                           Выйти
+                        </Link>
+                     </AuthStyled>
+                  ) : (
+                     <AuthStyled>
+                        <Link
+                           onClick={handleClose}
+                           className="authorized"
+                           to="/sign_in"
+                        >
+                           Войти
+                        </Link>
+
+                        <Link
+                           onClick={handleClose}
+                           className="authorized"
+                           to="/sign_up"
+                        >
+                           Регистрация
+                        </Link>
+                     </AuthStyled>
                   )}
                </Styledmenu>
             </InFirstRow5>
@@ -165,6 +171,8 @@ const Header = () => {
       </HeaderContainer>
    )
 }
+
+export default Header
 
 const HeaderContainer = styled('header')(() => ({
    width: '100%',
@@ -321,16 +329,6 @@ const InFirstRow5 = styled('div')(() => ({
    },
 }))
 
-const MenuItemStyled = styled(MenuItem)(() => ({
-   '& .authorized': {
-      color: 'black',
-      textDecoration: 'none',
-   },
-   '& .authorized:hover': {
-      color: 'green',
-   },
-}))
-
 const CustomLinkStyle = styled(CustomLink)(() => ({
    textDecoration: 'none',
    listStyle: 'none',
@@ -347,6 +345,21 @@ const Styledmenu = styled(Menu)(() => ({
       color: '#000000',
       transitionDuration: '0.3s',
    },
+
+   '& .authorized': {
+      color: 'black',
+      textDecoration: 'none',
+   },
+   '& .authorized:hover': {
+      color: 'green',
+   },
 }))
 
-export default Header
+const AuthStyled = styled('div')(() => ({
+   width: 'auto',
+   height: 'auto',
+   display: 'flex',
+   flexDirection: 'column',
+   gap: '10px',
+   padding: '8px',
+}))

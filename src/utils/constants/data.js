@@ -75,18 +75,19 @@ export const ROUTES = {
    PROFILE_CRUD: '/profCrud',
    PROFCRUD_CONTAINER: '/profCrudContainer',
    FORGOT_PASSWROD: '/forgot_password',
+   USER_RECORDS: '/userRecords',
 }
 
 export const ADMIN_ROUTES = {
-   ADMIN: '/admin',
-   ONLINE_ENTRY: '/online_entry',
-   APPLICATION: '/applications',
-   PATIENTS: '/patients',
-   SPECIALITY: '/speciality',
+   ADMIN: 'admin',
+   ONLINE_ENTRY: 'online_entry',
+   APPLICATION: 'applications',
+   PATIENTS: 'patients',
+   SPECIALITY: 'speciality',
 }
 
 export const BASE_URL =
-   'http://ec2-3-69-31-51.eu-central-1.compute.amazonaws.com/api/'
+   'http://ec2-3-73-100-3.eu-central-1.compute.amazonaws.com/api/'
 
 export const PersonalArea = 'Личный кабинет >'
 

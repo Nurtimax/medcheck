@@ -1,108 +1,143 @@
-import { InputAdornment, styled, Typography } from '@mui/material'
+import { styled, Typography } from '@mui/material'
 import { useFormik } from 'formik'
-import React, { useState } from 'react'
+import React from 'react'
 import Button from '../UI/Button'
-import Input from '../UI/Input'
 
-import * as Yup from 'yup'
-
-import { ReactComponent as ClosePassword } from '../../assets/icons/signIn.svg'
-import { ReactComponent as ViewPassword } from '../../assets/icons/viewPassword.svg'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { putApplicationsRequest } from '../../redux/slices/profileSlice'
+import Alert from '../UI/Alert'
+import { validateSchemaChangePassword } from '../../utils/constants/validateSchema'
+import AuthInput from '../UI/AuthInput'
+import { useState } from 'react'
 
 const ChangePassword = () => {
-   const [showPassword, setShowPassword] = useState(false)
+   const dispatch = useDispatch()
+
+   const [open, setOpen] = useState(false)
+   const [customError, setCustomError] = useState(null)
+
+   const { id } = useParams()
 
    const formik = useFormik({
       initialValues: {
-         password: '',
+         oldPassword: '',
+         newPassword: '',
+         confirmPassword: '',
+         id,
       },
-      onSubmit: (values, actions) => {
-         localStorage.setItem('user', JSON.stringify({ ...values }))
-         actions.resetForm()
+      validationSchema: validateSchemaChangePassword,
+
+      onSubmit: (values) => {
+         dispatch(putApplicationsRequest(values)).then((res) => {
+            if (
+               res?.payload?.message === 'Request failed with status code 400'
+            ) {
+               return setCustomError('Пароль введен неправильно!')
+            } else {
+               resetForm()
+               setOpen(true)
+            }
+
+            return setCustomError()
+         })
       },
-      validationSchema: Yup.object().shape({
-         password: Yup.string()
-            .required('Пожалуйста введите ваш пароль')
-            .min(7, 'Пароль должен быть не менее 7 символов!'),
-      }),
    })
 
-   const handleClickShowPassword = () => setShowPassword((show) => !show)
+   const { resetForm, values, handleChange, handleSubmit, touched, errors } =
+      formik
+
+   const navigate = useNavigate()
+
+   const backHandle = () => {
+      navigate('/user_profile/personal_data')
+   }
+   const closeAlert = () => {
+      setOpen(false)
+   }
 
    return (
-      <Container>
+      <Container onSubmit={handleSubmit}>
+         {open && (
+            <Alert
+               open={open}
+               onClose={closeAlert}
+               title={'ваш пароль был успешно изменен.'}
+            />
+         )}
          <h4>Смена пароля</h4>
 
          <div className="passwordsContainer">
             <p className="passwords">Старый пароль</p>
-            <StyledPasswordInput
-               placeholder={formik.errors.password || 'Введите ваш пароль'}
-               error={!!formik.errors.password}
-               name="password"
-               type={showPassword ? 'text' : 'password'}
+            <AuthInput
+               placeholder={'Введите ваш пароль'}
+               name="oldPassword"
                className="inputs"
-               endAdornment={
-                  <InputAdornment
-                     onClick={handleClickShowPassword}
-                     position="end"
-                  >
-                     {showPassword ? <ClosePassword /> : <ViewPassword />}
-                  </InputAdornment>
-               }
+               value={values.oldPassword}
+               onChange={handleChange}
+               errors={errors.oldPassword}
+               touched={touched.oldPassword}
             />
          </div>
+         {customError && (
+            <Typography className="server_error" variant="body2" color="error">
+               {customError}
+            </Typography>
+         )}
          <div className="passwordsContainer">
             <Typography className="passwords">Новый пароль</Typography>
-            <StyledPasswordInput
+            <AuthInput
                className="inputs"
-               placeholder={formik.errors.password || 'Введите новый пароль'}
-               error={!!formik.errors.password}
-               name="password"
-               type={showPassword ? 'text' : 'password'}
-               endAdornment={
-                  <InputAdornment
-                     onClick={handleClickShowPassword}
-                     position="end"
-                  >
-                     {showPassword ? <ClosePassword /> : <ViewPassword />}
-                  </InputAdornment>
-               }
+               placeholder={'Введите новый пароль'}
+               name="newPassword"
+               value={values.newPassword}
+               onChange={handleChange}
+               errors={errors.newPassword}
+               touched={touched.newPassword}
             />
          </div>
          <div className="passwordsContainer">
             <Typography className="passwords">
                Подтвердить новый пароль
             </Typography>
-            <StyledPasswordInput
+            <AuthInput
                className="inputs"
-               placeholder={formik.errors.password || 'Подтвердите пароль'}
-               error={!!formik.errors.password}
-               name="password"
-               type={showPassword ? 'text' : 'password'}
-               endAdornment={
-                  <InputAdornment
-                     onClick={handleClickShowPassword}
-                     position="end"
-                  >
-                     {showPassword ? <ClosePassword /> : <ViewPassword />}
-                  </InputAdornment>
-               }
+               placeholder={'Подтвердите пароль'}
+               name="confirmPassword"
+               value={values.confirmPassword}
+               onChange={handleChange}
+               errors={errors.confirmPassword}
+               touched={touched.confirmPassword}
             />
 
             <div className="buttonsContainer">
-               <Button className="backButton">назад</Button>
-               <Button className="confirmButton">подтвердить</Button>
+               <Button className="backButton" onClick={backHandle}>
+                  назад
+               </Button>
+               <Button type="submit" className="confirmButton">
+                  подтвердить
+               </Button>
             </div>
          </div>
       </Container>
    )
 }
 
-const Container = styled('div')(() => ({
+export default ChangePassword
+
+const Container = styled('form')(() => ({
+   width: '1200px',
+   margin: '0 auto',
    marginBottom: '100px',
+
    '& .passwords': {
       color: '#464444',
       fontSize: '14px',
+      margin: '3px',
+   },
+
+   '& .css-12751e6-MuiInputBase-root': {
+      margin: '0',
    },
 
    '& .inputs': {
@@ -145,14 +180,3 @@ const Container = styled('div')(() => ({
       marginTop: '30px',
    },
 }))
-
-const StyledPasswordInput = styled(Input)(() => ({
-   '& ::-ms-reveal': {
-      display: 'none !important',
-   },
-   '& input[type=password]::-ms-reveal, input[type=password]::-ms-clear': {
-      display: 'none',
-   },
-}))
-
-export default ChangePassword
