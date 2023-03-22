@@ -6,7 +6,6 @@ export const fetchUsers = createAsyncThunk(
    async (_, { rejectWithValue }) => {
       try {
          const response = await axiosInstance.get('onlineEntry/myAppointments')
-         console.log(response)
          return response.data
       } catch (error) {
          if (rejectWithValue) {
@@ -19,19 +18,32 @@ export const fetchUsers = createAsyncThunk(
 
 export const fetchUsersId = createAsyncThunk(
    'appointmentSlice/getIdAppointments',
-   async (id, { rejectWithValue }) => {
+   async (id) => {
       try {
-         const response = await axiosInstance.get('api/onlineEntry')
-         console.log(response)
+         const response = await axiosInstance.get('onlineEntry/', {
+            params: {
+               id,
+            },
+         })
          return response.data
       } catch (error) {
-         if (rejectWithValue) {
-            return error
-         }
          return error
       }
    }
 )
+export const fetchClearAll = createAsyncThunk(
+   'appointmentSlice/deleteAppointments',
+   async (_, { dispatch }) => {
+      try {
+         const response = await axiosInstance.delete('onlineEntry/clear')
+         dispatch(fetchUsers())
+         return response.data
+      } catch (error) {
+         return error
+      }
+   }
+)
+
 const initialState = {
    data: [],
    applications: [],
@@ -51,6 +63,17 @@ const appointmentSlice = createSlice({
          state.isLoading = true
       })
       builder.addCase(fetchUsers.rejected, (state, action) => {
+         state.errorMessage = action.payload
+         state.isLoading = false
+      })
+      builder.addCase(fetchUsersId.fulfilled, (state, action) => {
+         state.data = action.payload
+      })
+      builder.addCase(fetchUsersId.pending, (state) => {
+         state.errorMessage = false
+         state.isLoading = true
+      })
+      builder.addCase(fetchUsersId.rejected, (state, action) => {
          state.errorMessage = action.payload
          state.isLoading = false
       })

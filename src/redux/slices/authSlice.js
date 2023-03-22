@@ -78,7 +78,6 @@ const initialState = {
    isAuth: false,
    isError: null,
    userToken: null,
-   isGoogleAuth: false,
 }
 
 const authSlice = createSlice({
@@ -142,7 +141,7 @@ const authSlice = createSlice({
 
       builder.addCase(signInWithGoogle.fulfilled, (state, action) => {
          state.data = action.payload
-         state.isGoogleAuth = true
+         state.isAuth = true
          state.roleName = action.payload.roleName
       })
       builder.addCase(signInWithGoogle.pending, (state) => {

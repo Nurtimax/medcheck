@@ -18,7 +18,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
-   const { isAuth, isGoogleAuth } = useSelector((state) => state.auth)
+   const { isAuth } = useSelector((state) => state.auth)
 
    const dispatch = useDispatch()
 
@@ -86,7 +86,7 @@ const Header = () => {
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
-                  src={isGoogleAuth ? userProfileLogo : subtract}
+                  src={isAuth ? userProfileLogo || subtract : subtract}
                   alt="profLogo"
                />
 
@@ -103,7 +103,9 @@ const Header = () => {
                   {isAuth ? (
                      <div>
                         <MenuItemStyled>
-                           <div className="authorized">Мои записи</div>
+                           <Link to="/user" className="authorized">
+                              Мои записи
+                           </Link>
                         </MenuItemStyled>
                         <MenuItemStyled>
                            <div className="authorized">Профиль</div>

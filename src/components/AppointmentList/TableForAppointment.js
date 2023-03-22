@@ -11,24 +11,27 @@ import { styled } from '@mui/system'
 import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUsers } from '../../redux/slices/appointment-slice'
+import { fetchClearAll, fetchUsers } from '../../redux/slices/appointment-slice'
 import { tableData } from '../../utils/constants/data'
 import CustomLink from '../UI/Custom.Link'
+
 const TableForAppointment = () => {
    const colors = {
-      ['Подтверждён']: '#346EFB',
-      ['Завершён']: '#07AB53',
-      ['Отменён']: '#F91515',
+      ['подвержден']: '#346EFB',
+      ['завершeн']: '#07AB53',
+      ['отмeнeн']: '#F91515',
    }
 
-   const { applications } = useSelector((state) => state.applications)
-
-   console.log(applications)
+   const { applications } = useSelector((state) => state.appointment)
 
    const dispatch = useDispatch()
+
    useEffect(() => {
       dispatch(fetchUsers())
    }, [])
+   const deleteHandlerClear = () => {
+      dispatch(fetchClearAll())
+   }
 
    return (
       <Container>
@@ -38,38 +41,49 @@ const TableForAppointment = () => {
                   <TableRow>
                      {tableData.map((title) => (
                         <TableCellTitle key={title.id}>
-                           {title.userInfo.head}
+                           {title?.userInfo?.head}
                         </TableCellTitle>
                      ))}
                   </TableRow>
                </TableHead>
+
                <TableBody>
-                  {applications.map((data) => (
+                  {applications?.map((data) => (
                      <TableRow key={data.id}>
                         <TableCell>
                            <div>
-                              <div>{data.userInfo.photo}</div>
-                              <CustomLink to={`/user/${data.id}`}>
-                                 <div className="name">
-                                    {data.userInfo.name}
-                                 </div>
-                              </CustomLink>
+                              <div className="name">
+                                 {data?.clinicService?.experts?.map(
+                                    (user, index) => (
+                                       <div key={user.id}>
+                                          <img src={user.expertImage} alt="" />
 
-                              <div className="speciality">
-                                 {data.userInfo.speciality}
+                                          <CustomLink to={`/user/${index + 1}`}>
+                                             <span className="expertName">
+                                                {user.expertLastName}
+                                             </span>
+                                             <span className="expertName">
+                                                {user.expertFirstName}
+                                             </span>
+                                          </CustomLink>
+                                          <p>{user.expertPosition}</p>
+                                       </div>
+                                    )
+                                 )}
                               </div>
+                              <div className="speciality">{}</div>
                            </div>
                         </TableCell>
                         <TableCell>
-                           <div>
-                              <div className="date">{data.timetable}</div>
-                              <div className="time">{}</div>
-                           </div>
+                           <div>{data?.recordedDate}</div>
+                           <div>{data?.recordedTime}</div>
                         </TableCell>
                         <TableCell>
                            <div>
-                              <StatusText color={colors[data.status]}>
-                                 {data.status}
+                              <StatusText
+                                 color={colors[data?.onlineEntryStatus]}
+                              >
+                                 {data.onlineEntryStatus}
                               </StatusText>
                            </div>
                         </TableCell>
@@ -77,12 +91,16 @@ const TableForAppointment = () => {
                   ))}
                </TableBody>
             </Table>
+            <p onClick={deleteHandlerClear}>
+               <span>&times;</span> Очистить список заказов
+            </p>
          </TableContainerStyle>
       </Container>
    )
 }
 export default TableForAppointment
 const TableContainerStyle = styled(TableContainer)(() => ({
+   display: 'flex',
    '& .name': {
       fontFamily: 'Manrope',
       fontStyle: 'normal',
@@ -90,6 +108,10 @@ const TableContainerStyle = styled(TableContainer)(() => ({
       fontSize: '16px',
       lineHeight: '22px',
       color: '#222222',
+
+      '& .expertName': {
+         color: '#222222',
+      },
    },
    '& .speciality': {
       fontWeight: '500',
@@ -97,20 +119,20 @@ const TableContainerStyle = styled(TableContainer)(() => ({
       lineHeight: '19px',
       color: '#959595',
    },
-   '& .date': {
+
+   '& p': {
+      whiteSpace: 'nowrap',
+      cursor: 'pointer',
       color: '#222222',
       fontWeight: '400',
-      fontSize: '16px',
-      lineHeight: '22px',
+      fontSize: '14px',
+      lineHeight: '140%',
    },
-   '& .time': {
-      color: '#4D4E51',
-      fontWeight: '400',
-      fontSize: '16px',
-      lineHeight: '22px',
+   '& span': {
+      color: 'red',
+      fontSize: '25px',
    },
 }))
-
 const TableCellTitle = styled(TableCell)(() => ({
    fontFamily: 'Manrope',
    fontStyle: 'normal',
@@ -121,7 +143,7 @@ const TableCellTitle = styled(TableCell)(() => ({
    color: '#222222',
 }))
 
-const StatusText = styled('p')`
+const StatusText = styled('div')`
    color: ${(props) => props.color};
    font-family: 'Manrope';
    font-style: normal;

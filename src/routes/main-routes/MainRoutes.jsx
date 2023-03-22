@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import ContinueAppointment from '../../containers/ContinueAppointment'
 import { ROUTES } from '../../utils/constants/data'
 
 const MainLayout = React.lazy(() => import('../../layout/Main.Layout'))
@@ -12,6 +13,9 @@ const Contacts = React.lazy(() => import('../../contacts/Contacts'))
 const LandingPage = React.lazy(() => import('../../layout/landing/LandingPage'))
 const LazyLoading = React.lazy(() => {
    return import('../../components/UI/LodaingSpinner')
+})
+const TableForAppointment = React.lazy(() => {
+   return import('../../components/AppointmentList/TableForAppointment')
 })
 
 const MainRoutes = () => {
@@ -85,6 +89,18 @@ const MainRoutes = () => {
                         <SignUp />
                      </Suspense>
                   }
+               />
+               <Route
+                  path={ROUTES.USER}
+                  element={
+                     <Suspense fallback={<LazyLoading />}>
+                        <TableForAppointment />
+                     </Suspense>
+                  }
+               />
+               <Route
+                  path={`${ROUTES.USER}/:id`}
+                  element={<ContinueAppointment />}
                />
             </Route>
          </Routes>
