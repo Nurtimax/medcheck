@@ -1,4 +1,4 @@
-import { styled } from '@mui/material'
+import { styled, Typography } from '@mui/material'
 import { validateSchemaSignIn } from '../utils/constants/validateSchema'
 import Button from '../components/UI/Button'
 import { useFormik } from 'formik'
@@ -8,13 +8,24 @@ import { Link, useNavigate } from 'react-router-dom'
 import Modal from '../components/UI/Modal'
 import { useState } from 'react'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { postSignIn, signInWithGoogle } from '../redux/slices/authSlice'
+
 const LoginPage = () => {
    const [open, setOpen] = useState(true)
+   const [customError, setCustomError] = useState(null)
 
    const navigate = useNavigate()
+   const { role } = useSelector((state) => state.auth)
+   const dispatch = useDispatch()
 
    const closeModal = () => {
       setOpen(navigate('/'))
+   }
+
+   const userRole = () => {
+      if (role === 'USER') navigate('/')
+      if (role === 'ADMIN') navigate('/admin')
    }
 
    const formik = useFormik({
@@ -22,14 +33,41 @@ const LoginPage = () => {
          email: '',
          password: '',
       },
+
       validationSchema: validateSchemaSignIn,
-      onSubmit: () => {
-         resetForm()
+
+      onSubmit: (data) => {
+         dispatch(postSignIn(data))?.then((res) => {
+            if (res?.meta?.requestStatus !== 'rejected') {
+               if (res.payload.token) {
+                  userRole(data)
+                  setCustomError(null)
+                  resetForm()
+                  if (res.payload.roleName === 'ADMIN') {
+                     return navigate('/admin')
+                  }
+                  return navigate('/')
+               }
+               return setCustomError('Что-то не так')
+            }
+            if (res?.payload?.message === '403 unauthorized') {
+               return setCustomError(
+                  'Вы можете подтвердить свою личность, а несанкционированный доступ будет заблокирован.'
+               )
+            }
+            return setCustomError(res?.payload?.message)
+         })
       },
    })
 
    const { handleChange, errors, values, handleSubmit, resetForm, touched } =
       formik
+
+   const SignInWithGoogle = (data) => {
+      dispatch(signInWithGoogle(data))?.then(() => {
+         navigate('/')
+      })
+   }
 
    return (
       <Modal
@@ -38,7 +76,7 @@ const LoginPage = () => {
          open={open}
          closeModal={closeModal}
       >
-         <Login>Регистрация</Login>
+         <Login>Войти</Login>
 
          <FormContainer onSubmit={handleSubmit}>
             <AuthInput
@@ -63,8 +101,17 @@ const LoginPage = () => {
                onChange={handleChange}
                touched={touched.password}
             />
+            {customError && (
+               <Typography
+                  className="server_error"
+                  variant="body2"
+                  color="error"
+               >
+                  {customError}
+               </Typography>
+            )}
 
-            <Link className="forgotPassword" to="forgot-password">
+            <Link className="forgotPassword" to="/forgot_password">
                Забыли пароль?
             </Link>
 
@@ -78,7 +125,7 @@ const LoginPage = () => {
                <div className="variantBorder"></div>
             </div>
 
-            <AuthWithGoogle />
+            <AuthWithGoogle handleClick={SignInWithGoogle} />
 
             <div className="register">
                <p>Нет аккаунта?</p>
@@ -170,5 +217,10 @@ const FormContainer = styled('form')(() => ({
       cursor: 'pointer',
       textDecoration: 'none',
       marginTop: '20px',
+   },
+   '& .server_error': {
+      margin: '0 auto',
+      padding: '3px',
+      width: '414px',
    },
 }))

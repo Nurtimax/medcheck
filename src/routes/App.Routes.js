@@ -1,116 +1,37 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import NotFound from '../components/Not.Found'
-import { ROUTES } from '../utils/constants/data'
+import { autoLoginByLocalStorage } from '../redux/slices/authSlice'
+import { JWT_TOKEN } from '../utils/constants/data'
+import MainRoutes from './main-routes/MainRoutes'
+import AdminRoutes from './admin-routes/Admin.Routes'
+import PrivateRoute from './private/Private.Route'
 
-const TimeTable = React.lazy(() => import('../pages/time-table/TimeTable'))
-const AdminRoutes = React.lazy(() => import('./admin-routes/Admin.Routes'))
-const LoginPage = React.lazy(() => import('../pages/LoginPage'))
-const MainLayout = React.lazy(() => import('../layout/Main.Layout'))
-const AboutClinic = React.lazy(() => import('../pages/AboutClinic'))
-const Contacts = React.lazy(() => import('../contacts/Contacts'))
-const AdminLayout = React.lazy(() => import('../layout/Admin.Layout'))
-const PrivateRoute = React.lazy(() => import('./private/Private.Route'))
-const SignUp = React.lazy(() => import('../pages/SignUp/SignUp'))
-const LazyLoading = React.lazy(() => import('../components/UI/LodaingSpinner'))
-const LandingPage = React.lazy(() => import('../layout/landing/LandingPage'))
-const ForgotPassword = React.lazy(() => import('../pages/ForgotPassword'))
+const authUser = JSON.parse(localStorage.getItem(JWT_TOKEN))
 
 const AppRoutes = () => {
+   const dispatch = useDispatch()
+
+   useEffect(() => {
+      if (authUser?.token) {
+         dispatch(autoLoginByLocalStorage(authUser))
+      }
+   }, [])
+
    return (
-      <Suspense fallback={<LazyLoading />}>
+      <Suspense fallback={null}>
          <Routes>
-            <Route
-               path="/"
-               element={
-                  <Suspense fallback={<LazyLoading />}>
-                     <MainLayout />
-                  </Suspense>
-               }
-            >
-               <Route
-                  index
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <LandingPage />
-                     </Suspense>
-                  }
-               />
-               <Route
-                  path={ROUTES.ABOUT_CLINIC}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <AboutClinic />
-                     </Suspense>
-                  }
-               />
-               <Route path={ROUTES.SERVICES} element={<h1>services</h1>} />
-               <Route path={ROUTES.DOCTORS} element={<h1>doctors</h1>} />
-               <Route path={ROUTES.PRICE} element={<h1>price</h1>} />
-               <Route
-                  path={ROUTES.CONTACTS}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <Contacts />
-                     </Suspense>
-                  }
-               />
-               <Route path={ROUTES.FEEDBACKS} element={<h1>feedbacks</h1>} />
-               <Route
-                  path="timetable"
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <TimeTable />
-                     </Suspense>
-                  }
-               />
-            </Route>
+            <Route path="/*" element={<MainRoutes />} />
 
             <Route
-               path="/admin/*"
+               path="admin/*"
                element={
-                  <Suspense fallback={<LazyLoading />}>
-                     <AdminLayout />
-                  </Suspense>
-               }
-            >
-               <Route
-                  element={
-                     <PrivateRoute
-                        roles="ADMIN"
-                        element={
-                           <Suspense fallback={<LazyLoading />}>
-                              <AdminRoutes />
-                           </Suspense>
-                        }
-                     />
-                  }
-               />
-            </Route>
-            <Route
-               path={ROUTES.SIGN_IN}
-               element={
-                  <Suspense fallback={<LazyLoading />}>
-                     <LoginPage />
-                  </Suspense>
-               }
-            />
-
-            <Route
-               path={ROUTES.FORGOT_PASSWROD}
-               element={
-                  <Suspense fallback={<LazyLoading />}>
-                     <ForgotPassword />
-                  </Suspense>
-               }
-            />
-
-            <Route
-               path={ROUTES.SIGN_UP}
-               element={
-                  <Suspense fallback={<LazyLoading />}>
-                     <SignUp />
-                  </Suspense>
+                  <PrivateRoute
+                     Component={<AdminRoutes />}
+                     role={['admin']}
+                     fallbackPath="/"
+                  />
                }
             />
 

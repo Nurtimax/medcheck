@@ -1,17 +1,20 @@
-import { styled } from '@mui/material'
+import { styled, Typography } from '@mui/material'
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../components/UI/Button'
 import Modal from '../../components/UI/Modal'
 import AuthWithGoogle from '../AuthWithGoogle/AuthWithGoogle'
-import { validationSchemaSignUp } from '../../utils/constants/validateSchema'
 import { useDispatch } from 'react-redux'
-import { postSignUp } from '../../redux/slices/authSlice'
+import { postSignUp, signInWithGoogle } from '../../redux/slices/authSlice'
 import AuthInput from '../../components/UI/AuthInput'
+import { SignInValidateHelper } from '../../utils/helpers/sign-in-validate-helper'
+import { useEffect } from 'react'
 
 const SignUp = () => {
    const [open, setOpen] = useState(true)
+   const [customError, setCustomError] = useState(null)
+   const [email, setEmail] = useState('')
 
    const dispatch = useDispatch()
 
@@ -20,6 +23,8 @@ const SignUp = () => {
    const closeModal = () => {
       setOpen(navigate('/'))
    }
+
+   const validationSchemaSignUp = SignInValidateHelper(email)
 
    const formik = useFormik({
       initialValues: {
@@ -34,14 +39,36 @@ const SignUp = () => {
       validationSchema: validationSchemaSignUp,
 
       onSubmit: (values) => {
-         dispatch(postSignUp({ ...values }))
-         resetForm()
-         navigate('/')
+         dispatch(postSignUp({ ...values }))?.then((res) => {
+            if (res?.meta?.requestStatus !== 'rejected') {
+               setCustomError(null)
+               resetForm()
+               if (res.payload.roleName === 'ADMIN') {
+                  return navigate('/admin')
+               }
+               return navigate('/')
+            }
+            if (res?.payload?.message === '403 unauthorized') {
+               return setCustomError(
+                  'Вы можете подтвердить свою личность, а несанкционированный доступ будет заблокирован.'
+               )
+            }
+            return setCustomError(res?.payload?.message)
+         })
       },
    })
 
    const { handleChange, errors, values, handleSubmit, resetForm, touched } =
       formik
+
+   const SignInWithGoogle = (data) => {
+      dispatch(signInWithGoogle(data))
+      navigate('/')
+   }
+
+   useEffect(() => {
+      setEmail(values.email)
+   }, [values.email])
 
    return (
       <Modal marginTop="80px" open={open} closeModal={closeModal}>
@@ -93,8 +120,7 @@ const SignUp = () => {
             />
 
             <AuthInput
-               autoComplete="current-password"
-               aria-invalid="false"
+               autoComplete="password"
                name="password"
                className="input"
                placeholder="Введите пароль"
@@ -104,8 +130,7 @@ const SignUp = () => {
                touched={touched.password}
             />
             <AuthInput
-               autoComplete="current-repeatPassword"
-               aria-invalid="false"
+               autoComplete="repeatPassword"
                name="repeatPassword"
                className="input"
                placeholder="Повторите пароль"
@@ -114,6 +139,16 @@ const SignUp = () => {
                onChange={handleChange}
                touched={touched.repeatPassword}
             />
+
+            {customError && (
+               <Typography
+                  className="server_error"
+                  variant="body2"
+                  color="error"
+               >
+                  {customError}
+               </Typography>
+            )}
 
             <Button type="submit" className="button">
                создать аккаунт
@@ -125,7 +160,7 @@ const SignUp = () => {
                <div className="variantBorder"></div>
             </div>
 
-            <AuthWithGoogle />
+            <AuthWithGoogle handleClick={SignInWithGoogle} />
 
             <div className="existAccount">
                <p>У вас уже есть аккаунт?</p>
@@ -191,6 +226,11 @@ const FormContainer = styled('form')(() => ({
       display: 'flex',
       alignItems: 'center',
       gap: '3px',
+   },
+   '& .server_error': {
+      margin: '0 auto',
+      padding: '3px',
+      width: '414px',
    },
 }))
 
