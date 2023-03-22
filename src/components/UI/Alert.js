@@ -1,23 +1,31 @@
 import { Snackbar, styled } from '@mui/material'
 
 import { Alert as Alerts } from '@mui/material'
+import { useEffect } from 'react'
 
 function Alert({
    open,
    onClose,
-   hideDuration,
+   autoHideDuration,
    variant,
    vertical = 'top',
    horizontal = 'right',
    title,
    ...props
 }) {
+   useEffect(() => {
+      const timer = setTimeout(() => {
+         onClose()
+      }, 3000)
+
+      return () => clearTimeout(timer)
+   }, [onClose])
    return (
       <Snackbar
          vertical
          horizontal
          anchorOrigin={{ vertical, horizontal }}
-         autoHideDuration={hideDuration}
+         autoHideDuration={autoHideDuration}
          {...props}
          open={open}
          onClose={onClose}
