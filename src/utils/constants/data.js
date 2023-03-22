@@ -1,8 +1,3 @@
-import { Switch } from '@mui/material'
-import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg'
-import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg'
-import { ReactComponent as DoctorIcon } from '../../assets/icons/doctorIcon.svg'
-
 export const tableTitle = [
    '№',
    'Статус',
@@ -10,54 +5,6 @@ export const tableTitle = [
    'Отделение',
    'Расписание до',
    'Действия',
-]
-
-export const tableData = [
-   {
-      number: 1,
-      status: <Switch color="success" />,
-      userInfo: {
-         photo: <DoctorIcon />,
-         name: 'Манак Елена',
-         speciality: 'Главный врач',
-      },
-      department: 'Анестезиолог',
-      timetable: '30 января 2023',
-      actions: {
-         edit: <EditIcon />,
-         delete: <DeleteIcon />,
-      },
-   },
-   {
-      number: 2,
-      status: <Switch color="success" />,
-      userInfo: {
-         photo: <DoctorIcon />,
-         name: 'Манак Елена',
-         speciality: 'Главный врач',
-      },
-      department: 'Анестезиолог',
-      timetable: '30 января 2023',
-      actions: {
-         edit: <EditIcon />,
-         delete: <DeleteIcon />,
-      },
-   },
-   {
-      number: 3,
-      status: <Switch color="success" />,
-      userInfo: {
-         photo: <DoctorIcon />,
-         name: 'Манак Елена',
-         speciality: 'Главный врач',
-      },
-      department: 'Анестезиолог',
-      timetable: '30 января 2023',
-      actions: {
-         edit: <EditIcon />,
-         delete: <DeleteIcon />,
-      },
-   },
 ]
 
 export const ROUTES = {
@@ -80,6 +27,8 @@ export const ADMIN_ROUTES = {
    APPLICATION: 'applications',
    PATIENTS: 'patients',
    SPECIALITY: 'speciality',
+   ADD_EXPERT: '/speciality/add_expert',
+   EDIT_EXPERT: '/speciality/edit_expert',
 }
 
 export const BASE_URL =

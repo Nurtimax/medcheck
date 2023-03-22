@@ -1,28 +1,53 @@
 import { styled, TableCell, TableRow } from '@mui/material'
 import EditButton from '@mui/material/IconButton'
 import DeleteButton from '@mui/material/IconButton'
+import Avatar from '@mui/material/Avatar'
+import { Switch } from '@mui/material'
 
-const TableList = ({ row, editClick, removeClick }) => {
+import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg'
+import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg'
+
+const TableList = ({ row, editClick, removeClick, index }) => {
+   const {
+      expertFirstName,
+      expertImage,
+      expertLastName,
+      expertPosition,
+      expertStatus,
+      id,
+      expertTimeTable,
+   } = row
    return (
       <TableRowStyle>
-         <TableCell className="numbers">{row.number}</TableCell>
-         <TableCell>{row.status}</TableCell>
+         <TableCell className="numbers">{index + 1}</TableCell>
+         <TableCell>
+            {expertStatus ? (
+               <Switch color="error" />
+            ) : (
+               <Switch color="success" />
+            )}
+         </TableCell>
          <TableCell>
             <div className="user_info">
-               <div>{row.userInfo.photo}</div>
+               <Avatar src={expertImage} />
                <div>
-                  <div className="name">{row.userInfo.name}</div>
-                  <div className="speciality">{row.userInfo.speciality}</div>
+                  <div className="name">
+                     <span>{expertFirstName}</span>
+                     <span>{expertLastName}</span>
+                  </div>
+                  {/* <div className="speciality">{expertPosition}</div> */}
                </div>
             </div>
          </TableCell>
-         <TableCell className="department">{row.department}</TableCell>
-         <TableCell className="timetable">{row.timetable}</TableCell>
+         <TableCell className="department">{expertPosition}</TableCell>
+         <TableCell className="timetable">{expertTimeTable}</TableCell>
          <TableCell>
             <div className="actions">
-               <EditButton onClick={editClick}>{row.actions.edit}</EditButton>
-               <DeleteButton onClick={removeClick}>
-                  {row.actions.delete}
+               <EditButton onClick={() => editClick(id)}>
+                  <EditIcon />
+               </EditButton>
+               <DeleteButton onClick={() => removeClick(id)}>
+                  <DeleteIcon />
                </DeleteButton>
             </div>
          </TableCell>
@@ -48,9 +73,12 @@ const TableRowStyle = styled(TableRow)(() => ({
       fontFamily: 'Manrope',
       fontStyle: 'normal',
       fontWeight: '500',
-      fontSize: '16px',
+      fontSize: '15px',
       lineHeight: '22px',
       whiteSpace: 'nowrap',
+      display: 'flex',
+      gap: '5px',
+      color: '#222222',
    },
    '& .speciality': {
       fontFamily: 'Manrope',

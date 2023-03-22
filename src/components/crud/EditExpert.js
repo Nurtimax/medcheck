@@ -1,53 +1,67 @@
-import Button from '../components/UI/Button'
-import ChangePhotoProfile from '../components/UI/ChangeFotoProfile'
-import TextEditor from '.././components/UI/TextEditor'
-import Input from '../components/UI/Input'
+import TextEditor from '../UI/TextEditor'
+import Input from '../UI/Input'
+import Button from '../UI/Button'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-   getExpertRequest,
-   postExpertRequest,
-} from '../redux/slices/expertSlice'
 import { useFormik } from 'formik'
-import { useEffect } from 'react'
-import Select from './../components/UI/Select'
+
+import Select from '../UI/Select'
 import { styled } from '@mui/material'
-const AddExperts = () => {
-   const { experts } = useSelector((state) => state.addExpert)
-   console.log(experts)
+import LinkToSpeciality from '../UI/Custom.Link'
+
+import { putExpertRequest } from '../../redux/slices/expertSlice'
+import ChangePhotoProfile from '../UI/ChangePhotoProfile'
+import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
+
+const EditExperts = ({
+   id,
+   expertFirstName,
+   expertLastName,
+   expertPosition,
+   expertImage,
+}) => {
    const dispatch = useDispatch()
+
+   const navigate = useNavigate()
+
+   const { experts } = useSelector((state) => state.addExpert)
+
    const { handleChange, handleSubmit, values, setFieldValue, resetForm } =
       useFormik({
          initialValues: {
-            expertFirstName: '',
-            expertLastName: '',
-            serviceId: '',
-            expertPosition: '',
-            expertImage: '',
-            expertInformation: '',
+            id,
+            expertFirstName,
+            expertLastName,
+            expertPosition,
+            expertImage,
          },
          onSubmit: (values) => {
-            dispatch(postExpertRequest({ ...values }))
+            dispatch(putExpertRequest({ ...values }))
             resetForm()
+            navigate('/admin/speciality')
          },
       })
+
    const changeExpertINformation = (value) => {
       setFieldValue('expertInformation', value)
    }
-   useEffect(() => {
-      dispatch(getExpertRequest())
-   }, [])
+
    return (
       <AddExpertsStyled>
-         <div className="title">
-            <p>
+         <Container>
+            <LinkToSpecialityStyled to="/admin/speciality">
                Специалисты <i className="right"></i>
-            </p>
-            <p className="addSpec">Добавление специалиста</p>
-         </div>
-         <span>Добавление специалиста</span>
+            </LinkToSpecialityStyled>
+            <Text>
+               <p> {expertFirstName}</p>
+               <p> {expertLastName}</p>
+            </Text>
+         </Container>
+         <span>Личные данные</span>
          <ContainerForm onSubmit={handleSubmit}>
             <DoctorImg>
                <ChangePhotoProfile
+                  url={expertImage}
                   foto={values.expertImage}
                   setFoto={setFieldValue}
                />
@@ -65,17 +79,17 @@ const AddExperts = () => {
                         <InputStyle
                            type="text"
                            name="expertFirstName"
-                           placeholder="Напишите имя"
+                           //    placeholder="expertFirstName"
                            value={values.expertFirstName}
                            onChange={handleChange}
                         />
                      </div>
                      <br />
                      <div>
-                        <label htmlFor="name">Отделение</label>
+                        <label htmlFor="name">Отделение</label> <br />
                         <SelectStyled
                            options={experts}
-                           name="serviceId"
+                           name={values.serviceId}
                            title="Выберите отделение"
                            label="Отделение"
                            onChange={handleChange}
@@ -90,7 +104,7 @@ const AddExperts = () => {
                         <InputStyle
                            type="select"
                            name="expertLastName"
-                           placeholder="Напишите фамилию"
+                           //    placeholder={oneExpert.expertLastName}
                            value={values.expertLastName}
                            onChange={handleChange}
                         />
@@ -101,7 +115,7 @@ const AddExperts = () => {
                         <br />
                         <InputStyle
                            name="expertPosition"
-                           placeholder="Напишите должность"
+                           //    placeholder={oneExpert.expertPosition}
                            value={values.expertPosition}
                            onChange={handleChange}
                         />
@@ -116,43 +130,31 @@ const AddExperts = () => {
                   name="expertInformation"
                />
                <MyBtn>
-                  <Button width="240px" height="40px" variant="outlined">
-                     Назад
-                  </Button>
-                  <MyButton type="submit" variant="contained">
-                     Редактировать
-                  </MyButton>
+                  <LinkToSpec to="/admin/speciality">
+                     <Button width="240px" height="40px" variant="outlined">
+                        Отменить
+                     </Button>
+                  </LinkToSpec>
+                  <AddButton type="submit" variant="contained">
+                     Сохранить
+                  </AddButton>
                </MyBtn>
             </Form>
          </ContainerForm>
       </AddExpertsStyled>
    )
 }
-export default AddExperts
+export default EditExperts
+
 const AddExpertsStyled = styled('div')(() => ({
    fontFamily: 'Manrope',
    fontStyle: 'normal',
-   paddingTop: '30px',
    paddingLeft: '70px',
    paddingRight: '70px',
    background: '#E0E0E0',
    height: '100%',
-   ' & .title': {
-      display: 'flex',
-      fontWeight: '400',
-      fontSize: '14px',
-      color: '#959595',
-      lineHeight: '19px',
-      paddingTop: '35px',
-   },
-   ' & .addSpec': {
-      color: '#048741',
-      paddingLeft: '3px',
-   },
-   ' & .right': {
-      transform: 'rotate(-45deg)',
-      '-webkit-transform': 'rotate(-45deg)',
-   },
+   minHeight: '1000px',
+
    ' & i': {
       border: 'solid #959595',
       borderWidth: '0 2px 2px 0',
@@ -165,6 +167,39 @@ const AddExpertsStyled = styled('div')(() => ({
       lineHeight: '30px',
    },
 }))
+
+const Container = styled('div')(() => ({
+   display: 'flex',
+   alignItems: 'center',
+   gap: '10px',
+   fontWeight: '400',
+   fontSize: '14px',
+   lineHeight: '19px',
+   paddingTop: '30px',
+   zIndex: '0',
+
+   ' & .right': {
+      transform: 'rotate(-45deg)',
+      '-webkit-transform': 'rotate(-45deg)',
+      zIndex: '0',
+   },
+}))
+
+const LinkToSpecialityStyled = styled(LinkToSpeciality)(() => ({
+   textDecoration: 'none',
+   color: '#959595',
+
+   '&: active': {
+      color: '#048741',
+   },
+}))
+
+const Text = styled('p')(() => ({
+   color: '#048741',
+   display: ' flex',
+   gap: '3px',
+}))
+
 const ContainerForm = styled('form')(() => ({
    display: 'flex',
    gap: '100px',
@@ -172,13 +207,17 @@ const ContainerForm = styled('form')(() => ({
    marginTop: '30px',
    background: '#FFFFFF',
 }))
+
 const FirstForm = styled('div')(() => ({
    display: 'flex',
+   gap: '50px',
 }))
+
 const SelectStyled = styled(Select)(() => ({
    width: '390px',
    height: '38px',
 }))
+
 const DoctorImg = styled('div')(() => ({
    '& .img': {
       width: '140px',
@@ -207,6 +246,7 @@ const Form = styled('div')(() => ({
    lineHeight: '19px',
    alignItems: 'center',
    color: '#464444',
+   zIndex: '0',
    '& p': {
       fontWeight: '600',
       fontSize: '18px',
@@ -225,14 +265,27 @@ const TextEditorStyled = styled(TextEditor)(() => ({
 const InputStyle = styled(Input)(() => ({
    width: '390px',
    height: '38px',
+   color: '#222222',
+   fontFamily: 'Manrope',
+   fontStyle: ' normal',
+   fontWeight: '400',
+   fontSize: '16px',
+   lineHeight: '22px',
+}))
+
+const LinkToSpec = styled(Link)(() => ({
+   textDecoration: 'none',
+}))
+
+const AddButton = styled(Button)(() => ({
+   width: '240px',
+   height: '40px',
 }))
 const MyBtn = styled('div')(() => ({
    paddingTop: '70px',
+   paddingBottom: '70px',
    display: 'flex',
    justifyContent: 'flex-end',
    gap: '40px',
-}))
-const MyButton = styled(Button)(() => ({
-   width: '240px',
-   height: '40px',
+   textDecoration: 'none',
 }))
