@@ -55,6 +55,7 @@ const LoginPage = () => {
                   'Вы можете подтвердить свою личность, а несанкционированный доступ будет заблокирован.'
                )
             }
+
             return setCustomError(res?.payload?.message)
          })
       },
@@ -116,7 +117,7 @@ const LoginPage = () => {
             </Link>
 
             <Button type="submit" className="button">
-               создать аккаунт
+               Войти
             </Button>
 
             <div className="variants">
@@ -125,7 +126,10 @@ const LoginPage = () => {
                <div className="variantBorder"></div>
             </div>
 
-            <AuthWithGoogle handleClick={SignInWithGoogle} />
+            <AuthWithGoogle
+               variant="Продолжить с Google"
+               handleClick={SignInWithGoogle}
+            />
 
             <div className="register">
                <p>Нет аккаунта?</p>

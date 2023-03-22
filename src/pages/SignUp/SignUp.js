@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../components/UI/Button'
 import Modal from '../../components/UI/Modal'
 import AuthWithGoogle from '../AuthWithGoogle/AuthWithGoogle'
+
 import { useDispatch } from 'react-redux'
 import { postSignUp, signInWithGoogle } from '../../redux/slices/authSlice'
 import AuthInput from '../../components/UI/AuthInput'
@@ -54,6 +55,7 @@ const SignUp = () => {
                   'Вы можете подтвердить свою личность, а несанкционированный доступ будет заблокирован.'
                )
             }
+
             return setCustomError(res?.payload?.message)
          })
       },
@@ -161,7 +163,10 @@ const SignUp = () => {
                <div className="variantBorder"></div>
             </div>
 
-            <AuthWithGoogle handleClick={SignInWithGoogle} />
+            <AuthWithGoogle
+               variant="Зарегистрироваться с Google"
+               handleClick={SignInWithGoogle}
+            />
 
             <div className="existAccount">
                <p>У вас уже есть аккаунт?</p>

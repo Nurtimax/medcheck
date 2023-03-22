@@ -74,7 +74,11 @@ export const ROUTES = {
    CONTACTS: '/contacts',
    USER: '/user',
    NOT_FOUND: '/*',
+   CHANGE_PASSWORD: '/changePassword',
+   PROFILE_CRUD: '/profCrud',
+   PROFCRUD_CONTAINER: '/profCrudContainer',
    FORGOT_PASSWROD: '/forgot_password',
+   USER_RECORDS: '/userRecords',
 }
 
 export const ADMIN_ROUTES = {
@@ -87,5 +91,7 @@ export const ADMIN_ROUTES = {
 
 export const BASE_URL =
    'http://ec2-3-73-100-3.eu-central-1.compute.amazonaws.com/api/'
+
+export const PersonalArea = 'Личный кабинет >'
 
 export const JWT_TOKEN = 'MED_CHECK_JWT_TOKEN'
