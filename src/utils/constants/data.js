@@ -18,7 +18,11 @@ export const ROUTES = {
    FEEDBACKS: '/feedbacks',
    CONTACTS: '/contacts',
    NOT_FOUND: '/*',
+   CHANGE_PASSWORD: '/changePassword',
+   PROFILE_CRUD: '/profCrud',
+   PROFCRUD_CONTAINER: '/profCrudContainer',
    FORGOT_PASSWROD: '/forgot_password',
+   USER_RECORDS: '/userRecords',
 }
 
 export const ADMIN_ROUTES = {

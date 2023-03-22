@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import applicationSlice from './slices/crudSlice'
 import authSlice from './slices/authSlice'
+
 import {
    persistStore,
    persistReducer,

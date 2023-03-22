@@ -1,11 +1,27 @@
 import React from 'react'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import medCheckIcon from '../../assets/icons/medCheck.svg'
+<<<<<<< HEAD
 import { styled } from '@mui/material'
+=======
+import { Menu, MenuItem, styled } from '@mui/material'
+>>>>>>> fbc2bfd5c6a236bb43133330e601a8a426b926dc
 import AdminLink from '../../components/UI/Custom.Link'
 import { Link } from 'react-router-dom'
+import { removeAdmin } from '../../redux/slices/authSlice'
+import { useDispatch } from 'react-redux'
 
 const AdminHeader = () => {
+   const dispatch = useDispatch()
+
+   const [anchorEl, setAnchorEl] = React.useState(null)
+   const open = Boolean(anchorEl)
+   const handleClick = (event) => {
+      setAnchorEl(event.currentTarget)
+   }
+   const handleClose = () => {
+      setAnchorEl(null)
+   }
    return (
       <Header>
          <ProjectLogos>
@@ -25,13 +41,27 @@ const AdminHeader = () => {
             <AdminLinkStyle to="/admin/speciality">Специалисты</AdminLinkStyle>
             <AdminLinkStyle to="/admin/patients">Пациенты</AdminLinkStyle>
          </Record>
-         <Select>
-            <option value="Администратор"> Администратор</option>
-            <option value="Администратор"> Администратор 2</option>
-            <option value="Администратор"> Администратор 3</option>
-            <option value="Администратор"> Администратор 4</option>
-            <option value="Администратор"> Администратор 5</option>
-         </Select>
+         <button
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+         >
+            Администратор
+         </button>
+
+         <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+               'aria-labelledby': 'basic-button',
+            }}
+         >
+            <MenuItem onClick={() => dispatch(removeAdmin())}>Выйти</MenuItem>
+         </Menu>
       </Header>
    )
 }
@@ -70,10 +100,4 @@ const ProjectLogos = styled('div')(() => ({
    alignItems: 'center',
 
    gap: '10px',
-}))
-
-const Select = styled('select')(() => ({
-   border: 'none',
-   outline: 'none',
-   cursor: 'pointer',
 }))
