@@ -83,7 +83,6 @@ const StyledFooterBottom = styled('div')(() => ({
    justifyContent: 'center',
    marginTop: '28px',
    marginBottom: '28px',
-   // fontFamily: '"Manrope" , sans-serif',
    ' & span': {
       fontStyle: 'normal',
       fontWeight: '400',

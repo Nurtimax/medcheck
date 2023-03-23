@@ -12,10 +12,14 @@ import {
    REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import profileSlice from './slices/profileSlice'
+import appointmentSlice from './slices/appointment-slice'
 
 const rootReducer = combineReducers({
    auth: authSlice.reducer,
    [applicationSlice.name]: applicationSlice.reducer,
+   profCrudUser: profileSlice.reducer,
+   appointment: appointmentSlice.reducer,
 })
 
 const persistConfig = {
