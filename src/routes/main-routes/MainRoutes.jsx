@@ -78,6 +78,7 @@ const MainRoutes = () => {
                />
 
                <Route path={ROUTES.PRICE} element={<h1>price</h1>} />
+
                <Route
                   path={ROUTES.CONTACTS}
                   element={

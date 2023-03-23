@@ -6,7 +6,6 @@ import { Arrow } from '../../assets'
 import Button from '../../components/UI/Button'
 import SwiperFeedbacks from '../../layout/landing/SwiperFeedbacks'
 import { getDoctorById } from '../../redux/slices/doctors-slice'
-import { infoDataDoctor } from '../../utils/constants/doctors'
 
 const DoctorsItem = () => {
    const { dataById } = useSelector((state) => state.doctors)
@@ -14,8 +13,6 @@ const DoctorsItem = () => {
    const { expertId } = useParams()
 
    const dispatch = useDispatch()
-
-   const { text1, text2, text3, text4 } = infoDataDoctor
 
    useEffect(() => {
       dispatch(getDoctorById(expertId))
@@ -46,7 +43,7 @@ const DoctorsItem = () => {
             <Box className="portfolio">
                <img
                   className="doctor-image"
-                  src="https://avatars.cloudflare.steamstatic.com/bbc8afe5cddc3fc79439e35cc97bdaa663e85b71_full.jpg"
+                  src={dataById.expertImage}
                   alt="photo"
                />
 
@@ -58,12 +55,14 @@ const DoctorsItem = () => {
                   <Box className="data">
                      <Box>
                         <div>Отделение:</div>
-                        <div>{dataById.expertPosition}</div>
+                        <div>
+                           {dataById?.serviceResponse?.clinicServiceName}
+                        </div>
                      </Box>
 
                      <Box>
                         <div>Должность:</div>
-                        <div>Главный врач</div>
+                        <div>{dataById.expertPosition}</div>
                      </Box>
                   </Box>
 
@@ -71,55 +70,7 @@ const DoctorsItem = () => {
                </Box>
             </Box>
 
-            <Box className="information">
-               <Box>
-                  <Typography className="data-info-title">
-                     Преимущественно эстетическая хирургия лица:
-                  </Typography>
-
-                  <ul>
-                     {text1.map((text) => (
-                        <li key={text}>{text}</li>
-                     ))}
-                  </ul>
-               </Box>
-
-               <Box>
-                  <Typography className="data-info-title">
-                     Специализация доктора:
-                  </Typography>
-
-                  <div>
-                     {text2.map((text) => (
-                        <div key={text}>{text}</div>
-                     ))}
-                  </div>
-               </Box>
-
-               <Box>
-                  <Typography className="data-info-title">
-                     Основное образование:
-                  </Typography>
-
-                  <div>
-                     {text3.map((text) => (
-                        <div key={text}>{text}</div>
-                     ))}
-                  </div>
-               </Box>
-
-               <Box>
-                  <Typography className="data-info-title">
-                     Участие в конференциях:
-                  </Typography>
-
-                  <div>
-                     {text4.map((text) => (
-                        <div key={text}>{text}</div>
-                     ))}
-                  </div>
-               </Box>
-            </Box>
+            <Box className="information">{dataById.expertInformation}</Box>
 
             <Typography className="list">
                <Arrow />

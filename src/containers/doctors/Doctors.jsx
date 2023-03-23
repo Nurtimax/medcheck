@@ -56,7 +56,7 @@ const Doctors = () => {
                               <img
                                  title="Узнать подробнее об этом эксперте"
                                  className="doctor-image"
-                                 src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/5aaaf0a13658f787ade9e0caac971c89~c5_720x720.jpeg?x-expires=1679583600&x-signature=UYwg0rvZGRALhQfTAorQU1JNAxo%3D"
+                                 src={doctor.expertImage}
                                  alt="expert"
                               />
                            </Link>

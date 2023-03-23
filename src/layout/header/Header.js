@@ -16,17 +16,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { postSignUp, removeUser } from '../../redux/slices/authSlice'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useDebounce } from 'use-debounce'
-import { getDoctorsExperts } from '../../redux/slices/doctors-slice'
 
 const Header = () => {
    const { isAuth } = useSelector((state) => state.auth)
 
    const [anchorEl, setAnchorEl] = useState(null)
-
-   const [value, setValue] = useState('')
-
-   const [searchTerm] = useDebounce(value, 1000)
 
    const dispatch = useDispatch()
 
@@ -46,10 +40,6 @@ const Header = () => {
       }
    }, [dispatch, postSignUp])
 
-   useEffect(() => {
-      dispatch(getDoctorsExperts({ text: searchTerm }))
-   }, [dispatch, searchTerm])
-
    const userProfileLogo = localStorage.getItem('USER_PHOTO')
 
    return (
@@ -66,12 +56,7 @@ const Header = () => {
                </ForPosition2>
             </InFirstRow1>
             <InFirstRow2>
-               <InputSearching
-                  type="text"
-                  placeholder="Поиск по сайту"
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
-               />
+               <InputSearching type="text" placeholder="Поиск по сайту" />
                <Searching src={iconSearching} alt="searching" />
             </InFirstRow2>
             <InFirstRow4>
