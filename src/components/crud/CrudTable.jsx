@@ -96,6 +96,7 @@ const ApplicationsTable = () => {
    )
 }
 export default ApplicationsTable
+
 const TableContainerStyled = styled(TableContainer)(() => ({
    cursor: 'pointer',
    width: '100%',
