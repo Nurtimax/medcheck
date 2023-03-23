@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, MenuItem, styled } from '@mui/material'
+import { Menu, styled } from '@mui/material'
 import iconLocation from '../../assets/icons/GeoPoint.svg'
 import iconHour from '../../assets/icons/Hour.svg'
 import iconSearching from '../../assets/icons/searching.svg'
@@ -7,7 +7,7 @@ import iconPhoneNumber from '../../assets/icons/iconTelephone.svg'
 import iconInstagram from '../../assets/icons/whatsApp.svg'
 import iconTelegram from '../../assets/icons/instagram.svg'
 import iconWhatsApp from '../../assets/icons/telegram.svg'
-import iconMedCheck from '../../assets/icons/MedCheck.svg'
+import iconMedCheck from '../../assets/icons/medCheck.svg'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import subtract from '../../assets/icons/subtract.svg'
 import Button from '../../components/UI/Button'
@@ -15,20 +15,29 @@ import CustomLink from '../../components/UI/Custom.Link'
 import { useDispatch, useSelector } from 'react-redux'
 import { postSignUp, removeUser } from '../../redux/slices/authSlice'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
+import OnlineEntryDrawer from '../../components/OnlineEntry/Drawer/OnlineEntryDrawer'
+import { ROUTES } from '../../utils/constants/data'
 
 const Header = () => {
-   const { isAuth, isGoogleAuth } = useSelector((state) => state.auth)
+   const { isAuth } = useSelector((state) => state.auth)
 
    const dispatch = useDispatch()
 
    const [anchorEl, setAnchorEl] = React.useState(null)
+   const [drawer, setDrawer] = React.useState({
+      right: false,
+   })
+
    const open = Boolean(anchorEl)
    const handleClick = (event) => {
       setAnchorEl(event.currentTarget)
    }
    const handleClose = () => {
       setAnchorEl(null)
+   }
+   const toggleDrawer = (anchor, open) => () => {
+      setDrawer({ ...drawer, [anchor]: open })
    }
 
    useEffect(() => {
@@ -81,17 +90,18 @@ const Header = () => {
             <InFirstRow5>
                <img
                   className="profileLogo"
-                  id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
+                  id="demo-positioned-button"
+                  aria-controls={open ? 'demo-positioned-menu' : undefined}
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
-                  src={isGoogleAuth ? userProfileLogo : subtract}
+                  src={isAuth ? userProfileLogo || subtract : subtract}
                   alt="profLogo"
                />
 
                <Styledmenu
-                  id="basic-menu"
+                  id="demo-positioned-menu"
+                  aria-labelledby="demo-positioned-button"
                   anchorEl={anchorEl}
                   open={open}
                   keepMounted
@@ -101,36 +111,48 @@ const Header = () => {
                   }}
                >
                   {isAuth ? (
-                     <div>
-                        <MenuItemStyled>
-                           <div className="authorized">Мои записи</div>
-                        </MenuItemStyled>
-                        <MenuItemStyled>
-                           <div className="authorized">Профиль</div>
-                        </MenuItemStyled>
-                        <MenuItemStyled>
-                           <div
-                              className="authorized"
-                              onClick={() => dispatch(removeUser())}
-                           >
-                              Выйти
-                           </div>
-                        </MenuItemStyled>
-                     </div>
-                  ) : (
-                     <div>
-                        <MenuItemStyled>
-                           <CustomLinkStyle to="/sign_in">
-                              Войти
-                           </CustomLinkStyle>
-                        </MenuItemStyled>
+                     <AuthStyled>
+                        <Link
+                           onClick={handleClose}
+                           className="authorized"
+                           to="/"
+                        >
+                           Мои записи
+                        </Link>
 
-                        <MenuItemStyled>
-                           <CustomLinkStyle to="/sign_up">
-                              Регистрация
-                           </CustomLinkStyle>
-                        </MenuItemStyled>
-                     </div>
+                        <Link
+                           onClick={handleClose}
+                           className="authorized"
+                           to="user_profile/personal_data"
+                        >
+                           Профиль
+                        </Link>
+
+                        <Link
+                           className="authorized"
+                           onClick={() => dispatch(removeUser())}
+                        >
+                           Выйти
+                        </Link>
+                     </AuthStyled>
+                  ) : (
+                     <AuthStyled>
+                        <Link
+                           onClick={handleClose}
+                           className="authorized"
+                           to="/sign_in"
+                        >
+                           Войти
+                        </Link>
+
+                        <Link
+                           onClick={handleClose}
+                           className="authorized"
+                           to="/sign_up"
+                        >
+                           Регистрация
+                        </Link>
+                     </AuthStyled>
                   )}
                </Styledmenu>
             </InFirstRow5>
@@ -153,11 +175,19 @@ const Header = () => {
                <CustomLinkStyle to="/contacts">Контакты</CustomLinkStyle>
             </NavigatePages>
             <GetResults>получить результаты</GetResults>
-            <RecordButton>запись онлайн</RecordButton>
+            <OnlineEntryDrawer
+               handleClick={<Navigate to={ROUTES.ONLINE_ENTRYS} />}
+               drawer={drawer}
+               toggleDrawer={toggleDrawer}
+            >
+               запись онлайн
+            </OnlineEntryDrawer>
          </SecondRow>
       </HeaderContainer>
    )
 }
+
+export default Header
 
 const HeaderContainer = styled('header')(() => ({
    width: '100%',
@@ -284,18 +314,6 @@ const NavigatePages = styled('nav')(() => ({
    fontFamily: '"Manrope" , sans-serif',
 }))
 
-const RecordButton = styled(Button)(() => ({
-   width: '200px',
-   height: '44px',
-   border: 'none',
-   background: 'linear-gradient(#0cbb6b, #027b44)',
-
-   borderRadius: '25px',
-   cursor: 'pointer',
-   textTransform: 'uppercase',
-   color: '#ffffff',
-}))
-
 const GetResults = styled(Button)(() => ({
    border: '1px solid #048741 ',
    borderRadius: '24px',
@@ -314,15 +332,6 @@ const InFirstRow5 = styled('div')(() => ({
    },
 }))
 
-const MenuItemStyled = styled(MenuItem)(() => ({
-   '& .authorized': {
-      color: 'black',
-   },
-   '& .authorized:hover': {
-      color: 'green',
-   },
-}))
-
 const CustomLinkStyle = styled(CustomLink)(() => ({
    textDecoration: 'none',
    listStyle: 'none',
@@ -333,11 +342,27 @@ const CustomLinkStyle = styled(CustomLink)(() => ({
       color: '#027B44',
    },
 }))
+
 const Styledmenu = styled(Menu)(() => ({
    '& .MuiMenuItem-root': {
       color: '#000000',
       transitionDuration: '0.3s',
    },
+
+   '& .authorized': {
+      color: 'black',
+      textDecoration: 'none',
+   },
+   '& .authorized:hover': {
+      color: 'green',
+   },
 }))
 
-export default Header
+const AuthStyled = styled('div')(() => ({
+   width: 'auto',
+   height: 'auto',
+   display: 'flex',
+   flexDirection: 'column',
+   gap: '10px',
+   padding: '8px',
+}))

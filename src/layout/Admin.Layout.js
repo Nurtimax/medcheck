@@ -6,18 +6,16 @@ const AdminLayout = () => {
    return (
       <>
          <AdminHeader />
-         <Main>
+         <main>
             <Container>
                <Outlet />
             </Container>
-         </Main>
+         </main>
       </>
    )
 }
 
 export default AdminLayout
-
-const Main = styled('main')(() => ({}))
 
 const Container = styled('div')(() => ({
    paddingTop: '100px ',
