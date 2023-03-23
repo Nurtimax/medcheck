@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Hours from '../components/time-table/Hours'
 import Specialists from '../components/time-table/Specialists'
 
-const useDateAndWeek = () => {
+const useDateAndWeek = (items) => {
    const [columns, setColums] = useState([
       {
          Header: 'Специалисты',
@@ -17,9 +17,9 @@ const useDateAndWeek = () => {
    ])
 
    const [data, setData] = useState([])
+   const startDate = new Date('03.12.2023')
+   const endDate = new Date('03.22.2023')
 
-   const startDate = new Date('January 1, 2023')
-   const endDate = new Date('January 10, 2023')
    const options = { weekday: 'short', day: 'numeric', month: 'long' }
 
    useEffect(() => {
@@ -33,6 +33,24 @@ const useDateAndWeek = () => {
       ) {
          const formattedDate = d.toLocaleDateString('ru-RU', options)
          const columnId = `date_${days}`
+
+         items.map((item) => {
+            return item.scheduleDateAndTimeResponse.map((time) => {
+               if (
+                  new Date(time.date).toLocaleDateString('ru-RU', options) ===
+                  formattedDate
+               ) {
+                  newData.push({
+                     ...item.scheduleDateAndTimeResponse,
+                     [columnId]: time.startTime,
+                     [columnId]: time.finishTime,
+                  })
+                  return time.date
+               }
+               return null
+            })
+         })
+
          newColumns.push({
             Header: formattedDate,
             accessor: columnId,
@@ -43,12 +61,13 @@ const useDateAndWeek = () => {
                return <Hours {...row.original} columnId={columnId} />
             },
          })
-         newData.push({ name: 'men', [columnId]: formattedDate })
          days++
       }
       setData((prevState) => [...prevState, ...newData])
       setColums((prevState) => [...prevState, ...newColumns])
    }, [])
+
+   console.log(data)
 
    return { data, columns }
 }

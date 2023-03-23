@@ -4,9 +4,10 @@ import Table from '../../components/time-table/table'
 import Button from '../../components/UI/Button'
 import Input from '../../components/UI/Input'
 import useDateAndWeek from '../../hook/useDateAndWeek'
+import { DUMMY_DATA } from '../../utils/constants/schedule'
 
 const TimeTable = () => {
-   const { columns: newColumns, data } = useDateAndWeek()
+   const { columns: newColumns, data } = useDateAndWeek(DUMMY_DATA)
 
    return (
       <StyledTimeTable>
