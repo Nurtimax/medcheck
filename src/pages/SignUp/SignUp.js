@@ -22,7 +22,8 @@ const SignUp = () => {
    const navigate = useNavigate()
 
    const closeModal = () => {
-      setOpen(navigate('/'))
+      navigate('/')
+      setOpen(!open)
    }
 
    const validationSchemaSignUp = SignInValidateHelper(email)

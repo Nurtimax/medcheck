@@ -102,6 +102,9 @@ const authSlice = createSlice({
          state.userToken = action.payload.token
          state.isAuth = true
       },
+      autoLoginData: (state, action) => {
+         state.userToken = action.payload.token
+      },
    },
    extraReducers: (builder) => {
       ///////////////////////////////////////////////////// LOGIN
