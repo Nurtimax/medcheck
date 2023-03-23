@@ -7,6 +7,8 @@ import ChangePassword from '../../components/profileCRUD/ChangePassword'
 import { ROUTES } from '../../utils/constants/data'
 import ProfileCrud from '../../components/profileCRUD/ProfileCrud'
 import UserProfile from '../../pages/user-profile/UserProfile'
+import ContinueAppointment from '../../containers/ContinueAppointment'
+import TableForAppointment from '../../components/AppointmentList/TableForAppointment'
 
 const MainLayout = React.lazy(() => import('../../layout/Main.Layout'))
 const LoginPage = React.lazy(() => import('../../pages/LoginPage'))
@@ -18,9 +20,7 @@ const LandingPage = React.lazy(() => import('../../layout/landing/LandingPage'))
 const LazyLoading = React.lazy(() => {
    return import('../../components/UI/LodaingSpinner')
 })
-// const UserInfo = React.lazy(() => {
-//    return import('../../components/profileCRUD/UserInfo')
-// })
+
 const UserRecords = React.lazy(() => {
    return import('../../components/UI/UserRecords')
 })
@@ -113,6 +113,19 @@ const MainRoutes = () => {
                         <SignUp />
                      </Suspense>
                   }
+               />
+
+               <Route
+                  path={ROUTES.USER}
+                  element={
+                     <Suspense fallback={<LazyLoading />}>
+                        <TableForAppointment />
+                     </Suspense>
+                  }
+               />
+               <Route
+                  path={'ROUTES.USER}/:id'}
+                  element={<ContinueAppointment />}
                />
                <Route path="user_profile" element={<UserProfile />}>
                   <Route
