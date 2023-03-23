@@ -1,3 +1,7 @@
+import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg'
+import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg'
+import { ReactComponent as DoctorIcon } from '../../assets/icons/doctorIcon.svg'
+
 export const tableTitle = [
    '№',
    'Статус',
@@ -7,16 +11,68 @@ export const tableTitle = [
    'Действия',
 ]
 
+export const tableData = [
+   {
+      number: 1,
+      status: 'Отменён',
+      userInfo: {
+         head: 'Выбор специалиста',
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Главный врач',
+      },
+      department: 'Анестезиолог',
+      timetable: '30 января 2023',
+      actions: {
+         edit: <EditIcon />,
+         delete: <DeleteIcon />,
+      },
+   },
+   {
+      number: 2,
+      status: 'Подтверждён',
+      userInfo: {
+         head: 'Дата и время',
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Главный врач',
+      },
+      department: 'Анестезиолог',
+      timetable: '30 января 2023',
+      actions: {
+         edit: <EditIcon />,
+         delete: <DeleteIcon />,
+      },
+   },
+   {
+      number: 3,
+      status: 'Завершён',
+      userInfo: {
+         head: 'Статус',
+         photo: <DoctorIcon />,
+         name: 'Манак Елена',
+         speciality: 'Главный врач',
+      },
+      department: 'Анестезиолог',
+      timetable: '30 января 2023',
+      actions: {
+         edit: <EditIcon />,
+         delete: <DeleteIcon />,
+      },
+   },
+]
+
 export const ROUTES = {
    MAIN: '/main',
    SIGN_IN: '/sign_in',
-   SIGN_UP: '/sign_up',
+   SIGN_UP: 'sign_up',
    ABOUT_CLINIC: '/about_cLinic',
    SERVICES: '/services',
    DOCTORS: '/doctors',
    PRICE: '/price',
    FEEDBACKS: '/feedbacks',
    CONTACTS: '/contacts',
+   USER: '/user',
    NOT_FOUND: '/*',
    CHANGE_PASSWORD: '/changePassword',
    PROFILE_CRUD: '/profCrud',
@@ -39,3 +95,5 @@ export const BASE_URL =
    'http://ec2-3-73-100-3.eu-central-1.compute.amazonaws.com/api/'
 
 export const JWT_TOKEN = 'MED_CHECK_JWT_TOKEN'
+
+export const PersonalArea = 'Личный кабинет >'

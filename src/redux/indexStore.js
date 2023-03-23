@@ -1,7 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import applicationSlice from './slices/crudSlice'
 import authSlice from './slices/authSlice'
-
 import {
    persistStore,
    persistReducer,
@@ -13,12 +12,18 @@ import {
    REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+
 import expertSlice from './slices/expertSlice'
+
+import profileSlice from './slices/profileSlice'
+import appointmentSlice from './slices/appointment-slice'
 
 const rootReducer = combineReducers({
    auth: authSlice.reducer,
    [applicationSlice.name]: applicationSlice.reducer,
    addExpert: expertSlice.reducer,
+   profCrudUser: profileSlice.reducer,
+   appointment: appointmentSlice.reducer,
 })
 
 const persistConfig = {
