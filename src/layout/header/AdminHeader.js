@@ -1,11 +1,7 @@
 import React from 'react'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import medCheckIcon from '../../assets/icons/medCheck.svg'
-<<<<<<< HEAD
-import { styled } from '@mui/material'
-=======
 import { Menu, MenuItem, styled } from '@mui/material'
->>>>>>> fbc2bfd5c6a236bb43133330e601a8a426b926dc
 import AdminLink from '../../components/UI/Custom.Link'
 import { Link } from 'react-router-dom'
 import { removeAdmin } from '../../redux/slices/authSlice'

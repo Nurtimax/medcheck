@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getExpertRequest } from '../../redux/slices/expertSlice'
 import EditExperts from './EditExpert'
 
-const EditCrud = () => {
+const EditData = () => {
    const dispatch = useDispatch()
    const { oneExpert } = useSelector((state) => state.addExpert)
    console.log(oneExpert)
@@ -21,4 +21,4 @@ const EditCrud = () => {
    )
 }
 
-export default EditCrud
+export default EditData

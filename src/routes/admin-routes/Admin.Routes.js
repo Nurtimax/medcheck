@@ -4,9 +4,9 @@ import { ADMIN_ROUTES } from '../../utils/constants/data'
 
 import LazyLoading from '../../components/UI/LodaingSpinner'
 import ApplicationsTable from '../../components/crud/CrudTable'
-import ExpertsCrud from '../../components/crud/Expert.Crud'
-import AddExpert from '../../components/crud/Add.Expert'
-import EditCrud from '../../components/crud/EditCrud'
+import ExpertsCrud from '../../components/experts/Expert.Crud'
+import EditData from '../../components/experts/EditData'
+import AddExpert from '../../components/experts/Add.Expert'
 
 const AdminLayout = React.lazy(() => import('../../layout/Admin.Layout'))
 
@@ -58,7 +58,7 @@ const AdminRoutes = () => {
                path={ADMIN_ROUTES.EDIT_EXPERT}
                element={
                   <Suspense fallback={<LazyLoading />}>
-                     <EditCrud />
+                     <EditData />
                   </Suspense>
                }
             />
