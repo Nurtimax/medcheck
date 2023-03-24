@@ -80,6 +80,7 @@ const profileSlice = createSlice({
          })
 
          // /////////// change password
+
          .addCase(putApplicationsRequest.fulfilled, (state, action) => {
             state.data = action.payload
             state.status = 'success'

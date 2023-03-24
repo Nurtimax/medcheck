@@ -1,35 +1,75 @@
 import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Drawer from '@mui/material/Drawer'
 import Button from '../../UI/Button'
 import { styled } from '@mui/material'
 
 import closeOnlineEntry from '../../../assets/icons/close.svg'
-import { Link } from 'react-router-dom'
-import { ROUTES } from '../../../utils/constants/data'
 
-const OnlineEntryDrawer = ({ toggleDrawer, drawer, handleClick }) => {
+import chooseServices from '../../../assets/icons/chooseServices.svg'
+import chooseSpecialist from '../../../assets/icons/chooseSpecialist.svg'
+import chooseTime from '../../../assets/icons/chooseTime.svg'
+import { useSelector } from 'react-redux'
+
+const OnlineEntryDrawer = ({ toggleDrawer, drawer }) => {
+   const { isAuth } = useSelector((state) => state.auth)
+   const navigate = useNavigate()
+
+   const servicClinic = () => {
+      navigate('/services_clinic')
+   }
+   const specialist = () => {
+      navigate('/speciality')
+   }
+   const time = () => {
+      navigate('/choose_time')
+   }
+   const backToHome = () => {
+      navigate('/')
+   }
+
+   const blockOnlineEntry = () => {
+      navigate('/sign_up')
+   }
+
    return (
-      <div onClick={() => handleClick}>
+      <div>
          {['right'].map((item) => (
             <React.Fragment key={item}>
-               <RecordButton onClick={toggleDrawer(item, true)}>
+               <RecordButton
+                  onClick={isAuth ? toggleDrawer(item, true) : blockOnlineEntry}
+               >
                   запись онлайн
                </RecordButton>
+
                <DrawerStyled anchor={item} open={drawer[item]}>
                   <OnlineEntryStyled className="onlineEntry">
-                     <img
-                        onClick={toggleDrawer(item, false)}
-                        src={closeOnlineEntry}
-                        alt="close"
-                     />
+                     <div onClick={backToHome}>
+                        <img
+                           onClick={toggleDrawer(item, false)}
+                           src={closeOnlineEntry}
+                           alt="close"
+                        />
+                     </div>
                      <p>Online запись</p>
                   </OnlineEntryStyled>
 
                   <SelectedServices>
-                     <Link to={ROUTES.SERVICES_CLINIC}>services</Link>
-                     <Link to={ROUTES.SPECIALITY}> specialist</Link>
-                     <Link to={ROUTES.CHOOSE_TIME}>choose time</Link>
+                     <ChoiceServicesStyled onClick={servicClinic}>
+                        <img src={chooseServices} alt="services" />
+                        <p>Выбрать услуги</p>
+                     </ChoiceServicesStyled>
+
+                     <ChoiceServicesStyled onClick={specialist}>
+                        <img src={chooseSpecialist} alt="specialist" />
+                        <p>Выбрать специалиста</p>
+                     </ChoiceServicesStyled>
+
+                     <ChoiceServicesStyled onClick={time}>
+                        <img src={chooseTime} alt="time" />
+                        <p>Выбрать дату и время</p>
+                     </ChoiceServicesStyled>
                   </SelectedServices>
                </DrawerStyled>
             </React.Fragment>
@@ -79,5 +119,16 @@ const SelectedServices = styled('div')(() => ({
    background: '#F3F1F1',
    display: 'flex',
    flexDirection: 'column',
+}))
+
+const ChoiceServicesStyled = styled('div')(() => ({
+   height: '72px',
+   display: 'flex',
    alignItems: 'center',
+   background: 'white',
+   margin: '6px',
+   borderRadius: '16px',
+   padding: '0 10px',
+   cursor: 'pointer',
+   gap: '10px',
 }))

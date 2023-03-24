@@ -65,4 +65,5 @@ const ErrorMessages = styled('p')(() => ({
    margin: '0',
    fontSize: '12px',
    width: '414px',
+   fontFamily: '"Manrope" , sans-serif',
 }))

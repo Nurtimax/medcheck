@@ -1,4 +1,3 @@
-import { Switch } from '@mui/material'
 import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg'
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg'
 import { ReactComponent as DoctorIcon } from '../../assets/icons/doctorIcon.svg'
@@ -15,8 +14,9 @@ export const tableTitle = [
 export const tableData = [
    {
       number: 1,
-      status: <Switch color="success" />,
+      status: 'Отменён',
       userInfo: {
+         head: 'Выбор специалиста',
          photo: <DoctorIcon />,
          name: 'Манак Елена',
          speciality: 'Главный врач',
@@ -30,8 +30,9 @@ export const tableData = [
    },
    {
       number: 2,
-      status: <Switch color="success" />,
+      status: 'Подтверждён',
       userInfo: {
+         head: 'Дата и время',
          photo: <DoctorIcon />,
          name: 'Манак Елена',
          speciality: 'Главный врач',
@@ -45,8 +46,9 @@ export const tableData = [
    },
    {
       number: 3,
-      status: <Switch color="success" />,
+      status: 'Завершён',
       userInfo: {
+         head: 'Статус',
          photo: <DoctorIcon />,
          name: 'Манак Елена',
          speciality: 'Главный врач',
@@ -63,23 +65,24 @@ export const tableData = [
 export const ROUTES = {
    MAIN: '/main',
    SIGN_IN: '/sign_in',
-   SIGN_UP: '/sign_up',
+   SIGN_UP: 'sign_up',
    ABOUT_CLINIC: '/about_cLinic',
    SERVICES: '/services',
    DOCTORS: '/doctors',
    PRICE: '/price',
    FEEDBACKS: '/feedbacks',
    CONTACTS: '/contacts',
+   USER: '/user',
    NOT_FOUND: '/*',
    CHANGE_PASSWORD: '/changePassword',
    PROFILE_CRUD: '/profCrud',
    PROFCRUD_CONTAINER: '/profCrudContainer',
    FORGOT_PASSWROD: '/forgot_password',
    USER_RECORDS: '/userRecords',
+   SERVICES_CLINIC: '/services_clinic',
+   SPECIALITY: '/speciality',
+   CHOOSE_TIME: '/choose_time',
    ONLINE_ENTRYS: '/online_entrys',
-   SERVICES_CLINIC: '/online_entrys/services_clinic',
-   SPECIALITY: '/online_entrys/speciality',
-   CHOOSE_TIME: '/online_entrys/choose_time',
 }
 
 export const ADMIN_ROUTES = {

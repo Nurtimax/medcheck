@@ -14,11 +14,15 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import profileSlice from './slices/profileSlice'
+import appointmentSlice from './slices/appointment-slice'
+import onlineEntrySlice from './slices/onlineEntrySlice'
 
 const rootReducer = combineReducers({
    auth: authSlice.reducer,
-   [applicationSlice.name]: applicationSlice.reducer,
+   applications: applicationSlice.reducer,
    profCrudUser: profileSlice.reducer,
+   appointment: appointmentSlice.reducer,
+   onlineEntry: onlineEntrySlice.reducer,
 })
 
 const persistConfig = {

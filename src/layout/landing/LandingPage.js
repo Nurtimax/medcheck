@@ -29,12 +29,19 @@ import SwiperFeedbacks from './SwiperFeedbacks'
 import { Link, useNavigate } from 'react-router-dom'
 import CustomLink from '../../components/UI/Custom.Link'
 import { ROUTES } from '../../utils/constants/data'
+import { useSelector } from 'react-redux'
 
 const LandingPage = () => {
+   const { isAuth } = useSelector((state) => state.auth)
+
    const navigate = useNavigate()
 
    const leaveRequest = () => {
       navigate('/userRecords')
+   }
+
+   const toRegister = () => {
+      navigate('/sign_up')
    }
 
    return (
@@ -50,7 +57,7 @@ const LandingPage = () => {
                   технологии и ведут прием лучшие специалисты.
                </TypographyAbout>
 
-               <ButtonRecord onClick={leaveRequest}>
+               <ButtonRecord onClick={isAuth ? leaveRequest : toRegister}>
                   оставьте заявку
                </ButtonRecord>
             </WelcomeClient>
@@ -155,7 +162,7 @@ const LandingPage = () => {
             </div>
          </Services>
 
-         <LinkToServices to="/services">
+         <LinkToServices to={isAuth ? '/services' : '/sign_up'}>
             <LookAll>Смотреть все</LookAll>
          </LinkToServices>
 
@@ -189,7 +196,7 @@ const LandingPage = () => {
                </p>
 
                <div className="readMore">
-                  <CustomLink to={ROUTES.ABOUT_CLINIC}>
+                  <CustomLink to={isAuth ? ROUTES.ABOUT_CLINIC : '/sign_up'}>
                      Читать подробнее о клинике
                   </CustomLink>
 
@@ -198,7 +205,7 @@ const LandingPage = () => {
             </div>
             <ImgStyles>
                <div>
-                  <img src={clinic} alt="" />
+                  <img src={clinic} alt="clinic" />
                </div>
 
                <img src={doctors1} alt="doctors1" />
@@ -229,7 +236,7 @@ const LandingPage = () => {
             })}
          </Doctors>
 
-         <LinkAllDoctorsContainer to="/doctors">
+         <LinkAllDoctorsContainer to={isAuth ? '/doctors' : '/sign_up'}>
             <AllDoctors>Все врачи клиники</AllDoctors>
          </LinkAllDoctorsContainer>
 

@@ -1,12 +1,12 @@
 import { styled } from '@mui/material'
 import React, { useState } from 'react'
 
-import Modal from './Modal'
+import Modal from '../UI/Modal'
 
 import user from '../../assets/icons/users.svg'
 import phone from '../../assets/icons/phone.svg'
 import next from '../../assets/icons/next.svg'
-import Button from './Button'
+import Button from '../UI/Button'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { useDispatch } from 'react-redux'

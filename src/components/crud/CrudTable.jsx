@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import bin from '../../assets/icons/bin.svg'
 import { useEffect } from 'react'
 
-import ContainerEntry from '../Container/ContainerEntry'
+import ContainerEntry from '../UI/ContainerEntry'
 import {
    getApplicationsRequest,
    removeApplicationRequest,
@@ -22,10 +22,8 @@ const ApplicationsTable = () => {
 
    const deleteHandler = (id) => {
       const backendData = [].push(id)
-      dispatch(removeApplicationRequest(backendData))
-         .unwrap()
-         .then((response) => console.log(response))
-         .catch((error) => console.log(error))
+
+      dispatch(removeApplicationRequest(backendData)).unwrap()
    }
 
    useEffect(() => {
@@ -51,44 +49,41 @@ const ApplicationsTable = () => {
                      <TableCell sx={{ textAlign: 'center' }}>
                         Обработан
                      </TableCell>
-                     <TableCell sx={{ textAlign: 'center' }}>
-                        Действия
-                     </TableCell>
+                     <TableCell>Действия</TableCell>
                   </TableRow>
                </TableHead>
                <TableBody>
-                  {applications.length === 0 &&
-                     applications?.map((application) => (
-                        <TableRow key={application.id}>
-                           <TableCell>
-                              <input type="checkbox" />
-                           </TableCell>
-                           <TableCell></TableCell>
-                           <TableCell>{application.id}</TableCell>
-                           <TableCell>{application.lastName}</TableCell>
-                           <TableCell>{application.date}</TableCell>
-                           <TableCell>{application.phoneNumber}</TableCell>
-                           <TableCell
-                              sx={{
-                                 display: 'flex',
-                                 justifyContent: 'center',
-                                 padding: '19px',
-                              }}
-                           >
-                              <input
-                                 type="checkbox"
-                                 checked={application.status}
-                              />
-                           </TableCell>
-                           <TableCell>
-                              <img
-                                 src={bin}
-                                 alt="bin"
-                                 onClick={() => deleteHandler(application.id)}
-                              />
-                           </TableCell>
-                        </TableRow>
-                     ))}
+                  {applications?.map((application) => (
+                     <TableRow key={application.id}>
+                        <TableCell>
+                           <input type="checkbox" />
+                        </TableCell>
+                        <TableCell></TableCell>
+                        <TableCell>{application.id}</TableCell>
+                        <TableCell>{application.lastName}</TableCell>
+                        <TableCell>{application.date}</TableCell>
+                        <TableCell>{application.phoneNumber}</TableCell>
+                        <TableCell
+                           sx={{
+                              display: 'flex',
+                              justifyContent: 'center',
+                              padding: '19px',
+                           }}
+                        >
+                           <input
+                              type="checkbox"
+                              checked={application.status}
+                           />
+                        </TableCell>
+                        <TableCell>
+                           <img
+                              src={bin}
+                              alt="bin"
+                              onClick={() => deleteHandler(application.id)}
+                           />
+                        </TableCell>
+                     </TableRow>
+                  ))}
                </TableBody>
             </Table>
          </TableContainerStyled>
@@ -96,6 +91,7 @@ const ApplicationsTable = () => {
    )
 }
 export default ApplicationsTable
+
 const TableContainerStyled = styled(TableContainer)(() => ({
    cursor: 'pointer',
    width: '100%',

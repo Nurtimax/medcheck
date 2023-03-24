@@ -15,9 +15,8 @@ import CustomLink from '../../components/UI/Custom.Link'
 import { useDispatch, useSelector } from 'react-redux'
 import { postSignUp, removeUser } from '../../redux/slices/authSlice'
 import { useEffect } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import OnlineEntryDrawer from '../../components/OnlineEntry/Drawer/OnlineEntryDrawer'
-import { ROUTES } from '../../utils/constants/data'
 
 const Header = () => {
    const { isAuth } = useSelector((state) => state.auth)
@@ -25,9 +24,8 @@ const Header = () => {
    const dispatch = useDispatch()
 
    const [anchorEl, setAnchorEl] = React.useState(null)
-   const [drawer, setDrawer] = React.useState({
-      right: false,
-   })
+
+   const [searchParams, setSearchParams] = useSearchParams()
 
    const open = Boolean(anchorEl)
    const handleClick = (event) => {
@@ -36,9 +34,18 @@ const Header = () => {
    const handleClose = () => {
       setAnchorEl(null)
    }
+
    const toggleDrawer = (anchor, open) => () => {
       setDrawer({ ...drawer, [anchor]: open })
+      setSearchParams({ [anchor]: open })
    }
+   const [drawer, setDrawer] = React.useState({
+      right: false,
+   })
+
+   useEffect(() => {
+      setDrawer({ right: Boolean(searchParams.get('right')) })
+   }, [])
 
    useEffect(() => {
       if (isAuth) {
@@ -62,7 +69,7 @@ const Header = () => {
                </ForPosition2>
             </InFirstRow1>
             <InFirstRow2>
-               <InputSearching type="text" placeholder="Поиск по сайту " />
+               <InputSearching type="text" placeholder="Поиск по сайту" />
                <Searching src={iconSearching} alt="searching" />
             </InFirstRow2>
             <InFirstRow4>
@@ -86,7 +93,6 @@ const Header = () => {
                <PhoneNumber src={iconPhoneNumber} alt="phone" />
                <p>+996(800) 000 000 +996(505) 000 000</p>
             </InFirstRow3>
-
             <InFirstRow5>
                <img
                   className="profileLogo"
@@ -98,7 +104,6 @@ const Header = () => {
                   src={isAuth ? userProfileLogo || subtract : subtract}
                   alt="profLogo"
                />
-
                <Styledmenu
                   id="demo-positioned-menu"
                   aria-labelledby="demo-positioned-button"
@@ -115,11 +120,10 @@ const Header = () => {
                         <Link
                            onClick={handleClose}
                            className="authorized"
-                           to="/"
+                           to="user"
                         >
                            Мои записи
                         </Link>
-
                         <Link
                            onClick={handleClose}
                            className="authorized"
@@ -127,7 +131,6 @@ const Header = () => {
                         >
                            Профиль
                         </Link>
-
                         <Link
                            className="authorized"
                            onClick={() => dispatch(removeUser())}
@@ -144,7 +147,6 @@ const Header = () => {
                         >
                            Войти
                         </Link>
-
                         <Link
                            onClick={handleClose}
                            className="authorized"
@@ -167,21 +169,31 @@ const Header = () => {
                </Link>
             </ProjectLogos>
             <NavigatePages>
-               <CustomLinkStyle to="/about_clinic">О клинике</CustomLinkStyle>
-               <CustomLinkStyle to="/services">Услуги</CustomLinkStyle>
-               <CustomLinkStyle to="/doctors">Врачи</CustomLinkStyle>
-               <CustomLinkStyle to="/price">Прайс</CustomLinkStyle>
-               <CustomLinkStyle to="/feedbacks">Отзывы</CustomLinkStyle>
-               <CustomLinkStyle to="/contacts">Контакты</CustomLinkStyle>
+               <CustomLinkStyle to={isAuth ? '/about_clinic' : '/sign_up'}>
+                  О клинике
+               </CustomLinkStyle>
+               <CustomLinkStyle to={isAuth ? '/services' : '/sign_up'}>
+                  Услуги
+               </CustomLinkStyle>
+               <CustomLinkStyle to={isAuth ? '/doctors' : '/sign_up'}>
+                  Врачи
+               </CustomLinkStyle>
+               <CustomLinkStyle to={isAuth ? '/price' : '/sign_up'}>
+                  Прайс
+               </CustomLinkStyle>
+               <CustomLinkStyle to={isAuth ? '/feedbacks' : '/sign_up'}>
+                  Отзывы
+               </CustomLinkStyle>
+               <CustomLinkStyle to={isAuth ? '/contacts' : '/sign_up'}>
+                  Контакты
+               </CustomLinkStyle>
             </NavigatePages>
             <GetResults>получить результаты</GetResults>
-            <OnlineEntryDrawer
-               handleClick={<Navigate to={ROUTES.ONLINE_ENTRYS} />}
-               drawer={drawer}
-               toggleDrawer={toggleDrawer}
-            >
-               запись онлайн
-            </OnlineEntryDrawer>
+            <div>
+               <OnlineEntryDrawer drawer={drawer} toggleDrawer={toggleDrawer}>
+                  запись онлайн
+               </OnlineEntryDrawer>
+            </div>
          </SecondRow>
       </HeaderContainer>
    )
@@ -191,14 +203,13 @@ export default Header
 
 const HeaderContainer = styled('header')(() => ({
    width: '100%',
-   backgroundColor: '#ffffff',
+   backgroundColor: '#FFFFFF',
    position: 'fixed',
    top: '0',
    left: '0',
    zIndex: '20',
    fontFamily: '"Manrope" , sans-serif',
 }))
-
 const FirstRow = styled('div')(() => ({
    display: 'flex',
    justifyContent: 'space-between',
@@ -206,73 +217,62 @@ const FirstRow = styled('div')(() => ({
    width: '80%',
    alignItems: 'center',
    padding: '20px 0 20px 0',
-   borderBottom: '1px solid #c0bdbd',
+   borderBottom: '1px solid #C0BDBD',
 }))
-
 const InFirstRow1 = styled('div')(() => ({
    display: 'flex',
    flexDirection: 'column',
    justifyContent: 'flex-start',
 }))
-
 const Span = styled('span')(() => ({
    color: '#009344',
 }))
-
 const ForPosition1 = styled('div')(() => ({
    '& img': {
       marginRight: '11px',
       marginLeft: '2px',
    },
 }))
-
 const ForPosition2 = styled('div')(() => ({
    '& img': {
       marginRight: '7px',
    },
 }))
-
 const InFirstRow2 = styled('div')(() => ({
    width: '300px',
    height: '30px',
-   backgroundColor: '#f3f1f1',
+   backgroundColor: '#F3F1F1',
    padding: '3px 0',
    borderRadius: '20px',
    display: 'flex',
    justifyContent: 'center',
    alignItems: 'center',
 }))
-
 const InputSearching = styled('input')(() => ({
    width: '250px',
    border: 'none',
    outline: 'none',
    backgroundColor: 'inherit',
 }))
-
 const Searching = styled('img')(() => ({
    width: '17px',
    height: '17px',
    cursor: 'pointer',
 }))
-
 const InFirstRow3 = styled('div')(() => ({
    display: 'flex',
    alignItems: 'center',
    gap: '8px',
    width: '200px',
 }))
-
 const PhoneNumber = styled('img')(() => ({
    width: '17px',
    height: '17px',
    marginBottom: '13px',
    cursor: 'pointer',
 }))
-
 const InFirstRow4 = styled('div')(() => ({
    display: 'flex',
-
    gap: '10px',
    '& div': {
       display: 'flex',
@@ -290,7 +290,6 @@ const InFirstRow4 = styled('div')(() => ({
       },
    },
 }))
-
 const SecondRow = styled('div')(() => ({
    display: 'flex',
    justifyContent: 'space-between',
@@ -299,13 +298,11 @@ const SecondRow = styled('div')(() => ({
    width: '80%',
    marginTop: '10px',
 }))
-
 const ProjectLogos = styled('div')(() => ({
    display: 'flex',
    alignItems: 'center',
    gap: '10px',
 }))
-
 const NavigatePages = styled('nav')(() => ({
    display: 'flex',
    gap: '10px',
@@ -313,7 +310,6 @@ const NavigatePages = styled('nav')(() => ({
    fontWeight: '500',
    fontFamily: '"Manrope" , sans-serif',
 }))
-
 const GetResults = styled(Button)(() => ({
    border: '1px solid #048741 ',
    borderRadius: '24px',
@@ -321,23 +317,19 @@ const GetResults = styled(Button)(() => ({
    width: '205',
    height: '43px',
 }))
-
 const InFirstRow5 = styled('div')(() => ({
    cursor: 'pointer',
-
    '& .profileLogo': {
       width: '45px',
       height: '45px',
       borderRadius: '50%',
    },
 }))
-
 const CustomLinkStyle = styled(CustomLink)(() => ({
    textDecoration: 'none',
    listStyle: 'none',
    cursor: 'pointer',
    color: '#222222',
-
    '&:hover': {
       color: '#027B44',
    },
@@ -348,7 +340,6 @@ const Styledmenu = styled(Menu)(() => ({
       color: '#000000',
       transitionDuration: '0.3s',
    },
-
    '& .authorized': {
       color: 'black',
       textDecoration: 'none',

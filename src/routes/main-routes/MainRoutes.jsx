@@ -1,11 +1,23 @@
 import React, { Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import ChangePassword from '../../components/profileCRUD/ChangePassword'
 import { ROUTES } from '../../utils/constants/data'
-import ProfileCrud from '../../components/profileCRUD/ProfileCrud'
-import UserProfile from '../../pages/user-profile/UserProfile'
 
+const TableForAppointment = React.lazy(() => {
+   return import('../../components/AppointmentList/TableForAppointment')
+})
+const ContinueAppointment = React.lazy(() => {
+   return import('../../containers/ContinueAppointment')
+})
+const UserProfile = React.lazy(() => {
+   return import('../../pages/user-profile/UserProfile')
+})
+const ProfileCrud = React.lazy(() => {
+   return import('../../components/profileCRUD/ProfileCrud')
+})
+const ChangePassword = React.lazy(() => {
+   return import('../../components/profileCRUD/ChangePassword')
+})
 const MainLayout = React.lazy(() => import('../../layout/Main.Layout'))
 const LoginPage = React.lazy(() => import('../../pages/LoginPage'))
 const SignUp = React.lazy(() => import('../../pages/SignUp/SignUp'))
@@ -16,9 +28,6 @@ const LandingPage = React.lazy(() => import('../../layout/landing/LandingPage'))
 const LazyLoading = React.lazy(() => {
    return import('../../components/UI/LodaingSpinner')
 })
-const UserRecords = React.lazy(() => {
-   return import('../../components/UI/UserRecords')
-})
 const ChooseTime = React.lazy(() => {
    return import('../../components/OnlineEntry/SelectServices/ChooseTime')
 })
@@ -26,7 +35,11 @@ const Specialist = React.lazy(() => {
    return import('../../components/OnlineEntry/SelectServices/Specialist')
 })
 const Services = React.lazy(() => {
-   return import('../../components/OnlineEntry/SelectServices/ChooseTime')
+   return import('../../components/OnlineEntry/SelectServices/Services.js')
+})
+
+const UserRecords = React.lazy(() => {
+   return import('../../components/crud/UserRecords')
 })
 
 const MainRoutes = () => {
@@ -103,7 +116,6 @@ const MainRoutes = () => {
                   }
                />
 
-               <Route path={ROUTES.ONLINE_ENTRYS}></Route>
                <Route
                   path={ROUTES.SERVICES_CLINIC}
                   element={
@@ -136,6 +148,19 @@ const MainRoutes = () => {
                         <SignUp />
                      </Suspense>
                   }
+               />
+
+               <Route
+                  path={ROUTES.USER}
+                  element={
+                     <Suspense fallback={<LazyLoading />}>
+                        <TableForAppointment />
+                     </Suspense>
+                  }
+               />
+               <Route
+                  path={'ROUTES.USER}/:id'}
+                  element={<ContinueAppointment />}
                />
                <Route path="user_profile" element={<UserProfile />}>
                   <Route

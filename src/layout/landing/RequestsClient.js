@@ -7,8 +7,11 @@ import phoneNumber from '../../assets/icons/phoneNumber.svg'
 import Button from '../../components/UI/Button'
 import { styled } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const RequestsClient = () => {
+   const { isAuth } = useSelector((state) => state.auth)
+
    return (
       <RequestClient>
          <div className="requestContainer">
@@ -42,7 +45,7 @@ const RequestsClient = () => {
                   </div>
                </div>
             </div>
-            <LinkToApplication to="/admin/applications">
+            <LinkToApplication to={isAuth ? '/userRecords' : '/sign_up'}>
                <Button variant="contained" className="sendRequest">
                   ОТПРАВИТЬ ЗАЯВКУ
                </Button>

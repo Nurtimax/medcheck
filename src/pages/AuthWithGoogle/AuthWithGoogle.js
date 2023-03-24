@@ -26,10 +26,6 @@ const AuthGoogleContainer = styled('div')(() => ({
    margin: '0 auto',
    marginTop: '20px',
    cursor: 'pointer',
-
-   '& div': {
-      fontWeight: '600',
-   },
 }))
 
 // console.log(window.location.href)

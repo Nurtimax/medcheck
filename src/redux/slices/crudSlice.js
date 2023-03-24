@@ -11,7 +11,19 @@ export const postApplicationsRequest = createAsyncThunk(
    'applicationSlice/postApplicationsRequest',
    async (userData, { rejectWithValue }) => {
       try {
-         const { data } = await axiosInstance.post('application', userData)
+         const { data } = await axiosInstance.post('application/', userData)
+         return data
+      } catch (error) {
+         return rejectWithValue(error)
+      }
+   }
+)
+
+export const putApplicationsRequest = createAsyncThunk(
+   'applicationSlice/postApplicationsRequest',
+   async (userData, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance.post('application/', userData)
          return data
       } catch (error) {
          return rejectWithValue(error)
@@ -23,31 +35,23 @@ export const getApplicationsRequest = createAsyncThunk(
    'applicationSlice/getApplicationsRequest',
    async (_, { rejectWithValue }) => {
       try {
-         const response = await axiosInstance.get('/application/get')
+         const response = await axiosInstance.get('application/')
          return response.data
       } catch (error) {
-         if (rejectWithValue) {
-            return error
-         }
-         return error
+         return rejectWithValue(error)
       }
    }
 )
 
 export const removeApplicationRequest = createAsyncThunk(
    'applicationSlice/removeApplicationRequest',
-   async (data) => {
+   async (id, { dispatch, rejectWithValue }) => {
       try {
-         const response = await axiosInstance.delete(
-            `/applicationSlice/deleteSelected`,
-            {
-               data: data,
-            }
-         )
-
-         return response.data
+         const { data } = await axiosInstance.delete('application/', id)
+         dispatch(getApplicationsRequest())
+         return data
       } catch (error) {
-         return error
+         return rejectWithValue(error)
       }
    }
 )
@@ -60,7 +64,6 @@ const applicationSlice = createSlice({
       builder
 
          // ///////////////// get user requests
-
          .addCase(getApplicationsRequest.fulfilled, (state, action) => {
             state.applications = action.payload
          })
@@ -73,7 +76,6 @@ const applicationSlice = createSlice({
          })
 
          // ////////////////// post user requests
-
          .addCase(postApplicationsRequest.fulfilled, (state, action) => {
             state.applications = action.payload
          })
@@ -86,5 +88,7 @@ const applicationSlice = createSlice({
          })
    },
 })
-export const applicationSliceAction = applicationSlice.actions
+
+export const { applicationSliceAction, removeUsers } = applicationSlice.actions
+
 export default applicationSlice

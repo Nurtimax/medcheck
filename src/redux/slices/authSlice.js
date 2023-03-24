@@ -48,13 +48,15 @@ const signInWithGooglePopup = () => {
 }
 
 export const signInWithGoogle = createAsyncThunk(
-   'auth/signInWithGoogle',
-   async (_, { dispatch }) => {
+   'auth/authWithGoogle',
+   async (_, { dispatch, rejectWithValue }) => {
       try {
          const result = await signInWithGooglePopup()
+
          const response = await axiosInstance.post(
-            `/auth/auth/google?tokenFront=${result.user.accessToken}`
+            `auth/auth/google?tokenFront=${result.user.accessToken}`
          )
+
          const userPhoto = result.user.photoURL
          localStorage.setItem('USER_PHOTO', userPhoto)
          const { email, token, roleName } = response.data
@@ -63,7 +65,7 @@ export const signInWithGoogle = createAsyncThunk(
          dispatch(postSignUp(userData))
          return userData
       } catch (error) {
-         throw new Error()
+         return rejectWithValue(error)
       }
    }
 )
@@ -101,6 +103,9 @@ const authSlice = createSlice({
          state.roleName = action.payload.roleName
          state.userToken = action.payload.token
          state.isAuth = true
+      },
+      autoLoginData: (state, action) => {
+         state.userToken = action.payload.token
       },
    },
    extraReducers: (builder) => {

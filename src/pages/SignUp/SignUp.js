@@ -22,7 +22,8 @@ const SignUp = () => {
    const navigate = useNavigate()
 
    const closeModal = () => {
-      setOpen(navigate('/'))
+      navigate('/')
+      setOpen(!open)
    }
 
    const validationSchemaSignUp = SignInValidateHelper(email)
@@ -64,8 +65,13 @@ const SignUp = () => {
       formik
 
    const SignInWithGoogle = (data) => {
-      dispatch(signInWithGoogle(data))
-      navigate('/')
+      dispatch(signInWithGoogle(data)).then((res) => {
+         if (res?.meta?.requestStatus === 'fulfilled') {
+            navigate('/')
+         } else {
+            setCustomError('hello error')
+         }
+      })
    }
 
    useEffect(() => {

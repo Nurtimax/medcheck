@@ -80,7 +80,7 @@ const ChangePassword = () => {
             />
          </div>
          {customError && (
-            <Typography className="server_error" variant="body2" color="error">
+            <Typography variant="body2" className="errorMessage">
                {customError}
             </Typography>
          )}
@@ -178,5 +178,11 @@ const Container = styled('form')(() => ({
       display: 'flex',
       gap: '18px',
       marginTop: '30px',
+   },
+
+   '& .errorMessage': {
+      color: 'red',
+      fontSize: '12px',
+      fontFamily: '"Manrope" , sans-serif',
    },
 }))

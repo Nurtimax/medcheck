@@ -1,0 +1,15 @@
+<svg width="37" height="36" viewBox="0 0 37 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="18.0496" cy="18" rx="18.0496" ry="18" fill="url(#paint0_radial_482_5551)"/>
+<path d="M13.4536 25.3335C13.4536 23.8147 15.5113 22.5835 18.0496 22.5835C20.5879 22.5835 22.6455 23.8147 22.6455 25.3335" stroke="#959595" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23.5645 20.062C25.1877 20.4864 26.322 21.4555 26.322 22.5832" stroke="#959595" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.5344 20.062C10.9112 20.4864 9.77686 21.4555 9.77686 22.5832" stroke="#959595" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18.0496 19.8335C19.5725 19.8335 20.8071 18.6023 20.8071 17.0835C20.8071 15.5647 19.5725 14.3335 18.0496 14.3335C16.5266 14.3335 15.292 15.5647 15.292 17.0835C15.292 18.6023 16.5266 19.8335 18.0496 19.8335Z" stroke="#959595" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23.5645 16.3833C24.1286 15.8797 24.4837 15.148 24.4837 14.3335C24.4837 12.8147 23.249 11.5835 21.7261 11.5835C21.0198 11.5835 20.3756 11.8483 19.8877 12.2837" stroke="#959595" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.5344 16.3833C11.9703 15.8797 11.6152 15.148 11.6152 14.3335C11.6152 12.8147 12.8498 11.5835 14.3728 11.5835C15.0791 11.5835 15.7233 11.8483 16.2112 12.2837" stroke="#959595" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<defs>
+<radialGradient id="paint0_radial_482_5551" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(18.1062 19.9083) rotate(-45.4063) scale(22.1629 20.3714)">
+<stop stop-color="#FDFDFD"/>
+<stop offset="1" stop-color="#E4E7EE"/>
+</radialGradient>
+</defs>
+</svg>
