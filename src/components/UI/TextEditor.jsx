@@ -49,10 +49,10 @@ const MenuBar = ({ editor }) => {
    )
 }
 
-const TextEditor = ({ onChange }) => {
+const TextEditor = ({ onChange, content }) => {
    const editor = useEditor({
       extensions: [StarterKit, Underline],
-      content: '',
+      content,
       onUpdate: ({ editor }) => {
          const html = editor.getHTML()
          onChange(html)

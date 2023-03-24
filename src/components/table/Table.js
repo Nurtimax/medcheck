@@ -19,11 +19,12 @@ import {
 } from '../../redux/slices/expertSlice'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import LoadingSpinner from '../UI/LodaingSpinner'
 
 const Table = () => {
    const [items, setItems] = useState([])
 
-   const { allExpert } = useSelector((state) => state.addExpert)
+   const { allExpert, isLoading } = useSelector((state) => state.addExpert)
 
    const dispatch = useDispatch()
    const navigate = useNavigate()
@@ -40,11 +41,11 @@ const Table = () => {
       dispatch(removeExpertRequest(id))
          .unwrap()
          .then(() => setItems(items.filter((item) => item.id !== id)))
-         .catch((error) => console.log(error))
    }
 
    return (
       <TableContainerStyled>
+         {isLoading && <LoadingSpinner />}
          <MuiTableStyle>
             <TableHead>
                <TableRow>

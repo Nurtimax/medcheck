@@ -15,7 +15,7 @@ const StackStyled = styled(Stack)(() => ({
    color: 'grey.500',
    width: '100vw',
    height: '100vh',
-   background: 'rgba(0,0,0,0.3)',
+   background: 'rgba(0,0,0,0.3SS)',
    position: 'absolute',
    top: '0',
    left: '0',

@@ -15,9 +15,10 @@ import {
 import ChangePhotoProfile from '../UI/ChangePhotoProfile'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
+import LoadingSpinner from '../UI/LodaingSpinner'
 
 const AddExperts = () => {
-   const { experts } = useSelector((state) => state.addExpert)
+   const { experts, isLoading } = useSelector((state) => state.addExpert)
 
    const dispatch = useDispatch()
    const navigate = useNavigate()
@@ -37,7 +38,6 @@ const AddExperts = () => {
                (item) => item.clinicServiceName === values.serviceId
             )
             dispatch(postExpertRequest({ ...values, serviceId: newFind.id }))
-            console.log(values)
             resetForm()
             navigate('/admin/speciality')
          },
@@ -51,6 +51,7 @@ const AddExperts = () => {
 
    return (
       <AddExpertsStyled>
+         {isLoading && <LoadingSpinner />}
          <Container>
             <LinkToSpecialityStyled to="/admin/speciality">
                Специалисты <i className="right"></i>

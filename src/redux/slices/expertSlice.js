@@ -8,7 +8,7 @@ const initialState = {
    allExpert: [],
    putExpert: [],
    error: null,
-   status: '',
+   isLoading: false,
 }
 
 export const getExpertRequest = createAsyncThunk(
@@ -28,9 +28,10 @@ export const getExpertRequest = createAsyncThunk(
 
 export const postExpertRequest = createAsyncThunk(
    'addExpertSlice/postExpertRequest',
-   async (body, { rejectWithValue }) => {
+   async (body, { rejectWithValue, dispatch }) => {
       try {
          const { data } = await axiosInstance.post('expert/', body)
+         dispatch(getAllExpert())
          return data
       } catch (error) {
          return rejectWithValue(error)
@@ -53,14 +54,14 @@ export const editExpertRequest = createAsyncThunk(
 
 export const putExpertRequest = createAsyncThunk(
    'putExpert/putExpertRequest',
-   async (params, { rejectWithValue }) => {
+   async ({ id, values }, { rejectWithValue, dispatch }) => {
       try {
          const { data } = await axiosInstance.put(
-            `expert/update/${params.id}`,
-            {
-               ...params,
-            }
+            `expert/update/${id}`,
+
+            { ...values }
          )
+         dispatch(getAllExpert())
          return data
       } catch (error) {
          return rejectWithValue(error)
@@ -74,6 +75,17 @@ export const removeExpertRequest = createAsyncThunk(
       try {
          const { data } = await axiosInstance.delete(`expert/${id}`)
          dispatch(getAllExpert())
+         return data
+      } catch (error) {
+         return rejectWithValue(error)
+      }
+   }
+)
+export const switchExpertRequest = createAsyncThunk(
+   'уxpert/switchExpertRequest',
+   async (id, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance.put(`expert/?id=${id}`)
          return data
       } catch (error) {
          return rejectWithValue(error)
@@ -105,9 +117,10 @@ const expertSlice = createSlice({
 
          .addCase(getAllExpert.fulfilled, (state, action) => {
             state.allExpert = action.payload
+            state.isLoading = false
          })
          .addCase(getAllExpert.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(getAllExpert.rejected, (state, action) => {
             state.error = action.error.message
@@ -116,9 +129,10 @@ const expertSlice = createSlice({
 
          .addCase(getExpertRequest.fulfilled, (state, action) => {
             state.experts = action.payload
+            state.isLoading = false
          })
          .addCase(getExpertRequest.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(getExpertRequest.rejected, (state, action) => {
             state.error = action.error.message
@@ -127,9 +141,10 @@ const expertSlice = createSlice({
 
          .addCase(editExpertRequest.fulfilled, (state, action) => {
             state.oneExpert = [action.payload]
+            state.isLoading = false
          })
          .addCase(editExpertRequest.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(editExpertRequest.rejected, (state, action) => {
             state.error = action.error.message
@@ -138,9 +153,10 @@ const expertSlice = createSlice({
 
          .addCase(putExpertRequest.fulfilled, (state, action) => {
             state.putExpert = action.payload
+            state.isLoading = false
          })
          .addCase(putExpertRequest.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(putExpertRequest.rejected, (state, action) => {
             state.error = action.error.message
@@ -149,9 +165,10 @@ const expertSlice = createSlice({
 
          .addCase(postExpertRequest.fulfilled, (state, action) => {
             state.data = action.payload
+            state.isLoading = false
          })
          .addCase(postExpertRequest.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(postExpertRequest.rejected, (state, action) => {
             state.error = action.error.message

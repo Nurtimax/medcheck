@@ -7,7 +7,7 @@ import EditExperts from './EditExpert'
 const EditData = () => {
    const dispatch = useDispatch()
    const { oneExpert } = useSelector((state) => state.addExpert)
-   console.log(oneExpert)
+
    useEffect(() => {
       dispatch(getExpertRequest())
    }, [dispatch])

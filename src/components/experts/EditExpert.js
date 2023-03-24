@@ -4,7 +4,6 @@ import Button from '../UI/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik'
 
-import Select from '../UI/Select'
 import { styled } from '@mui/material'
 import LinkToSpeciality from '../UI/Custom.Link'
 
@@ -12,6 +11,7 @@ import { putExpertRequest } from '../../redux/slices/expertSlice'
 import ChangePhotoProfile from '../UI/ChangePhotoProfile'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
+import LoadingSpinner from '../UI/LodaingSpinner'
 
 const EditExperts = ({
    id,
@@ -19,24 +19,26 @@ const EditExperts = ({
    expertLastName,
    expertPosition,
    expertImage,
+   expertInformation,
+   serviceName,
 }) => {
    const dispatch = useDispatch()
-
    const navigate = useNavigate()
-
-   const { experts } = useSelector((state) => state.addExpert)
+   const { isLoading } = useSelector((state) => state.addExpert)
 
    const { handleChange, handleSubmit, values, setFieldValue, resetForm } =
       useFormik({
          initialValues: {
-            id,
             expertFirstName,
             expertLastName,
             expertPosition,
+            expertInformation,
             expertImage,
+            serviceName,
          },
+
          onSubmit: (values) => {
-            dispatch(putExpertRequest({ ...values }))
+            dispatch(putExpertRequest({ id, values }))
             resetForm()
             navigate('/admin/speciality')
          },
@@ -48,6 +50,7 @@ const EditExperts = ({
 
    return (
       <AddExpertsStyled>
+         {isLoading && <LoadingSpinner />}
          <Container>
             <LinkToSpecialityStyled to="/admin/speciality">
                Специалисты <i className="right"></i>
@@ -79,7 +82,6 @@ const EditExperts = ({
                         <InputStyle
                            type="text"
                            name="expertFirstName"
-                           //    placeholder="expertFirstName"
                            value={values.expertFirstName}
                            onChange={handleChange}
                         />
@@ -87,13 +89,10 @@ const EditExperts = ({
                      <br />
                      <div>
                         <label htmlFor="name">Отделение</label> <br />
-                        <SelectStyled
-                           options={experts}
-                           name={values.serviceId}
-                           title="Выберите отделение"
-                           label="Отделение"
-                           onChange={handleChange}
-                           value={values.serviceId}
+                        <InputStyle
+                           type="text"
+                           name="serviceName"
+                           value={serviceName}
                         />
                      </div>
                   </div>
@@ -104,7 +103,6 @@ const EditExperts = ({
                         <InputStyle
                            type="select"
                            name="expertLastName"
-                           //    placeholder={oneExpert.expertLastName}
                            value={values.expertLastName}
                            onChange={handleChange}
                         />
@@ -115,7 +113,6 @@ const EditExperts = ({
                         <br />
                         <InputStyle
                            name="expertPosition"
-                           //    placeholder={oneExpert.expertPosition}
                            value={values.expertPosition}
                            onChange={handleChange}
                         />
@@ -123,6 +120,7 @@ const EditExperts = ({
                   </div>
                </FirstForm>
                <TextEditorStyled
+                  content={expertInformation}
                   value={values.expertInformation}
                   onChange={changeExpertINformation}
                   className="textEditor"
@@ -211,11 +209,6 @@ const ContainerForm = styled('form')(() => ({
 const FirstForm = styled('div')(() => ({
    display: 'flex',
    gap: '50px',
-}))
-
-const SelectStyled = styled(Select)(() => ({
-   width: '390px',
-   height: '38px',
 }))
 
 const DoctorImg = styled('div')(() => ({
