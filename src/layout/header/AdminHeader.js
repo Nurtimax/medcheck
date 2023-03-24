@@ -1,6 +1,6 @@
 import React from 'react'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
-import medCheckIcon from '../../assets/icons/MedCheck.svg'
+import medCheckIcon from '../../assets/icons/medCheck.svg'
 import { Menu, MenuItem, styled } from '@mui/material'
 import AdminLink from '../../components/UI/Custom.Link'
 import { Link } from 'react-router-dom'
@@ -72,6 +72,7 @@ const Header = styled('header')(() => ({
    width: '100%',
    marginTop: '10px',
    position: 'fixed',
+   zIndex: '20',
    margin: '0',
 }))
 const AdminLinkStyle = styled(AdminLink)(() => ({

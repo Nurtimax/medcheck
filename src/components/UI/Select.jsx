@@ -15,8 +15,8 @@ export default function Select({
          }}
          displayEmpty
          value={value}
-         title={title}
          onChange={onChange}
+         title={title}
          fullWidth
          {...props}
          renderValue={(selected) => {
@@ -25,8 +25,8 @@ export default function Select({
       >
          {options.map((item) => {
             return (
-               <MenuItem key={value} value={item.label}>
-                  {item.label}
+               <MenuItem key={item.id} value={item.clinicServiceName}>
+                  {item.clinicServiceName}
                </MenuItem>
             )
          })}
