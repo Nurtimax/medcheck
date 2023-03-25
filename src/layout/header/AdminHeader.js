@@ -72,6 +72,7 @@ const Header = styled('header')(() => ({
    width: '100%',
    marginTop: '10px',
    position: 'fixed',
+   zIndex: '20',
    margin: '0',
 }))
 const AdminLinkStyle = styled(AdminLink)(() => ({
