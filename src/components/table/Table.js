@@ -55,6 +55,25 @@ const Table = () => {
                </TableRow>
             </TableHead>
             <TableBody>
+               {/* {inputValue
+        .filter((val) => {
+          if (search === “”) {
+            return val;
+          } else if (val.name.toLowerCase().includes(search.toLowerCase())) {
+            return val;
+          }
+        })
+        allExpert.map((el) => {
+          return (
+            <TodoItem
+              key={el.id}
+              {...el}
+              deleteHandler={deleteHandler}
+              id={el.id}
+            />
+          );
+        })} */}
+
                {allExpert.map((row, index) => (
                   <TableItem
                      index={index}
