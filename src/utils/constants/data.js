@@ -87,11 +87,13 @@ export const ADMIN_ROUTES = {
    APPLICATION: 'applications',
    PATIENTS: 'patients',
    SPECIALITY: 'speciality',
+   ADD_EXPERT: '/speciality/add_expert',
+   EDIT_EXPERT: '/speciality/edit_expert',
 }
 
 export const BASE_URL =
    'http://ec2-3-73-100-3.eu-central-1.compute.amazonaws.com/api/'
 
-export const PersonalArea = 'Личный кабинет >'
-
 export const JWT_TOKEN = 'MED_CHECK_JWT_TOKEN'
+
+export const PersonalArea = 'Личный кабинет >'

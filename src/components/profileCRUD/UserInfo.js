@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material'
-import { PersonalArea } from '../../utils/constants/data'
+import { PersonalArea } from './../../utils/constants/data'
 import { useSelector } from 'react-redux'
 import CustomLink from '../UI/Custom.Link'
 
@@ -42,6 +42,7 @@ function ProfileCrudContainer() {
 const Container = styled('div')(() => ({
    width: '1200px',
    margin: '0 auto',
+   paddingLeft: '100px',
 
    '& .data': {
       display: 'flex',

@@ -14,16 +14,21 @@ import Button from '../../components/UI/Button'
 import CustomLink from '../../components/UI/Custom.Link'
 import { useDispatch, useSelector } from 'react-redux'
 import { postSignUp, removeUser } from '../../redux/slices/authSlice'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 const Header = () => {
    const { isAuth } = useSelector((state) => state.auth)
+
+   const [anchorEl, setAnchorEl] = useState(null)
+
    const dispatch = useDispatch()
-   const [anchorEl, setAnchorEl] = React.useState(null)
+
    const open = Boolean(anchorEl)
+
    const handleClick = (event) => {
       setAnchorEl(event.currentTarget)
    }
+
    const handleClose = () => {
       setAnchorEl(null)
    }
