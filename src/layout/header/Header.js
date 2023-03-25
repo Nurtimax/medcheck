@@ -14,6 +14,7 @@ import Button from '../../components/UI/Button'
 import CustomLink from '../../components/UI/Custom.Link'
 import { useDispatch, useSelector } from 'react-redux'
 import { postSignUp, removeUser } from '../../redux/slices/authSlice'
+
 import { useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import OnlineEntryDrawer from '../../components/OnlineEntry/Drawer/OnlineEntryDrawer'
@@ -28,9 +29,11 @@ const Header = () => {
    const [searchParams, setSearchParams] = useSearchParams()
 
    const open = Boolean(anchorEl)
+
    const handleClick = (event) => {
       setAnchorEl(event.currentTarget)
    }
+
    const handleClose = () => {
       setAnchorEl(null)
    }
@@ -84,7 +87,7 @@ const Header = () => {
                   </a>
                </div>
                <div>
-                  <a href="https://www.whatsapp.com/?lang=ru">
+                  <a href="http://wa.me/+996700920550">
                      <img src={iconWhatsApp} alt="telegram" />
                   </a>
                </div>

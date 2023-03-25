@@ -46,9 +46,7 @@ const RequestsClient = () => {
                </div>
             </div>
             <LinkToApplication to={isAuth ? '/userRecords' : '/sign_up'}>
-               <Button variant="contained" className="sendRequest">
-                  ОТПРАВИТЬ ЗАЯВКУ
-               </Button>
+               <Button className="sendRequest">ОТПРАВИТЬ ЗАЯВКУ</Button>
             </LinkToApplication>
          </div>
          <img
@@ -125,10 +123,13 @@ const RequestClient = styled('div')(() => ({
    },
 
    '& .sendRequest': {
-      borderRadius: '25px',
-
+      width: '240px',
+      height: '51px',
+      borderRadius: '24px',
       marginTop: '50px',
       marginLeft: '170px',
+      background: 'linear-gradient(180.61deg, #0cbb6b 0.45%, #027b44 99.39%)',
+      color: '#FFFFFF',
    },
 
    '& .sendRequestImg': {

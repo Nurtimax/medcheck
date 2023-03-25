@@ -4,7 +4,7 @@ import axiosInstance from '../../api/axiosInstance'
 const initialState = {
    applications: [],
    error: null,
-   status: null,
+   isLoading: false,
 }
 
 export const postApplicationsRequest = createAsyncThunk(
@@ -66,9 +66,10 @@ const applicationSlice = createSlice({
          // ///////////////// get user requests
          .addCase(getApplicationsRequest.fulfilled, (state, action) => {
             state.applications = action.payload
+            state.isLoading = false
          })
          .addCase(getApplicationsRequest.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(getApplicationsRequest.rejected, (state, action) => {
             state.error = action.error.message
@@ -78,9 +79,10 @@ const applicationSlice = createSlice({
          // ////////////////// post user requests
          .addCase(postApplicationsRequest.fulfilled, (state, action) => {
             state.applications = action.payload
+            state.isLoading = false
          })
          .addCase(postApplicationsRequest.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(postApplicationsRequest.rejected, (state, action) => {
             state.error = action.error.message

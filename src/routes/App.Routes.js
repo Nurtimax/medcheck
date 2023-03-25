@@ -23,6 +23,7 @@ const AppRoutes = () => {
       <Suspense fallback={null}>
          <Routes>
             <Route path="/*" element={<MainRoutes />} />
+            <Route path="*/" element={<NotFound />} />
 
             <Route
                path="admin/*"
@@ -34,7 +35,6 @@ const AppRoutes = () => {
                   />
                }
             />
-            <Route path="*" element={<NotFound />} />
          </Routes>
       </Suspense>
    )

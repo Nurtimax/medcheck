@@ -109,7 +109,8 @@ const SignUp = () => {
                name="phoneNumber"
                className="input"
                placeholder="+996 (_ _ _) _ _  _ _  _ _ "
-               type="number"
+               type="tel"
+               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                errors={errors.phoneNumber}
                value={values.phoneNumber}
                onChange={handleChange}

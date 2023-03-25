@@ -15,9 +15,12 @@ import {
    removeApplicationRequest,
 } from '../../redux/slices/crudSlice'
 import { styled } from '@mui/material'
+import LoadingSpinner from '../UI/LodaingSpinner'
 
 const ApplicationsTable = () => {
-   const { applications } = useSelector((state) => state.applications)
+   const { applications, isLoading } = useSelector(
+      (state) => state.applications
+   )
    const dispatch = useDispatch()
 
    const deleteHandler = (id) => {
@@ -32,6 +35,7 @@ const ApplicationsTable = () => {
 
    return (
       <ContainerEntry>
+         {isLoading && <LoadingSpinner />}
          <TableContainerStyled component={Paper}>
             <Table className="header">
                <TableHead>
@@ -49,7 +53,9 @@ const ApplicationsTable = () => {
                      <TableCell sx={{ textAlign: 'center' }}>
                         Обработан
                      </TableCell>
-                     <TableCell>Действия</TableCell>
+                     <TableCell style={{ marginRight: '10px' }}>
+                        Действия
+                     </TableCell>
                   </TableRow>
                </TableHead>
                <TableBody>
@@ -60,7 +66,7 @@ const ApplicationsTable = () => {
                         </TableCell>
                         <TableCell></TableCell>
                         <TableCell>{application.id}</TableCell>
-                        <TableCell>{application.lastName}</TableCell>
+                        <TableCell>{application.firstName}</TableCell>
                         <TableCell>{application.date}</TableCell>
                         <TableCell>{application.phoneNumber}</TableCell>
                         <TableCell

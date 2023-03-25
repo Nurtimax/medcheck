@@ -1,17 +1,19 @@
-import { CircularProgress, Stack, styled } from '@mui/material'
+import { styled } from '@mui/material'
 import React from 'react'
+
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader'
 
 const LoadingSpinner = () => {
    return (
-      <StackStyled spacing={2} direction="row">
-         <CircularStyled></CircularStyled>
-      </StackStyled>
+      <Container>
+         <ClimbingBoxLoader color="#0CBB6B" speedMultiplier={2} />
+      </Container>
    )
 }
 
 export default LoadingSpinner
 
-const StackStyled = styled(Stack)(() => ({
+const Container = styled('div')(() => ({
    color: 'grey.500',
    width: '100vw',
    height: '100vh',
@@ -23,10 +25,4 @@ const StackStyled = styled(Stack)(() => ({
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'center',
-}))
-
-const CircularStyled = styled(CircularProgress)(() => ({
-   position: 'relative',
-   zIndex: '16',
-   color: 'chartreuse	',
 }))

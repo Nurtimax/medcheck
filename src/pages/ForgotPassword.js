@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import AuthInput from '../components/UI/AuthInput'
 import Button from '../components/UI/Button'
 import Modal from '../components/UI/Modal'
-import { postSignIn } from '../redux/slices/authSlice'
+import { emailSendler } from '../redux/slices/forgot-password-slice'
 import { validateSchemaSignIn } from '../utils/constants/validateSchema'
 
 const ForgotPassword = () => {
@@ -19,19 +19,23 @@ const ForgotPassword = () => {
    const handleClose = () => {
       setOpen(navigate('/sign_in'))
    }
+
    const formik = useFormik({
       initialValues: {
          email: '',
-         link: 'http://localhost:3000/sign_up',
+         link: 'http://localhost:3000/sign_in',
       },
 
-      onSubmit: ({ email, link }) => {
-         dispatch(postSignIn(email, link))
+      onSubmit: (values) => {
+         dispatch(emailSendler({ ...values }))
+         resetForm()
       },
+
       validationSchema: validateSchemaSignIn,
    })
 
-   const { handleChange, handleSubmit, values, errors, touched } = formik
+   const { values, errors, touched, resetForm, handleChange, handleSubmit } =
+      formik
 
    return (
       <Modal open={open} closeModal={handleClose}>
@@ -63,6 +67,8 @@ const ForgotPassword = () => {
       </Modal>
    )
 }
+
+export default ForgotPassword
 
 const FormContainer = styled('form')(() => ({
    width: '100%',
@@ -103,8 +109,6 @@ const FormContainer = styled('form')(() => ({
       marginLeft: '-35px',
    },
 }))
-
-export default ForgotPassword
 
 const Registration = styled('h1')(() => ({
    color: '#222222',

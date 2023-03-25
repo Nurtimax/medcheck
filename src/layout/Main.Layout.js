@@ -8,11 +8,11 @@ const MainLayout = () => {
    return (
       <>
          <Header />
-         <main>
-            <Container>
-               <Outlet />
-            </Container>
-         </main>
+
+         <Container>
+            <Outlet />
+         </Container>
+
          <Footer />
       </>
    )

@@ -1,8 +1,13 @@
 import React, { Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
+
 import { ROUTES } from '../../utils/constants/data'
 
+const Doctors = React.lazy(() => import('../../containers/doctors/Doctors'))
+const DoctorsItem = React.lazy(() => {
+   return import('../../containers/doctors/DoctorsItem')
+})
 const TableForAppointment = React.lazy(() => {
    return import('../../components/AppointmentList/TableForAppointment')
 })
@@ -50,135 +55,137 @@ const MainRoutes = () => {
    }
 
    return (
-      <>
-         <Routes>
+      <Routes>
+         <Route
+            path=""
+            element={
+               <Suspense fallback={<LazyLoading />}>
+                  <MainLayout />
+               </Suspense>
+            }
+         >
             <Route
-               path=""
+               index
                element={
                   <Suspense fallback={<LazyLoading />}>
-                     <MainLayout />
+                     <LandingPage />
                   </Suspense>
                }
-            >
-               <Route
-                  index
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <LandingPage />
-                     </Suspense>
-                  }
-               />
+            />
 
-               <Route
-                  path={ROUTES.USER_RECORDS}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <UserRecords />
-                     </Suspense>
-                  }
-               />
+            <Route
+               path={ROUTES.USER_RECORDS}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <UserRecords />
+                  </Suspense>
+               }
+            />
 
-               <Route
-                  path={ROUTES.ABOUT_CLINIC}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <AboutClinic />
-                     </Suspense>
-                  }
-               />
-               <Route path={ROUTES.SERVICES} element={<h1>services</h1>} />
-               <Route path={ROUTES.DOCTORS} element={<h1>doctors</h1>} />
-               <Route path={ROUTES.PRICE} element={<h1>price</h1>} />
-               <Route
-                  path={ROUTES.CONTACTS}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <Contacts />
-                     </Suspense>
-                  }
-               />
-               <Route path={ROUTES.FEEDBACKS} element={<h1>feedbacks</h1>} />
-               <Route
-                  path={ROUTES.SIGN_IN}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <LoginPage />
-                     </Suspense>
-                  }
-               />
+            <Route
+               path={ROUTES.ABOUT_CLINIC}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <AboutClinic />
+                  </Suspense>
+               }
+            />
+            <Route path={ROUTES.SERVICES} element={<h1>services</h1>} />
+            <Route
+               path={ROUTES.DOCTORS}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <Doctors />
+                  </Suspense>
+               }
+            />
 
-               <Route
-                  path={ROUTES.FORGOT_PASSWROD}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <ForgotPassword />
-                     </Suspense>
-                  }
-               />
+            <Route
+               path={`${ROUTES.DOCTORS}/:expertId`}
+               element={<DoctorsItem />}
+            />
 
-               <Route
-                  path={ROUTES.SERVICES_CLINIC}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <Services />
-                     </Suspense>
-                  }
-               />
-               <Route
-                  path={ROUTES.SPECIALITY}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <Specialist />
-                     </Suspense>
-                  }
-               />
-               <Route
-                  path={ROUTES.CHOOSE_TIME}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <ChooseTime />
-                     </Suspense>
-                  }
-               />
+            <Route path={ROUTES.PRICE} element={<h1>price</h1>} />
 
-               <Route
-                  path={ROUTES.SIGN_UP}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <SignUp />
-                     </Suspense>
-                  }
-               />
+            <Route
+               path={ROUTES.CONTACTS}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <Contacts />
+                  </Suspense>
+               }
+            />
+            <Route path={ROUTES.FEEDBACKS} element={<h1>feedbacks</h1>} />
+            <Route
+               path={ROUTES.SIGN_IN}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <LoginPage />
+                  </Suspense>
+               }
+            />
 
-               <Route
-                  path={ROUTES.USER}
-                  element={
-                     <Suspense fallback={<LazyLoading />}>
-                        <TableForAppointment />
-                     </Suspense>
-                  }
-               />
-               <Route
-                  path={'ROUTES.USER}/:id'}
-                  element={<ContinueAppointment />}
-               />
-               <Route path="user_profile" element={<UserProfile />}>
-                  <Route
-                     path="personal_data"
-                     element={
-                        <Suspense fallback={<LazyLoading />}>
-                           <ProfileCrud />
-                        </Suspense>
-                     }
-                  />
-                  <Route
-                     path="change_password/:id"
-                     element={<ChangePassword />}
-                  />
-               </Route>
+            <Route
+               path={ROUTES.FORGOT_PASSWROD}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <ForgotPassword />
+                  </Suspense>
+               }
+            />
+
+            <Route
+               path={ROUTES.SERVICES_CLINIC}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <Services />
+                  </Suspense>
+               }
+            />
+            <Route
+               path={ROUTES.SPECIALITY}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <Specialist />
+                  </Suspense>
+               }
+            />
+            <Route
+               path={ROUTES.CHOOSE_TIME}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <ChooseTime />
+                  </Suspense>
+               }
+            />
+
+            <Route
+               path={ROUTES.SIGN_UP}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <SignUp />
+                  </Suspense>
+               }
+            />
+
+            <Route
+               path={ROUTES.USER}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <TableForAppointment />
+                  </Suspense>
+               }
+            />
+            <Route
+               path={'ROUTES.USER}/:id'}
+               element={<ContinueAppointment />}
+            />
+            <Route path="user_profile" element={<UserProfile />}>
+               <Route path="personal_data" element={<ProfileCrud />} />
+               <Route path="change_password/:id" element={<ChangePassword />} />
             </Route>
-         </Routes>
-      </>
+         </Route>
+      </Routes>
    )
 }
 
