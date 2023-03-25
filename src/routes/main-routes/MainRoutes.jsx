@@ -7,6 +7,8 @@ import ProfileCrud from '../../components/profileCRUD/ProfileCrud'
 import UserProfile from '../../pages/user-profile/UserProfile'
 import ContinueAppointment from '../../containers/ContinueAppointment'
 import TableForAppointment from '../../components/AppointmentList/TableForAppointment'
+import Services from '../../components/ServiceZone/Services'
+import Dermatology from '../../components/ServiceZone/Dermatology'
 
 const MainLayout = React.lazy(() => import('../../layout/Main.Layout'))
 const LoginPage = React.lazy(() => import('../../pages/LoginPage'))
@@ -67,7 +69,18 @@ const MainRoutes = () => {
                      </Suspense>
                   }
                />
-               <Route path={ROUTES.SERVICES} element={<h1>services</h1>} />
+               <Route
+                  path={ROUTES.SERVICES}
+                  element={
+                     <Suspense fallback={<LazyLoading />}>
+                        <Services />
+                     </Suspense>
+                  }
+               />
+               <Route
+                  path={`${ROUTES.SERVICES}/:id`}
+                  element={<Dermatology />}
+               />
                <Route path={ROUTES.DOCTORS} element={<h1>doctors</h1>} />
                <Route path={ROUTES.PRICE} element={<h1>price</h1>} />
                <Route
