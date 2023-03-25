@@ -16,7 +16,6 @@ export default function ChangePhotoProfile({ foto, setFoto, url }) {
       setAnchorEl(false)
    }
    const handlePhotoProfile = (e) => {
-      console.log(e)
       return e
    }
    const removePhoteProfile = () => {

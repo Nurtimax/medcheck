@@ -9,6 +9,6 @@ function ContainerEntry({ children }) {
 export default ContainerEntry
 
 const MainContainer = styled(Container)(() => ({
-   background: '#FFFFFF',
+   width: '1200px',
    borderRadius: '6px',
 }))
