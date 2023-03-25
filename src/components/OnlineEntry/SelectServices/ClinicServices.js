@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Services from './Services'
+import Services from './ChooseServices'
 
 import { getAllClinicServices } from '../../../redux/slices/onlineEntrySlice'
 

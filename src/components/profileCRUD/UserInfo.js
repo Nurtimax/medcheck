@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { styled } from '@mui/material'
-import { PersonalArea } from '../../utils/constants/data'
+import { PersonalArea } from './../../utils/constants/data'
 import { useSelector } from 'react-redux'
 import CustomLink from '../UI/Custom.Link'
 import { Link } from 'react-router-dom'
@@ -24,19 +24,17 @@ function ProfileCrudContainer() {
                личные данные
             </CustomLink>
 
-            <div>
-               {profile.map((item) => {
-                  return (
-                     <CustomLink
-                        className="link"
-                        key={item.id}
-                        to={`/user_profile/change_password/${item.id}`}
-                     >
-                        Сменить пароль
-                     </CustomLink>
-                  )
-               })}
-            </div>
+            {profile.map((item) => {
+               return (
+                  <CustomLink
+                     className="link"
+                     key={item.id}
+                     to={`/user_profile/change_password/${item.id}`}
+                  >
+                     Сменить пароль
+                  </CustomLink>
+               )
+            })}
          </div>
       </Container>
    )

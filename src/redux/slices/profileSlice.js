@@ -38,8 +38,9 @@ export const putApplicationsRequest = createAsyncThunk(
 
 const initialState = {
    profile: [],
-   status: '',
    error: null,
+   isLoading: false,
+   status: '',
 }
 
 const profileSlice = createSlice({
@@ -56,11 +57,12 @@ const profileSlice = createSlice({
          // //////////// get users
 
          .addCase(fetchProfile.fulfilled, (state, action) => {
-            state.status = 'success'
             state.profile = [action.payload]
+            state.isLoading = false
+            state.status = 'success'
          })
          .addCase(fetchProfile.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(fetchProfile.rejected, (state, action) => {
             state.error = action.error.message
@@ -70,10 +72,11 @@ const profileSlice = createSlice({
 
          .addCase(updateProfile.fulfilled, (state, action) => {
             state.profile = [action.payload]
+            state.isLoading = false
             state.status = 'success'
          })
          .addCase(updateProfile.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(updateProfile.rejected, (state, action) => {
             state.error = action.error.message
@@ -83,14 +86,14 @@ const profileSlice = createSlice({
 
          .addCase(putApplicationsRequest.fulfilled, (state, action) => {
             state.data = action.payload
+            state.isLoading = false
             state.status = 'success'
          })
          .addCase(putApplicationsRequest.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(putApplicationsRequest.rejected, (state, action) => {
             state.error = action.error.message
-            state.status = 'filed'
          })
    },
 })

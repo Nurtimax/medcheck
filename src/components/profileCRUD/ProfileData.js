@@ -50,13 +50,13 @@ const ProfileData = ({
 
    return (
       <UserData key={id} onSubmit={handleSubmit}>
-         {open && (
+         {open ? (
             <Alert
                open={open}
                onClose={closeAlert}
                title="ваш профиль был успешно изменен."
             />
-         )}
+         ) : null}
          <FirstRow>
             <div>
                <Typography className="personData">Имя</Typography>

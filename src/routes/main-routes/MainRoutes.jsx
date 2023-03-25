@@ -39,8 +39,8 @@ const ChooseTime = React.lazy(() => {
 const Specialist = React.lazy(() => {
    return import('../../components/OnlineEntry/SelectServices/Specialist')
 })
-const Services = React.lazy(() => {
-   return import('../../components/OnlineEntry/SelectServices/Services.js')
+const ChooseServices = React.lazy(() => {
+   return import('../../components/OnlineEntry/SelectServices/ChooseServices')
 })
 
 const UserRecords = React.lazy(() => {
@@ -138,7 +138,7 @@ const MainRoutes = () => {
                path={ROUTES.SERVICES_CLINIC}
                element={
                   <Suspense fallback={<LazyLoading />}>
-                     <Services />
+                     <ChooseServices />
                   </Suspense>
                }
             />

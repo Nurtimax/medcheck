@@ -41,7 +41,10 @@ const ApplicationsTable = () => {
                <TableHead>
                   <TableRow className="title">
                      <TableCell>
-                        <input type="checkbox" />
+                        <input
+                           type="checkbox"
+                           onChange={(e) => e.target.value}
+                        />
                      </TableCell>
                      <TableCell>
                         <img src={bin} alt="bin" />
@@ -79,6 +82,7 @@ const ApplicationsTable = () => {
                            <input
                               type="checkbox"
                               checked={application.status}
+                              onChange={(e) => e.target.value}
                            />
                         </TableCell>
                         <TableCell>

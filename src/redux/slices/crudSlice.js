@@ -73,7 +73,6 @@ const applicationSlice = createSlice({
          })
          .addCase(getApplicationsRequest.rejected, (state, action) => {
             state.error = action.error.message
-            state.status = 'error'
          })
 
          // ////////////////// post user requests
@@ -86,7 +85,6 @@ const applicationSlice = createSlice({
          })
          .addCase(postApplicationsRequest.rejected, (state, action) => {
             state.error = action.error.message
-            state.status = 'error'
          })
    },
 })
