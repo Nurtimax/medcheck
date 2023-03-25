@@ -11,6 +11,7 @@ import ContinueAppointment from '../../containers/ContinueAppointment'
 import TableForAppointment from '../../components/AppointmentList/TableForAppointment'
 import Services from '../../components/ServiceZone/Services'
 import Dermatology from '../../components/ServiceZone/Dermatology'
+import Price from '../../pages/Price'
 
 const MainLayout = React.lazy(() => import('../../layout/Main.Layout'))
 const LoginPage = React.lazy(() => import('../../pages/LoginPage'))
@@ -92,7 +93,7 @@ const MainRoutes = () => {
                   element={<DoctorsItem />}
                />
 
-               <Route path={ROUTES.PRICE} element={<h1>price</h1>} />
+               <Route path={ROUTES.PRICE} element={<Price />} />
 
                <Route
                   path={ROUTES.CONTACTS}
