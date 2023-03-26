@@ -3,11 +3,11 @@ import React from 'react'
 
 import google from '../../assets/icons/google.svg'
 
-const AuthWithGoogle = ({ handleClick }) => {
+const AuthWithGoogle = ({ handleClick, variant }) => {
    return (
       <AuthGoogleContainer onClick={handleClick}>
          <img src={google} alt="google" />
-         <div>Зарегистрироваться с Google</div>
+         <div>{variant}</div>
       </AuthGoogleContainer>
    )
 }
@@ -27,7 +27,7 @@ const AuthGoogleContainer = styled('div')(() => ({
    marginTop: '20px',
    cursor: 'pointer',
 
-   '& .div': {
+   '& div': {
       fontWeight: '600',
    },
 }))

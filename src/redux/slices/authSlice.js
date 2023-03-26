@@ -29,7 +29,6 @@ export const postSignIn = createAsyncThunk(
    'auth/postSignIn',
    async (params, { rejectWithValue }) => {
       const { email, password } = params
-
       try {
          const { data } = await axiosInstance.post('auth/login', {
             email,
@@ -38,10 +37,7 @@ export const postSignIn = createAsyncThunk(
          localStorage.setItem(JWT_TOKEN, JSON.stringify(data))
          return data
       } catch (error) {
-         if (rejectWithValue) {
-            return rejectWithValue(error)
-         }
-         throw new Error(error)
+         return rejectWithValue(error)
       }
    }
 )
@@ -78,7 +74,7 @@ const initialState = {
    isAuth: false,
    isError: null,
    userToken: null,
-   isGoogleAuth: false,
+   isLoading: false,
 }
 
 const authSlice = createSlice({
@@ -93,13 +89,21 @@ const authSlice = createSlice({
          state.userToken = null
          state.roleName = null
       },
-      setUser(state, action) {
-         state.data = action.payload
+      removeAdmin(state) {
+         localStorage.removeItem('MED_CHECK_JWT_TOKEN')
+         state.data = null
+         state.isAuth = false
+         state.userToken = null
+         state.roleName = null
       },
+
       autoLoginByLocalStorage: (state, action) => {
          state.roleName = action.payload.roleName
          state.userToken = action.payload.token
          state.isAuth = true
+      },
+      autoLoginData: (state, action) => {
+         state.userToken = action.payload.token
       },
    },
    extraReducers: (builder) => {
@@ -109,16 +113,16 @@ const authSlice = createSlice({
          state.data = action.payload
          state.userToken = action.payload.token
          state.roleName = action.payload.roleName
+         state.isLoading = false
          if (action.payload.token) {
             state.isAuth = true
          }
       })
       builder.addCase(postSignIn.pending, (state) => {
-         state.isAuth = true
-         state.isError = null
+         state.isLoading = true
       })
       builder.addCase(postSignIn.rejected, (state, action) => {
-         state.isError = action.payload
+         state.isError = action.error.message
       })
 
       // ///////////////////////////////////////// REGISTER
@@ -127,31 +131,33 @@ const authSlice = createSlice({
          state.data = action.payload
          state.isAuth = true
          state.roleName = action.payload.roleName
+         state.isLoading = false
       })
       builder.addCase(postSignUp.pending, (state) => {
-         state.isAuth = true
+         state.isLoading = true
       })
       builder.addCase(postSignUp.rejected, (state, action) => {
-         state.isError = action.payload
+         state.isError = action.error.message
       })
 
       // ///////////////////////////////////////// auth with google
 
       builder.addCase(signInWithGoogle.fulfilled, (state, action) => {
          state.data = action.payload
-         state.isGoogleAuth = true
+         state.isAuth = true
          state.roleName = action.payload.roleName
+         state.isLoading = false
       })
       builder.addCase(signInWithGoogle.pending, (state) => {
-         state.isAuth = true
+         state.isLoading = true
       })
       builder.addCase(signInWithGoogle.rejected, (state, action) => {
-         state.isError = action.payload
+         state.isError = action.error.message
       })
    },
 })
 
-export const { removeUser, setUser, autoLoginByLocalStorage } =
+export const { removeUser, setUser, autoLoginByLocalStorage, removeAdmin } =
    authSlice.actions
 
 export default authSlice

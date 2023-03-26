@@ -13,8 +13,19 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
+import expertSlice from './slices/expertSlice'
+
+import { doctorsExperts } from './slices/doctors-slice'
+import profileSlice from './slices/profileSlice'
+import appointmentSlice from './slices/appointment-slice'
+
 const rootReducer = combineReducers({
    auth: authSlice.reducer,
+   [applicationSlice.name]: applicationSlice.reducer,
+   addExpert: expertSlice.reducer,
+   doctors: doctorsExperts.reducer,
+   profCrudUser: profileSlice.reducer,
+   appointment: appointmentSlice.reducer,
    [applicationSlice.name]: applicationSlice.reducer,
 })
 
