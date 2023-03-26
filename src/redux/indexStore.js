@@ -18,11 +18,13 @@ import expertSlice from './slices/expertSlice'
 import { doctorsExperts } from './slices/doctors-slice'
 import profileSlice from './slices/profileSlice'
 import appointmentSlice from './slices/appointment-slice'
+import patientSlice from './slices/patientsSlice'
 
 const rootReducer = combineReducers({
    auth: authSlice.reducer,
    [applicationSlice.name]: applicationSlice.reducer,
    addExpert: expertSlice.reducer,
+   patients: patientSlice.reducer,
    doctors: doctorsExperts.reducer,
    profCrudUser: profileSlice.reducer,
    appointment: appointmentSlice.reducer,
