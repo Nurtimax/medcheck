@@ -1,18 +1,12 @@
 import React from 'react'
 import { styled } from '@mui/material'
-import { Link } from 'react-router-dom'
 
 const Contacts = () => {
    return (
       <>
          <ContactContainer>
-            <StyledContactHeader>
-               <MainLink to="/">Главная </MainLink>
-               <ContactsLink to="/contacts">Контакты</ContactsLink>
-            </StyledContactHeader>
-
             <StyledContactHeader1>
-               <thirdSpan>Наши</thirdSpan> <fourthSpan>контакты</fourthSpan>
+               <Span3>Наши</Span3> <Span4>контакты</Span4>
             </StyledContactHeader1>
             <StyledTextMain>
                <p>
@@ -48,43 +42,13 @@ const Contacts = () => {
 export default Contacts
 
 const ContactContainer = styled('div')(() => ({
-   padding: '0 0 0 120px',
+   width: '85%',
+   margin: '0 auto',
 }))
-const StyledContactHeader = styled('div')(() => ({
-   marginTop: '40px',
-}))
-const MainLink = styled(Link)(() => ({
-   color: '#959595',
-   fontWeight: '400',
-   fontSize: '14px',
-   lineHeight: '19px',
-   textDecoration: 'none',
-   '&:hover': {
-      color: '#027B44',
-   },
-}))
-const ContactsLink = styled(Link)(() => ({
-   color: '#048741',
-   fontWeight: '400',
-   fontSize: '14px',
-   lineHeight: '19px',
-   textDecoration: 'none',
-}))
+
 const StyledContactHeader1 = styled('div')(() => ({
    marginTop: '30px',
    marginBottom: '35px',
-   '& thirdSpan': {
-      color: '#22222',
-      fontWeight: '600',
-      fontSize: '36px',
-      lineHeight: '49px',
-   },
-   '& fourthSpan': {
-      color: '#048741',
-      fontWeight: '600',
-      fontSize: '36px',
-      lineHeight: '49px',
-   },
 }))
 
 const StyledTextMain = styled('div')(() => ({
@@ -149,4 +113,17 @@ const StyledContactDetail = styled('div')(() => ({
       lineHeight: '25px',
       color: '#222222',
    },
+}))
+
+const Span3 = styled('span')(() => ({
+   color: '#222222',
+   fontWeight: '600',
+   fontSize: '36px',
+   lineHeight: '49px',
+}))
+const Span4 = styled('span')(() => ({
+   color: '#048741',
+   fontWeight: '600',
+   fontSize: '36px',
+   lineHeight: '49px',
 }))

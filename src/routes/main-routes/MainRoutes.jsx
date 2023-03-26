@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import Dermatology from '../../components/ServiceZone/Dermatology'
+import Services from '../../components/ServiceZone/Services'
 
 import { ROUTES } from '../../utils/constants/data'
 
@@ -72,7 +74,6 @@ const MainRoutes = () => {
                   </Suspense>
                }
             />
-
             <Route
                path={ROUTES.USER_RECORDS}
                element={
@@ -81,7 +82,6 @@ const MainRoutes = () => {
                   </Suspense>
                }
             />
-
             <Route
                path={ROUTES.ABOUT_CLINIC}
                element={
@@ -90,23 +90,21 @@ const MainRoutes = () => {
                   </Suspense>
                }
             />
-            <Route path={ROUTES.SERVICES} element={<h1>services</h1>} />
             <Route
-               path={ROUTES.DOCTORS}
+               path={ROUTES.SERVICES}
                element={
                   <Suspense fallback={<LazyLoading />}>
-                     <Doctors />
+                     <Services />
                   </Suspense>
                }
             />
-
+            <Route path={`${ROUTES.SERVICES}/:id`} element={<Dermatology />} />
+            <Route path={ROUTES.DOCTORS} element={<Doctors />} />
             <Route
                path={`${ROUTES.DOCTORS}/:expertId`}
                element={<DoctorsItem />}
             />
-
             <Route path={ROUTES.PRICE} element={<h1>price</h1>} />
-
             <Route
                path={ROUTES.CONTACTS}
                element={
@@ -115,7 +113,6 @@ const MainRoutes = () => {
                   </Suspense>
                }
             />
-
             <Route
                path={ROUTES.SIGN_IN}
                element={
@@ -124,7 +121,6 @@ const MainRoutes = () => {
                   </Suspense>
                }
             />
-
             <Route
                path={ROUTES.FORGOT_PASSWROD}
                element={
@@ -133,7 +129,6 @@ const MainRoutes = () => {
                   </Suspense>
                }
             />
-
             <Route
                path={ROUTES.SERVICES_CLINIC}
                element={
@@ -158,7 +153,6 @@ const MainRoutes = () => {
                   </Suspense>
                }
             />
-
             <Route
                path={ROUTES.SIGN_UP}
                element={
@@ -167,7 +161,6 @@ const MainRoutes = () => {
                   </Suspense>
                }
             />
-
             <Route
                path={ROUTES.USER}
                element={

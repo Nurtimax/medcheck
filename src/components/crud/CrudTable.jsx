@@ -18,8 +18,6 @@ import {
 import { styled } from '@mui/material'
 import LoadingSpinner from '../UI/LodaingSpinner'
 
-import Button from '../UI/Button'
-
 const ApplicationsTable = () => {
    const { applications, isLoading } = useSelector(
       (state) => state.applications
@@ -55,9 +53,6 @@ const ApplicationsTable = () => {
          <ExpertCrudStyled>
             <Nav>
                <Speciality>Заявки</Speciality>
-               <AddExperts>
-                  <MyBtn variant="contained">Export to excel</MyBtn>
-               </AddExperts>
             </Nav>
 
             <ContainerEntry>
@@ -86,9 +81,7 @@ const ApplicationsTable = () => {
                            <TableCell sx={{ textAlign: 'center' }}>
                               Обработан
                            </TableCell>
-                           <TableCell sx={{ textAlign: 'center' }}>
-                              Действия
-                           </TableCell>
+                           <TableCell>Действия</TableCell>
                         </TableRow>
                      </TableHead>
                      <TableBody>
@@ -116,6 +109,9 @@ const ApplicationsTable = () => {
                               </TableCell>
                               <TableCell>
                                  <img
+                                    style={{
+                                       paddingLeft: '25px',
+                                    }}
                                     src={bin}
                                     alt="bin"
                                     onClick={() =>
@@ -136,32 +132,15 @@ const ApplicationsTable = () => {
 export default ApplicationsTable
 
 const Nav = styled('div')(() => ({
-   display: 'flex',
-   justifyContent: 'space-between',
    paddingBottom: '40px',
    paddingTop: '20px',
+   width: '1155px',
+   margin: '0 auto',
 }))
 
 const ExpertCrudStyled = styled('div')(() => ({
    width: '1200px',
    margin: '0 auto',
-}))
-
-const AddExperts = styled('div')(() => ({
-   background: 'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)',
-   borderRadius: '10px',
-   width: '259px',
-   height: '44px',
-   alignItems: 'center',
-   textDecoration: 'none',
-}))
-
-const MyBtn = styled(Button)(() => ({
-   background: 'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)',
-   borderRadius: '10px',
-   width: '259px',
-   height: '44px',
-   alignItems: 'center',
 }))
 
 const Speciality = styled('div')(() => ({

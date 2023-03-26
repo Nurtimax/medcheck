@@ -13,10 +13,6 @@ const AboutClinicPage = () => {
    return (
       <>
          <Container>
-            <StyledTitle>
-               <MainLink to="/">Главная</MainLink>{' '}
-               <secondSpan> О клинике</secondSpan>
-            </StyledTitle>
             <StyledHeaderTitle>
                <thirdSpan>Здоровье — самое </thirdSpan>
                <fourthSpan>ценное в жизни</fourthSpan>
@@ -115,7 +111,9 @@ const AboutClinicPage = () => {
 }
 
 const Container = styled('div')(() => ({
-   margin: '30px 120px',
+   width: '1440px',
+   margin: '0 auto',
+   paddingTop: '26px',
 }))
 
 const TopContainer = styled('div')(() => ({
@@ -129,23 +127,6 @@ const TextMain = styled('div')(() => ({
    height: '517px',
 }))
 
-const StyledTitle = styled('div')(() => ({
-   paddingBottom: '40px',
-   fontWeight: '400',
-   fontSize: '14px',
-   lineHeight: '19px',
-   cursor: 'pointer',
-   '& secondSpan': {
-      color: '#048741',
-   },
-}))
-const MainLink = styled(Link)(() => ({
-   color: '#959595',
-   textDecoration: 'none',
-   '&:hover': {
-      color: '#027B44',
-   },
-}))
 const StyledHeaderTitle = styled('div')(() => ({
    paddingBottom: '40px',
    fontWeight: '600',

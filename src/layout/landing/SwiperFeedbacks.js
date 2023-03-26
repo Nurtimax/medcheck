@@ -101,7 +101,7 @@ const SwiperFeedbacks = () => {
 }
 
 const SwiperStyled = styled(Swiper)(() => ({
-   width: '96%',
+   width: '1200px',
    height: '350px',
    margin: '0 auto',
 

@@ -11,15 +11,15 @@ import chooseServices from '../../../assets/icons/chooseServices.svg'
 import chooseSpecialist from '../../../assets/icons/chooseSpecialist.svg'
 import chooseTime from '../../../assets/icons/chooseTime.svg'
 import { useSelector } from 'react-redux'
+import { useModal } from '../../../utils/hooks/useModal'
+import ChooseServices from '../SelectServices/ChooseServices'
 
-const OnlineEntryDrawer = ({ toggleDrawer, drawer }) => {
+const OnlineEntryDrawer = () => {
    const { isAuth } = useSelector((state) => state.auth)
+   const { isActive, setIsActiveModal } = useModal()
 
    const navigate = useNavigate()
 
-   const servicClinic = () => {
-      navigate('/services_clinic')
-   }
    const specialist = () => {
       navigate('/speciality')
    }
@@ -39,16 +39,20 @@ const OnlineEntryDrawer = ({ toggleDrawer, drawer }) => {
          {['right'].map((item) => (
             <React.Fragment key={item}>
                <RecordButton
-                  onClick={isAuth ? toggleDrawer(item, true) : blockOnlineEntry}
+                  onClick={
+                     isAuth
+                        ? () => setIsActiveModal('drawer')
+                        : blockOnlineEntry
+                  }
                >
                   запись онлайн
                </RecordButton>
 
-               <DrawerStyled anchor={item} open={drawer[item]}>
+               <DrawerStyled anchor={item} open={isActive === 'drawer'}>
                   <OnlineEntryStyled className="onlineEntry">
                      <div onClick={backToHome}>
                         <img
-                           onClick={toggleDrawer(item, false)}
+                           onClick={() => setIsActiveModal({})}
                            src={closeOnlineEntry}
                            alt="close"
                         />
@@ -57,7 +61,9 @@ const OnlineEntryDrawer = ({ toggleDrawer, drawer }) => {
                   </OnlineEntryStyled>
 
                   <SelectedServices>
-                     <ChoiceServicesStyled onClick={servicClinic}>
+                     <ChoiceServicesStyled
+                        onClick={() => setIsActiveModal('menu')}
+                     >
                         <img src={chooseServices} alt="services" />
                         <p>Выбрать услуги</p>
                      </ChoiceServicesStyled>
@@ -75,6 +81,7 @@ const OnlineEntryDrawer = ({ toggleDrawer, drawer }) => {
                </DrawerStyled>
             </React.Fragment>
          ))}
+         <ChooseServices />
       </div>
    )
 }

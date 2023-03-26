@@ -252,15 +252,16 @@ const LandingPage = () => {
 }
 
 export default LandingPage
+
 const Main = styled('main')(() => ({
-   width: '1200px',
+   width: '1440px',
    height: 'auto',
    margin: '0 auto',
    fontFamily: '"Manrope", sans-serif',
 }))
 
 const StyledWelcome = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'space-between',
@@ -307,7 +308,7 @@ const ImgStyledWelcome = styled('div')(() => ({
 }))
 
 const ChooseOurMedCheck = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    marginTop: '30px',
    fontWeight: '600',
@@ -319,7 +320,7 @@ const ChooseOurMedCheck = styled('div')(() => ({
 }))
 
 const ChooseContainer = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    gap: '25px',
    margin: '0 auto',
    display: 'flex',
@@ -350,7 +351,7 @@ const ChooseContainer = styled('div')(() => ({
 }))
 
 const OurServices = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    marginTop: '60px',
    fontWeight: '600',
@@ -362,7 +363,7 @@ const OurServices = styled('div')(() => ({
 }))
 
 const ForAllTimesApplication = styled('p')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    fontWeight: '400',
    fontSize: '18px',
@@ -370,10 +371,10 @@ const ForAllTimesApplication = styled('p')(() => ({
 }))
 
 const Services = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    display: 'flex',
-   gap: '26px',
+   justifyContent: 'space-between',
    marginTop: '60px',
 
    '& .containerWithImg ': {
@@ -422,7 +423,7 @@ const LookAll = styled(Button)(() => ({
 }))
 
 const AboutOurClinic = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    marginTop: '60px',
    fontWeight: '600',
@@ -434,7 +435,7 @@ const AboutOurClinic = styled('div')(() => ({
 }))
 
 const AboutClinic = styled('div')(() => ({
-   width: '97%',
+   width: '100%',
    margin: '0 auto',
    display: 'flex',
    justifyContent: 'space-between',
@@ -485,7 +486,7 @@ const ImgStyles = styled('div')(() => ({
 }))
 
 const BestDoctors = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    marginTop: '60px',
    fontWeight: '600',
@@ -560,7 +561,7 @@ const AllDoctors = styled(Button)(() => ({
 }))
 
 const Feedbacks = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    marginTop: '30px',
    fontWeight: '600',

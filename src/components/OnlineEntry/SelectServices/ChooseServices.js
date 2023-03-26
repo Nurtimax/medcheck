@@ -1,19 +1,60 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useModal } from '../../../utils/hooks/useModal'
 
-import Modal from '../../UI/Modal'
+import Drawer from '@mui/material/Drawer'
+import { styled } from '@mui/material'
 
-const Services = ({ clinicServiceName }) => {
-   const [open, setOpen] = useState(!null)
+import closeOnlineEntry from '../../../assets/icons/close.svg'
+import Select from '../../UI/Select'
 
-   const closeModal = () => {
-      setOpen(!open)
-   }
+const ChooseServices = () => {
+   const { isActive, setIsActiveModal } = useModal()
 
    return (
-      <Modal open={open} closeModal={closeModal}>
-         <p>{clinicServiceName}</p>
-      </Modal>
+      <div>
+         {['right'].map((item) => (
+            <React.Fragment key={item}>
+               <Drawer
+                  anchor={item}
+                  open={isActive === 'menu'}
+                  onClose={() => setIsActiveModal({})}
+               >
+                  <OnlineEntryStyled>
+                     <div onClick={() => setIsActiveModal('drawer')}>
+                        <img
+                           onClick={() => setIsActiveModal({})}
+                           src={closeOnlineEntry}
+                           alt="close"
+                        />
+                     </div>
+                     <p>Online запись</p>
+                  </OnlineEntryStyled>
+               </Drawer>
+
+               <Select>hello</Select>
+            </React.Fragment>
+         ))}
+      </div>
    )
 }
 
-export default Services
+export default ChooseServices
+
+const OnlineEntryStyled = styled('div')(() => ({
+   display: 'flex',
+   width: '380px',
+   height: '56px',
+   justifyContent: 'center',
+   alignItems: 'center',
+   color: '#048741',
+   fontWeight: '700',
+
+   '& img': {
+      position: 'absolute',
+      top: '22px',
+      left: '22px',
+      width: '14px',
+      height: '14px',
+      cursor: 'pointer',
+   },
+}))

@@ -93,11 +93,13 @@ const Doctors = () => {
 export default Doctors
 
 const MainContainer = styled(Container)(() => ({
-   padding: '26px 0 120px',
+   width: '1440px',
+   padding: '26px 26px',
    fontFamily: 'Manrope',
    fontWeight: '400',
    fontSize: '18px',
    color: '#4D4E51',
+   margin: '0',
 
    '& .pagination': {
       display: 'flex',

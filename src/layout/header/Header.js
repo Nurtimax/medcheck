@@ -16,17 +16,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { postSignUp, removeUser } from '../../redux/slices/authSlice'
 
 import { useEffect } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import OnlineEntryDrawer from '../../components/OnlineEntry/Drawer/OnlineEntryDrawer'
 
 const Header = () => {
    const { isAuth } = useSelector((state) => state.auth)
-
    const dispatch = useDispatch()
 
    const [anchorEl, setAnchorEl] = React.useState(null)
-
-   const [searchParams, setSearchParams] = useSearchParams()
 
    const open = Boolean(anchorEl)
 
@@ -38,17 +35,9 @@ const Header = () => {
       setAnchorEl(null)
    }
 
-   const toggleDrawer = (anchor, open) => () => {
-      setDrawer({ ...drawer, [anchor]: open })
-      setSearchParams({ [anchor]: open })
-   }
-   const [drawer, setDrawer] = React.useState({
-      right: false,
-   })
-
-   useEffect(() => {
-      setDrawer({ right: Boolean(searchParams.get('right')) })
-   }, [])
+   // const [drawer, setDrawer] = React.useState({
+   //    right: false,
+   // })
 
    useEffect(() => {
       if (isAuth) {
@@ -191,9 +180,7 @@ const Header = () => {
             </NavigatePages>
             <GetResults>получить результаты</GetResults>
             <div>
-               <OnlineEntryDrawer drawer={drawer} toggleDrawer={toggleDrawer}>
-                  запись онлайн
-               </OnlineEntryDrawer>
+               <OnlineEntryDrawer />
             </div>
          </SecondRow>
       </HeaderContainer>
@@ -203,19 +190,19 @@ const Header = () => {
 export default Header
 
 const HeaderContainer = styled('header')(() => ({
-   width: '100%',
-   backgroundColor: '#FFFFFF',
-   position: 'fixed',
+   width: '1440px',
+   position: 'relative',
    top: '0',
    left: '0',
    zIndex: '20',
    fontFamily: '"Manrope" , sans-serif',
+   margin: '0 auto',
 }))
 const FirstRow = styled('div')(() => ({
    display: 'flex',
    justifyContent: 'space-between',
    margin: ' 0 auto',
-   width: '80%',
+   width: '100%',
    alignItems: 'center',
    padding: '20px 0 20px 0',
    borderBottom: '1px solid #C0BDBD',
@@ -296,7 +283,7 @@ const SecondRow = styled('div')(() => ({
    justifyContent: 'space-between',
    alignItems: 'center',
    margin: '0 auto',
-   width: '80%',
+   width: '100%',
    marginTop: '10px',
 }))
 const ProjectLogos = styled('div')(() => ({
@@ -306,7 +293,7 @@ const ProjectLogos = styled('div')(() => ({
 }))
 const NavigatePages = styled('nav')(() => ({
    display: 'flex',
-   gap: '19px',
+   gap: '25px',
    fontSize: '14px',
    fontWeight: '500',
    fontFamily: '"Manrope" , sans-serif',

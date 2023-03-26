@@ -126,10 +126,9 @@ const ChangePassword = () => {
 export default ChangePassword
 
 const Container = styled('form')(() => ({
-   width: '1200px',
+   width: '1440px',
    margin: '0 auto',
    marginBottom: '100px',
-   paddingLeft: '100px',
 
    '& .passwords': {
       color: '#464444',
