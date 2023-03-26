@@ -49,7 +49,13 @@ const Doctors = () => {
                <Box key={expert.id}>
                   <p className="doctor">{expert.serviceName}</p>
 
-                  <Box>
+                  <Box
+                     style={{
+                        display: 'flex',
+                        gap: '10px',
+                        alignItems: 'center',
+                     }}
+                  >
                      {expert?.expertsResponses?.map((doctor) => (
                         <Box key={doctor.id}>
                            <Link to={`${ROUTES.DOCTORS}/${expert.id}`}>
@@ -139,9 +145,9 @@ const MainContainer = styled(Container)(() => ({
    },
 
    '& .doctor-image': {
-      height: '349px',
-      width: '319px',
-      borderRadius: '4px',
+      width: '307px',
+      height: '335px',
+      borderRadius: '5px',
    },
 
    '& .doctor-name': {

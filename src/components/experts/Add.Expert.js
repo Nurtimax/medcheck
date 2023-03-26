@@ -58,6 +58,7 @@ const AddExperts = () => {
             </LinkToSpecialityStyled>
             <Text className="addSpec">Добавление специалиста</Text>
          </Container>
+
          <span>Добавление специалиста</span>
          <ContainerForm onSubmit={handleSubmit}>
             <DoctorImg>

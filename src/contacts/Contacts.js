@@ -7,7 +7,7 @@ const Contacts = () => {
       <>
          <ContactContainer>
             <StyledContactHeader>
-               <MainLink to="/">Главная </MainLink>{' '}
+               <MainLink to="/">Главная </MainLink>
                <ContactsLink to="/contacts">Контакты</ContactsLink>
             </StyledContactHeader>
 
@@ -24,26 +24,28 @@ const Contacts = () => {
                </p>
             </StyledTextMain>
             <StyledContactDetail>
-               <number>Контактные номера:</number>
+               <div>Контактные номера:</div>
                <PhoneNumber>+996(800) 000 000 ; +996(505) 000 000</PhoneNumber>
-               <adress>Наш адрес:</adress>
+               <div>Наш адрес:</div>
                <Adress>Кыргызстан, г. Бишкек, Медерова 44 </Adress>
-               <working>Режим работы клиники:</working>
+               <div>Режим работы клиники:</div>
                <TimeWorking>
                   Понедельник - суббота с 08:00 до 18:00.
-               </TimeWorking>{' '}
-               <email>Электронная почта :</email>
+               </TimeWorking>
+               <div>Электронная почта :</div>
                <Email>medchek312.kg </Email>
             </StyledContactDetail>
          </ContactContainer>
          <iframe
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3A251a275ce71d5d9e7a2148b3bf081344865e7b860f0a8c055561d5da306f4c56&amp;source=constructor"
+            src="https://yandex.ru/maps/10309/bishkek/?from=mapframe&ll=74.596782%2C42.851088&mode=routes&rtext=~42.844030%2C74.586697&rtt=auto&ruri=~&z=15"
             width="100%"
             height="400px"
          ></iframe>
       </>
    )
 }
+
+export default Contacts
 
 const ContactContainer = styled('div')(() => ({
    padding: '0 0 0 120px',
@@ -148,5 +150,3 @@ const StyledContactDetail = styled('div')(() => ({
       color: '#222222',
    },
 }))
-
-export default Contacts

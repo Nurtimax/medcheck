@@ -20,11 +20,25 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import LoadingSpinner from '../UI/LodaingSpinner'
+import iconSearching from '../../assets/icons/searching.svg'
 
 const Table = () => {
    const [items, setItems] = useState([])
 
    const { allExpert, isLoading } = useSelector((state) => state.addExpert)
+
+   const [sortData, setSortData] = useState(allExpert)
+
+   useEffect(() => {
+      setSortData(allExpert)
+   }, [allExpert])
+
+   function handleChange(event) {
+      const filterData = allExpert.filter((item) =>
+         item.expertFirstName.toLowerCase().includes(event.toLowerCase())
+      )
+      setSortData(filterData)
+   }
 
    const dispatch = useDispatch()
    const navigate = useNavigate()
@@ -44,29 +58,40 @@ const Table = () => {
    }
 
    return (
-      <TableContainerStyled>
-         {isLoading && <LoadingSpinner />}
-         <MuiTableStyle>
-            <TableHead>
-               <TableRow>
-                  {tableTitle.map((title) => (
-                     <TableCellTitle key={title.id}>{title}</TableCellTitle>
+      <>
+         <SearchStyled>
+            <InputSearching
+               type="text"
+               onChange={(e) => handleChange(e.target.value)}
+               placeholder="Поиск"
+            />
+            <Searching src={iconSearching} alt="searching" />
+         </SearchStyled>
+         <TableContainerStyled>
+            {isLoading && <LoadingSpinner />}
+
+            <MuiTableStyle>
+               <TableHead>
+                  <TableRow>
+                     {tableTitle.map((title) => (
+                        <TableCellTitle key={title.id}>{title}</TableCellTitle>
+                     ))}
+                  </TableRow>
+               </TableHead>
+               <TableBody>
+                  {sortData.map((row, index) => (
+                     <TableItem
+                        index={index}
+                        key={row.id}
+                        row={row}
+                        editClick={editClickHandler}
+                        removeClick={removeClickHandler}
+                     />
                   ))}
-               </TableRow>
-            </TableHead>
-            <TableBody>
-               {allExpert.map((row, index) => (
-                  <TableItem
-                     index={index}
-                     key={row.id}
-                     row={row}
-                     editClick={editClickHandler}
-                     removeClick={removeClickHandler}
-                  />
-               ))}
-            </TableBody>
-         </MuiTableStyle>
-      </TableContainerStyled>
+               </TableBody>
+            </MuiTableStyle>
+         </TableContainerStyled>
+      </>
    )
 }
 
@@ -90,4 +115,28 @@ const TableContainerStyled = styled(TableContainer)(() => ({
    width: '1200px',
    margin: '0 auto',
    background: '#FFFFFF',
+}))
+
+const SearchStyled = styled('div')(() => ({
+   width: '600px',
+   height: '40px',
+   backgroundColor: '#FFFFFF',
+   padding: '3px 0',
+   borderRadius: '24px',
+   display: 'flex',
+   justifyContent: 'center',
+   alignItems: 'center',
+   marginBottom: '20px',
+}))
+
+const InputSearching = styled('input')(() => ({
+   width: '550px',
+   border: 'none',
+   outline: 'none',
+   backgroundColor: 'inherit',
+}))
+const Searching = styled('img')(() => ({
+   width: '17px',
+   height: '17px',
+   cursor: 'pointer',
 }))

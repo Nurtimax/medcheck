@@ -184,9 +184,7 @@ const Header = () => {
                <CustomLinkStyle to={isAuth ? '/price' : '/sign_up'}>
                   Прайс
                </CustomLinkStyle>
-               <CustomLinkStyle to={isAuth ? '/feedbacks' : '/sign_up'}>
-                  Отзывы
-               </CustomLinkStyle>
+
                <CustomLinkStyle to={isAuth ? '/contacts' : '/sign_up'}>
                   Контакты
                </CustomLinkStyle>
@@ -308,7 +306,7 @@ const ProjectLogos = styled('div')(() => ({
 }))
 const NavigatePages = styled('nav')(() => ({
    display: 'flex',
-   gap: '10px',
+   gap: '19px',
    fontSize: '14px',
    fontWeight: '500',
    fontFamily: '"Manrope" , sans-serif',

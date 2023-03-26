@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux'
 
 const OnlineEntryDrawer = ({ toggleDrawer, drawer }) => {
    const { isAuth } = useSelector((state) => state.auth)
+
    const navigate = useNavigate()
 
    const servicClinic = () => {

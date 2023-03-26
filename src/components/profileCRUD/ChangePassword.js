@@ -129,6 +129,7 @@ const Container = styled('form')(() => ({
    width: '1200px',
    margin: '0 auto',
    marginBottom: '100px',
+   paddingLeft: '100px',
 
    '& .passwords': {
       color: '#464444',

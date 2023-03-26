@@ -70,7 +70,7 @@ export const ROUTES = {
    SERVICES: '/services',
    DOCTORS: '/doctors',
    PRICE: '/price',
-   FEEDBACKS: '/feedbacks',
+
    CONTACTS: '/contacts',
    USER: '/user',
    NOT_FOUND: '/*',
@@ -83,6 +83,7 @@ export const ROUTES = {
    SPECIALITY: '/speciality',
    CHOOSE_TIME: '/choose_time',
    ONLINE_ENTRYS: '/online_entrys',
+   ENTRY_CONTAINER: '/entry_container',
 }
 
 export const ADMIN_ROUTES = {

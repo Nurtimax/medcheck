@@ -5,6 +5,7 @@ const initialState = {
    applications: [],
    error: null,
    isLoading: false,
+   isSend: false,
 }
 
 export const postApplicationsRequest = createAsyncThunk(
@@ -19,17 +20,17 @@ export const postApplicationsRequest = createAsyncThunk(
    }
 )
 
-export const putApplicationsRequest = createAsyncThunk(
-   'applicationSlice/postApplicationsRequest',
-   async (userData, { rejectWithValue }) => {
-      try {
-         const { data } = await axiosInstance.post('application/', userData)
-         return data
-      } catch (error) {
-         return rejectWithValue(error)
-      }
-   }
-)
+// export const putApplicationsRequest = createAsyncThunk(
+//    'applicationSlice/postApplicationsRequest',
+//    async (userData, { rejectWithValue }) => {
+//       try {
+//          const { data } = await axiosInstance.put('application/', userData)
+//          return data
+//       } catch (error) {
+//          return rejectWithValue(error)
+//       }
+//    }
+// )
 
 export const getApplicationsRequest = createAsyncThunk(
    'applicationSlice/getApplicationsRequest',
@@ -45,10 +46,9 @@ export const getApplicationsRequest = createAsyncThunk(
 
 export const removeApplicationRequest = createAsyncThunk(
    'applicationSlice/removeApplicationRequest',
-   async (id, { dispatch, rejectWithValue }) => {
+   async (id, { rejectWithValue }) => {
       try {
          const { data } = await axiosInstance.delete('application/', id)
-         dispatch(getApplicationsRequest())
          return data
       } catch (error) {
          return rejectWithValue(error)
@@ -79,6 +79,7 @@ const applicationSlice = createSlice({
          .addCase(postApplicationsRequest.fulfilled, (state, action) => {
             state.applications = action.payload
             state.isLoading = false
+            state.isSend = true
          })
          .addCase(postApplicationsRequest.pending, (state) => {
             state.isLoading = true

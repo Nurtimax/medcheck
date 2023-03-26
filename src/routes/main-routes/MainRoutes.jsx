@@ -115,7 +115,7 @@ const MainRoutes = () => {
                   </Suspense>
                }
             />
-            <Route path={ROUTES.FEEDBACKS} element={<h1>feedbacks</h1>} />
+
             <Route
                path={ROUTES.SIGN_IN}
                element={

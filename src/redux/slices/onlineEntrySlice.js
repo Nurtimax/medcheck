@@ -9,11 +9,9 @@ const initialState = {
 
 export const getAllClinicServices = createAsyncThunk(
    'onlineEntrySlice/getAllClinicServices',
-   async (params, { rejectwithValue }) => {
+   async ({ rejectwithValue }) => {
       try {
-         const { data } = await axiosInstance.get('onlineEntry/services', {
-            ...params,
-         })
+         const { data } = await axiosInstance.get('onlineEntry/services')
          return data
       } catch (error) {
          return rejectwithValue(error)
@@ -36,7 +34,6 @@ const onlineEntrySlice = createSlice({
          })
          .addCase(getAllClinicServices.rejected, (state, action) => {
             state.isError = action.error.message
-            state.loading = false
          })
    },
 })
