@@ -27,10 +27,7 @@
       "react-router-dom": "^6.6.1",
       "react-scripts": "5.0.1",
       "react-table": "^7.8.0",
-<<<<<<< HEAD
-=======
       "redux-persist": "^6.0.0",
->>>>>>> 1154485df102b57dc0ca4f4ace38d975f41f1f7c
       "swiper": "^9.0.5",
       "use-react-router-breadcrumbs": "^4.0.1",
       "web-vitals": "^2.1.4",

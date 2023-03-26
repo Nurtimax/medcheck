@@ -1,8 +1,7 @@
 import { Box, Grid, styled } from '@mui/material'
-import { SearchIcon } from '../../assets'
-import Table from '../../components/time-table/table'
 import Button from '../../components/UI/Button'
 import Input from '../../components/UI/Input'
+import ScheduleTable from './../../components/table/Schudule.Table'
 import useDateAndWeek from '../../hook/useDateAndWeek'
 import { DUMMY_DATA } from '../../utils/constants/schedule'
 
@@ -12,7 +11,7 @@ const TimeTable = () => {
    return (
       <StyledTimeTable>
          <Box>
-            <StyledInput placeholder="Поиск" endAdornment={<SearchIcon />} />
+            <StyledInput placeholder="Поиск" />
          </Box>
          <Box className="time-table">
             <Grid container>
@@ -27,7 +26,7 @@ const TimeTable = () => {
                   </Grid>
                </Grid>
                <Grid item xs={12}>
-                  <Table columns={newColumns} data={data} />
+                  <ScheduleTable columns={newColumns} data={data} />
                </Grid>
             </Grid>
          </Box>

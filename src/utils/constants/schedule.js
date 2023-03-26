@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { ReactComponent as SurgeonIcon } from '../../assets/icons/surgeonIcon.svg'
 import { ReactComponent as EmptyIcon } from '../../assets/icons/emptyIcon.svg'
 import { styled } from '@mui/material'
@@ -340,20 +339,21 @@ const Time = styled('div')(() => ({
    fontFamily: 'Open Sans',
    fontStyle: 'italic',
    fontWeight: '400',
-   fontSize: '12px',
-   lineHeight: '10px',
+   fontSize: '14px',
+   lineHeight: '15px',
    boxSizing: 'border-box',
    position: 'relative',
    top: '-30px',
    marginTop: '15px',
    background: '#DBEBFF',
+   padding: ' 5px',
    color: '#1F6ED4',
    borderLeft: '3px solid #1F6ED4',
    borderTop: '1px dotted',
    borderRight: '1px dotted',
    borderBottom: '1px dotted',
 }))
-=======
+
 export const DUMMY_DATA = [
    // ['2023-03-26', '2023-03-27', '2023-03-28', '2023-03-29', '2023-03-30',
    //  '2023-03-31', '2023-04-01', '2023-04-02', '2023-04-03', '2023-04-04', '2023-04-05']
@@ -423,4 +423,3 @@ export const DUMMY_DATA = [
       ],
    },
 ]
->>>>>>> 1154485df102b57dc0ca4f4ace38d975f41f1f7c
