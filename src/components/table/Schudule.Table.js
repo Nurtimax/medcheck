@@ -72,6 +72,8 @@ const SchuduleTable = () => {
 export default SchuduleTable
 
 const TableStyle = styled(Table)(() => ({
+   margin: '0 auto',
+   background: '#D6EEEE',
    borderCollapse: 'collapse',
    border: '1px solid #D9D9D9',
    boxSizing: 'border-box',

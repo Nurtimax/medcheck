@@ -13,7 +13,7 @@ const TimeTable = () => {
          <Box>
             <StyledInput placeholder="Поиск" />
          </Box>
-         <Box className="time-table">
+         <BoxStyle className="time-table">
             <Grid container>
                <Grid item className="buttons" xs={12}>
                   <Grid container spacing={1.2}>
@@ -29,7 +29,7 @@ const TimeTable = () => {
                   <ScheduleTable columns={newColumns} data={data} />
                </Grid>
             </Grid>
-         </Box>
+         </BoxStyle>
       </StyledTimeTable>
    )
 }
@@ -37,7 +37,8 @@ const TimeTable = () => {
 export default TimeTable
 
 const StyledTimeTable = styled(Box)(() => ({
-   padding: '34px 0',
+   paddingLeft: '80px',
+   paddingRight: '80px',
    display: 'grid',
    gap: '20px',
    '& .time-table': {
@@ -81,4 +82,9 @@ const StyledButton = styled(Button)(() => ({
    fontSize: '14px',
 
    color: '#4D4E51',
+}))
+const BoxStyle = styled(Box)(() => ({
+   background: 'white',
+   maxWidth: '100%',
+   margin: '0 auto',
 }))

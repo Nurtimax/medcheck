@@ -187,6 +187,7 @@ const ModalStyle = styled(Modal)(() => ({
       display: 'flex',
       justifyContent: 'center',
       paddingBottom: ' 25px',
+      paddingTop: '15px',
    },
    '& .button': {
       display: 'flex',

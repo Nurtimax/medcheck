@@ -24,7 +24,7 @@ const ApplicationsTable = () => {
 
    return (
       <Div>
-         <ExpertCrudStyled>
+         <PatientCrudStyled>
             <Nav>
                <Speciality>Пациенты</Speciality>
             </Nav>
@@ -60,7 +60,7 @@ const ApplicationsTable = () => {
                   </Table>
                </TableContainerStyled>
             </ContainerEntry>
-         </ExpertCrudStyled>
+         </PatientCrudStyled>
       </Div>
    )
 }
@@ -73,7 +73,7 @@ const Nav = styled('div')(() => ({
    paddingTop: '20px',
 }))
 
-const ExpertCrudStyled = styled('div')(() => ({
+const PatientCrudStyled = styled('div')(() => ({
    width: '1200px',
    margin: '0 auto',
 }))
