@@ -9,6 +9,7 @@ import AddExpert from '../../components/experts/Add.Expert'
 import Patients from '../../components/patients/Patients'
 import ApplicationsTable from '../../components/crud/ApplicationTable'
 import OnePatient from '../../components/patients/OnePatient'
+import OnlineEntryPatients from '../../pages/online-entry/OnlineEntryPatients'
 
 const AdminLayout = React.lazy(() => import('../../layout/Admin.Layout'))
 const TimeTable = React.lazy(() => import('../../pages/time-table/TimeTable'))
@@ -33,7 +34,7 @@ const AdminRoutes = () => {
             />
             <Route path={ADMIN_ROUTES.ONLINE_ENTRY} element={<OnlineEntry />}>
                <Route index element={<Navigate to="online" />} />
-               <Route path="online" element={<h1>Online</h1>} />
+               <Route path="online" element={<OnlineEntryPatients />} />
                <Route
                   path="schedule"
                   element={
