@@ -1,19 +1,32 @@
 import React from 'react'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
-import medCheckIcon from '../../assets/icons/MedCheck.svg'
-import { styled } from '@mui/material'
+import medCheckIcon from '../../assets/icons/medCheck.svg'
+import { Menu, MenuItem, styled } from '@mui/material'
 import AdminLink from '../../components/UI/Custom.Link'
+import { Link } from 'react-router-dom'
+import { removeAdmin } from '../../redux/slices/authSlice'
+import { useDispatch } from 'react-redux'
 
 const AdminHeader = () => {
+   const dispatch = useDispatch()
+
+   const [anchorEl, setAnchorEl] = React.useState(null)
+   const open = Boolean(anchorEl)
+   const handleClick = (event) => {
+      setAnchorEl(event.currentTarget)
+   }
+   const handleClose = () => {
+      setAnchorEl(null)
+   }
    return (
       <Header>
          <ProjectLogos>
-            <LinkToAdminMain to="/admin/online_entry">
+            <Link className="logo" to="/admin/online_entry">
                <img src={logoMedCheck} alt="logo" />
-            </LinkToAdminMain>
-            <LinkToAdminMain to="/admin/online_entry">
+            </Link>
+            <Link className="logo" to="/admin/online_entry">
                <img src={medCheckIcon} alt="medCheck" />
-            </LinkToAdminMain>
+            </Link>
          </ProjectLogos>
          <Record>
             <AdminLinkStyle to="/admin/online_entry">
@@ -24,16 +37,32 @@ const AdminHeader = () => {
             <AdminLinkStyle to="/admin/speciality">Специалисты</AdminLinkStyle>
             <AdminLinkStyle to="/admin/patients">Пациенты</AdminLinkStyle>
          </Record>
-         <Select>
-            <option value="Администратор"> Администратор</option>
-            <option value="Администратор"> Администратор 2</option>
-            <option value="Администратор"> Администратор 3</option>
-            <option value="Администратор"> Администратор 4</option>
-            <option value="Администратор"> Администратор 5</option>
-         </Select>
+         <button
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+         >
+            Администратор
+         </button>
+
+         <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+               'aria-labelledby': 'basic-button',
+            }}
+         >
+            <MenuItem onClick={() => dispatch(removeAdmin())}>Выйти</MenuItem>
+         </Menu>
       </Header>
    )
 }
+
+export default AdminHeader
 
 const Header = styled('header')(() => ({
    display: 'flex',
@@ -43,18 +72,18 @@ const Header = styled('header')(() => ({
    width: '100%',
    marginTop: '10px',
    position: 'fixed',
+   zIndex: '20',
    margin: '0',
 }))
 const AdminLinkStyle = styled(AdminLink)(() => ({
    color: ' #707070',
    cursor: 'pointer',
+   textDecoration: 'none',
 
    '&:hover': {
-      borderBottom: '2px solid #048741',
       color: '#222222',
    },
 }))
-const LinkToAdminMain = styled(AdminLink)(() => ({}))
 
 const Record = styled('div')(() => ({
    marginTop: '30px',
@@ -68,11 +97,3 @@ const ProjectLogos = styled('div')(() => ({
 
    gap: '10px',
 }))
-
-const Select = styled('select')(() => ({
-   border: 'none',
-   outline: 'none',
-   cursor: 'pointer',
-}))
-
-export default AdminHeader

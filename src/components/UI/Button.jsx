@@ -6,7 +6,6 @@ function Button({
    disabled,
    onClick,
    variant,
-   bgColor,
    width,
    height,
    ...props
@@ -16,7 +15,6 @@ function Button({
          onClick={onClick}
          disabled={disabled}
          variant={variant}
-         bgColor={bgColor}
          width={width}
          height={height}
          {...props}
@@ -29,9 +27,7 @@ export default Button
 
 const ButtonStyle = styled(MuiButton)`
    &.MuiButton-outlined {
-      background-color: ${({ bgColor }) =>
-         bgColor ||
-         'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%);'};
+      background-color: 'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)';
       width: ${(props) => (props.width ? props.width : '111px')};
       height: ${(props) => (props.height ? props.height : '42px')};
       box-sizing: border-box;
@@ -72,7 +68,6 @@ const ButtonStyle = styled(MuiButton)`
       align-items: center;
       padding: 14px 32px;
       border-radius: 10px;
-      font-family: 'Manrope';
       font-style: normal;
       font-weight: 600;
       font-size: 12px;

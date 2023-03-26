@@ -1,5 +1,5 @@
 import { styled } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 
 import Modal from './Modal'
 
@@ -7,41 +7,81 @@ import user from '../../assets/icons/users.svg'
 import phone from '../../assets/icons/phone.svg'
 import next from '../../assets/icons/next.svg'
 import Button from './Button'
+import { useNavigate } from 'react-router-dom'
+import { useFormik } from 'formik'
+import { useDispatch } from 'react-redux'
+import { postApplicationsRequest } from '../../redux/slices/crudSlice'
 
 const UserRecords = () => {
+   const [open, setOpen] = useState(true)
+
+   const navigate = useNavigate()
+   const dispatch = useDispatch()
+
+   const closeModal = () => {
+      setOpen(navigate('/'))
+   }
+
+   const formik = useFormik({
+      initialValues: {
+         firstName: '',
+         phoneNumber: '',
+      },
+
+      onSubmit: (data) => {
+         dispatch(postApplicationsRequest(data))
+         resetForm()
+      },
+   })
+
+   const { handleChange, handleSubmit, values, resetForm } = formik
+
    return (
-      <Modal closeModal={close} open={open}>
-         <Request>Оставьте заявку</Request>
-         <LeaveNumber>
-            Оставьте свой номер и наши специалисты свяжутся с Вами в ближайшее
-            время
-         </LeaveNumber>
+      <Modal open={open} closeModal={closeModal}>
+         <form onSubmit={handleSubmit}>
+            <Request>Оставьте заявку</Request>
+            <LeaveNumber>
+               Оставьте свой номер и наши специалисты свяжутся с Вами в
+               ближайшее время
+            </LeaveNumber>
 
-         <UserInfo>
-            <div>
-               <p>Как к Вам обратиться?</p>
-               <StyledUserName>
-                  <img src={user} alt="user" />
-                  <input type="name" placeholder="Введите имя" />
-               </StyledUserName>
-            </div>
+            <UserInfo>
+               <div>
+                  <p>Как к Вам обратиться?</p>
+                  <StyledUserName>
+                     <img src={user} alt="user" />
+                     <input
+                        name="firstName"
+                        type="text"
+                        placeholder="Введите имя"
+                        value={values.firstName}
+                        onChange={handleChange}
+                     />
+                  </StyledUserName>
+               </div>
 
-            <div>
-               <p>Номер мобильного телефона</p>
-               <StyledUserPhoneNumber>
-                  <img src={phone} alt="phonenumber" />
-                  <input type="number" placeholder="+996 (___) __-__-__" />
-               </StyledUserPhoneNumber>
-            </div>
-         </UserInfo>
+               <div>
+                  <p>Номер мобильного телефона</p>
+                  <StyledUserPhoneNumber>
+                     <img src={phone} alt="phonenumber" />
+                     <input
+                        name="phoneNumber"
+                        placeholder="+996 (___) __-__-__"
+                        value={values.phoneNumber}
+                        onChange={handleChange}
+                     />
+                  </StyledUserPhoneNumber>
+               </div>
+            </UserInfo>
 
-         <SendRequest variant="text">
-            <p>ОТПРАВИТЬ ЗАЯВКУ</p>
+            <SendRequest type="submit" variant="text">
+               <p>ОТПРАВИТЬ ЗАЯВКУ</p>
 
-            <div>
-               <img src={next} alt="next" />
-            </div>
-         </SendRequest>
+               <div>
+                  <img src={next} alt="next" />
+               </div>
+            </SendRequest>
+         </form>
       </Modal>
    )
 }

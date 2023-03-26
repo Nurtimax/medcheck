@@ -28,7 +28,7 @@ const Input = forwardRef(
             id={id}
             value={value}
             maxLength={maxLength}
-            classes={{ error: 'Error' }}
+            classes={{ error: 'error' }}
             {...props}
          />
       )
@@ -38,8 +38,6 @@ const Input = forwardRef(
 export default Input
 
 const InputStyle = styled(InputBase)`
-   font-family: "'Manrope', sans-serif";
-   font-style: normal;
    font-weight: 400;
    font-size: 16px;
    line-height: 22px;
@@ -50,7 +48,7 @@ const InputStyle = styled(InputBase)`
    align-items: center;
    border: 1px solid #d9d9d9;
    border-radius: 8px;
-   &.Error {
+   &.error {
       border: 1px solid red;
       color: red;
    }

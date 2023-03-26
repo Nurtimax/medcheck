@@ -1,11 +1,23 @@
+import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
-export default function ProtectedRoute({ element, roles }) {
-   const { role } = useSelector((state) => state.auth.user)
+const PrivateRoute = ({ Component, role = [], fallbackPath = '/admin' }) => {
+   const { isAuth, roleName } = useSelector((state) => state.auth)
 
-   const isUserHasRole = role && roles.includes(role)
+   const checkRole = useMemo(() => {
+      return role.join().toLowerCase().split().includes(roleName?.toLowerCase())
+   }, [roleName, role])
 
-   if (!isUserHasRole) return <Navigate to="/" replace />
-   return element
+   if (!isAuth) {
+      return <Navigate to="/" replace />
+   }
+
+   if (isAuth && !checkRole) {
+      return <Navigate to={fallbackPath} replace />
+   }
+
+   return Component
 }
+
+export default PrivateRoute
