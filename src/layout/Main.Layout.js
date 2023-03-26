@@ -26,4 +26,6 @@ export default MainLayout
 
 const Container = styled('main')(() => ({
    paddingTop: '250px',
+   maxWidth: '80%',
+   margin: '0 auto',
 }))
