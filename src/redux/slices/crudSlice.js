@@ -23,7 +23,7 @@ export const getApplicationsRequest = createAsyncThunk(
    'applicationSlice/getApplicationsRequest',
    async (_, { rejectWithValue }) => {
       try {
-         const response = await axiosInstance.get('application/get')
+         const response = await axiosInstance.get('application/')
          return response.data
       } catch (error) {
          if (rejectWithValue) {
@@ -34,20 +34,14 @@ export const getApplicationsRequest = createAsyncThunk(
    }
 )
 
-export const removeApplicationRequest = createAsyncThunk(
-   'applicationSlice/removeApplicationRequest',
-   async (data) => {
+export const checkedApplicationRequest = createAsyncThunk(
+   'application/switchApplicationRequest',
+   async (id, { rejectWithValue }) => {
       try {
-         const response = await axiosInstance.delete(
-            `/applicationSlice/deleteSelected`,
-            {
-               data: data,
-            }
-         )
-
-         return response.data
+         const { data } = await axiosInstance.put(`application/?id=${id}`)
+         return data
       } catch (error) {
-         return error
+         return rejectWithValue(error)
       }
    }
 )

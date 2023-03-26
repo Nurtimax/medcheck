@@ -3,10 +3,12 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { ADMIN_ROUTES } from '../../utils/constants/data'
 
 import LazyLoading from '../../components/UI/LodaingSpinner'
-import ApplicationsTable from '../../components/crud/CrudTable'
 import ExpertsCrud from '../../components/experts/Expert.Crud'
 import EditData from '../../components/experts/EditData'
 import AddExpert from '../../components/experts/Add.Expert'
+import Patients from '../../components/patients/Patients'
+import ApplicationsTable from '../../components/crud/ApplicationTable'
+import OnePatient from '../../components/patients/OnePatient'
 
 const AdminLayout = React.lazy(() => import('../../layout/Admin.Layout'))
 const TimeTable = React.lazy(() => import('../../pages/time-table/TimeTable'))
@@ -75,7 +77,22 @@ const AdminRoutes = () => {
                }
             />
 
-            <Route path={ADMIN_ROUTES.PATIENTS} element={<p>PATIENTS</p>} />
+            <Route
+               path={ADMIN_ROUTES.PATIENTS}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <Patients />
+                  </Suspense>
+               }
+            />
+            <Route
+               path={ADMIN_ROUTES.ONE_PATIENT}
+               element={
+                  <Suspense fallback={<LazyLoading />}>
+                     <OnePatient />
+                  </Suspense>
+               }
+            />
          </Route>
       </Routes>
    )
