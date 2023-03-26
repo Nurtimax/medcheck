@@ -1,10 +1,17 @@
-import { Box, styled } from '@mui/material'
-import React from 'react'
+import { Box, styled, Typography } from '@mui/material'
 
 const Hours = (props) => {
-   return <StyledHours>{props[props.columnId]}</StyledHours>
+   return (
+      <StyledHours>
+         <Typography variant="subtitle1">{props?.startTime}</Typography>
+         <Typography variant="subtitle1">{props?.finishTime}</Typography>
+      </StyledHours>
+   )
 }
 
 export default Hours
 
-const StyledHours = styled(Box)(() => ({}))
+const StyledHours = styled(Box)(() => ({
+   display: 'flex',
+   flexWrap: 'wrap',
+}))

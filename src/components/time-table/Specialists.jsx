@@ -1,12 +1,12 @@
 import { Box, styled, Typography } from '@mui/material'
 import React from 'react'
 
-const Specialists = ({ name, type }) => {
+const Specialists = ({ expertName, expertPosition, expertImage }) => {
    return (
       <StyledSpecialists>
-         <img src="" alt="" />
-         <Typography>{name}</Typography>
-         <Typography>{type}</Typography>
+         <img src={expertImage} width={20} height={20} alt="" />
+         <Typography>{expertName}</Typography>
+         <Typography>{expertPosition}</Typography>
       </StyledSpecialists>
    )
 }

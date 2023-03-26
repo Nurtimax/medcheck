@@ -65,12 +65,12 @@ const StyledTableContainer = styled(TableContainer)(() => ({
       padding: '10px',
    },
    '& tr': {
-      '& td:first-child': {
+      '& td::first-of-type': {
          minWidth: '180px',
          maxWidth: '180px',
          width: '180px',
       },
-      '& td:not(:first-child)': {
+      '& td:not(::first-of-type)': {
          minWidth: '100px',
          maxWidth: '100px',
          width: '100px',

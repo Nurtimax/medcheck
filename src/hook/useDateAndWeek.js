@@ -1,73 +1,78 @@
-import { useEffect, useState } from 'react'
+import { format } from 'date-fns'
+import { useMemo } from 'react'
 import Hours from '../components/time-table/Hours'
 import Specialists from '../components/time-table/Specialists'
 
-const useDateAndWeek = (items) => {
-   const [columns, setColums] = useState([
-      {
-         Header: 'Специалисты',
-         accessor: '',
-         style: {
-            flex: 0.5,
-         },
-         Cell: ({ row }) => {
-            return <Specialists {...row.original} />
-         },
-      },
-   ])
+const useDateAndWeek = (DUMMY_DATA) => {
+   const startDate = new Date() // Start from today
+   const endDate = new Date(startDate.getTime() + 10 * 24 * 60 * 60 * 1000)
+   const options = { year: 'numeric', month: 'long', day: 'numeric' }
 
-   const [data, setData] = useState([])
-   const startDate = new Date('03.12.2023')
-   const endDate = new Date('03.22.2023')
+   const date = []
+   for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+      const formattedDate = format(new Date(d), 'yyyy-MM-dd')
+      date.push(formattedDate)
+   }
 
-   const options = { weekday: 'short', day: 'numeric', month: 'long' }
+   const changeDummyDate = useMemo(() => {
+      return DUMMY_DATA.reduce((acc, current) => {
+         const scheduleTime = current?.scheduleDateAndTimeResponse?.reduce(
+            (subAcc, subCurrent) => [
+               ...subAcc,
+               {
+                  Header: new Date(subCurrent.date).toLocaleDateString(
+                     'ru-RU',
+                     options
+                  ),
+                  accessor: `date_${
+                     date.includes(subCurrent.date)
+                        ? subCurrent.date
+                        : Math.random()
+                  }`,
+                  Cell: () => {
+                     const timeData = date.includes(subCurrent.date)
+                        ? subCurrent
+                        : {}
 
-   useEffect(() => {
-      let days = 0
-      const newColumns = []
-      const newData = []
-      for (
-         let d = new Date(startDate);
-         d <= endDate;
-         d.setDate(d.getDate() + 1)
-      ) {
-         const formattedDate = d.toLocaleDateString('ru-RU', options)
-         const columnId = `date_${days}`
-
-         items.map((item) => {
-            return item.scheduleDateAndTimeResponse.map((time) => {
-               if (
-                  new Date(time.date).toLocaleDateString('ru-RU', options) ===
-                  formattedDate
-               ) {
-                  newData.push({
-                     ...item.scheduleDateAndTimeResponse,
-                     [columnId]: time.startTime,
-                     [columnId]: time.finishTime,
-                  })
-                  return time.date
-               }
-               return null
-            })
-         })
-
-         newColumns.push({
-            Header: formattedDate,
-            accessor: columnId,
-            style: {
-               flex: 0.5,
-            },
-            Cell: ({ row }) => {
-               return <Hours {...row.original} columnId={columnId} />
-            },
-         })
-         days++
-      }
-      setData((prevState) => [...prevState, ...newData])
-      setColums((prevState) => [...prevState, ...newColumns])
+                     return <Hours {...timeData} />
+                  },
+               },
+            ],
+            []
+         )
+         return [...acc, ...scheduleTime]
+      }, [])
    }, [])
 
-   console.log(data)
+   const columns = useMemo(
+      () => [
+         {
+            Header: 'Expert Name',
+            accessor: 'expertName',
+            Cell: ({ row }) => {
+               return <Specialists {...row.original} />
+            },
+         },
+         ...changeDummyDate,
+      ],
+      []
+   )
+
+   // Define the data
+   const data = useMemo(() => {
+      return DUMMY_DATA.map((item) => ({
+         expertName: `${item.expert.expertFirstName} ${item.expert.expertLastName}`,
+         expertPosition: item.expert.expertPosition,
+         expertImage: item.expert.expertImage,
+         ...item.scheduleDateAndTimeResponse.reduce((obj, time) => {
+            const newObj = { ...obj }
+            newObj[
+               `date_${date.includes(time.date) ? time.date : Math.random()}`
+            ] = time
+            return newObj
+         }, {}),
+      }))
+   }, [])
 
    return { data, columns }
 }
