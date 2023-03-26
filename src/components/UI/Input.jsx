@@ -38,7 +38,6 @@ const Input = forwardRef(
 export default Input
 
 const InputStyle = styled(InputBase)`
-   font-style: normal;
    font-weight: 400;
    line-height: 22px;
    color: #959595;

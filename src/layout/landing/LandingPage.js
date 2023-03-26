@@ -274,10 +274,9 @@ const WelcomeClient = styled('div')(() => ({
 }))
 
 const TypographyWelcome = styled(Typography)(() => ({
-   width: '500px',
-
+   width: '700px',
    fontWeight: 900,
-   fontSize: '45px',
+   fontSize: '60px',
    color: 'red',
    background: 'linear-gradient(90deg, #30CFD0 0%, #330867 100%)',
    backgroundClip: 'text',
@@ -321,12 +320,13 @@ const ChooseOurMedCheck = styled('div')(() => ({
 
 const ChooseContainer = styled('div')(() => ({
    width: '100%',
-   gap: '25px',
+
    margin: '0 auto',
    display: 'flex',
+   justifyContent: 'space-between',
 
    '& div': {
-      width: '389px',
+      width: '450px',
       padding: ' 30px 40px',
       display: 'inline-block',
       marginTop: '60px',

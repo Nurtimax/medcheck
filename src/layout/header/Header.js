@@ -35,10 +35,6 @@ const Header = () => {
       setAnchorEl(null)
    }
 
-   // const [drawer, setDrawer] = React.useState({
-   //    right: false,
-   // })
-
    useEffect(() => {
       if (isAuth) {
          dispatch(postSignUp())
@@ -60,10 +56,10 @@ const Header = () => {
                   <Span> пн-сб</Span> 08:00 до 18:00
                </ForPosition2>
             </InFirstRow1>
-            <InFirstRow2>
-               <InputSearching type="text" placeholder="Поиск по сайту" />
+            <SearchStyled>
+               <InputSearching type="text" placeholder="Поиск" />
                <Searching src={iconSearching} alt="searching" />
-            </InFirstRow2>
+            </SearchStyled>
             <InFirstRow4>
                <div>
                   <a href="https://www.instagram.com/">
@@ -191,12 +187,13 @@ export default Header
 
 const HeaderContainer = styled('header')(() => ({
    width: '1440px',
-   position: 'relative',
+   position: 'sticky',
    top: '0',
    left: '0',
    zIndex: '20',
    fontFamily: '"Manrope" , sans-serif',
    margin: '0 auto',
+   background: '#FFFFFF',
 }))
 const FirstRow = styled('div')(() => ({
    display: 'flex',
@@ -226,18 +223,19 @@ const ForPosition2 = styled('div')(() => ({
       marginRight: '7px',
    },
 }))
-const InFirstRow2 = styled('div')(() => ({
-   width: '300px',
-   height: '30px',
+
+const SearchStyled = styled('div')(() => ({
+   width: '400px',
+   height: '40px',
    backgroundColor: '#F3F1F1',
-   padding: '3px 0',
-   borderRadius: '20px',
+   borderRadius: '24px',
    display: 'flex',
    justifyContent: 'center',
    alignItems: 'center',
 }))
+
 const InputSearching = styled('input')(() => ({
-   width: '250px',
+   width: '350px',
    border: 'none',
    outline: 'none',
    backgroundColor: 'inherit',
@@ -247,6 +245,7 @@ const Searching = styled('img')(() => ({
    height: '17px',
    cursor: 'pointer',
 }))
+
 const InFirstRow3 = styled('div')(() => ({
    display: 'flex',
    alignItems: 'center',
@@ -280,7 +279,7 @@ const InFirstRow4 = styled('div')(() => ({
 }))
 const SecondRow = styled('div')(() => ({
    display: 'flex',
-   justifyContent: 'space-between',
+   justifyContent: 'space-around',
    alignItems: 'center',
    margin: '0 auto',
    width: '100%',
@@ -294,7 +293,7 @@ const ProjectLogos = styled('div')(() => ({
 const NavigatePages = styled('nav')(() => ({
    display: 'flex',
    gap: '25px',
-   fontSize: '14px',
+   fontSize: '17px',
    fontWeight: '500',
    fontFamily: '"Manrope" , sans-serif',
 }))
@@ -302,7 +301,7 @@ const GetResults = styled(Button)(() => ({
    border: '1px solid #048741 ',
    borderRadius: '24px',
    color: '#048741',
-   width: '205',
+   width: '205px',
    height: '43px',
 }))
 const InFirstRow5 = styled('div')(() => ({

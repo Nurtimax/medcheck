@@ -9,7 +9,7 @@ const initialState = {
 
 export const getAllClinicServices = createAsyncThunk(
    'onlineEntrySlice/getAllClinicServices',
-   async ({ rejectwithValue }) => {
+   async (_, { rejectwithValue }) => {
       try {
          const { data } = await axiosInstance.get('onlineEntry/services')
          return data

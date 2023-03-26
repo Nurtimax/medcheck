@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useModal } from '../../../utils/hooks/useModal'
 
 import Drawer from '@mui/material/Drawer'
@@ -6,9 +6,18 @@ import { styled } from '@mui/material'
 
 import closeOnlineEntry from '../../../assets/icons/close.svg'
 import Select from '../../UI/Select'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllClinicServices } from '../../../redux/slices/onlineEntrySlice'
 
 const ChooseServices = () => {
    const { isActive, setIsActiveModal } = useModal()
+
+   const { services } = useSelector((state) => state.onlineEntry)
+   const dispatch = useDispatch()
+
+   useEffect(() => {
+      dispatch(getAllClinicServices())
+   }, [])
 
    return (
       <div>
@@ -29,9 +38,9 @@ const ChooseServices = () => {
                      </div>
                      <p>Online запись</p>
                   </OnlineEntryStyled>
-               </Drawer>
 
-               <Select>hello</Select>
+                  <Select options={services} />
+               </Drawer>
             </React.Fragment>
          ))}
       </div>

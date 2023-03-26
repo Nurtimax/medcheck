@@ -42,7 +42,7 @@ const Contacts = () => {
 export default Contacts
 
 const ContactContainer = styled('div')(() => ({
-   width: '85%',
+   width: '1440px',
    margin: '0 auto',
 }))
 
