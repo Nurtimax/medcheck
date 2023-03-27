@@ -1,4 +1,4 @@
-import { styled, Typography } from '@mui/material'
+import { styled } from '@mui/material'
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -11,10 +11,14 @@ import { postSignUp, signInWithGoogle } from '../../redux/slices/authSlice'
 import AuthInput from '../../components/UI/AuthInput'
 import { SignInValidateHelper } from '../../utils/helpers/sign-in-validate-helper'
 import { useEffect } from 'react'
+import Alert from '../../components/UI/Alert'
 
 const SignUp = () => {
    const [open, setOpen] = useState(true)
+
    const [customError, setCustomError] = useState(null)
+   const [successMessage, setSuccessMessage] = useState(null)
+
    const [email, setEmail] = useState('')
 
    const dispatch = useDispatch()
@@ -44,9 +48,10 @@ const SignUp = () => {
          dispatch(postSignUp({ ...values }))?.then((res) => {
             if (res?.meta?.requestStatus !== 'rejected') {
                setCustomError(null)
+               setSuccessMessage('uspehno registratio')
                resetForm()
                if (res.payload.roleName === 'ADMIN') {
-                  return navigate('/admin')
+                  navigate('/admin')
                }
                return navigate('/')
             }
@@ -55,8 +60,20 @@ const SignUp = () => {
                   'Вы можете подтвердить свою личность, а несанкционированный доступ будет заблокирован.'
                )
             }
+            if (
+               res?.payload?.message === 'Request failed with status code 400'
+            ) {
+               return setCustomError(
+                  'что пошло не так с отправленным запросом, повторите попытку.'
+               )
+            } else {
+               setSuccessMessage('uspeh')
+            }
 
-            return setCustomError(res?.payload?.message)
+            return (
+               setCustomError(res?.payload?.message),
+               setSuccessMessage('uspehno registratio')
+            )
          })
       },
    })
@@ -68,6 +85,7 @@ const SignUp = () => {
       dispatch(signInWithGoogle(data)).then((res) => {
          if (res?.meta?.requestStatus === 'fulfilled') {
             navigate('/')
+            setSuccessMessage('uspeh')
          } else {
             setCustomError('hello error')
          }
@@ -79,109 +97,108 @@ const SignUp = () => {
    }, [values.email])
 
    return (
-      <Modal marginTop="80px" open={open} closeModal={closeModal}>
-         <Registration>Регистрация</Registration>
+      <>
+         {customError && (
+            <Alert variant={customError} open={open} onClose={closeModal} />
+         )}
+         {successMessage && (
+            <Alert title={successMessage} open={open} onClose={closeModal} />
+         )}
 
-         <FormContainer onSubmit={handleSubmit}>
-            <AuthInput
-               name="firstname"
-               value={values.firstname}
-               placeholder="Имя"
-               onChange={handleChange}
-               type="text"
-               className="input"
-               errors={errors.firstname}
-               touched={touched.firstname}
-            />
+         <Modal marginTop="80px" open={open} closeModal={closeModal}>
+            <Registration>Регистрация</Registration>
 
-            <AuthInput
-               type="text"
-               name="lastname"
-               className="input"
-               placeholder="Фамилия"
-               errors={errors.lastname}
-               value={values.lastname}
-               onChange={handleChange}
-               touched={touched.lastname}
-            />
+            <FormContainer onSubmit={handleSubmit}>
+               <AuthInput
+                  name="firstname"
+                  value={values.firstname}
+                  placeholder="Имя"
+                  onChange={handleChange}
+                  type="text"
+                  className="input"
+                  errors={errors.firstname}
+                  touched={touched.firstname}
+               />
 
-            <AuthInput
-               name="phoneNumber"
-               className="input"
-               placeholder="+996 (_ _ _) _ _  _ _  _ _ "
-               type="tel"
-               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-               errors={errors.phoneNumber}
-               value={values.phoneNumber}
-               onChange={handleChange}
-               touched={touched.phoneNumber}
-            />
+               <AuthInput
+                  type="text"
+                  name="lastname"
+                  className="input"
+                  placeholder="Фамилия"
+                  errors={errors.lastname}
+                  value={values.lastname}
+                  onChange={handleChange}
+                  touched={touched.lastname}
+               />
 
-            <AuthInput
-               name="email"
-               className="input"
-               placeholder="Email"
-               type="email"
-               errors={errors.email}
-               value={values.email}
-               onChange={handleChange}
-               touched={touched.email}
-            />
+               <AuthInput
+                  name="phoneNumber"
+                  className="input"
+                  placeholder="+996 (_ _ _) _ _  _ _  _ _ "
+                  type="tel"
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  errors={errors.phoneNumber}
+                  value={values.phoneNumber}
+                  onChange={handleChange}
+                  touched={touched.phoneNumber}
+               />
 
-            <AuthInput
-               autoComplete="password"
-               name="password"
-               className="input"
-               placeholder="Введите пароль"
-               errors={errors.password}
-               value={values.password}
-               onChange={handleChange}
-               touched={touched.password}
-            />
-            <AuthInput
-               autoComplete="repeatPassword"
-               name="repeatPassword"
-               className="input"
-               placeholder="Повторите пароль"
-               value={values.repeatPassword}
-               errors={errors.repeatPassword}
-               onChange={handleChange}
-               touched={touched.repeatPassword}
-            />
+               <AuthInput
+                  name="email"
+                  className="input"
+                  placeholder="Email"
+                  type="email"
+                  errors={errors.email}
+                  value={values.email}
+                  onChange={handleChange}
+                  touched={touched.email}
+               />
 
-            {customError && (
-               <Typography
-                  className="server_error"
-                  variant="body2"
-                  color="error"
-               >
-                  {customError}
-               </Typography>
-            )}
+               <AuthInput
+                  autoComplete="password"
+                  name="password"
+                  className="input"
+                  placeholder="Введите пароль"
+                  errors={errors.password}
+                  value={values.password}
+                  onChange={handleChange}
+                  touched={touched.password}
+               />
+               <AuthInput
+                  autoComplete="repeatPassword"
+                  name="repeatPassword"
+                  className="input"
+                  placeholder="Повторите пароль"
+                  value={values.repeatPassword}
+                  errors={errors.repeatPassword}
+                  onChange={handleChange}
+                  touched={touched.repeatPassword}
+               />
 
-            <Button type="submit" className="button">
-               создать аккаунт
-            </Button>
+               <Button type="submit" className="button">
+                  создать аккаунт
+               </Button>
 
-            <div className="variants">
-               <div className="variantBorder"></div>
-               <span className="spanColor">или</span>
-               <div className="variantBorder"></div>
-            </div>
+               <div className="variants">
+                  <div className="variantBorder"></div>
+                  <span className="spanColor">или</span>
+                  <div className="variantBorder"></div>
+               </div>
 
-            <AuthWithGoogle
-               variant="Зарегистрироваться с Google"
-               handleClick={SignInWithGoogle}
-            />
+               <AuthWithGoogle
+                  variant="Зарегистрироваться с Google"
+                  handleClick={SignInWithGoogle}
+               />
 
-            <div className="existAccount">
-               <p>У вас уже есть аккаунт?</p>
-               <Link to="/sign_in" className="signIn">
-                  Войти
-               </Link>
-            </div>
-         </FormContainer>
-      </Modal>
+               <div className="existAccount">
+                  <p>У вас уже есть аккаунт?</p>
+                  <Link to="/sign_in" className="signIn">
+                     Войти
+                  </Link>
+               </div>
+            </FormContainer>
+         </Modal>
+      </>
    )
 }
 

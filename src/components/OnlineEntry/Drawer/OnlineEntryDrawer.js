@@ -20,9 +20,6 @@ const OnlineEntryDrawer = () => {
 
    const navigate = useNavigate()
 
-   const specialist = () => {
-      navigate('/speciality')
-   }
    const time = () => {
       navigate('/choose_time')
    }
@@ -62,13 +59,13 @@ const OnlineEntryDrawer = () => {
 
                   <SelectedServices>
                      <ChoiceServicesStyled
-                        onClick={() => setIsActiveModal('menu')}
+                        onClick={() => setIsActiveModal('services')}
                      >
                         <img src={chooseServices} alt="services" />
                         <p>Выбрать услуги</p>
                      </ChoiceServicesStyled>
 
-                     <ChoiceServicesStyled onClick={specialist}>
+                     <ChoiceServicesStyled>
                         <img src={chooseSpecialist} alt="specialist" />
                         <p>Выбрать специалиста</p>
                      </ChoiceServicesStyled>

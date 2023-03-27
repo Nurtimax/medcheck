@@ -10,6 +10,9 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { switchExpertRequest } from '../../redux/slices/expertSlice'
 import LoadingSpinner from '../UI/LodaingSpinner'
+import Modal from '../.././components/UI/Modal'
+import Button from '../../components/UI/Button'
+import Alert from '../UI/Alert'
 
 const TableList = ({ row, editClick, removeClick, index }) => {
    const {
@@ -26,11 +29,30 @@ const TableList = ({ row, editClick, removeClick, index }) => {
    const [isSwitch, setIsSwitch] = useState(expertStatus)
    const dispatch = useDispatch()
 
+   const [isModalOpen, setIsModalOpen] = useState(false)
+   const [isAlert, setIsAlert] = useState(false)
    const { isLoading } = useSelector((state) => state.addExpert)
 
    const addSwitch = () => {
+      setIsAlert(true)
       setIsSwitch(!isSwitch)
       dispatch(switchExpertRequest(id))
+   }
+   const handleDeleteClick = () => {
+      setIsModalOpen(true)
+   }
+
+   const handleDeleteConfirm = () => {
+      removeClick(id)
+      setIsModalOpen(false)
+   }
+
+   const handleDeleteCancel = () => {
+      setIsModalOpen(false)
+   }
+
+   const closeAlert = () => {
+      setIsAlert(false)
    }
 
    return (
@@ -38,6 +60,13 @@ const TableList = ({ row, editClick, removeClick, index }) => {
          {isLoading && <LoadingSpinner />}
          <TableCell className="numbers">{index + 1}</TableCell>
          <TableCell>
+            {isAlert && (
+               <Alert
+                  open={isAlert}
+                  onClose={closeAlert}
+                  title="Статус доктора успешно изменен 👍"
+               />
+            )}
             <Switch
                color={isSwitch ? 'success' : 'error'}
                onClick={addSwitch}
@@ -63,11 +92,28 @@ const TableList = ({ row, editClick, removeClick, index }) => {
                <EditButton onClick={() => editClick(id)}>
                   <EditIcon />
                </EditButton>
-               <DeleteButton onClick={() => removeClick(id)}>
+               <DeleteButton onClick={handleDeleteClick}>
                   <DeleteIcon />
                </DeleteButton>
             </div>
          </TableCell>
+         <ModalStyle open={isModalOpen} closeModal={handleDeleteCancel}>
+            {isLoading && <LoadingSpinner />}
+            <Container>
+               <p className="text">Вы точно хотите удалить?</p>
+               <div className="button">
+                  <ButtonStyle variant="outlined" onClick={handleDeleteCancel}>
+                     Отменить
+                  </ButtonStyle>
+                  <ButtonStyle
+                     variant="contained"
+                     onClick={handleDeleteConfirm}
+                  >
+                     Удалить
+                  </ButtonStyle>
+               </div>
+            </Container>
+         </ModalStyle>
       </TableRowStyle>
    )
 }
@@ -132,4 +178,25 @@ const TableRowStyle = styled(TableRow)(({ isSwitch }) => ({
 
 const AvatarStyle = styled(Avatar)(({ isSwitch }) => ({
    filter: isSwitch ? 'brightness(100%)' : 'brightness(70%)',
+}))
+const ModalStyle = styled(Modal)(() => ({
+   '& .text': {
+      fontFamily: 'Manrope',
+      fontSize: '20px',
+      fontWeight: '500',
+      display: 'flex',
+      justifyContent: 'center',
+      paddingBottom: ' 25px',
+   },
+   '& .button': {
+      display: 'flex',
+      justifyContent: 'space-around',
+      gap: '20px',
+   },
+}))
+const Container = styled('div')(() => ({}))
+const ButtonStyle = styled(Button)(() => ({
+   variant: 'outlined',
+   width: '150px',
+   height: '45px',
 }))

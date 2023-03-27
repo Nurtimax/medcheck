@@ -21,11 +21,13 @@ import profileSlice from './slices/profileSlice'
 import appointmentSlice from './slices/appointment-slice'
 import onlineEntrySlice from './slices/onlineEntrySlice'
 import forgotPasswordSlice from './slices/forgot-password-slice'
+import patientSlice from './slices/patientsSlice'
 
 const rootReducer = combineReducers({
    auth: authSlice.reducer,
    applications: applicationSlice.reducer,
    addExpert: expertSlice.reducer,
+   patients: patientSlice.reducer,
    profCrudUser: profileSlice.reducer,
    appointment: appointmentSlice.reducer,
    onlineEntry: onlineEntrySlice.reducer,

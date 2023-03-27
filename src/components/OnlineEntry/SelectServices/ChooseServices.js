@@ -25,7 +25,7 @@ const ChooseServices = () => {
             <React.Fragment key={item}>
                <Drawer
                   anchor={item}
-                  open={isActive === 'menu'}
+                  open={isActive === 'services'}
                   onClose={() => setIsActiveModal({})}
                >
                   <OnlineEntryStyled>
@@ -39,7 +39,8 @@ const ChooseServices = () => {
                      <p>Online запись</p>
                   </OnlineEntryStyled>
 
-                  <Select options={services} />
+                  <p>Выбрать услуги</p>
+                  <Select defaultValue={'hello romazan'} options={services} />
                </Drawer>
             </React.Fragment>
          ))}

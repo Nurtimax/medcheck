@@ -2,7 +2,9 @@ import React, { Suspense } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Dermatology from '../../components/ServiceZone/Dermatology'
+
 import Services from '../../components/ServiceZone/Services'
+import Price from '../../pages/Price'
 
 import { ROUTES } from '../../utils/constants/data'
 
@@ -104,7 +106,7 @@ const MainRoutes = () => {
                path={`${ROUTES.DOCTORS}/:expertId`}
                element={<DoctorsItem />}
             />
-            <Route path={ROUTES.PRICE} element={<h1>price</h1>} />
+            <Route path={ROUTES.PRICE} element={<Price />} />
             <Route
                path={ROUTES.CONTACTS}
                element={

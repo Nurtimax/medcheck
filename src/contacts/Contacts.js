@@ -31,7 +31,7 @@ const Contacts = () => {
             </StyledContactDetail>
          </ContactContainer>
          <iframe
-            src="https://yandex.ru/maps/10309/bishkek/?from=mapframe&ll=74.596782%2C42.851088&mode=routes&rtext=~42.844030%2C74.586697&rtt=auto&ruri=~&z=15"
+            src="https://yandex.ru/maps/10309/bishkek/?from=mapframe&ll=74.640284%2C42.877407&mode=routes&rtext=~42.875905%2C74.628400&rtt=auto&ruri=~&source=mapframe&um=constructor%3A251a275ce71d5d9e7a2148b3bf081344865e7b860f0a8c055561d5da306f4c56&utm_source=mapframe&z=14"
             width="100%"
             height="400px"
          ></iframe>

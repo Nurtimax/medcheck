@@ -7,12 +7,9 @@ import { JWT_TOKEN } from '../../utils/constants/data'
 export const postSignUp = createAsyncThunk(
    'auth/postSignUp',
    async (params, { rejectWithValue }) => {
-      const { phoneNumber } = params
-
       try {
          const { data } = await axiosInstance.post('auth/register', {
             ...params,
-            phoneNumber: `+${phoneNumber}`,
          })
          localStorage.setItem(JWT_TOKEN, JSON.stringify(data))
          return data

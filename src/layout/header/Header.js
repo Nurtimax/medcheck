@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Menu, styled } from '@mui/material'
 import iconLocation from '../../assets/icons/GeoPoint.svg'
 import iconHour from '../../assets/icons/Hour.svg'
@@ -18,12 +18,39 @@ import { postSignUp, removeUser } from '../../redux/slices/authSlice'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import OnlineEntryDrawer from '../../components/OnlineEntry/Drawer/OnlineEntryDrawer'
+import { getAllExpert } from '../../redux/slices/expertSlice'
+import ForGLobalSearching from '../../components/globalSearch/ForGLobalSearching'
 
 const Header = () => {
    const { isAuth } = useSelector((state) => state.auth)
    const dispatch = useDispatch()
 
    const [anchorEl, setAnchorEl] = React.useState(null)
+
+   const { allExpert } = useSelector((state) => state.addExpert)
+
+   const [sortData, setSortData] = useState(allExpert)
+
+   const [searchData, setSearchData] = useState(false)
+
+   useEffect(() => {
+      setSortData(allExpert)
+   }, [allExpert])
+
+   useEffect(() => {
+      dispatch(getAllExpert())
+   }, [])
+
+   function handleChange(event) {
+      const filterData = allExpert.filter((item) =>
+         item.expertsResponses.expertFullName
+            .toLowerCase()
+            .includes(event.toLowerCase())
+      )
+
+      setSortData(filterData)
+      setSearchData(true)
+   }
 
    const open = Boolean(anchorEl)
 
@@ -56,10 +83,16 @@ const Header = () => {
                   <Span> пн-сб</Span> 08:00 до 18:00
                </ForPosition2>
             </InFirstRow1>
+
             <SearchStyled>
-               <InputSearching type="text" placeholder="Поиск" />
+               <InputSearching
+                  type="text"
+                  placeholder="Поиск по сайту"
+                  onChange={(e) => handleChange(e.target.value)}
+               />
                <Searching src={iconSearching} alt="searching" />
             </SearchStyled>
+
             <InFirstRow4>
                <div>
                   <a href="https://www.instagram.com/">
@@ -179,6 +212,12 @@ const Header = () => {
                <OnlineEntryDrawer />
             </div>
          </SecondRow>
+
+         {sortData.map((item) => {
+            return searchData ? (
+               <ForGLobalSearching key={item.id} {...item} />
+            ) : null
+         })}
       </HeaderContainer>
    )
 }

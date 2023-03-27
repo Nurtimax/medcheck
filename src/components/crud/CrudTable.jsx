@@ -85,12 +85,12 @@ const ApplicationsTable = () => {
                         </TableRow>
                      </TableHead>
                      <TableBody>
-                        {sortData?.map((application) => (
+                        {sortData?.map((application, index) => (
                            <TableRow key={application.id}>
+                              <TableCell>{index + 1}</TableCell>
                               <TableCell>
                                  <input type="checkbox" />
                               </TableCell>
-                              <TableCell></TableCell>
                               <TableCell>{application.id}</TableCell>
                               <TableCell>{application.firstName}</TableCell>
                               <TableCell>{application.date}</TableCell>
