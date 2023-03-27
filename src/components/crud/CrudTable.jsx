@@ -7,8 +7,7 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { useDispatch, useSelector } from 'react-redux'
 import bin from '../../assets/icons/bin.svg'
-import { useEffect, useState } from 'react'
-import iconSearching from '../../assets/icons/searching.svg'
+import { useEffect } from 'react'
 
 import ContainerEntry from '../UI/ContainerEntry'
 import {
@@ -25,21 +24,9 @@ const ApplicationsTable = () => {
 
    const dispatch = useDispatch()
 
-   const [sortData, setSortData] = useState(applications)
-
-   useEffect(() => {
-      setSortData(applications)
-   }, [applications])
-
-   function handleChange(event) {
-      const filterData = applications.filter((item) =>
-         item.firstName.toLowerCase().includes(event.toLowerCase())
-      )
-      setSortData(filterData)
-   }
-
    const deleteHandler = (id) => {
       const backendData = [].push(id)
+
       dispatch(removeApplicationRequest(backendData)).unwrap()
    }
 
@@ -56,14 +43,6 @@ const ApplicationsTable = () => {
             </Nav>
 
             <ContainerEntry>
-               <SearchStyled>
-                  <InputSearching
-                     type="text"
-                     onChange={(e) => handleChange(e.target.value)}
-                     placeholder="Поиск"
-                  />
-                  <Searching src={iconSearching} alt="searching" />
-               </SearchStyled>
                <TableContainerStyled component={Paper}>
                   <Table className="header">
                      <TableHead>
@@ -85,7 +64,7 @@ const ApplicationsTable = () => {
                         </TableRow>
                      </TableHead>
                      <TableBody>
-                        {sortData?.map((application, index) => (
+                        {applications?.map((application, index) => (
                            <TableRow key={application.id}>
                               <TableCell>{index + 1}</TableCell>
                               <TableCell>
@@ -171,28 +150,4 @@ const Div = styled('div')(() => ({
    background: '#E0E0E0',
    height: '100%',
    minHeight: '1000px',
-}))
-
-const SearchStyled = styled('div')(() => ({
-   width: '600px',
-   height: '40px',
-   backgroundColor: '#FFFFFF',
-   padding: '3px 0',
-   borderRadius: '24px',
-   display: 'flex',
-   justifyContent: 'center',
-   alignItems: 'center',
-   marginBottom: '20px',
-}))
-
-const InputSearching = styled('input')(() => ({
-   width: '550px',
-   border: 'none',
-   outline: 'none',
-   backgroundColor: 'inherit',
-}))
-const Searching = styled('img')(() => ({
-   width: '17px',
-   height: '17px',
-   cursor: 'pointer',
 }))

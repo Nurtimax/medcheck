@@ -1,30 +1,31 @@
 import { styled, TableCell, TableRow } from '@mui/material'
 import { ReactComponent as Delete } from './../../assets/icons/bin.svg'
-import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg'
-
-import EditButton from '@mui/material/IconButton'
 import DeleteButton from '@mui/material/IconButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { removePatientRequest } from '../../redux/slices/patientsSlice'
 import { useState } from 'react'
-import Modal from '../UI/Modal'
-import Button from '../UI/Button'
-import LoadingSpinner from '../UI/LodaingSpinner'
+import Modal from '../../components/UI/Modal'
+import Button from '../../components/UI/Button'
+import LoadingSpinner from '../../components/UI/LodaingSpinner'
 
 const TableItem = ({ patient, index }) => {
    const {
       id,
-      userFirstName,
-      userLastName,
+      userName,
       userEmail,
-      date,
       userPhoneNumber,
+      expert,
+      serviceName,
+      localDate,
+      localTime,
       status,
    } = patient
 
    const dispatch = useDispatch()
+
    const [isModalOpen, setIsModalOpen] = useState(false)
    const [items, setItems] = useState([])
+
    const { isLoading } = useSelector((state) => state.patients)
 
    const removeClickHandler = (id) => {
@@ -41,19 +42,15 @@ const TableItem = ({ patient, index }) => {
    return (
       <TableRowStyle key={patient.id}>
          {isLoading && <LoadingSpinner />}
-         <TableCell>
-            <EditButton>
-               <EditIcon />
-            </EditButton>
-         </TableCell>
          <TableCell>{index + 1}</TableCell>
-         <TableCell className="patientInfo">
-            {userFirstName} <span />
-            {userLastName}
-         </TableCell>
+         <TableCell>{userName}</TableCell>
          <TableCell>{userPhoneNumber}</TableCell>
          <TableCell>{userEmail}</TableCell>
-         <TableCell>{date ? date : '- - -'}</TableCell>
+         <TableCell>{serviceName.serviceName}</TableCell>
+         <TableCell>{expert.fullName}</TableCell>
+         <TableCell>
+            {localDate} {localTime}
+         </TableCell>
          <TableCell className="checkbox">
             <Checkbox checked={status} className="checkbox" type="checkbox" />
          </TableCell>
@@ -86,7 +83,10 @@ const TableItem = ({ patient, index }) => {
 export default TableItem
 
 const TableRowStyle = styled(TableRow)(() => ({
+   width: '1200px',
    '& .patientInfo': {
+      display: 'flex',
+      gap: '5px',
       whiteSpace: 'nowrap',
    },
    '& .checkbox': {
@@ -97,9 +97,6 @@ const TableRowStyle = styled(TableRow)(() => ({
 const Checkbox = styled('input')(() => ({}))
 
 const ModalStyle = styled(Modal)(() => ({
-   '& p': {
-      paddingTop: '15px',
-   },
    '& .text': {
       fontFamily: 'Manrope',
       fontSize: '20px',
@@ -107,6 +104,7 @@ const ModalStyle = styled(Modal)(() => ({
       display: 'flex',
       justifyContent: 'center',
       paddingBottom: ' 25px',
+      paddingTop: '15px',
    },
    '& .button': {
       display: 'flex',

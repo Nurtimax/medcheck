@@ -12,6 +12,12 @@ export const validateSchemaSignIn = Yup.object().shape({
       ),
 })
 
+export const forgetPasswordSchemna = Yup.object().shape({
+   email: Yup.string()
+      .email()
+      .required('Электронная почта является обязательным полем!'),
+})
+
 export const validateSchemaChangePassword = Yup.object().shape({
    oldPassword: Yup.string()
       .required('Пожалуйста введите ваш пароль')

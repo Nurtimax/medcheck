@@ -191,7 +191,7 @@ const SwiperSlideStyled = styled(SwiperSlide)(() => ({
 
       '& .rating': {
          fontSize: '15px',
-         marginTop: '-20px',
+         marginTop: '-10px',
       },
    },
 

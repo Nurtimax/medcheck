@@ -34,6 +34,11 @@ function ProfileCrudContainer() {
 const Container = styled('div')(() => ({
    width: '1440px',
    margin: '0 auto',
+   marginTop: '20px',
+
+   '& h2': {
+      marginBottom: '20px',
+   },
 
    '& .data': {
       display: 'flex',

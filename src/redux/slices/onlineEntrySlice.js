@@ -3,8 +3,9 @@ import axiosInstance from '../../api/axiosInstance'
 
 const initialState = {
    services: [],
-   isError: null,
-   loading: false,
+   allEntry: [],
+   error: null,
+   isLoading: false,
 }
 
 export const getAllClinicServices = createAsyncThunk(
@@ -19,23 +20,50 @@ export const getAllClinicServices = createAsyncThunk(
    }
 )
 
+export const getAllEntry = createAsyncThunk(
+   'allEntry/getAllEntry',
+   async (params, { rejectWithValue }) => {
+      try {
+         const { data } = await axiosInstance.get(
+            'onlineEntry/Appointments',
+            params
+         )
+         return data
+      } catch (error) {
+         return rejectWithValue(error)
+      }
+   }
+)
+
 const onlineEntrySlice = createSlice({
-   name: 'onlineEntry',
+   name: 'experts',
    initialState,
    reducers: {},
-   extraReducers: (builder) => {
+   extraReducers: (builder) =>
       builder
+
+         .addCase(getAllEntry.fulfilled, (state, action) => {
+            state.allEntry = action.payload
+            state.isLoading = false
+         })
+         .addCase(getAllEntry.pending, (state) => {
+            state.isLoading = true
+         })
+         .addCase(getAllEntry.rejected, (state, action) => {
+            state.error = action.error.message
+            state.status = 'error'
+         })
+         // //////////////////// clinic services
          .addCase(getAllClinicServices.fulfilled, (state, action) => {
             state.services = action.payload
-            state.loading = false
+            state.isLoading = false
          })
          .addCase(getAllClinicServices.pending, (state) => {
-            state.loading = true
+            state.isLoading = true
          })
          .addCase(getAllClinicServices.rejected, (state, action) => {
-            state.isError = action.error.message
-         })
-   },
+            state.error = action.error.message
+         }),
 })
 
 export default onlineEntrySlice

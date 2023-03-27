@@ -5,52 +5,47 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { ReactComponent as EditIcon } from '../../assets/icons/edit.svg'
-
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import ContainerEntry from '../UI/ContainerEntry'
+import ContainerEntry from '../../components/UI/ContainerEntry'
 import { styled } from '@mui/material'
-import { getAllPatients } from '../../redux/slices/patientsSlice'
-import PatientData from '././PatientData'
+import PatientsData from '../../pages/online-entry/PatientsData'
+import { getAllEntry } from '../../redux/slices/onlineEntrySlice'
 
 const ApplicationsTable = () => {
-   const { allPatients } = useSelector((state) => state.patients)
+   const { allEntry } = useSelector((state) => state.online_entry)
+
    const dispatch = useDispatch()
 
    useEffect(() => {
-      dispatch(getAllPatients())
+      dispatch(getAllEntry())
    }, [])
 
    return (
       <Div>
-         <PatientCrudStyled>
-            <Nav>
-               <Speciality>Пациенты</Speciality>
-            </Nav>
-
+         <OnlineEntryStyled>
             <ContainerEntry>
                <TableContainerStyled component={Paper}>
                   <Table className="header">
-                     <TableHead>
+                     <TableHeadStyle>
                         <TableRow className="title">
-                           <TableCell>
-                              <EditIcon />
-                           </TableCell>
                            <TableCell>№</TableCell>
-                           <TableCell>Имя Фамилия</TableCell>
+                           <TableCell>Имя и Фамилия</TableCell>
                            <TableCell>Номер телефона</TableCell>
                            <TableCell>Почта</TableCell>
-                           <TableCell>Дата сдачи </TableCell>
+                           <TableCell>Выбор услуги </TableCell>
+                           <TableCell>Выбор специалиста </TableCell>
+                           <TableCell>Дата и время </TableCell>
                            <TableCell sx={{ textAlign: 'center' }}>
                               Обработан
                            </TableCell>
                            <TableCell>Действия </TableCell>
+                           <Table></Table>
                         </TableRow>
-                     </TableHead>
+                     </TableHeadStyle>
                      <TableBody>
-                        {allPatients?.map((patient, index) => (
-                           <PatientData
+                        {allEntry?.map((patient, index) => (
+                           <PatientsData
                               index={index}
                               key={patient.id}
                               patient={patient}
@@ -60,39 +55,25 @@ const ApplicationsTable = () => {
                   </Table>
                </TableContainerStyled>
             </ContainerEntry>
-         </PatientCrudStyled>
+         </OnlineEntryStyled>
       </Div>
    )
 }
 export default ApplicationsTable
 
-const Nav = styled('div')(() => ({
-   display: 'flex',
-   justifyContent: 'space-between',
-   paddingBottom: '40px',
-   paddingTop: '20px',
+const TableHeadStyle = styled(TableHead)(() => ({
+   whiteSpace: 'nowrap',
+   boxShadow: 'border-box',
 }))
-
-const PatientCrudStyled = styled('div')(() => ({
-   width: '1200px',
+const OnlineEntryStyled = styled('div')(() => ({
+   width: '100%',
    margin: '0 auto',
-}))
-
-const Speciality = styled('div')(() => ({
-   fontFamily: 'Manrope',
-   fontStyle: 'normal',
-   fontWeight: '400',
-   fontSize: '22px',
-   lineHeight: '30px',
-   color: '#222222',
-   cursor: 'pointer',
 }))
 
 const TableContainerStyled = styled(TableContainer)(() => ({
    cursor: 'pointer',
-   width: '100%',
+   width: '1200px',
    '& .header': {
-      minWidth: '600',
       ariaLabel: 'simple table',
    },
    '& .title': {
@@ -103,6 +84,7 @@ const TableContainerStyled = styled(TableContainer)(() => ({
    },
 }))
 const Div = styled('div')(() => ({
+   margin: '0 auto',
    background: '#E0E0E0',
    height: '100%',
    minHeight: '1000px',

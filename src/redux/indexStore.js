@@ -28,6 +28,7 @@ const rootReducer = combineReducers({
    applications: applicationSlice.reducer,
    addExpert: expertSlice.reducer,
    patients: patientSlice.reducer,
+   online_entry: onlineEntrySlice.reducer,
    profCrudUser: profileSlice.reducer,
    appointment: appointmentSlice.reducer,
    onlineEntry: onlineEntrySlice.reducer,

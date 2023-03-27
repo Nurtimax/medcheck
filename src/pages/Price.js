@@ -39,21 +39,35 @@ function App() {
                >
                   <Typography> {item.title}</Typography>
                </AccordionSummarySTyle>
-               <AccordionDetails>
+               <AccordionDetails
+                  style={{
+                     display: 'flex',
+                     flexDirection: 'column',
+                     gap: '10px',
+                     justifyContent: 'space-between',
+                     alignItems: 'flex-start',
+                  }}
+               >
                   <DivStyle>
                      <TypographyStyle> {item.description}</TypographyStyle>
-                     <Typography>{item.price}</Typography>
+                     <Typography style={{ marginLeft: '10px' }}>
+                        {item.price}
+                     </Typography>
                   </DivStyle>
-                  <Typography>{item.info}</Typography>
                   <hr />
+                  <br />
                   <DivStyle>
                      <Typography>{item.description1}</Typography>
-                     <Typography>{item.price}</Typography>
+                     <Typography style={{ marginLeft: '10px' }}>
+                        {item.price}
+                     </Typography>
                   </DivStyle>
                   <hr />
                   <DivStyle>
                      <Typography>{item.description2}</Typography>
-                     <Typography>{item.price}</Typography>
+                     <Typography style={{ marginLeft: '10px' }}>
+                        {item.price}
+                     </Typography>
                   </DivStyle>
                </AccordionDetails>
             </Accordion>
@@ -80,6 +94,7 @@ const AccordionSummarySTyle = styled(AccordionSummary)(({ bgColor }) => ({
    borderLeft: '10px solid green',
    borderRadius: '5px',
    margin: '10px',
+
    '&:focus': {
       backgroundColor: bgColor ? 'green' : '',
       color: bgColor ? '#fff' : '#222',

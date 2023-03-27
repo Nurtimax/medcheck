@@ -11,11 +11,11 @@ export const emailSendler = createAsyncThunk(
    'forgotPassword/emailSendler',
 
    async (userEmail, { rejectWithValue }) => {
+      console.log(userEmail)
       try {
          const { data } = await axiosInstance.post('auth/forgot', {
-            ...userEmail,
+            userEmail,
          })
-
          return data
       } catch (error) {
          return rejectWithValue(error)

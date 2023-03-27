@@ -156,6 +156,8 @@ export default Dermatology
 const DermatologyBlock = styled(Container)(() => ({
    fontFamily: 'Manrope',
    fontStyle: 'normal',
+   width: '1440px',
+   margin: '0 15px',
 }))
 const DermatologyHeader = styled('div')(() => ({
    fontWeight: '400',

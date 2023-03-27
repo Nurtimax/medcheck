@@ -7,7 +7,7 @@ import AuthInput from '../components/UI/AuthInput'
 import Button from '../components/UI/Button'
 import Modal from '../components/UI/Modal'
 import { emailSendler } from '../redux/slices/forgot-password-slice'
-import { validateSchemaSignIn } from '../utils/constants/validateSchema'
+import { forgetPasswordSchemna } from '../utils/constants/validateSchema'
 
 const ForgotPassword = () => {
    const [open, setOpen] = useState(true)
@@ -27,11 +27,11 @@ const ForgotPassword = () => {
       },
 
       onSubmit: (values) => {
-         dispatch(emailSendler({ ...values }))
+         dispatch(emailSendler(values))
          resetForm()
       },
 
-      validationSchema: validateSchemaSignIn,
+      validationSchema: forgetPasswordSchemna,
    })
 
    const { values, errors, touched, resetForm, handleChange, handleSubmit } =
@@ -107,6 +107,8 @@ const FormContainer = styled('form')(() => ({
    '& .linkToUser': {
       color: '#959595',
       marginLeft: '-35px',
+      marginTop: '20px',
+      marginBottom: '20px',
    },
 }))
 

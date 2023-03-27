@@ -9,7 +9,7 @@ import { getAllClinicServices } from '../../../redux/slices/onlineEntrySlice'
 const ClinicServices = () => {
    const dispatch = useDispatch()
 
-   const { services } = useSelector((state) => state.onlineEntry)
+   const { services } = useSelector((state) => state.online_entry)
 
    useEffect(() => {
       dispatch(getAllClinicServices())

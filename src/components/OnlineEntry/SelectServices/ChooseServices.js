@@ -9,15 +9,18 @@ import Select from '../../UI/Select'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllClinicServices } from '../../../redux/slices/onlineEntrySlice'
 
+import chooseSpecialist from '../../../assets/icons/chooseSpecialist.svg'
+
 const ChooseServices = () => {
    const { isActive, setIsActiveModal } = useModal()
 
-   const { services } = useSelector((state) => state.onlineEntry)
+   const { services } = useSelector((state) => state.online_entry)
+
    const dispatch = useDispatch()
 
    useEffect(() => {
       dispatch(getAllClinicServices())
-   }, [])
+   }, [dispatch])
 
    return (
       <div>
@@ -28,8 +31,8 @@ const ChooseServices = () => {
                   open={isActive === 'services'}
                   onClose={() => setIsActiveModal({})}
                >
-                  <OnlineEntryStyled>
-                     <div onClick={() => setIsActiveModal('drawer')}>
+                  <OnlineEntryStyled className="onlineEntry">
+                     <div>
                         <img
                            onClick={() => setIsActiveModal({})}
                            src={closeOnlineEntry}
@@ -39,8 +42,18 @@ const ChooseServices = () => {
                      <p>Online запись</p>
                   </OnlineEntryStyled>
 
-                  <p>Выбрать услуги</p>
-                  <Select defaultValue={'hello romazan'} options={services} />
+                  <ChooseServicesStyled className="servicesChoose">
+                     Выбрать услуги
+                  </ChooseServicesStyled>
+
+                  <Select defaultValue={'Вакцинация'} options={services} />
+
+                  <ChoiceServicesStyled
+                     onClick={() => setIsActiveModal('specialist')}
+                  >
+                     <img src={chooseSpecialist} alt="specialist" />
+                     <p>Выбрать специалиста</p>
+                  </ChoiceServicesStyled>
                </Drawer>
             </React.Fragment>
          ))}
@@ -67,4 +80,20 @@ const OnlineEntryStyled = styled('div')(() => ({
       height: '14px',
       cursor: 'pointer',
    },
+}))
+
+const ChooseServicesStyled = styled('p')(() => ({
+   margin: '15px',
+}))
+
+const ChoiceServicesStyled = styled('div')(() => ({
+   height: '72px',
+   display: 'flex',
+   alignItems: 'center',
+   background: 'white',
+   margin: '6px',
+   borderRadius: '16px',
+   padding: '0 10px',
+   cursor: 'pointer',
+   gap: '10px',
 }))

@@ -8,8 +8,6 @@ import { styled } from '@mui/material'
 import closeOnlineEntry from '../../../assets/icons/close.svg'
 
 import chooseServices from '../../../assets/icons/chooseServices.svg'
-import chooseSpecialist from '../../../assets/icons/chooseSpecialist.svg'
-import chooseTime from '../../../assets/icons/chooseTime.svg'
 import { useSelector } from 'react-redux'
 import { useModal } from '../../../utils/hooks/useModal'
 import ChooseServices from '../SelectServices/ChooseServices'
@@ -20,9 +18,6 @@ const OnlineEntryDrawer = () => {
 
    const navigate = useNavigate()
 
-   const time = () => {
-      navigate('/choose_time')
-   }
    const backToHome = () => {
       navigate('/')
    }
@@ -44,7 +39,6 @@ const OnlineEntryDrawer = () => {
                >
                   запись онлайн
                </RecordButton>
-
                <DrawerStyled anchor={item} open={isActive === 'drawer'}>
                   <OnlineEntryStyled className="onlineEntry">
                      <div onClick={backToHome}>
@@ -64,16 +58,6 @@ const OnlineEntryDrawer = () => {
                         <img src={chooseServices} alt="services" />
                         <p>Выбрать услуги</p>
                      </ChoiceServicesStyled>
-
-                     <ChoiceServicesStyled>
-                        <img src={chooseSpecialist} alt="specialist" />
-                        <p>Выбрать специалиста</p>
-                     </ChoiceServicesStyled>
-
-                     <ChoiceServicesStyled onClick={time}>
-                        <img src={chooseTime} alt="time" />
-                        <p>Выбрать дату и время</p>
-                     </ChoiceServicesStyled>
                   </SelectedServices>
                </DrawerStyled>
             </React.Fragment>
@@ -92,7 +76,6 @@ const RecordButton = styled(Button)(() => ({
    height: '44px',
    border: 'none',
    background: 'linear-gradient(#0cbb6b, #027b44)',
-
    borderRadius: '25px',
    cursor: 'pointer',
    textTransform: 'uppercase',

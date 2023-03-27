@@ -32,5 +32,5 @@ export default ProfileCrud
 const Container = styled('div')(() => ({
    width: '1440px',
    margin: '0 auto',
-   marginBottom: '100px',
+   marginTop: '50px',
 }))

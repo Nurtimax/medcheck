@@ -48,28 +48,36 @@ const TableForAppointment = () => {
                </TableHead>
 
                <TableBody>
-                  {applications?.map((data) => (
+                  {applications?.map((data, index) => (
                      <TableRow key={data.id}>
                         <TableCell>
                            <div>
                               <div className="name">
-                                 {data?.clinicService?.experts?.map(
-                                    (user, index) => (
-                                       <div key={user.id}>
-                                          <img src={user.expertImage} alt="" />
+                                 <div>
+                                    <img
+                                       src={data.expert.expertImage}
+                                       alt="expertImage"
+                                       style={{
+                                          width: '60px',
+                                          borderRadius: '50%',
+                                          position: 'relative',
+                                          top: '20px',
+                                          marginRight: '20px',
+                                       }}
+                                    />
 
-                                          <CustomLink to={`/user/${index + 1}`}>
-                                             <span className="expertName">
-                                                {user.expertLastName}
-                                             </span>
-                                             <span className="expertName">
-                                                {user.expertFirstName}
-                                             </span>
-                                          </CustomLink>
-                                          <p>{user.expertPosition}</p>
-                                       </div>
-                                    )
-                                 )}
+                                    <CustomLinkStyled to={`/user/${index + 1}`}>
+                                       <span className="expertName">
+                                          {data.expert.expertLastName}
+                                       </span>
+                                       <span className="expertName">
+                                          {data.expert.expertFirstName}
+                                       </span>
+                                    </CustomLinkStyled>
+                                    <p style={{ marginTop: '20px' }}>
+                                       {data.expert.expertPosition}
+                                    </p>
+                                 </div>
                               </div>
                               <div className="speciality">{}</div>
                            </div>
@@ -151,3 +159,5 @@ const StatusText = styled('div')`
    font-size: 16px;
    line-height: 22px;
 `
+
+const CustomLinkStyled = styled(CustomLink)(() => ({}))

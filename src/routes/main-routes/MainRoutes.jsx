@@ -171,10 +171,7 @@ const MainRoutes = () => {
                   </Suspense>
                }
             />
-            <Route
-               path={'ROUTES.USER}/:id'}
-               element={<ContinueAppointment />}
-            />
+            <Route path={'user/:id'} element={<ContinueAppointment />} />
             <Route path="user_profile" element={<UserProfile />}>
                <Route path="personal_data" element={<ProfileCrud />} />
                <Route path="change_password/:id" element={<ChangePassword />} />
