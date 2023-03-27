@@ -7,7 +7,7 @@ import iconPhoneNumber from '../../assets/icons/iconTelephone.svg'
 import iconInstagram from '../../assets/icons/whatsApp.svg'
 import iconTelegram from '../../assets/icons/instagram.svg'
 import iconWhatsApp from '../../assets/icons/telegram.svg'
-import iconMedCheck from '../../assets/icons/medCheck.svg'
+import iconMedCheck from '../../assets/icons/MedCheck.svg'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import subtract from '../../assets/icons/subtract.svg'
 import Button from '../../components/UI/Button'
@@ -15,11 +15,13 @@ import CustomLink from '../../components/UI/Custom.Link'
 import { useDispatch, useSelector } from 'react-redux'
 import { postSignUp, removeUser } from '../../redux/slices/authSlice'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const Header = () => {
    const { isAuth } = useSelector((state) => state.auth)
 
    const [anchorEl, setAnchorEl] = useState(null)
+
+   const navigate = useNavigate()
 
    const dispatch = useDispatch()
 
@@ -38,6 +40,10 @@ const Header = () => {
       }
    }, [dispatch, postSignUp])
    const userProfileLogo = localStorage.getItem('USER_PHOTO')
+
+   const handleGet = () => {
+      navigate('/get_results')
+   }
    return (
       <HeaderContainer>
          <FirstRow>
@@ -159,7 +165,7 @@ const Header = () => {
                <CustomLinkStyle to="/feedbacks">Отзывы</CustomLinkStyle>
                <CustomLinkStyle to="/contacts">Контакты</CustomLinkStyle>
             </NavigatePages>
-            <GetResults>получить результаты</GetResults>
+            <GetResults onClick={handleGet}>получить результаты</GetResults>
             <RecordButton>запись онлайн</RecordButton>
          </SecondRow>
       </HeaderContainer>

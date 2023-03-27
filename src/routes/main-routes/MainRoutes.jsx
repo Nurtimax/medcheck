@@ -12,6 +12,7 @@ import TableForAppointment from '../../components/AppointmentList/TableForAppoin
 import Services from '../../components/ServiceZone/Services'
 import Dermatology from '../../components/ServiceZone/Dermatology'
 import Price from '../../pages/Price'
+import GetResults from '../../components/GetResults/GetResults'
 
 const MainLayout = React.lazy(() => import('../../layout/Main.Layout'))
 const LoginPage = React.lazy(() => import('../../pages/LoginPage'))
@@ -54,7 +55,6 @@ const MainRoutes = () => {
                      </Suspense>
                   }
                />
-
                <Route
                   path={ROUTES.USER_RECORDS}
                   element={
@@ -63,7 +63,7 @@ const MainRoutes = () => {
                      </Suspense>
                   }
                />
-
+               <Route path="/get_results" element={<GetResults />} />
                <Route
                   path={ROUTES.ABOUT_CLINIC}
                   element={
@@ -87,14 +87,11 @@ const MainRoutes = () => {
                <Route path={ROUTES.DOCTORS} element={<h1>doctors</h1>} />
                <Route path={ROUTES.SERVICES} element={<h1>services</h1>} />
                <Route path={ROUTES.DOCTORS} element={<Doctors />} />
-
                <Route
                   path={`${ROUTES.DOCTORS}/:expertId`}
                   element={<DoctorsItem />}
                />
-
                <Route path={ROUTES.PRICE} element={<Price />} />
-
                <Route
                   path={ROUTES.CONTACTS}
                   element={
@@ -112,7 +109,6 @@ const MainRoutes = () => {
                      </Suspense>
                   }
                />
-
                <Route
                   path={ROUTES.FORGOT_PASSWROD}
                   element={
@@ -121,7 +117,6 @@ const MainRoutes = () => {
                      </Suspense>
                   }
                />
-
                <Route
                   path={ROUTES.SIGN_UP}
                   element={
@@ -130,7 +125,6 @@ const MainRoutes = () => {
                      </Suspense>
                   }
                />
-
                <Route
                   path={ROUTES.USER}
                   element={
