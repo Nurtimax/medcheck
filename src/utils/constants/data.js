@@ -93,7 +93,7 @@ export const ADMIN_ROUTES = {
 }
 
 export const BASE_URL =
-   'http://ec2-3-73-100-3.eu-central-1.compute.amazonaws.com/api/'
+   'http://ec2-3-73-100-3.eu-central-1.compute.amazonaws.com/'
 
 export const JWT_TOKEN = 'MED_CHECK_JWT_TOKEN'
 
