@@ -1,7 +1,7 @@
 import { styled, TableCell, TableRow } from '@mui/material'
 import React, { useState } from 'react'
 import Alert from '../UI/Alert'
-import { checkedApplicationRequest } from '../../redux/slices/crudSlice'
+import checkedApplicationRequest from '../../redux/slices/crudSlice'
 import { useDispatch } from 'react-redux'
 
 const TableItem = ({ application, index }) => {

@@ -18,6 +18,7 @@ export const fetchUsers = createAsyncThunk(
 
 export const fetchUsersId = createAsyncThunk(
    'appointmentSlice/getIdAppointments',
+
    async (id) => {
       try {
          const response = await axiosInstance.get('onlineEntry/', {

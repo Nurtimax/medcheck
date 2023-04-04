@@ -4,20 +4,33 @@ import axiosInstance from '../../api/axiosInstance'
 const initialState = {
    applications: [],
    error: null,
-   status: null,
+   isLoading: false,
+   isSend: false,
 }
 
 export const postApplicationsRequest = createAsyncThunk(
    'applicationSlice/postApplicationsRequest',
    async (userData, { rejectWithValue }) => {
       try {
-         const { data } = await axiosInstance.post('application', userData)
+         const { data } = await axiosInstance.post('application/', userData)
          return data
       } catch (error) {
          return rejectWithValue(error)
       }
    }
 )
+
+// export const putApplicationsRequest = createAsyncThunk(
+//    'applicationSlice/postApplicationsRequest',
+//    async (userData, { rejectWithValue }) => {
+//       try {
+//          const { data } = await axiosInstance.put('application/', userData)
+//          return data
+//       } catch (error) {
+//          return rejectWithValue(error)
+//       }
+//    }
+// )
 
 export const getApplicationsRequest = createAsyncThunk(
    'applicationSlice/getApplicationsRequest',
@@ -26,19 +39,16 @@ export const getApplicationsRequest = createAsyncThunk(
          const response = await axiosInstance.get('application/')
          return response.data
       } catch (error) {
-         if (rejectWithValue) {
-            return error
-         }
-         return error
+         return rejectWithValue(error)
       }
    }
 )
 
-export const checkedApplicationRequest = createAsyncThunk(
-   'application/switchApplicationRequest',
+export const removeApplicationRequest = createAsyncThunk(
+   'applicationSlice/removeApplicationRequest',
    async (id, { rejectWithValue }) => {
       try {
-         const { data } = await axiosInstance.put(`application/?id=${id}`)
+         const { data } = await axiosInstance.delete('application/', id)
          return data
       } catch (error) {
          return rejectWithValue(error)
@@ -54,31 +64,32 @@ const applicationSlice = createSlice({
       builder
 
          // ///////////////// get user requests
-
          .addCase(getApplicationsRequest.fulfilled, (state, action) => {
             state.applications = action.payload
+            state.isLoading = false
          })
          .addCase(getApplicationsRequest.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(getApplicationsRequest.rejected, (state, action) => {
             state.error = action.error.message
-            state.status = 'error'
          })
 
          // ////////////////// post user requests
-
          .addCase(postApplicationsRequest.fulfilled, (state, action) => {
             state.applications = action.payload
+            state.isLoading = false
+            state.isSend = true
          })
          .addCase(postApplicationsRequest.pending, (state) => {
-            state.status = 'loading'
+            state.isLoading = true
          })
          .addCase(postApplicationsRequest.rejected, (state, action) => {
             state.error = action.error.message
-            state.status = 'error'
          })
    },
 })
-export const applicationSliceAction = applicationSlice.actions
+
+export const { applicationSliceAction, removeUsers } = applicationSlice.actions
+
 export default applicationSlice

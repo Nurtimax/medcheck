@@ -45,7 +45,7 @@ const Services = () => {
             </GridStyled>
 
             <ServiceSection>
-               <p1>Часто задаваемые вопросы</p1>
+               <h3>Часто задаваемые вопросы</h3>
                <p>
                   Специалисты нашей клиники с удовольствием ответят на все ваши
                   вопросы. <br />
@@ -102,7 +102,9 @@ const Services = () => {
 export default Services
 
 const ServiceContainer = styled('div')(() => ({
-   padding: '0 434px 0 120px',
+   width: '1440px',
+   margin: '0 auto',
+   paddingTop: '26px',
 }))
 const ServiceHeader1 = styled('div')(() => ({}))
 const Span3 = styled('span')(() => ({
@@ -136,14 +138,6 @@ const GridStyled = styled(Grid)(() => ({
    },
 }))
 const ServiceSection = styled('div')(() => ({
-   '& p1': {
-      fontFamily: 'Myriad Pro',
-      fontStyle: 'normal',
-      fontWeight: '400',
-      fontSize: '36px',
-      lineHeight: '36px',
-      paddingBottom: '34px',
-   },
    '& p': {
       color: '#4D4E51',
       fontSize: '18px',
@@ -156,6 +150,7 @@ const TypographyStyled = styled('Typography')(() => ({
 }))
 
 const AccordionStyled = styled(Accordion)(() => ({
+   marginTop: '10px',
    position: 'relative',
    '& .fullWidth': {
       borderRadius: '5px',

@@ -7,12 +7,9 @@ import { JWT_TOKEN } from '../../utils/constants/data'
 export const postSignUp = createAsyncThunk(
    'auth/postSignUp',
    async (params, { rejectWithValue }) => {
-      const { phoneNumber } = params
-
       try {
          const { data } = await axiosInstance.post('auth/register', {
             ...params,
-            phoneNumber: `+${phoneNumber}`,
          })
          localStorage.setItem(JWT_TOKEN, JSON.stringify(data))
          return data
@@ -48,13 +45,15 @@ const signInWithGooglePopup = () => {
 }
 
 export const signInWithGoogle = createAsyncThunk(
-   'auth/signInWithGoogle',
-   async (_, { dispatch }) => {
+   'auth/authWithGoogle',
+   async (_, { dispatch, rejectWithValue }) => {
       try {
          const result = await signInWithGooglePopup()
+
          const response = await axiosInstance.post(
-            `/auth/auth/google?tokenFront=${result.user.accessToken}`
+            `auth/auth/google?tokenFront=${result.user.accessToken}`
          )
+
          const userPhoto = result.user.photoURL
          localStorage.setItem('USER_PHOTO', userPhoto)
          const { email, token, roleName } = response.data
@@ -63,7 +62,7 @@ export const signInWithGoogle = createAsyncThunk(
          dispatch(postSignUp(userData))
          return userData
       } catch (error) {
-         throw new Error()
+         return rejectWithValue(error)
       }
    }
 )

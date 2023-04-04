@@ -11,7 +11,7 @@ const MainLayout = () => {
          <Header />
          <main>
             <Container>
-               <Box sx={{ width: '85%', margin: '0 auto' }}>
+               <Box sx={{ width: '1440px', margin: '0 auto' }}>
                   <Breadcrumbs />
                </Box>
                <Outlet />
@@ -25,7 +25,7 @@ const MainLayout = () => {
 export default MainLayout
 
 const Container = styled('main')(() => ({
-   paddingTop: '250px',
-   maxWidth: '80%',
-   margin: '0 auto',
+   margin: 'auto 45px',
+   minHeight: '80vh',
+   padding: '40px 0',
 }))

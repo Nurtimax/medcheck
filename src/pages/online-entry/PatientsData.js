@@ -18,6 +18,7 @@ const TableItem = ({ patient, index }) => {
       serviceName,
       localDate,
       localTime,
+      status,
    } = patient
 
    const dispatch = useDispatch()
@@ -45,10 +46,11 @@ const TableItem = ({ patient, index }) => {
          <TableCell>{userName}</TableCell>
          <TableCell>{userPhoneNumber}</TableCell>
          <TableCell>{userEmail}</TableCell>
-         <TableCell>{serviceName}</TableCell>
-         <TableCell>{expert}</TableCell>
-         <TableCell>{localDate}</TableCell>
-         <TableCell>{localTime}</TableCell>
+         <TableCell>{serviceName.serviceName}</TableCell>
+         <TableCell>{expert.fullName}</TableCell>
+         <TableCell>
+            {localDate} {localTime}
+         </TableCell>
          <TableCell className="checkbox">
             <Checkbox checked={status} className="checkbox" type="checkbox" />
          </TableCell>
@@ -81,6 +83,7 @@ const TableItem = ({ patient, index }) => {
 export default TableItem
 
 const TableRowStyle = styled(TableRow)(() => ({
+   width: '1200px',
    '& .patientInfo': {
       display: 'flex',
       gap: '5px',

@@ -6,11 +6,9 @@ const AdminLayout = () => {
    return (
       <>
          <AdminHeader />
-         <main>
-            <Container>
-               <Outlet />
-            </Container>
-         </main>
+         <Container>
+            <Outlet />
+         </Container>
       </>
    )
 }

@@ -10,8 +10,10 @@ import telegramIcon from '../../assets/icons/telegramIcon.svg'
 import whatsAppIcon from '../../assets/icons/whatsAppIcon.svg'
 import phone from '../../assets/icons/phone.svg'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Footer = () => {
+   const { isAuth } = useSelector((state) => state.auth)
    return (
       <StyledFooterContainer>
          <FooterContainer>
@@ -65,12 +67,18 @@ const Footer = () => {
             </ThirdContainer>
          </FooterContainer>
          <StyledMain>
-            <LinkStyle to="/about_cLinic">О клинике</LinkStyle>
-            <LinkStyle to="/services">Услуги</LinkStyle>
-            <LinkStyle to="/doctors">Врачи</LinkStyle>
-            <LinkStyle to="/price">Прайс</LinkStyle>
-            <LinkStyle to="/feedbacks">Отзывы</LinkStyle>
-            <LinkStyle to="/contacts">Контакты</LinkStyle>
+            <LinkStyle to={isAuth ? '/about_clinic' : '/sign_up'}>
+               О клинике
+            </LinkStyle>
+            <LinkStyle to={isAuth ? '/services' : '/sign_up'}>Услуги</LinkStyle>
+            <LinkStyle to={isAuth ? '/doctors' : '/sign_up'}>Врачи</LinkStyle>
+            <LinkStyle to={isAuth ? '/price' : '/sign_up'}>Прайс</LinkStyle>
+            <LinkStyle to={isAuth ? '/feedbacks' : '/sign_up'}>
+               Отзывы
+            </LinkStyle>
+            <LinkStyle to={isAuth ? '/contacts' : '/sign_up'}>
+               Контакты
+            </LinkStyle>
          </StyledMain>
          <StyledFooterBottom>
             <span>© Peaksoft House 2023 | MedCheck | Все права защищены</span>

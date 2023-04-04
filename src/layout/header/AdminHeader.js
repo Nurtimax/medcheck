@@ -1,6 +1,6 @@
 import React from 'react'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
-import medCheckIcon from '../../assets/icons/MedCheck.svg'
+import medCheckIcon from '../../assets/icons/medCheck.svg'
 import { Menu, MenuItem, styled } from '@mui/material'
 import AdminLink from '../../components/UI/Custom.Link'
 import { Link } from 'react-router-dom'
@@ -37,7 +37,7 @@ const AdminHeader = () => {
             <AdminLinkStyle to="/admin/speciality">Специалисты</AdminLinkStyle>
             <AdminLinkStyle to="/admin/patients">Пациенты</AdminLinkStyle>
          </Record>
-         <button
+         <StyledButton
             id="basic-button"
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
@@ -45,9 +45,10 @@ const AdminHeader = () => {
             onClick={handleClick}
          >
             Администратор
-         </button>
+         </StyledButton>
 
          <Menu
+            style={{ marginTop: '5px' }}
             id="basic-menu"
             anchorEl={anchorEl}
             open={open}
@@ -56,7 +57,12 @@ const AdminHeader = () => {
                'aria-labelledby': 'basic-button',
             }}
          >
-            <MenuItem onClick={() => dispatch(removeAdmin())}>Выйти</MenuItem>
+            <MenuItem
+               style={{ width: '150px', height: '20px' }}
+               onClick={() => dispatch(removeAdmin())}
+            >
+               Выйти
+            </MenuItem>
          </Menu>
       </Header>
    )
@@ -96,4 +102,14 @@ const ProjectLogos = styled('div')(() => ({
    alignItems: 'center',
 
    gap: '10px',
+}))
+
+const StyledButton = styled('button')(() => ({
+   width: '150px',
+   padding: '5px',
+   background: 'linear-gradient(180.61deg, #0CBB6B 0.45%, #027B44 99.39%)',
+   border: 'none',
+   borderRadius: '5px',
+   color: 'white',
+   cursor: 'pointer',
 }))

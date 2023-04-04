@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import applicationSlice from './slices/crudSlice'
 import authSlice from './slices/authSlice'
+
 import {
    persistStore,
    persistReducer,
@@ -21,16 +22,19 @@ import appointmentSlice from './slices/appointment-slice'
 import patientSlice from './slices/patientsSlice'
 import scheduleSlice from './slices/schedule-slice'
 import onlineEntrySlice from './slices/onlineEntrySlice'
+import forgotPasswordSlice from './slices/forgot-password-slice'
 
 const rootReducer = combineReducers({
    auth: authSlice.reducer,
-   [applicationSlice.name]: applicationSlice.reducer,
+   applications: applicationSlice.reducer,
    addExpert: expertSlice.reducer,
    patients: patientSlice.reducer,
    online_entry: onlineEntrySlice.reducer,
-   doctors: doctorsExperts.reducer,
    profCrudUser: profileSlice.reducer,
    appointment: appointmentSlice.reducer,
+   onlineEntry: onlineEntrySlice.reducer,
+   doctors: doctorsExperts.reducer,
+   forgotPassword: forgotPasswordSlice.reducer,
    [applicationSlice.name]: applicationSlice.reducer,
    schedule: scheduleSlice.reducer,
 })

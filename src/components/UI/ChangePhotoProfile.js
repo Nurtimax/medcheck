@@ -40,7 +40,7 @@ export default function ChangePhotoProfile({ foto, setFoto, url }) {
                   setFile={setFoto}
                   handlePhotoProfile={handlePhotoProfile}
                >
-                  Изменить фото профиля
+                  Фото профиля
                </DropzoneWithFileReader>{' '}
             </MenuItemStyled>
             <MenuItemStyled onClick={removePhoteProfile}>

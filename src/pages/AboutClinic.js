@@ -13,10 +13,6 @@ const AboutClinicPage = () => {
    return (
       <>
          <Container>
-            <StyledTitle>
-               <MainLink to="/">Главная</MainLink>{' '}
-               <secondSpan> О клинике</secondSpan>
-            </StyledTitle>
             <StyledHeaderTitle>
                <thirdSpan>Здоровье — самое </thirdSpan>
                <fourthSpan>ценное в жизни</fourthSpan>
@@ -24,24 +20,20 @@ const AboutClinicPage = () => {
             <TopContainer>
                <TextMain>
                   <p className="textSection">
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                     sed do eiusmod tempor incididunt ut labore et dolore magna
-                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                     ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                     Duis aute irure dolor in reprehenderit in voluptate velit
-                     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                     occaecat cupidatat non proident, sunt in culpa qui officia
-                     deserunt mollit anim id est laborum
+                     Ничто не может сравниться с ним: ни богатство, ни положение
+                     в обществе, ни слава. Это настоящая драгоценность,
+                     подаренная нам природой. Человек обязан беречь свое
+                     здоровье смолоду, ведь именно здоровый человек формирует
+                     сильную нацию.
                   </p>
                   <p className="textSection1">
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                     sed do eiusmod tempor incididunt ut labore et dolore magna
-                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                     ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                     Duis aute irure dolor in reprehenderit in voluptate velit
-                     esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                     occaecat cupidatat non proident, sunt in culpa qui officia
-                     deserunt mollit anim id est laborum
+                     Здоровье — самое бесценное, что у нас есть, ведь его не
+                     купишь за деньги. Здоровье – это не только отсутствие
+                     болезней, но и состояние полного физического, духовного и
+                     социального благополучия. В большей степени здоровье
+                     человека зависит от него самого. Один из показателей
+                     здоровья – продолжительность жизни человека. Там, где нет
+                     здоровья, не может быть и долголетия.
                   </p>{' '}
                   <Picture>
                      <img src={womenSignature} alt="women" />
@@ -115,7 +107,9 @@ const AboutClinicPage = () => {
 }
 
 const Container = styled('div')(() => ({
-   margin: '30px 120px',
+   width: '1440px',
+   margin: '0 auto',
+   paddingTop: '26px',
 }))
 
 const TopContainer = styled('div')(() => ({
@@ -129,23 +123,6 @@ const TextMain = styled('div')(() => ({
    height: '517px',
 }))
 
-const StyledTitle = styled('div')(() => ({
-   paddingBottom: '40px',
-   fontWeight: '400',
-   fontSize: '14px',
-   lineHeight: '19px',
-   cursor: 'pointer',
-   '& secondSpan': {
-      color: '#048741',
-   },
-}))
-const MainLink = styled(Link)(() => ({
-   color: '#959595',
-   textDecoration: 'none',
-   '&:hover': {
-      color: '#027B44',
-   },
-}))
 const StyledHeaderTitle = styled('div')(() => ({
    paddingBottom: '40px',
    fontWeight: '600',

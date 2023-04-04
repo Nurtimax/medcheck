@@ -3,11 +3,13 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchUsersId } from '../redux/slices/appointment-slice'
+
 const ContinueAppointment = () => {
    const { id } = useParams()
    const dispatch = useDispatch()
 
    const { data } = useSelector((store) => store.appointment)
+   console.log(data)
 
    useEffect(() => {
       dispatch(fetchUsersId(Number(id)))
@@ -36,12 +38,10 @@ const ContinueAppointment = () => {
                   <span>{data.recordedDate}</span> <br />
                   <span>{data.recordedTime}</span>
                   <p>Специалист</p>
-                  {data?.clinicService?.experts?.map((item) => (
-                     <span key={item.id}>
-                        {item.expertFirstName}
-                        {item.expertLastName}
-                     </span>
-                  ))}
+                  <span>
+                     {data.expert?.expertFirstName}
+                     {data.expert?.expertLastName}
+                  </span>
                   <p>Услуга</p>
                   <span>{data?.clinicService?.clinicServiceName}</span>
                </div>

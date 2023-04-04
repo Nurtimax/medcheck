@@ -6,6 +6,7 @@ export default function Select({
    onChange,
    value,
    title,
+   defaultValue,
    ...props
 }) {
    return (
@@ -13,6 +14,7 @@ export default function Select({
          sx={{
             '& fieldset': { border: 'none' },
          }}
+         defaultValue={defaultValue}
          displayEmpty
          value={value}
          onChange={onChange}

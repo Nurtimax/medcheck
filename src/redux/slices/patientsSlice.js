@@ -51,5 +51,7 @@ const patientSlice = createSlice({
             state.status = 'error'
          }),
 })
+
 export const patientSliceAction = patientSlice.actions
+
 export default patientSlice

@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { data } from './../utils/constants/data'
 import { styled } from '@mui/material'
-// import { Navigate } from 'react-router-dom'
 import { useState } from 'react'
 
 function App() {
@@ -18,13 +17,12 @@ function App() {
 
    return (
       <Container>
-         <div>{/* <Navigate path="/price">Price</Navigate> */}</div>
          <DivTitleStyle>
             <h1>Наш</h1>
             <H1Style>прайс</H1Style>
          </DivTitleStyle>
 
-         <p>
+         <p className="text">
             Цены на услуги формируются в соответствии с действующими
             Прейскурантами. Общая стоимость зависит от объема услуг, оказываемых
             в рамках приёма. Объём оказываемых услуг определяется врачом, исходя
@@ -41,21 +39,35 @@ function App() {
                >
                   <Typography> {item.title}</Typography>
                </AccordionSummarySTyle>
-               <AccordionDetails>
+               <AccordionDetails
+                  style={{
+                     display: 'flex',
+                     flexDirection: 'column',
+                     gap: '10px',
+                     justifyContent: 'space-between',
+                     alignItems: 'flex-start',
+                  }}
+               >
                   <DivStyle>
                      <TypographyStyle> {item.description}</TypographyStyle>
-                     <Typography>{item.price}</Typography>
+                     <Typography style={{ marginLeft: '10px' }}>
+                        {item.price}
+                     </Typography>
                   </DivStyle>
-                  <Typography>{item.info}</Typography>
                   <hr />
+                  <br />
                   <DivStyle>
                      <Typography>{item.description1}</Typography>
-                     <Typography>{item.price}</Typography>
+                     <Typography style={{ marginLeft: '10px' }}>
+                        {item.price}
+                     </Typography>
                   </DivStyle>
                   <hr />
                   <DivStyle>
                      <Typography>{item.description2}</Typography>
-                     <Typography>{item.price}</Typography>
+                     <Typography style={{ marginLeft: '10px' }}>
+                        {item.price}
+                     </Typography>
                   </DivStyle>
                </AccordionDetails>
             </Accordion>
@@ -67,9 +79,14 @@ function App() {
 export default App
 
 const Container = styled('div')(() => ({
-   paddingLeft: '120px',
-   paddingRight: '100px',
-   paddingBottom: '50px',
+   width: '1440px',
+   margin: '0 auto',
+
+   '& .text': {
+      width: '691px',
+      padding: '34px 0',
+      fontSize: '18px',
+   },
 }))
 
 const AccordionSummarySTyle = styled(AccordionSummary)(({ bgColor }) => ({
@@ -77,6 +94,7 @@ const AccordionSummarySTyle = styled(AccordionSummary)(({ bgColor }) => ({
    borderLeft: '10px solid green',
    borderRadius: '5px',
    margin: '10px',
+
    '&:focus': {
       backgroundColor: bgColor ? 'green' : '',
       color: bgColor ? '#fff' : '#222',
@@ -101,4 +119,5 @@ const H1Style = styled('h1')(() => ({
 const DivTitleStyle = styled('div')(() => ({
    display: 'flex',
    gap: '10px',
+   marginTop: '20px',
 }))

@@ -29,12 +29,19 @@ import SwiperFeedbacks from './SwiperFeedbacks'
 import { Link, useNavigate } from 'react-router-dom'
 import CustomLink from '../../components/UI/Custom.Link'
 import { ROUTES } from '../../utils/constants/data'
+import { useSelector } from 'react-redux'
 
 const LandingPage = () => {
+   const { isAuth } = useSelector((state) => state.auth)
+
    const navigate = useNavigate()
 
    const leaveRequest = () => {
       navigate('/userRecords')
+   }
+
+   const toRegister = () => {
+      navigate('/sign_up')
    }
 
    return (
@@ -50,7 +57,7 @@ const LandingPage = () => {
                   технологии и ведут прием лучшие специалисты.
                </TypographyAbout>
 
-               <ButtonRecord onClick={leaveRequest}>
+               <ButtonRecord onClick={isAuth ? leaveRequest : toRegister}>
                   оставьте заявку
                </ButtonRecord>
             </WelcomeClient>
@@ -155,7 +162,7 @@ const LandingPage = () => {
             </div>
          </Services>
 
-         <LinkToServices to="/services">
+         <LinkToServices to={isAuth ? '/services' : '/sign_up'}>
             <LookAll>Смотреть все</LookAll>
          </LinkToServices>
 
@@ -189,7 +196,7 @@ const LandingPage = () => {
                </p>
 
                <div className="readMore">
-                  <CustomLink to={ROUTES.ABOUT_CLINIC}>
+                  <CustomLink to={isAuth ? ROUTES.ABOUT_CLINIC : '/sign_up'}>
                      Читать подробнее о клинике
                   </CustomLink>
 
@@ -198,7 +205,7 @@ const LandingPage = () => {
             </div>
             <ImgStyles>
                <div>
-                  <img src={clinic} alt="" />
+                  <img src={clinic} alt="clinic" />
                </div>
 
                <img src={doctors1} alt="doctors1" />
@@ -229,7 +236,7 @@ const LandingPage = () => {
             })}
          </Doctors>
 
-         <LinkAllDoctorsContainer to="/doctors">
+         <LinkAllDoctorsContainer to={isAuth ? '/doctors' : '/sign_up'}>
             <AllDoctors>Все врачи клиники</AllDoctors>
          </LinkAllDoctorsContainer>
 
@@ -245,15 +252,16 @@ const LandingPage = () => {
 }
 
 export default LandingPage
+
 const Main = styled('main')(() => ({
-   width: '1200px',
+   width: '1440px',
    height: 'auto',
    margin: '0 auto',
    fontFamily: '"Manrope", sans-serif',
 }))
 
 const StyledWelcome = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'space-between',
@@ -266,10 +274,9 @@ const WelcomeClient = styled('div')(() => ({
 }))
 
 const TypographyWelcome = styled(Typography)(() => ({
-   width: '500px',
-
+   width: '700px',
    fontWeight: 900,
-   fontSize: '45px',
+   fontSize: '60px',
    color: 'red',
    background: 'linear-gradient(90deg, #30CFD0 0%, #330867 100%)',
    backgroundClip: 'text',
@@ -300,7 +307,7 @@ const ImgStyledWelcome = styled('div')(() => ({
 }))
 
 const ChooseOurMedCheck = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    marginTop: '30px',
    fontWeight: '600',
@@ -312,13 +319,14 @@ const ChooseOurMedCheck = styled('div')(() => ({
 }))
 
 const ChooseContainer = styled('div')(() => ({
-   width: '96%',
-   gap: '25px',
+   width: '100%',
+
    margin: '0 auto',
    display: 'flex',
+   justifyContent: 'space-between',
 
    '& div': {
-      width: '389px',
+      width: '450px',
       padding: ' 30px 40px',
       display: 'inline-block',
       marginTop: '60px',
@@ -343,7 +351,7 @@ const ChooseContainer = styled('div')(() => ({
 }))
 
 const OurServices = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    marginTop: '60px',
    fontWeight: '600',
@@ -355,7 +363,7 @@ const OurServices = styled('div')(() => ({
 }))
 
 const ForAllTimesApplication = styled('p')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    fontWeight: '400',
    fontSize: '18px',
@@ -363,10 +371,10 @@ const ForAllTimesApplication = styled('p')(() => ({
 }))
 
 const Services = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    display: 'flex',
-   gap: '26px',
+   justifyContent: 'space-between',
    marginTop: '60px',
 
    '& .containerWithImg ': {
@@ -415,7 +423,7 @@ const LookAll = styled(Button)(() => ({
 }))
 
 const AboutOurClinic = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    marginTop: '60px',
    fontWeight: '600',
@@ -427,7 +435,7 @@ const AboutOurClinic = styled('div')(() => ({
 }))
 
 const AboutClinic = styled('div')(() => ({
-   width: '97%',
+   width: '100%',
    margin: '0 auto',
    display: 'flex',
    justifyContent: 'space-between',
@@ -478,7 +486,7 @@ const ImgStyles = styled('div')(() => ({
 }))
 
 const BestDoctors = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    marginTop: '60px',
    fontWeight: '600',
@@ -553,7 +561,7 @@ const AllDoctors = styled(Button)(() => ({
 }))
 
 const Feedbacks = styled('div')(() => ({
-   width: '96%',
+   width: '100%',
    margin: '0 auto',
    marginTop: '30px',
    fontWeight: '600',

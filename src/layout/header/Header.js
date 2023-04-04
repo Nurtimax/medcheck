@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Menu, styled } from '@mui/material'
 import iconLocation from '../../assets/icons/GeoPoint.svg'
 import iconHour from '../../assets/icons/Hour.svg'
@@ -7,23 +7,51 @@ import iconPhoneNumber from '../../assets/icons/iconTelephone.svg'
 import iconInstagram from '../../assets/icons/whatsApp.svg'
 import iconTelegram from '../../assets/icons/instagram.svg'
 import iconWhatsApp from '../../assets/icons/telegram.svg'
-import iconMedCheck from '../../assets/icons/MedCheck.svg'
+import iconMedCheck from '../../assets/icons/medCheck.svg'
 import logoMedCheck from '../../assets/icons/MedCheckLogo.svg'
 import subtract from '../../assets/icons/subtract.svg'
 import Button from '../../components/UI/Button'
 import CustomLink from '../../components/UI/Custom.Link'
 import { useDispatch, useSelector } from 'react-redux'
 import { postSignUp, removeUser } from '../../redux/slices/authSlice'
-import { useEffect, useState } from 'react'
+
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import OnlineEntryDrawer from '../../components/OnlineEntry/Drawer/OnlineEntryDrawer'
+import { getAllExpert } from '../../redux/slices/expertSlice'
+import ForGLobalSearching from '../../components/globalSearch/ForGLobalSearching'
+
 const Header = () => {
    const { isAuth } = useSelector((state) => state.auth)
-
-   const [anchorEl, setAnchorEl] = useState(null)
-
+   const dispatch = useDispatch()
    const navigate = useNavigate()
 
-   const dispatch = useDispatch()
+   const [anchorEl, setAnchorEl] = React.useState(null)
+
+   const { allExpert } = useSelector((state) => state.addExpert)
+
+   const [sortData, setSortData] = useState(allExpert)
+
+   const [searchData, setSearchData] = useState(false)
+
+   useEffect(() => {
+      setSortData(allExpert)
+   }, [allExpert])
+
+   useEffect(() => {
+      dispatch(getAllExpert())
+   }, [])
+
+   function handleChange(event) {
+      const filterData = allExpert.filter((item) =>
+         item.expertsResponses.expertFullName
+            .toLowerCase()
+            .includes(event.toLowerCase())
+      )
+
+      setSortData(filterData)
+      setSearchData(true)
+   }
 
    const open = Boolean(anchorEl)
 
@@ -34,11 +62,13 @@ const Header = () => {
    const handleClose = () => {
       setAnchorEl(null)
    }
+
    useEffect(() => {
       if (isAuth) {
          dispatch(postSignUp())
       }
    }, [dispatch, postSignUp])
+
    const userProfileLogo = localStorage.getItem('USER_PHOTO')
 
    const handleGet = () => {
@@ -57,10 +87,16 @@ const Header = () => {
                   <Span> пн-сб</Span> 08:00 до 18:00
                </ForPosition2>
             </InFirstRow1>
-            <InFirstRow2>
-               <InputSearching type="text" placeholder="Поиск по сайту" />
+
+            <SearchStyled>
+               <InputSearching
+                  type="text"
+                  placeholder="Поиск по сайту"
+                  onChange={(e) => handleChange(e.target.value)}
+               />
                <Searching src={iconSearching} alt="searching" />
-            </InFirstRow2>
+            </SearchStyled>
+
             <InFirstRow4>
                <div>
                   <a href="https://www.instagram.com/">
@@ -73,7 +109,7 @@ const Header = () => {
                   </a>
                </div>
                <div>
-                  <a href="https://www.whatsapp.com/?lang=ru">
+                  <a href="http://wa.me/+996700920550">
                      <img src={iconWhatsApp} alt="telegram" />
                   </a>
                </div>
@@ -158,34 +194,55 @@ const Header = () => {
                </Link>
             </ProjectLogos>
             <NavigatePages>
-               <CustomLinkStyle to="/about_clinic">О клинике</CustomLinkStyle>
-               <CustomLinkStyle to="/services">Услуги</CustomLinkStyle>
-               <CustomLinkStyle to="/doctors">Врачи</CustomLinkStyle>
-               <CustomLinkStyle to="/price">Прайс</CustomLinkStyle>
-               <CustomLinkStyle to="/feedbacks">Отзывы</CustomLinkStyle>
-               <CustomLinkStyle to="/contacts">Контакты</CustomLinkStyle>
+               <CustomLinkStyle to={isAuth ? '/about_clinic' : '/sign_up'}>
+                  О клинике
+               </CustomLinkStyle>
+               <CustomLinkStyle to={isAuth ? '/services' : '/sign_up'}>
+                  Услуги
+               </CustomLinkStyle>
+               <CustomLinkStyle to={isAuth ? '/doctors' : '/sign_up'}>
+                  Врачи
+               </CustomLinkStyle>
+               <CustomLinkStyle to={isAuth ? '/price' : '/sign_up'}>
+                  Прайс
+               </CustomLinkStyle>
+
+               <CustomLinkStyle to={isAuth ? '/contacts' : '/sign_up'}>
+                  Контакты
+               </CustomLinkStyle>
             </NavigatePages>
             <GetResults onClick={handleGet}>получить результаты</GetResults>
-            <RecordButton>запись онлайн</RecordButton>
+            <div>
+               <OnlineEntryDrawer />
+            </div>
          </SecondRow>
+
+         {sortData.map((item) => {
+            return searchData ? (
+               <ForGLobalSearching key={item.id} {...item} />
+            ) : null
+         })}
       </HeaderContainer>
    )
 }
+
 export default Header
+
 const HeaderContainer = styled('header')(() => ({
-   width: '100%',
-   backgroundColor: '#FFFFFF',
-   position: 'fixed',
+   width: '1440px',
+   position: 'sticky',
    top: '0',
    left: '0',
    zIndex: '20',
    fontFamily: '"Manrope" , sans-serif',
+   margin: '0 auto',
+   background: '#FFFFFF',
 }))
 const FirstRow = styled('div')(() => ({
    display: 'flex',
    justifyContent: 'space-between',
    margin: ' 0 auto',
-   width: '80%',
+   width: '100%',
    alignItems: 'center',
    padding: '20px 0 20px 0',
    borderBottom: '1px solid #C0BDBD',
@@ -209,18 +266,19 @@ const ForPosition2 = styled('div')(() => ({
       marginRight: '7px',
    },
 }))
-const InFirstRow2 = styled('div')(() => ({
-   width: '300px',
-   height: '30px',
+
+const SearchStyled = styled('div')(() => ({
+   width: '400px',
+   height: '40px',
    backgroundColor: '#F3F1F1',
-   padding: '3px 0',
-   borderRadius: '20px',
+   borderRadius: '24px',
    display: 'flex',
    justifyContent: 'center',
    alignItems: 'center',
 }))
+
 const InputSearching = styled('input')(() => ({
-   width: '250px',
+   width: '350px',
    border: 'none',
    outline: 'none',
    backgroundColor: 'inherit',
@@ -230,6 +288,7 @@ const Searching = styled('img')(() => ({
    height: '17px',
    cursor: 'pointer',
 }))
+
 const InFirstRow3 = styled('div')(() => ({
    display: 'flex',
    alignItems: 'center',
@@ -263,10 +322,10 @@ const InFirstRow4 = styled('div')(() => ({
 }))
 const SecondRow = styled('div')(() => ({
    display: 'flex',
-   justifyContent: 'space-between',
+   justifyContent: 'space-around',
    alignItems: 'center',
    margin: '0 auto',
-   width: '80%',
+   width: '100%',
    marginTop: '10px',
 }))
 const ProjectLogos = styled('div')(() => ({
@@ -276,26 +335,16 @@ const ProjectLogos = styled('div')(() => ({
 }))
 const NavigatePages = styled('nav')(() => ({
    display: 'flex',
-   gap: '10px',
-   fontSize: '14px',
+   gap: '25px',
+   fontSize: '17px',
    fontWeight: '500',
    fontFamily: '"Manrope" , sans-serif',
 }))
-const RecordButton = styled(Button)(() => ({
-   width: '200px',
-   height: '44px',
-   border: 'none',
-   background: 'linear-gradient(#0CBB6B, #027B44)',
-   borderRadius: '25px',
-   cursor: 'pointer',
-   textTransform: 'uppercase',
-   color: '#FFFFFF',
-}))
 const GetResults = styled(Button)(() => ({
    border: '1px solid #048741 ',
-   borderRadius: '24p',
+   borderRadius: '24px',
    color: '#048741',
-   width: '205',
+   width: '205px',
    height: '43px',
 }))
 const InFirstRow5 = styled('div')(() => ({
@@ -315,6 +364,7 @@ const CustomLinkStyle = styled(CustomLink)(() => ({
       color: '#027B44',
    },
 }))
+
 const Styledmenu = styled(Menu)(() => ({
    '& .MuiMenuItem-root': {
       color: '#000000',
@@ -328,6 +378,7 @@ const Styledmenu = styled(Menu)(() => ({
       color: 'green',
    },
 }))
+
 const AuthStyled = styled('div')(() => ({
    width: 'auto',
    height: 'auto',

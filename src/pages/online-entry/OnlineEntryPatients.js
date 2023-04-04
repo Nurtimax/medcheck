@@ -7,13 +7,14 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import ContainerEntry from '../../components/Container/ContainerEntry'
+import ContainerEntry from '../../components/UI/ContainerEntry'
 import { styled } from '@mui/material'
 import PatientsData from '../../pages/online-entry/PatientsData'
 import { getAllEntry } from '../../redux/slices/onlineEntrySlice'
 
 const ApplicationsTable = () => {
    const { allEntry } = useSelector((state) => state.online_entry)
+
    const dispatch = useDispatch()
 
    useEffect(() => {
@@ -39,6 +40,7 @@ const ApplicationsTable = () => {
                               Обработан
                            </TableCell>
                            <TableCell>Действия </TableCell>
+                           <Table></Table>
                         </TableRow>
                      </TableHeadStyle>
                      <TableBody>
@@ -82,6 +84,7 @@ const TableContainerStyled = styled(TableContainer)(() => ({
    },
 }))
 const Div = styled('div')(() => ({
+   margin: '0 auto',
    background: '#E0E0E0',
    height: '100%',
    minHeight: '1000px',

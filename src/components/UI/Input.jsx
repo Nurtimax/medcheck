@@ -39,7 +39,6 @@ export default Input
 
 const InputStyle = styled(InputBase)`
    font-weight: 400;
-   font-size: 16px;
    line-height: 22px;
    color: #959595;
    cursor: pointer;
@@ -59,7 +58,6 @@ const InputStyle = styled(InputBase)`
          align-items: center;
          padding: 10px 8px 10px 16px;
          border: 1px solid #959595;
-         border-radius: 8px;
       }
    }
    & {

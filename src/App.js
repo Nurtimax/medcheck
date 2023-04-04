@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import axiosInstance from './api/axiosInstance'
 import AppRoutes from './routes/App.Routes'
 
+// import GoogleMap from './components/UI/GoogleMap'
+
 function App() {
    useEffect(() => {
       axiosInstance
@@ -29,6 +31,7 @@ function App() {
          .catch((error) => console.log(error))
    }, [])
    return <AppRoutes />
+   // return <GoogleMap />
 }
 
 export default App

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import ContainerEntry from '../Container/ContainerEntry'
+import ContainerEntry from '../UI/ContainerEntry'
 import { styled } from '@mui/material'
 import { getAllPatients } from '../../redux/slices/patientsSlice'
 

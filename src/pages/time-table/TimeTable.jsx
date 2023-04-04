@@ -1,4 +1,6 @@
 import { Box, Grid, styled } from '@mui/material'
+import searchIcon from '../../assets/icons/search-icon.svg'
+// import Table from '../../components/time-table/table'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Button from '../../components/UI/Button'
@@ -24,7 +26,10 @@ const TimeTable = () => {
    return (
       <StyledTimeTable>
          <Box>
-            <StyledInput placeholder="Поиск" />
+            <StyledInput
+               placeholder="Поиск"
+               endAdornment={<img src={searchIcon} />}
+            />
          </Box>
          <BoxStyle className="time-table">
             <Grid container>

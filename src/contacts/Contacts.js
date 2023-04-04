@@ -1,18 +1,12 @@
 import React from 'react'
 import { styled } from '@mui/material'
-import { Link } from 'react-router-dom'
 
 const Contacts = () => {
    return (
       <>
          <ContactContainer>
-            <StyledContactHeader>
-               <MainLink to="/">Главная </MainLink>{' '}
-               <ContactsLink to="/contacts">Контакты</ContactsLink>
-            </StyledContactHeader>
-
             <StyledContactHeader1>
-               <thirdSpan>Наши</thirdSpan> <fourthSpan>контакты</fourthSpan>
+               <Span3>Наши</Span3> <Span4>контакты</Span4>
             </StyledContactHeader1>
             <StyledTextMain>
                <p>
@@ -24,20 +18,20 @@ const Contacts = () => {
                </p>
             </StyledTextMain>
             <StyledContactDetail>
-               <number>Контактные номера:</number>
+               <div>Контактные номера:</div>
                <PhoneNumber>+996(800) 000 000 ; +996(505) 000 000</PhoneNumber>
-               <adress>Наш адрес:</adress>
-               <Adress>Кыргызстан, г. Бишкек, Медерова 44 </Adress>
-               <working>Режим работы клиники:</working>
+               <div>Наш адрес:</div>
+               <Adress>г. Бишкек, Гражданская 119 </Adress>
+               <div>Режим работы клиники:</div>
                <TimeWorking>
                   Понедельник - суббота с 08:00 до 18:00.
-               </TimeWorking>{' '}
-               <email>Электронная почта :</email>
+               </TimeWorking>
+               <div>Электронная почта :</div>
                <Email>medchek312.kg </Email>
             </StyledContactDetail>
          </ContactContainer>
          <iframe
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3A251a275ce71d5d9e7a2148b3bf081344865e7b860f0a8c055561d5da306f4c56&amp;source=constructor"
+            src="https://yandex.ru/maps/10309/bishkek/?from=mapframe&ll=74.640284%2C42.877407&mode=routes&rtext=~42.875905%2C74.628400&rtt=auto&ruri=~&source=mapframe&um=constructor%3A251a275ce71d5d9e7a2148b3bf081344865e7b860f0a8c055561d5da306f4c56&utm_source=mapframe&z=14"
             width="100%"
             height="400px"
          ></iframe>
@@ -45,44 +39,16 @@ const Contacts = () => {
    )
 }
 
+export default Contacts
+
 const ContactContainer = styled('div')(() => ({
-   padding: '0 0 0 120px',
+   width: '1440px',
+   margin: '0 auto',
 }))
-const StyledContactHeader = styled('div')(() => ({
-   marginTop: '40px',
-}))
-const MainLink = styled(Link)(() => ({
-   color: '#959595',
-   fontWeight: '400',
-   fontSize: '14px',
-   lineHeight: '19px',
-   textDecoration: 'none',
-   '&:hover': {
-      color: '#027B44',
-   },
-}))
-const ContactsLink = styled(Link)(() => ({
-   color: '#048741',
-   fontWeight: '400',
-   fontSize: '14px',
-   lineHeight: '19px',
-   textDecoration: 'none',
-}))
+
 const StyledContactHeader1 = styled('div')(() => ({
    marginTop: '30px',
    marginBottom: '35px',
-   '& thirdSpan': {
-      color: '#22222',
-      fontWeight: '600',
-      fontSize: '36px',
-      lineHeight: '49px',
-   },
-   '& fourthSpan': {
-      color: '#048741',
-      fontWeight: '600',
-      fontSize: '36px',
-      lineHeight: '49px',
-   },
 }))
 
 const StyledTextMain = styled('div')(() => ({
@@ -149,4 +115,15 @@ const StyledContactDetail = styled('div')(() => ({
    },
 }))
 
-export default Contacts
+const Span3 = styled('span')(() => ({
+   color: '#222222',
+   fontWeight: '600',
+   fontSize: '36px',
+   lineHeight: '49px',
+}))
+const Span4 = styled('span')(() => ({
+   color: '#048741',
+   fontWeight: '600',
+   fontSize: '36px',
+   lineHeight: '49px',
+}))

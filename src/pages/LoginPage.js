@@ -55,7 +55,6 @@ const LoginPage = () => {
                   'Вы можете подтвердить свою личность, а несанкционированный доступ будет заблокирован.'
                )
             }
-
             return setCustomError(res?.payload?.message)
          })
       },
