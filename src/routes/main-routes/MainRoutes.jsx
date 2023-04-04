@@ -5,6 +5,7 @@ import Dermatology from '../../components/ServiceZone/Dermatology'
 
 import Services from '../../components/ServiceZone/Services'
 import Price from '../../pages/Price'
+import GetResults from '../../components/GetResults/GetResults'
 
 import { ROUTES } from '../../utils/constants/data'
 
@@ -76,6 +77,8 @@ const MainRoutes = () => {
                   </Suspense>
                }
             />
+
+            <Route path="get_results" element={<GetResults />} />
             <Route
                path={ROUTES.USER_RECORDS}
                element={

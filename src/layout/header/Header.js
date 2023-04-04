@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { postSignUp, removeUser } from '../../redux/slices/authSlice'
 
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import OnlineEntryDrawer from '../../components/OnlineEntry/Drawer/OnlineEntryDrawer'
 import { getAllExpert } from '../../redux/slices/expertSlice'
 import ForGLobalSearching from '../../components/globalSearch/ForGLobalSearching'
@@ -24,6 +24,7 @@ import ForGLobalSearching from '../../components/globalSearch/ForGLobalSearching
 const Header = () => {
    const { isAuth } = useSelector((state) => state.auth)
    const dispatch = useDispatch()
+   const navigate = useNavigate()
 
    const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -70,6 +71,9 @@ const Header = () => {
 
    const userProfileLogo = localStorage.getItem('USER_PHOTO')
 
+   const handleGet = () => {
+      navigate('/get_results')
+   }
    return (
       <HeaderContainer>
          <FirstRow>
@@ -207,7 +211,7 @@ const Header = () => {
                   Контакты
                </CustomLinkStyle>
             </NavigatePages>
-            <GetResults>получить результаты</GetResults>
+            <GetResults onClick={handleGet}>получить результаты</GetResults>
             <div>
                <OnlineEntryDrawer />
             </div>

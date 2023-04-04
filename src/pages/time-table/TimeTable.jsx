@@ -1,14 +1,27 @@
 import { Box, Grid, styled } from '@mui/material'
 import searchIcon from '../../assets/icons/search-icon.svg'
 // import Table from '../../components/time-table/table'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Button from '../../components/UI/Button'
 import Input from '../../components/UI/Input'
 import ScheduleTable from './../../components/table/Schudule.Table'
 import useDateAndWeek from '../../hook/useDateAndWeek'
+import { getAllScheduleThunk } from '../../redux/slices/schedule-slice'
 import { DUMMY_DATA } from '../../utils/constants/schedule'
 
 const TimeTable = () => {
    const { columns: newColumns, data } = useDateAndWeek(DUMMY_DATA)
+
+   const { data: scheduleData } = useSelector((state) => state.schedule)
+
+   console.log(scheduleData)
+
+   const dispatch = useDispatch()
+
+   useEffect(() => {
+      dispatch(getAllScheduleThunk())
+   }, [])
 
    return (
       <StyledTimeTable>

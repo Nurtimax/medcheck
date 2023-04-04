@@ -19,9 +19,10 @@ import expertSlice from './slices/expertSlice'
 import { doctorsExperts } from './slices/doctors-slice'
 import profileSlice from './slices/profileSlice'
 import appointmentSlice from './slices/appointment-slice'
+import patientSlice from './slices/patientsSlice'
+import scheduleSlice from './slices/schedule-slice'
 import onlineEntrySlice from './slices/onlineEntrySlice'
 import forgotPasswordSlice from './slices/forgot-password-slice'
-import patientSlice from './slices/patientsSlice'
 
 const rootReducer = combineReducers({
    auth: authSlice.reducer,
@@ -34,6 +35,8 @@ const rootReducer = combineReducers({
    onlineEntry: onlineEntrySlice.reducer,
    doctors: doctorsExperts.reducer,
    forgotPassword: forgotPasswordSlice.reducer,
+   [applicationSlice.name]: applicationSlice.reducer,
+   schedule: scheduleSlice.reducer,
 })
 
 const persistConfig = {
