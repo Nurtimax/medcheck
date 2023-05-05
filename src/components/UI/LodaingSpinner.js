@@ -1,7 +1,8 @@
 import { styled } from '@mui/material'
 import React from 'react'
 
-import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader'
+// import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader'
+import { ClimbingBoxLoader } from 'react-spinners'
 
 const LoadingSpinner = () => {
    return (

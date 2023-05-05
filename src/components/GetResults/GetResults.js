@@ -1,7 +1,7 @@
 import { styled } from '@mui/material'
 import React from 'react'
 import { ReactComponent as Img } from '../../assets/icons/MedCheckLogo.svg'
-import { ReactComponent as Icon2 } from '../../assets/icons/medCheck.svg'
+import { ReactComponent as Icon2 } from '../../assets/icons/MedCheck.svg'
 import Input from '../UI/Input'
 import Button from '../UI/Button'
 
